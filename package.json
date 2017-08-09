@@ -1,0 +1,33 @@
+{
+  "name": "splitreceipt",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+	"dependencies": {
+		"faker": "^4.1.0",
+		"firebase": "^4.2.0",
+		"lodash": "^4.17.4",
+		"react": "16.0.0-alpha.12",
+		"react-native": "0.47.1",
+		"react-native-camera": "^0.10.0",
+		"react-native-pagination": "^1.2.8",
+		"react-navigation": "^1.0.0-beta.11"
+	},
+  "devDependencies": {
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "2.1.0",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "jest": "20.0.4",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
