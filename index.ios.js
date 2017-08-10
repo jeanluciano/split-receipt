@@ -13,6 +13,6 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGE_SENDER_ID,
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+
 
 AppRegistry.registerComponent('splitreceipt', () => App);

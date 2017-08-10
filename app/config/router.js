@@ -12,10 +12,11 @@ export const Root = StackNavigator({
   Camera: {
     screen: Camera,
   },
-  Dragndrop: {
-    screen: Dragndrop,
-  },
   Login: {
     screen: Login,
   },
+   Dragndrop: {
+    screen: Dragndrop,
+  },
+
 });

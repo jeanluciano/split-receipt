@@ -13,7 +13,9 @@
     "react": "16.0.0-alpha.12",
     "react-native": "0.47.1",
     "react-native-camera": "^0.10.0",
+    "react-native-elements": "^0.15.0",
     "react-native-pagination": "^1.2.8",
+    "react-native-swiper": "^1.5.7",
     "react-navigation": "^1.0.0-beta.11"
   },
   "devDependencies": {
