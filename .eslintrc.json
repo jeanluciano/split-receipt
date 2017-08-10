@@ -1,5 +1,9 @@
 {
     "extends": "airbnb",
+    "plugins": [
+    "react",
+    "react-native"
+  ],
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
@@ -14,6 +18,6 @@
         "no-unused-vars" : 1,
         "comma-dangle" : 1,
         "max-len": 0,
-        "jsx-filename-extension":0
+        "react/jsx-filename-extension": 2
     }
 }

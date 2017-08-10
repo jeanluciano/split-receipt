@@ -5,6 +5,6 @@ import App from './app/index';
 
 // Initialize Firebase
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+
 
 AppRegistry.registerComponent('splitreceipt', () => App);
