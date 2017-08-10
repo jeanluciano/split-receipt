@@ -22,6 +22,7 @@ class Login extends Component {
               .signInWithEmailAndPassword(email, password);
           console.log("Logged In!");
           // Navigate to the Home page
+          navigate('LinkPayPal')
 
       } catch (error) {
           console.log(error.toString())
@@ -38,6 +39,7 @@ class Login extends Component {
               .createUserWithEmailAndPassword(email, password);
           console.log("Account created");
           // Navigate to the Home page, the user is auto logged in
+          navigate('LinkPayPal');
 
       } catch (error) {
           console.log(error.toString())
@@ -98,8 +100,6 @@ class Login extends Component {
           onPress={() => this.onPayPalSignUp()}
         ></Button>
       </View>
-
-
     );
   };
 }
