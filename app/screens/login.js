@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, Linking, TouchableHighlight } from 'react-native';
 import firebase from 'firebase';
+  
+// var BTClient = require('react-native-braintree');
+// BTClient.setup(<token>);
 
 class Login extends Component {
   constructor() {
@@ -44,8 +47,13 @@ class Login extends Component {
     signup(email, password);
   }
 
-  onVenmo() {
+  onPayPalSignUp() {
+    const url = 'https://www.paypal.me/grab?locale.x=en_US&country.x=US';
+    Linking.openURL(url).catch(err => console.error('An error occurred', err));
+  }
 
+  onSendText() {
+    // 13125613496
   }
 
   render(props) {
@@ -85,12 +93,13 @@ class Login extends Component {
           onPress={() => this.onSignUp(this.state.emailText, this.state.passwordText)}
         ></Button>
         <Button
-          title="Log In with Venmo"
+          title="Link your with PayPal"
           color="#841584"
-          onPress={() => this.onVenmo(this.state.emailText, this.state.passwordText)}
+          onPress={() => this.onPayPalSignUp()}
         ></Button>
-
       </View>
+
+
     );
   };
 }
