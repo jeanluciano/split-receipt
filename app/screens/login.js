@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, Linking, TouchableHighlight, Modal } from 'react-native';
+import { View, Text, TextInput, Button, Linking, TouchableHighlight } from 'react-native';
 import Swiper from 'react-native-swiper';
 import firebase from 'firebase';
 
@@ -7,7 +7,6 @@ class Login extends Component {
   constructor() {
     super();
     this.onLogIn = this.onLogIn.bind(this);
-    this.setModalVisible = this.setModalVisible.bind(this);
     this.state = {
       emailText: '',
       passwordText: '',
@@ -15,7 +14,7 @@ class Login extends Component {
     };
   }
 
-  onLogIn(email, password, navigate, setModalVisible) {
+  onLogIn(email, password, navigate) {
     const login = async function (email, password) { 
       try {
         await firebase.auth()
@@ -30,7 +29,7 @@ class Login extends Component {
     login(email, password);
   }
 
-  onSignUp(email, password, navigate, setModalVisible) {
+  onSignUp(email, password, navigate) {
     const signup = async function (email, password) {
       try {
         await firebase.auth()
@@ -80,8 +79,7 @@ class Login extends Component {
           onPress={() => this.onLogIn(
             this.state.emailText,
             this.state.passwordText,
-            this.props.navigation.navigate,
-            this.setModalVisible
+            this.props.navigation.navigate
           )}
         ></Button>
         <Button
@@ -90,8 +88,7 @@ class Login extends Component {
           onPress={() => this.onSignUp(
             this.state.emailText,
             this.state.passwordText,
-            this.props.navigation.navigate,
-            this.setModalVisible
+            this.props.navigation.navigate
           )}
         ></Button>
       </View>
