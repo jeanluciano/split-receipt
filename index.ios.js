@@ -14,19 +14,4 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-
-const login = async function (email, password) { 
-  try {
-    await firebase.auth()
-      .signInWithEmailAndPassword(email, password);
-    console.log('LOGGED IN')
-    // Navigate to the Home page
-    navigate('LinkAccounts')
-
-  } catch (error) {
-    console.log(error.toString())
-  }
-}
-login("Jason@hu.com", 'jasonhu');
-
 AppRegistry.registerComponent('splitreceipt', () => App);
