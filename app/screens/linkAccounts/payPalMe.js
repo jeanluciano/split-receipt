@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
+import firebase from 'firebase';
 
 class PayPalMe extends Component {
   constructor() {
@@ -10,8 +11,12 @@ class PayPalMe extends Component {
     this.onSave = this.onSave.bind(this);
   }
 
-  onSave(navigate) {
+  onSave(navigate, payPalMe) {
     // update firebase
+    const userId = firebase.auth().currentUser.uid
+    firebase.database().ref()
+      .child('users')
+      .child(userId).set({payPalMe});
     navigate('LinkAccounts');
   }
 
@@ -33,7 +38,9 @@ class PayPalMe extends Component {
         <Button
           title="Save!"
           color="#841584"
-          onPress={() => this.onSave(this.props.navigation.navigate)}
+          onPress={() => this.onSave(
+            this.props.navigation.navigate,
+            this.state.paypalMeHandleString)}
         ></Button>
       </View>
     );

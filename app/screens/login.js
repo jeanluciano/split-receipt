@@ -33,7 +33,8 @@ class Login extends Component {
     const signup = async function (email, password) {
       try {
         await firebase.auth()
-          .createUserWithEmailAndPassword(email, password);
+          .createUserWithEmailAndPassword(email, password)
+          .catch(console.err);
         // Navigate to the Home page, the user is auto logged in
         navigate('LinkAccounts');
       } catch (error) {
