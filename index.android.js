@@ -17,7 +17,7 @@ const firebaseConfig = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGE_SENDER_ID,
 };
-
+firebase.initializeApp(firebaseConfig);
 
 export default class splitreceipt extends Component {
   render() {
