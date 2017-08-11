@@ -23,7 +23,10 @@ export const Root = StackNavigator({
   Camera: {
     screen: Camera,
   },
-  Dragndrop: {
+  Login: {
+    screen: Login,
+  },
+   Dragndrop: {
     screen: Dragndrop,
   },
 });
