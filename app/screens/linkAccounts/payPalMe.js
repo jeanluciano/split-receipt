@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
-import 
 
 class PayPalMe extends Component {
   constructor() {
@@ -13,7 +12,6 @@ class PayPalMe extends Component {
 
   onSave(navigate) {
     // update firebase
-
     navigate('LinkAccounts');
   }
 
