@@ -12,7 +12,21 @@ const firebaseConfig = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGE_SENDER_ID,
 };
+firebase.initializeApp(firebaseConfig);
 
 
+const login = async function (email, password) { 
+  try {
+    await firebase.auth()
+      .signInWithEmailAndPassword(email, password);
+    console.log('LOGGED IN')
+    // Navigate to the Home page
+    navigate('LinkAccounts')
+
+  } catch (error) {
+    console.log(error.toString())
+  }
+}
+login("Jason@hu.com", 'jasonhu');
 
 AppRegistry.registerComponent('splitreceipt', () => App);
