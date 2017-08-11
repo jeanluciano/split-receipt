@@ -9,7 +9,7 @@ export default Main = (props) => {
       <Button
         title="Log In"
         color="#841584"
-        onPress={() => navigate('Login', props)}
+        onPress={() => navigate('Login')}
       ></Button>
     </View>
   );
