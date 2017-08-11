@@ -11,7 +11,6 @@ class Login extends Component {
     this.state = {
       emailText: '',
       passwordText: '',
-      modalVisible: false,
       paypalMeHandleString: '',
     };
   }
@@ -21,11 +20,8 @@ class Login extends Component {
       try {
         await firebase.auth()
           .signInWithEmailAndPassword(email, password);
-        console.log("Logged In!");
         // Navigate to the Home page
-        console.log('LOGIN', navigate)
         navigate('LinkAccounts')
-        // setModalVisible(true);
 
       } catch (error) {
         console.log(error.toString())
@@ -36,33 +32,16 @@ class Login extends Component {
 
   onSignUp(email, password, navigate, setModalVisible) {
     const signup = async function (email, password) {
-      // console.log(email, password);
       try {
         await firebase.auth()
           .createUserWithEmailAndPassword(email, password);
-        console.log("Account created");
         // Navigate to the Home page, the user is auto logged in
         navigate('LinkAccounts');
-        // setModalVisible(true);
       } catch (error) {
           console.log(error.toString())
       }
     }
     signup(email, password);
-  }
-
-  onSendText() {
-    // 13125613496
-  }
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
-    console.log(this.props);
-
-  }
-
-  componentDidMount() {
-    this.setState({modalVisible: false});
   }
 
   onPayPalSignUp(navigate) {

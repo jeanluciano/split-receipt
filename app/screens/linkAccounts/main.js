@@ -21,7 +21,6 @@ class Main extends Component {
   }
 
   render(props) {
-    console.log(this.props.navigationk)
     return (
       <View className="center">
         <Text>Link your accounts!</Text>
