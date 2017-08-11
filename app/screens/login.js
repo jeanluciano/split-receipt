@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, Linking, TouchableHighlight } from 'react-native';
+import Swiper from 'react-native-swiper';
 import firebase from 'firebase';
 
 class Login extends Component {
@@ -9,49 +10,47 @@ class Login extends Component {
     this.state = {
       emailText: '',
       passwordText: '',
+      paypalMeHandleString: '',
     };
   }
 
-  onLogIn(email, password) {
+  onLogIn(email, password, navigate) {
     const login = async function (email, password) { 
       try {
-          await firebase.auth()
-              .signInWithEmailAndPassword(email, password);
-          console.log("Logged In!");
-          // Navigate to the Home page
+        await firebase.auth()
+          .signInWithEmailAndPassword(email, password);
+        // Navigate to the Home page
+        navigate('LinkAccounts')
 
       } catch (error) {
-          console.log(error.toString())
+        console.log(error.toString())
       }
     }
     login(email, password);
   }
 
-  onSignUp(email, password) {
+  onSignUp(email, password, navigate) {
     const signup = async function (email, password) {
-      // console.log(email, password);
       try {
-          await firebase.auth()
-              .createUserWithEmailAndPassword(email, password);
-          console.log("Account created");
-          // Navigate to the Home page, the user is auto logged in
-
+        await firebase.auth()
+          .createUserWithEmailAndPassword(email, password);
+        // Navigate to the Home page, the user is auto logged in
+        navigate('LinkAccounts');
       } catch (error) {
           console.log(error.toString())
       }
-
     }
     signup(email, password);
   }
 
-  onVenmo() {
-
+  onPayPalSignUp(navigate) {
+    const url = 'https://www.paypal.me/grab?locale.x=en_US&country.x=US';
+    Linking.openURL(url).catch(err => console.error('An error occurred', err));
   }
 
   render(props) {
     return (
       <View className="center">
-        <Text>YOU HAVE ARRIVED AT THE LOGIN SCREEN!</Text>
         <TextInput
           className="email"
           style={{
@@ -77,19 +76,21 @@ class Login extends Component {
         <Button
           title="Log In"
           color="#841584"
-          onPress={() => this.onLogIn(this.state.emailText, this.state.passwordText)}
+          onPress={() => this.onLogIn(
+            this.state.emailText,
+            this.state.passwordText,
+            this.props.navigation.navigate
+          )}
         ></Button>
         <Button
           title="Sign Up"
           color="#841584"
-          onPress={() => this.onSignUp(this.state.emailText, this.state.passwordText)}
+          onPress={() => this.onSignUp(
+            this.state.emailText,
+            this.state.passwordText,
+            this.props.navigation.navigate
+          )}
         ></Button>
-        <Button
-          title="Log In with Venmo"
-          color="#841584"
-          onPress={() => this.onVenmo(this.state.emailText, this.state.passwordText)}
-        ></Button>
-
       </View>
     );
   };
