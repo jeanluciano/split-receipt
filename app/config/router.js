@@ -6,6 +6,7 @@ import Login from '../screens/login';
 import Dragndrop from '../screens/Dragndrop';
 import LinkAccounts from '../screens/linkAccounts';
 import PayPalMe from '../screens/linkAccounts/payPalMe';
+import SendText from '../screens/sendText';
 
 export const Root = StackNavigator({
   Main: {
@@ -26,7 +27,10 @@ export const Root = StackNavigator({
   Login: {
     screen: Login,
   },
-   Dragndrop: {
+  Dragndrop: {
     screen: Dragndrop,
   },
+  SendText: {
+    screen: SendText,
+  }
 });
