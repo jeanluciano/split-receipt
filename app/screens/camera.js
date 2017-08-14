@@ -1,25 +1,6 @@
-import React, { Component, Dimensions } from "react";
-import { View, StyleSheet, Text  } from "react-native";
-import Camera from "react-native-camera";
-
-const styles = StyleSheet.create({
-    preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-   alignItems: 'center',
-   height: "100%",
-   width: "100%"
- },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    color: '#000',
-    padding: 10,
-    margin: 40
-  }
-})
-
+import React, { Component, Dimensions } from 'react';
+import { View, StyleSheet, Text  } from 'react-native';
+import Camera from 'react-native-camera';
 
 
 class ReceiptPicture extends Component {
@@ -47,7 +28,23 @@ class ReceiptPicture extends Component {
   }
 }
 
-
+const styles = StyleSheet.create({
+    preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+   alignItems: 'center',
+   height: "100%",
+   width: "100%"
+ },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    color: '#000',
+    padding: 10,
+    margin: 40
+  }
+})
 
 
 export default ReceiptPicture

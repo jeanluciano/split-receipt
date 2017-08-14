@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
+import React, { Component } from 'react';
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 import Swiper from "react-native-swiper";
 import { Avatar } from "react-native-elements";
 
