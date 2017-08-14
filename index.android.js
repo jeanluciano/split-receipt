@@ -4,7 +4,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
 if (process.env.NODE_ENV === 'development') require('./secrets');
