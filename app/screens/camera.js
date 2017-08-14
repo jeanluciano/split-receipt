@@ -7,7 +7,9 @@ class ReceiptPicture extends Component {
 
   takePicture() {
    this.camera.capture()
-     .then((data) => console.log(data))
+     .then((data) =>
+        axios.get(`/receipt/${data}`);
+        )
      .catch(err => console.error(err));
  }
 
