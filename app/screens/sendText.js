@@ -1,11 +1,11 @@
-import secrets from '../../secrets';
-import axios from 'axios';import React, { Component } from 'react';
-import { View, Text, Button, Linking } from 'react-native';
+import axios from 'axios';
 import firebase from 'firebase';
-const TEST_AMOUNT = '15.22';
-const TEST_JASON_DESTIONATION = '+14126097288'
-const TEST_RAJ_DESTINATION = '+12487220241';
-const TEST_DESTINATION = TEST_RAJ_DESTINATION;
+import React, { Component } from 'react';
+import { View, Text, Button, Linking } from 'react-native';
+import secrets from '../../secrets';
+
+const TEST_DESTINATION = process.env.TWILIO_TEST_JASON_DESTINATION;
+const TEST_AMOUNT = process.env.TWILIO_TEST_AMOUNT;
 
 class SendText extends Component {
   constructor() {
@@ -27,18 +27,18 @@ class SendText extends Component {
     firebase.database().ref('/users/' + userId)
       .once('value')
       .then(snapshot => snapshot.val().payPalMe)
-      .then( payPalMe => {
+      .then(payPalMe => {
         // need to loop through each endpoint
-        console.log('http://localhost:8000/api/payPalMe/', { 
+        console.log('http://localhost:8000/api/payPalMe/', {
           destinationNumber: TEST_DESTINATION,
           payPalMe,
-          amount: TEST_AMOUNT
-        })
-        return axios.post('http://localhost:8000/api/payPalMe/', { 
+          amount: TEST_AMOUNT,
+        });
+        return axios.post('http://localhost:8000/api/payPalMe/', {
           destinationNumber: TEST_DESTINATION,
           payPalMe,
-          amount: TEST_AMOUNT
-        })
+          amount: TEST_AMOUNT,
+        });
       })
       .catch(console.err);
     navigate('Main');
