@@ -1,25 +1,7 @@
-import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
-import Swiper from "react-native-swiper";
-import { Avatar } from "react-native-elements";
-
-var styles = StyleSheet.create({
-  wrapper: {},
-  slide1: {
-    flex:1,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center"
-  },
-  text: {
-    color: "#fff",
-    fontSize: 30,
-    fontWeight: "bold"
-  },
-  avatar:{
-    backgroundColor:"#D2335B"
-  }
-});
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import Swiper from 'react-native-swiper';
+import { Avatar } from 'react-native-elements';
 
 class Paginator extends Component {
   constructor() {
@@ -28,16 +10,14 @@ class Paginator extends Component {
       showDraggle: true
     };
   }
-
-
-  
   render() {
     return (
-      <Swiper 
-      loop={false}
-       height={50}
-       style={styles.wrapper} 
-       showsButtons={false}>
+      <Swiper
+        loop={false}
+        height={50}
+        style={styles.wrapper}
+        showsButtons={false}
+      >
         <View style={styles.slide1}>
           <Avatar
             onLayout={this.props.setDropZoneValues}
@@ -45,7 +25,7 @@ class Paginator extends Component {
             medium
             rounded
             title="JL"
-            onPress={() => console.log("Works!")}
+            onPress={() => console.log("works!")}
             activeOpacity={0.7}
           />
           <Avatar
@@ -60,8 +40,8 @@ class Paginator extends Component {
         </View>
         <View style={styles.slide1}>
           <Avatar
-          onLayout={this.props.setDropZoneValues}
-          overlayContainerStyle={styles.avatar}
+            onLayout={this.props.setDropZoneValues}
+            overlayContainerStyle={styles.avatar}
             medium
             rounded
             title="BP"
@@ -69,7 +49,7 @@ class Paginator extends Component {
             activeOpacity={0.7}
           />
           <Avatar
-          overlayContainerStyle={styles.avatar}
+            overlayContainerStyle={styles.avatar}
             medium
             rounded
             onLayout={this.props.setDropZoneValues}
@@ -102,5 +82,23 @@ class Paginator extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  wrapper: {},
+  slide1: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
+  avatar: {
+    backgroundColor: '#D2335B'
+  }
+});
 
 export default Paginator;
