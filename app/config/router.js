@@ -3,26 +3,29 @@ import { StackNavigator } from 'react-navigation';
 import Main from '../screens/main';
 import Camera from '../screens/camera';
 import Login from '../screens/login';
-import Dragndrop from '../screens/dragNDrop'
-import Contacts from '../screens/contacts'
-import Dragndrop from '../screens/dragndrop';
+import Dragndrop from '../screens/dragNDrop';
+import Contacts from '../screens/contacts';
 import LinkAccounts from '../screens/linkAccounts';
 import PayPalMe from '../screens/linkAccounts/payPalMe';
 import SendText from '../screens/sendText';
 import PayPalWebView from '../screens/linkAccounts/payPalWebView';
+import DevMenu from '../screens/devMenu';
 
 export const Root = StackNavigator({
-  contacts: {
-    screen: Contacts
+  DevMenu: {
+    screen: DevMenu,
   },
-   Dragndrop: {
-    screen: Dragndrop,
+  Camera: {
+    screen: Camera,
   },
   Main: {
     screen: Main,
   },
-  Camera: {
-    screen: Camera,
+  Contacts: {
+    screen: Contacts,
+  },
+  Dragndrop: {
+    screen: Dragndrop,
   },
   Login: {
     screen: Login,
