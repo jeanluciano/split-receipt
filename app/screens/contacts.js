@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import { View, TextInput, Text } from "react-native";
-import { SearchBar, List, ListItem } from "react-native-elements";
-import Pagination from './components/pagination'
-const fakeContacts = require("./components/fakecontacts");
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { SearchBar, List, ListItem } from 'react-native-elements';
+import Pagination from './components/pagination';
+
+const fakeContacts = require('./components/fakecontacts');
 
 class contacts extends Component {
   constructor() {
     super();
     this.state = {
-      query: "",
+      query: '',
       contacts: [],
-      group:[]
+      group: [],
     };
     this.onAddHandle = this.onAddHandle.bind(this)
   }
@@ -20,21 +21,18 @@ class contacts extends Component {
   }
 
 
-  onAddHandle(contact){
-    this.setState({group: [...this.state.group, contact]})
-    console.log(this.state.group)
+  onAddHandle(contact) {
+    this.setState({ group: [...this.state.group, contact] });
   }
 
 
   findContacts(query) {
-    if (query === "") {
+    if (query === '') {
       return [];
     }
     const { contacts } = this.state;
-    const regex = new RegExp(`${query.trim()}`, "i");
-    return contacts.contacts.filter(
-      contact => contact.givenName.search(regex) >= 0
-    );
+    const regex = new RegExp(`${query.trim()}`, 'i');
+    return contacts.contacts.filter(contact => contact.givenName.search(regex) >= 0);
   }
 
   render() {
@@ -50,7 +48,7 @@ class contacts extends Component {
         />
         <List>
           {contacts.map((contact, ind) =>{
-              const phoneNumber = contact.phoneNumbers[0].number
+              const phoneNumber = contact.phoneNumbers[0].number;
               return (
                   <ListItem
                   key={ind}
