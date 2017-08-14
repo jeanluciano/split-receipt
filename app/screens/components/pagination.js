@@ -45,7 +45,7 @@ class Paginator extends Component {
             medium
             rounded
             title="JL"
-            onPress={() => console.log("Works!")}
+            onPress={() => console.log("works!")}
             activeOpacity={0.7}
           />
           <Avatar

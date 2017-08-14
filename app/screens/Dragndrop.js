@@ -94,7 +94,6 @@ class DragNDrop extends Component {
   }
 
   render() {
-    console.log("state", this.state.dropZoneValues);
     return (
       <View style={styles.container}>
         {this.renderDraggable()}
