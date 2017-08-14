@@ -12,4 +12,4 @@ class PayPalWebView extends Component {
   }
 }
 
-exports default PayPalWebView;
+export default PayPalWebView;

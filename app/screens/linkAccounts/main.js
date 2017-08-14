@@ -10,7 +10,7 @@ class Main extends Component {
   }
 
   onPayPalSignUp(navigate) {
-    navigate('paypalMeHandle');
+    navigate('payPalWebView');
     const url = 'https://www.paypal.me/grab?locale.x=en_US&country.x=US';
     Linking.openURL(url)
       .catch(err => console.error('An error occurred', err));
