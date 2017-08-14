@@ -1,22 +1,22 @@
-import React, { Component, Dimensions } from 'react';
-import { View, StyleSheet, Text  } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text } from 'react-native';
 import Camera from 'react-native-camera';
+import axios from 'axios';
 
 
 class ReceiptPicture extends Component {
-
   takePicture() {
-   this.camera.capture()
-     .then((data) =>
-        axios.get(`/receipt/${data}`);
-        )
-     .catch(err => console.error(err));
- }
+    this.camera.capture()
+      .then(data => axios.post('/receipt', { data }))
+      .then(() => this.props.navigation.navigate('DragNDrop', { data }))
+      .catch(err => console.error(err));
+  }
+
 
   render() {
     return (
       <Camera
-        ref={cam => {
+        ref={(cam) => {
           this.camera = cam;
         }}
         style={styles.preview}
@@ -31,22 +31,22 @@ class ReceiptPicture extends Component {
 }
 
 const styles = StyleSheet.create({
-    preview: {
+  preview: {
     flex: 1,
     justifyContent: 'flex-end',
-   alignItems: 'center',
-   height: "100%",
-   width: "100%"
- },
+    alignItems: 'center',
+    height: '100%',
+    width: '100%',
+  },
   capture: {
     flex: 0,
     backgroundColor: '#fff',
     borderRadius: 5,
     color: '#000',
     padding: 10,
-    margin: 40
-  }
-})
+    margin: 40,
+  },
+});
 
 
-export default ReceiptPicture
+export default ReceiptPicture;
