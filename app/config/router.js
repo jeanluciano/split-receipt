@@ -9,22 +9,23 @@ import LinkAccounts from '../screens/linkAccounts';
 import PayPalMe from '../screens/linkAccounts/payPalMe';
 import SendText from '../screens/sendText';
 import PayPalWebView from '../screens/linkAccounts/payPalWebView';
+import DevMenu from '../screens/devMenu';
 
 export const Root = StackNavigator({
+  DevMenu: {
+    screen: DevMenu,
+  },
   Camera: {
     screen: Camera,
   },
   Main: {
     screen: Main,
   },
-  contacts: {
+  Contacts: {
     screen: Contacts,
   },
   Dragndrop: {
     screen: Dragndrop,
-  },
-  Camera: {
-    screen: Camera,
   },
   Login: {
     screen: Login,
