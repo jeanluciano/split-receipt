@@ -7,13 +7,17 @@ import Dragndrop from '../screens/Dragndrop';
 import LinkAccounts from '../screens/linkAccounts';
 import PayPalMe from '../screens/linkAccounts/payPalMe';
 import SendText from '../screens/sendText';
+import PayPalWebView from '../screens/linkAccounts/payPalWebView';
 
 export const Root = StackNavigator({
   Main: {
     screen: Main,
   },
-  PayPalMe: {
-    screen: PayPalMe,
+  Camera: {
+    screen: Camera,
+  },
+  Dragndrop: {
+    screen: Dragndrop,
   },
   Login: {
     screen: Login,
@@ -21,16 +25,16 @@ export const Root = StackNavigator({
   LinkAccounts: {
     screen: LinkAccounts,
   },
-  Camera: {
-    screen: Camera,
-  },
   Login: {
     screen: Login,
   },
-  Dragndrop: {
-    screen: Dragndrop,
+  PayPalMe: {
+    screen: PayPalMe,
+  },
+  PayPalWebView: {
+    screen: PayPalWebView,
   },
   SendText: {
     screen: SendText,
-  }
+  },
 });
