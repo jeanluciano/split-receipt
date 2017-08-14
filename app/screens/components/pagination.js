@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { Avatar } from 'react-native-elements';
 
@@ -9,7 +9,7 @@ class Paginator extends Component {
   constructor() {
     super();
     this.state = {
-      showDraggle: true
+      showDraggle: true,
     };
   }
   render() {
@@ -90,16 +90,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   text: {
     color: '#fff',
     fontSize: 30,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   avatar: {
-    backgroundColor: '#D2335B'
-  }
+    backgroundColor: '#D2335B',
+  },
 });
 
 export default Paginator;
