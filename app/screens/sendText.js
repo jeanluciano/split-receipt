@@ -27,13 +27,8 @@ class SendText extends Component {
     firebase.database().ref('/users/' + userId)
       .once('value')
       .then(snapshot => snapshot.val().payPalMe)
-      .then(payPalMe => {
+      .then((payPalMe) => {
         // need to loop through each endpoint
-        console.log('http://localhost:8000/api/payPalMe/', {
-          destinationNumber: TEST_DESTINATION,
-          payPalMe,
-          amount: TEST_AMOUNT,
-        });
         return axios.post('http://localhost:8000/api/payPalMe/', {
           destinationNumber: TEST_DESTINATION,
           payPalMe,
@@ -44,7 +39,7 @@ class SendText extends Component {
     navigate('Main');
   }
 
-  render(props) {
+  render() {
     return (
       <View className="center">
         <Text>Review the your splits</Text>
@@ -52,12 +47,12 @@ class SendText extends Component {
           title="Back"
           color="#841584"
           onPress={() => this.onPayPalSignUp(this.props.navigation.navigate)}
-        ></Button>
+        />
         <Button
           title="Send // Cost $ from trial account!"
           color="#841584"
           onPress={() => this.onSMS(this.props.navigation.navigate)}
-        ></Button>
+        />
 
       </View>
     );
