@@ -14,6 +14,6 @@
         "no-unused-vars" : 1,
         "comma-dangle" : 1,
         "max-len": 0,
-        "react/jsx-filename-extension": 2
+        "react/jsx-filename-extension": 0
     }
 }
