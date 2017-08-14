@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Linking } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
 
 class Main extends Component {
@@ -10,17 +10,14 @@ class Main extends Component {
   }
 
   onPayPalSignUp(navigate) {
-    navigate('paypalMeHandle');
-    const url = 'https://www.paypal.me/grab?locale.x=en_US&country.x=US';
-    Linking.openURL(url)
-      .catch(err => console.error('An error occurred', err));
+    navigate('PayPalMe', { signUp: true });
   }
 
   onSkip(navigate) {
     navigate('PayPalMe');
   }
 
-  render(props) {
+  render() {
     return (
       <View className="center">
         <Text>Link your accounts!</Text>
@@ -28,12 +25,12 @@ class Main extends Component {
           title="PayPal"
           color="#841584"
           onPress={() => this.onPayPalSignUp(this.props.navigation.navigate)}
-        ></Button>
+        />
         <Button
           title="Skip"
           color="#841584"
           onPress={() => this.onSkip(this.props.navigation.navigate)}
-        ></Button>
+        />
 
       </View>
     );

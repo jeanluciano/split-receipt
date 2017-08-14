@@ -82,7 +82,7 @@ class Login extends Component {
             this.state.passwordText,
             this.props.navigation.navigate
           )}
-        ></Button>
+        />
         <Button
           title="Sign Up"
           color="#841584"
@@ -91,7 +91,7 @@ class Login extends Component {
             this.state.passwordText,
             this.props.navigation.navigate
           )}
-        ></Button>
+        />
       </View>
     );
   };

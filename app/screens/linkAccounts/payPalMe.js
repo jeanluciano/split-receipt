@@ -10,17 +10,23 @@ class PayPalMe extends Component {
     };
     this.onSave = this.onSave.bind(this);
   }
-
+  componentDidMount() {
+    const params = this.props.navigation.state.params;
+    if (params && params.signUp) {
+      this.props.navigation.navigate('PayPalWebView');
+    }
+  }
   onSave(navigate, payPalMe) {
     // update firebase
-    const userId = firebase.auth().currentUser.uid
+    const userId = firebase.auth().currentUser.uid;
     firebase.database().ref()
       .child('users')
-      .child(userId).set({payPalMe});
+      .child(userId)
+      .set({ payPalMe });
     navigate('LinkAccounts');
   }
 
-  render(props) {
+  render() {
     return (
       <View className="center">
         <Text>Enter your PayPal.me</Text>
@@ -41,19 +47,10 @@ class PayPalMe extends Component {
           onPress={() => this.onSave(
             this.props.navigation.navigate,
             this.state.paypalMeHandleString)}
-        ></Button>
+        />
       </View>
     );
-  };
+  }
 }
 
 export default PayPalMe;
-
-
-      <View className="center">
-        <Button
-          title="Start"
-          color="#841584"
-          onPress={() => this.onPayPalSignUp()}
-        ></Button>
-      </View>
