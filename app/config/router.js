@@ -19,9 +19,6 @@ export const Root = StackNavigator({
   Dragndrop: {
     screen: Dragndrop,
   },
-  Login: {
-    screen: Login,
-  },
   LinkAccounts: {
     screen: LinkAccounts,
   },
