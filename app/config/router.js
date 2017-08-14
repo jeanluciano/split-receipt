@@ -3,7 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import Main from '../screens/main';
 import Camera from '../screens/camera';
 import Login from '../screens/login';
-import Dragndrop from '../screens/Dragndrop'
+import Dragndrop from '../screens/dragNDrop'
 import Contacts from '../screens/contacts'
 import Dragndrop from '../screens/dragndrop';
 import LinkAccounts from '../screens/linkAccounts';
