@@ -29,20 +29,20 @@ class ReceiptPicture extends Component {
 }
 
 const styles = StyleSheet.create({
-    preview: {
-    flex: 1,
+  preview: {
+    lex: 1,
     justifyContent: 'flex-end',
-   alignItems: 'center',
-   height: "100%",
-   width: "100%"
- },
+    alignItems: 'center',
+    height: '100%',
+    width: '100%',
+  },
   capture: {
     flex: 0,
     backgroundColor: '#fff',
     borderRadius: 5,
     color: '#000',
     padding: 10,
-    margin: 40
+    margin: 40,
   }
 })
 
