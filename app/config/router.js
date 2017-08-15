@@ -3,11 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import Main from '../screens/main';
 import Camera from '../screens/camera';
 import Login from '../screens/login';
-<<<<<<< HEAD
-import Dragndrop from '../screens/Dragndrop';
-=======
 import Dragndrop from '../screens/dragNDrop';
->>>>>>> master
 import Contacts from '../screens/contacts';
 import LinkAccounts from '../screens/linkAccounts';
 import PayPalMe from '../screens/linkAccounts/payPalMe';

@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
-import { SearchBar, List, ListItem, Button } from "react-native-elements";
-import Pagination from "./components/pagination";
+import React, { Component } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { SearchBar, List, ListItem, Button } from 'react-native-elements';
+import Pagination from './components/pagination';
 
-const fakeContacts = require("./components/fakecontacts");
+const fakeContacts = require('./components/fakecontacts');
 
 class contacts extends Component {
   constructor() {
     super();
     this.state = {
-      query: "",
+      query: '',
       contacts: [],
-      group: []
+      group: [],
     };
     this.onAddHandle = this.onAddHandle.bind(this);
   }
@@ -34,7 +34,7 @@ class contacts extends Component {
   }
 
   findContacts(query) {
-    if (query === "") {
+    if (query === '') {
       return [];
     }
     const { contacts } = this.state;
@@ -84,25 +84,25 @@ class contacts extends Component {
 const styles = StyleSheet.create({
   contacts: {
     flex: 1,
-    backgroundColor: "#3D4D65"
+    backgroundColor: '#3D4D65',
   },
   searchContainer: {
-    borderTopWidth: 0
+    borderTopWidth: 0,
   },
   SearchBar: {
-    backgroundColor: "#3D4D65",
+    backgroundColor: '#3D4D65',
     borderWidth: 0,
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
   },
   listItem: {
-    backgroundColor: "#374355"
+    backgroundColor: '#374355',
   },
   listText: {
-    color: "#8493A8"
+    color: '#8493A8',
   },
   button: {
-    borderRadius:5
-  }
+    borderRadius:5,
+  },
 });
 
 export default contacts;
