@@ -7,8 +7,8 @@ import axios from 'axios';
 class ReceiptPicture extends Component {
   takePicture() {
     this.camera.capture()
-      .then(data => axios.post('/receipt', { data }))
-      .then(() => this.props.navigation.navigate('DragNDrop', { data }))
+      .then(data => axios.post('/api/image/receipt', { data }))
+      .then((data) => this.props.navigation.navigate('DragNDrop', { data }))
       .catch(err => console.error(err));
   }
 

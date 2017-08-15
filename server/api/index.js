@@ -3,7 +3,7 @@ const router = require('express').Router();
 module.exports = router;
 
 router.use('/payPalMe', require('./payPalMe'));
-// router.use('/googleVision', require('./googleVision'));
+router.use('/image', require('./image'));
 
 router.use((req, res, next) => {
   const error = new Error('Not Found');

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   View,
-  FlatList,
   PanResponder,
   Image,
   Animated,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import Paginator from './components/pagination';
 
@@ -22,8 +20,8 @@ class DragNDrop extends Component {
       showDraggable: true,
       dropZoneValues: {
         y: 0,
-        x: 0
-      }
+        x: 0,
+      },
     };
     this.setDropZoneValues = this.setDropZoneValues.bind(this);
   }
