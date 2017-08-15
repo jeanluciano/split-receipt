@@ -17,8 +17,7 @@ class contacts extends Component {
   }
 
   componentDidMount() {
-    let fakeArr = fakeContacts.contacts.map(person => person);
-
+    const fakeArr = fakeContacts.contacts.map(person => person);
     this.setState({ contacts: fakeArr });
   }
 
@@ -72,10 +71,11 @@ class contacts extends Component {
           })}
         </List>
         <Button
-          title="That's everybody!" 
+          title="That's everybody!"
           backgroundColor="#03BD5B"
           containerViewStyle={styles.button}
-          borderRadius={5} />
+          borderRadius={5}
+        />
       </View>
     );
   }
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     color: '#8493A8',
   },
   button: {
-    borderRadius:5,
+    borderRadius: 5,
   },
 });
 
