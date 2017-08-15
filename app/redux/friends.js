@@ -25,24 +25,24 @@ export default function friendsReducer(state = [], action) {
 
 export const getFriends = function () {
   return function thunk(dispatch) {
-    dispatch(readFriends());
+    dispatch(readFriends())
   };
 };
 
 export const addFriend = function (friend) {
   return function thunk(dispatch) {
-    dispatch(createFriends(friend));
+    dispatch(createFriends(friend))
   };
 };
 
 export const putfriend = function (friend) {
   return function thunk(dispatch) {
-    dispatch(updateFriends(friend));
+    dispatch(updateFriends(friend))
   };
 };
 
 export const deleteFriend = function (friend) {
   return function thunk(dispatch) {
-    dispatch(destroyFriend(friend));
+    dispatch(destroyFriend(friend))
   };
 };

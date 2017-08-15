@@ -31,6 +31,6 @@ export const getContacts = function () {
 
 export const deleteContact = function (contact) {
   return function thunk(dispatch) {
-    dispatch(removeContact(contact));
+    dispatch(removeContact(contact))
   };
 };
