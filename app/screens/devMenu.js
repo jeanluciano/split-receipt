@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 
-class Main extends Component() {
+class DevMenu extends Component {
+
   onDummy() {
     const login = async function(email, password) { 
       try {
@@ -22,7 +23,7 @@ class Main extends Component() {
     // const { navigate } = this.props.navigation;
     return (
       <View className="center">
-        <Text>Main.js works</Text>
+        <Text>DevMenu.js works</Text>
         <Button
           title="Log In"
           color="#841584"
@@ -63,4 +64,4 @@ class Main extends Component() {
   }
 };
 
-export default Main;
+export default DevMenu;
