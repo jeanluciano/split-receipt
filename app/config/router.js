@@ -1,5 +1,5 @@
 
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import Main from '../screens/main';
 import Camera from '../screens/camera';
 import Login from '../screens/login';
@@ -11,7 +11,7 @@ import SendText from '../screens/sendText';
 import PayPalWebView from '../screens/linkAccounts/payPalWebView';
 import DevMenu from '../screens/devMenu';
 
-export const Root = StackNavigator({
+export const Root = DrawerNavigator({
   DevMenu: {
     screen: DevMenu,
   },

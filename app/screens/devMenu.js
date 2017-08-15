@@ -1,10 +1,20 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { TouchableHighlight, View, Text, Button } from 'react-native';
+import { Icon } from 'react-native-elements';
+
+
+import Nav from './components/nav';
 
 export default Main = (props) => {
   const { navigate } = props.navigation;
   return (
-    <View className="center">
+    <View className="center" style={{paddingTop: '20%'}}>
+        <Icon
+      name="navicon"
+      type="evilicon"
+      color="#000"
+      onPress={() => navigate('DrawerOpen')}
+    />
       <Text>Main.js works</Text>
       <Button
         title="Log In"
