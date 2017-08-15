@@ -8,8 +8,8 @@ class ReceiptPicture extends Component {
   takePicture() {
     this.camera.capture()
       .then(data => axios.post('/api/image/receipt', { data }))
-      .then((data) => this.props.navigation.navigate('DragNDrop', { data }))
-      .catch(err => console.error(err));
+      // .then((data) => this.props.navigation.navigate('DragNDrop', { data }))
+      // .catch(err => console.error(err));
   }
 
 

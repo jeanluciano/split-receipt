@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 
-class Main extends React.Component() {
+class Main extends Component() {
   onDummy() {
-    const login = async(email, password){ 
+    const login = async function(email, password) { 
       try {
         await firebase.auth()
           .signInWithEmailAndPassword(email, password);
@@ -18,7 +18,8 @@ class Main extends React.Component() {
   }
   
   render() {
-    const { navigate } = this.props.navigation;
+    const navigate = () => {};
+    // const { navigate } = this.props.navigation;
     return (
       <View className="center">
         <Text>Main.js works</Text>
@@ -61,3 +62,5 @@ class Main extends React.Component() {
     );
   }
 };
+
+export default Main;
