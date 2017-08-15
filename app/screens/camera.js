@@ -30,7 +30,7 @@ class ReceiptPicture extends Component {
 
 const styles = StyleSheet.create({
   preview: {
-    lex: 1,
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
     height: '100%',
