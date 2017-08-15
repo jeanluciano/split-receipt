@@ -20,8 +20,11 @@
     "react-native": "0.47.1",
     "react-native-camera": "^0.10.0",
     "react-native-elements": "^0.15.0",
+    "react-native-fontawesome": "^5.7.0",
+    "react-native-linear-gradient": "^2.2.0",
     "react-native-pagination": "^1.2.8",
     "react-native-swiper": "^1.5.7",
+    "react-native-vector-icons": "^4.3.0",
     "react-navigation": "^1.0.0-beta.11",
     "twilio": "^3.6.2"
   },

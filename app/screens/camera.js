@@ -1,5 +1,5 @@
 import React, { Component, Dimensions } from "react";
-import { View, StyleSheet, Text  } from "react-native";
+import { StyleSheet, Text } from 'react-native';
 import Camera from "react-native-camera";
 
 const styles = StyleSheet.create({

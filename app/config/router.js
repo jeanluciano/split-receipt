@@ -7,8 +7,12 @@ import Dragndrop from '../screens/Dragndrop';
 import LinkAccounts from '../screens/linkAccounts';
 import PayPalMe from '../screens/linkAccounts/payPalMe';
 import SendText from '../screens/sendText';
+import Landing from '../screens/Landing';
 
 export const Root = StackNavigator({
+  Landing: {
+    screen: Landing,
+  },
   Main: {
     screen: Main,
   },
