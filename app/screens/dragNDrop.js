@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   View,
-  FlatList,
   PanResponder,
   Image,
   Animated,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import Paginator from './components/pagination';
 
@@ -55,7 +53,7 @@ class DragNDrop extends Component {
         }
         this.state.pan.flattenOffset();
         Animated.spring(this.state.scale, { toValue: 1, friction: 3 }).start();
-      }
+      },
     });
   }
 
@@ -105,14 +103,14 @@ class DragNDrop extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3D4D65'
+    backgroundColor: '#3D4D65',
   },
   paginator: {
     position: 'absolute',
     height: 40,
     left: 0,
     top: height - 120,
-    width: width
+    width,
   }
 });
 
