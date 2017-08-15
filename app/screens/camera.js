@@ -1,20 +1,20 @@
-import React, { Component, Dimensions } from 'react';
-import { View, StyleSheet, Text  } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text } from 'react-native';
 import Camera from 'react-native-camera';
 
 
 class ReceiptPicture extends Component {
 
   takePicture() {
-   this.camera.capture()
-     .then((data) => console.log(data))
-     .catch(err => console.error(err));
- }
+    this.camera.capture()
+      .then(data => console.log(data))
+      .catch(err => console.error(err));
+  }
 
   render() {
     return (
       <Camera
-        ref={cam => {
+        ref={(cam) => {
           this.camera = cam;
         }}
         style={styles.preview}
@@ -43,8 +43,13 @@ const styles = StyleSheet.create({
     color: '#000',
     padding: 10,
     margin: 40,
+<<<<<<< HEAD
   }
 })
+=======
+  },
+});
+>>>>>>> master
 
 
-export default ReceiptPicture
+export default ReceiptPicture;
