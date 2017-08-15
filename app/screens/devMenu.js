@@ -1,11 +1,15 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
+import { Icon } from 'react-native-elements';
+import Nav from './components/nav';
 
 export default Main = (props) => {
   const { navigate } = props.navigation;
   return (
-    <View className="center">
-      <Text>Main.js works</Text>
+    <View className="center" style={{paddingTop: '20%'}}>
+
+      <Nav navigation={props.navigation}/>
+      <Text>Main.js adfworks</Text>
       <Button
         title="Log In"
         color="#841584"
