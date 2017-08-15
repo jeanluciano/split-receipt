@@ -5,11 +5,17 @@ import axios from 'axios';
 
 
 class ReceiptPicture extends Component {
+
+  constructor(props) {
+    super(props);
+    this.takePicture = this.takePicture.bind(this);
+  }
   takePicture() {
     this.camera.capture()
-      .then(data => axios.post('/api/image/receipt', { data }))
+      .then(data => axios.post('http://localhost:8000/api/image/receipt', { data }))
+      // .then(data => console.log('hello', data))
       // .then((data) => this.props.navigation.navigate('DragNDrop', { data }))
-      // .catch(err => console.error(err));
+      .catch(err => console.error(err));
   }
 
 
@@ -21,8 +27,9 @@ class ReceiptPicture extends Component {
         }}
         style={styles.preview}
         aspect={Camera.constants.Aspect.fill}
+        captureTarget={Camera.constants.CaptureTarget.memory}
       >
-        <Text style={styles.capture} onPress={this.takePicture.bind(this)}>
+        <Text style={styles.capture} onPress={this.takePicture}>
           [CAPTURE]
         </Text>
       </Camera>

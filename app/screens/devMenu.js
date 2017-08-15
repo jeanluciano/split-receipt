@@ -14,13 +14,12 @@ class DevMenu extends Component {
       } catch (error) {
         console.log(error.toString())
       }
-      login(email, password);
+      login("jason@one.com", "Jasonone");
     }
   }
   
   render() {
-    const navigate = () => {};
-    // const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <View className="center">
         <Text>DevMenu.js works</Text>
@@ -42,7 +41,7 @@ class DevMenu extends Component {
         <Button
           title="Login with Dummy"
           color="#841584"
-          onPress={() => navigate('SendText')}
+          onPress={() => this.onDummy}
         />
         <Button
           title="Camera"
@@ -57,7 +56,10 @@ class DevMenu extends Component {
         <Button
           title="Contacts"
           color="#841584"
-          onPress={() => navigate('Contacts')}
+          onPress={() => 
+            {console.log('CONTACTS')
+            return navigate('Contacts')}
+          }
         />
       </View>
     );
