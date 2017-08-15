@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
+import { Icon } from 'react-native-elements';
+import Nav from './components/nav';
 
+<<<<<<< HEAD
 class DevMenu extends Component {
 
   onDummy() {
@@ -21,7 +24,7 @@ class DevMenu extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View className="center">
+    <View className="center" style={{paddingTop: '20%'}}>
         <Text>DevMenu.js works</Text>
         <Button
           title="Log In"

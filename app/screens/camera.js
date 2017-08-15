@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import React, { Component, Dimensions } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 
@@ -18,13 +18,10 @@ class ReceiptPicture extends Component {
       .catch(err => console.error(err));
   }
 
-
   render() {
     return (
       <Camera
-        ref={(cam) => {
-          this.camera = cam;
-        }}
+        ref={cam => {this.camera = cam;}}
         style={styles.preview}
         aspect={Camera.constants.Aspect.fill}
         captureTarget={Camera.constants.CaptureTarget.memory}
@@ -52,8 +49,8 @@ const styles = StyleSheet.create({
     color: '#000',
     padding: 10,
     margin: 40,
-  },
-});
+  }
+})
 
 
-export default ReceiptPicture;
+export default ReceiptPicture
