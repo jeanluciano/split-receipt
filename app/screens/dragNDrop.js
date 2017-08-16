@@ -20,8 +20,8 @@ class DragNDrop extends Component {
       showDraggable: true,
       dropZoneValues: {
         y: 0,
-        x: 0
-      }
+        x: 0,
+      },
     };
     this.setDropZoneValues = this.setDropZoneValues.bind(this);
   }

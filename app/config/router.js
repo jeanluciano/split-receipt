@@ -1,4 +1,3 @@
-
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import Main from '../screens/main';
 import Camera from '../screens/camera';
