@@ -1,15 +1,21 @@
 import React, { Component, Dimensions } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import Camera from 'react-native-camera';
+import axios from 'axios';
 
+const IP_ADDRESS = '172.28.116.200'
 
 class ReceiptPicture extends Component {
 
+  constructor(props) {
+    super(props);
+    this.takePicture = this.takePicture.bind(this);
+  }
   takePicture() {
-   this.camera.capture()
-     .then((data) => console.log(data))
-     .catch(err => console.error(err));
- }
+    this.camera.capture()
+      .then(image => axios.post('http://' + IP_ADDRESS + ':8000/api/image/receipt', image))
+      .catch(err => console.error(err));
+  }
 
   render() {
     return (
@@ -17,8 +23,9 @@ class ReceiptPicture extends Component {
         ref={cam => {this.camera = cam;}}
         style={styles.preview}
         aspect={Camera.constants.Aspect.fill}
+        captureTarget={Camera.constants.CaptureTarget.memory}
       >
-        <Text style={styles.capture} onPress={this.takePicture.bind(this)}>
+        <Text style={styles.capture} onPress={this.takePicture}>
           [CAPTURE]
         </Text>
       </Camera>

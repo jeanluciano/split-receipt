@@ -16,7 +16,7 @@ class SendText extends Component {
 
   onPayPalSignUp(navigate) {
     navigate('paypalMeHandle');
-    const url = 'https://www.paypal.me/grab?locale.x=en_US&country.x=US';
+    const url = 'https://www.paypal.me';
     Linking.openURL(url)
       .catch(err => console.error('An error occurred', err));
   }
