@@ -3,7 +3,6 @@ import { View, Text, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Nav from './components/nav';
 
-<<<<<<< HEAD
 class DevMenu extends Component {
 
   onDummy() {

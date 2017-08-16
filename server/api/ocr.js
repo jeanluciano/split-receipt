@@ -2,7 +2,6 @@ const fs = require('fs');
 
 // declare post url
 const baseURL = 'https://vision.googleapis.com/v1/images:annotate';
-if (process.env.NODE_ENV === 'development') require('../secrets');
 const requestURL = baseURL + `?key=${process.env.GOOGLE_CLOUD_KEY}`;
 
 // define vision api to target
