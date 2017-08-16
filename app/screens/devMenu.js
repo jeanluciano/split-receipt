@@ -1,30 +1,32 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
+import firebase from 'firebase';
 import Nav from './components/nav';
 
 class DevMenu extends Component {
 
-  onDummy() {
+  onDummy(navigate) {
+    console.log('DUMMY LOG IN')
     const login = async function(email, password) { 
       try {
         await firebase.auth()
-          .signInWithEmailAndPassword(email, password);
+          .signInWithEmailAndPassword(email, password)
         // Navigate to the Home page
-        navigate('LinkAccounts')
+        navigate('DevMenu');
 
       } catch (error) {
         console.log(error.toString())
       }
-      login("jason@one.com", "Jasonone");
     }
+    login("jason@one.com", "Jasonone");
   }
   
   render() {
     const { navigate } = this.props.navigation;
     return (
     <View className="center" style={{paddingTop: '20%'}}>
-        <Text>DevMenu.js works</Text>
+        <Text>DevMenu</Text>
         <Button
           title="Log In"
           color="#841584"
@@ -43,7 +45,7 @@ class DevMenu extends Component {
         <Button
           title="Login with Dummy"
           color="#841584"
-          onPress={() => this.onDummy}
+          onPress={() => this.onDummy(navigate)}
         />
         <Button
           title="Camera"
