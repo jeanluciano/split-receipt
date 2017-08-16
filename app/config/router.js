@@ -1,4 +1,3 @@
-
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import Main from '../screens/main';
 import Camera from '../screens/camera';
@@ -10,8 +9,12 @@ import PayPalMe from '../screens/linkAccounts/payPalMe';
 import SendText from '../screens/sendText';
 import PayPalWebView from '../screens/linkAccounts/payPalWebView';
 import DevMenu from '../screens/devMenu';
+import stack from '../screens/stack';
 
 export const Root = DrawerNavigator({
+  Stack: {
+    screen: stack,
+  },
   DevMenu: {
     screen: DevMenu,
   },
