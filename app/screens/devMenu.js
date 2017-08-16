@@ -7,7 +7,6 @@ export default Main = (props) => {
   const { navigate } = props.navigation;
   return (
     <View className="center" style={{paddingTop: '20%'}}>
-
       <Nav navigation={props.navigation}/>
       <Text>Main.js adfworks</Text>
       <Button

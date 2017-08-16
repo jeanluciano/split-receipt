@@ -10,10 +10,11 @@ import PayPalMe from '../screens/linkAccounts/payPalMe';
 import SendText from '../screens/sendText';
 import PayPalWebView from '../screens/linkAccounts/payPalWebView';
 import DevMenu from '../screens/devMenu';
+import func from './func';
 
-export const Root = DrawerNavigator({
+export default DrawerNavigator({
   DevMenu: {
-    screen: DevMenu,
+    screen: func(DevMenu),
   },
   Camera: {
     screen: Camera,
