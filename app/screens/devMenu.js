@@ -58,10 +58,7 @@ class DevMenu extends Component {
         <Button
           title="Contacts"
           color="#841584"
-          onPress={() => 
-            {console.log('CONTACTS')
-            return navigate('Contacts')}
-          }
+          onPress={() => navigate('Contacts')}
         />
       </View>
     );
