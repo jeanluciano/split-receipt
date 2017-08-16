@@ -8,11 +8,6 @@ const client = require('twilio')(TWILIO_SID, TWILIO_AUTH_TOKEN);
 // api/payPalMe/
 router.post('/', (req, res, next) => {
   const { destinationNumber, payPalMe, amount } = req.body;
-  console.log('PAYPAL API', {
-    to: destinationNumber,
-    from: TWILIO_PHONE_NUMBER,
-    body: `Please go here to pay your split www.paypal.me/${payPalMe}/${amount}`
-  });
   client.messages
     .create({
       to: destinationNumber,
