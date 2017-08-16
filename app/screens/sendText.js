@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { View, Text, Button, Linking } from 'react-native';
 import secrets from '../../secrets';
 
-const TEST_DESTINATION = process.env.TWILIO_TEST_JASON_DESTINATION;
+const TEST_DESTINATION = process.env.TWILIO_TEST_JASON_DESTIONATION;
 const TEST_AMOUNT = process.env.TWILIO_TEST_AMOUNT;
 
 class SendText extends Component {
@@ -24,6 +24,8 @@ class SendText extends Component {
   onSMS(navigate) {
     // grab payPalMe handle
     const userId = firebase.auth().currentUser.uid;
+    console.log('SEND SMS', process.env.TWILIO_TEST_JASON_DESTIONATION);
+    console.log('SEND SMS', TEST_DESTINATION);
     firebase.database().ref('/users/' + userId)
       .once('value')
       .then(snapshot => snapshot.val().payPalMe)
