@@ -14,7 +14,7 @@ router.post('/receipt', async (req, res, next) => {
   // console.log('***RECIEPT DATA', receiptData);
   // res.sendStatus(200);
 
-  request(require('./ocr')('./image2.jpg'), async (err, googleRes, body) => {
+  request(require('./ocr')(data), async (err, googleRes, body) => {
     if (err) next(err);
     await googleRes, body;
     // console.log('***TOUCH MY BODY', body.responses[0].textAnnotations);

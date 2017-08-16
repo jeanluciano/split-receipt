@@ -20,27 +20,15 @@ const reqBody = {
   ],
 };
 
-//helper function to encode image
-const encodeImage = (image) => {
-  const imageFile = fs.readFileSync(image);
-  return new Buffer(imageFile).toString('base64');
-};
-
-// // set req options
-// module.exports = (image64) => {
-//   reqBody.requests[0].image.content = image64;
-//   return {
-//     method: 'post',
-//     body: reqBody,
-//     json: true,
-//     url: requestURL,
-//   };
+// //helper function to encode image
+// const encodeImage = (image) => {
+//   const imageFile = fs.readFileSync(image);
+//   return new Buffer(imageFile).toString('base64');
 // };
 
 // set req options
-module.exports = (image) => {
-  console.log("IMAGE", image)
-  reqBody.requests[0].image.content = encodeImage(image);
+module.exports = (image64) => {
+  reqBody.requests[0].image.content = image64;
   return {
     method: 'post',
     body: reqBody,
@@ -48,3 +36,15 @@ module.exports = (image) => {
     url: requestURL,
   };
 };
+
+// // set req options
+// module.exports = (image) => {
+//   console.log("IMAGE", image)
+//   reqBody.requests[0].image.content = encodeImage(image);
+//   return {
+//     method: 'post',
+//     body: reqBody,
+//     json: true,
+//     url: requestURL,
+//   };
+// };
