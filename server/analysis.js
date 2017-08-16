@@ -41,7 +41,6 @@ const adjustLineVertices = (candidateTextVertices, receiptLines) => {
 const extractRelevantText = (data, receiptLines = {}, receiptItem_ySets = new Set(), receiptTotal_ySet = '', extraneousInfo_ySets = new Set()) => {
 
     //start at 1 to skip over first element containing metadata
-    // console.log('EXTRACT DATA INSIDE ANALYSIS', data)
     for (let i = 1; i < data.length; i++){
 
         const textBlock = data[i], candidateTextVertices = textBlock.boundingPoly.vertices;
@@ -102,11 +101,9 @@ module.exports = async (data) => {
     const isTotalPrice = isReceiptItem; //reuse previously-declared function here
     const totalLineItemData = receiptLines[receiptTotal_ySet];
     let totalPrice = [ { description: '0.00' }]; //accounts for edge case where references to 'total' are > 1 as in the case of /tests/images/image6
-    console.log('***TOTAL LINE ITEM DATA', totalLineItemData);
     if (totalLineItemData.length > 1) {
         totalPrice = totalLineItemData.filter(lineItem => isTotalPrice(lineItem.description.replace(/\D/g,'.'))); //ocr may read 54.50 as 54,50 sometimes
     } 
-    console.log('***TOTAL PRICE', totalPrice);
 
     analyzedReceiptObj.push( { price: Number(totalPrice[0].description.replace(/\D/g,'.')), 'item': 'total' } );
 
