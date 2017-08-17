@@ -36,9 +36,9 @@ export default Main = (props) => {
         onPress={() => navigate('Camera')}
       />
       <Button
-        title="Drag and Drop"
+        title="Stack"
         color="#841584"
-        onPress={() => navigate('Dragndrop')}
+        onPress={() => navigate('Stack')}
       />
       <Button
         title="Contacts"

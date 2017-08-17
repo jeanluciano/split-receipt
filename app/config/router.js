@@ -9,14 +9,15 @@ import PayPalMe from '../screens/linkAccounts/payPalMe';
 import SendText from '../screens/sendText';
 import PayPalWebView from '../screens/linkAccounts/payPalWebView';
 import DevMenu from '../screens/devMenu';
-import stack from '../screens/stack';
+import Stack from '../screens/stack';
 
 export const Root = DrawerNavigator({
-  Stack: {
-    screen: stack,
-  },
+  
   DevMenu: {
     screen: DevMenu,
+  },
+  Stack: {
+    screen: Stack,
   },
   Camera: {
     screen: Camera,

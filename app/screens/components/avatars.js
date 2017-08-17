@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Avatar } from 'react-native-elements';
+import { connect } from 'react-redux'
 import fakeContacts from './fakecontacts';
 
 const styles = StyleSheet.create({
@@ -14,14 +15,14 @@ const styles = StyleSheet.create({
   },
   avatar: {
     margin: 10,
-    backgroundColor: "#0081D5"
+    backgroundColor: '#0081D5'
   },
 });
 
-function avatars() {
+function Avatars(props) {
   return (
     <View style={styles.container}>
-      {fakeContacts.map(contact =>
+      {props.friends.map(contact =>
         <Avatar
           key={contact.recordID}
           containerStyle={styles.avatar}
@@ -35,4 +36,7 @@ function avatars() {
   );
 }
 
-export default avatars;
+const mapState = ({ friends }) => ({ friends })
+
+
+export default connect(mapState)(Avatars);
