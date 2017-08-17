@@ -8,7 +8,7 @@ import { sendText } from '../redux/sendText';
 
 const SendText = (props) => {
   const { friends } = props
-
+  // remove hardcode
   const user = { payPalMe: 'jasonhu0' };
   return (
     <View style={styles.screen}>

@@ -6,7 +6,6 @@ import { putFriend } from './friends';
  */
 export const sendText = (friends, payPalMe) => (dispatch) => {
   friends.map((friend) => {
-    console.log(friend)
     const destinationNumber = friend.phone;
     const amount = friend.total;
     axios.post('http://localhost:8000/api/payPalMe/', {
@@ -19,6 +18,6 @@ export const sendText = (friends, payPalMe) => (dispatch) => {
         friend.payStatus = 'requested'
         return dispatch(putFriend(friend))
       })
-      .catch( error => dispatch(putFriend({ error })))
+      .catch(error => dispatch(putFriend({ error })))
   })
 }
