@@ -35,7 +35,7 @@ export const addFriend = function (friend) {
   };
 };
 
-export const putfriend = function (friend) {
+export const putFriend = function (friend) {
   return function thunk(dispatch) {
     dispatch(updateFriends(friend))
   };
