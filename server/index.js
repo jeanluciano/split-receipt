@@ -16,7 +16,7 @@ const createApp = () => {
   app.use(morgan('dev'));
 
   // body parsing middleware
-  app.use(bodyParser.json({ limit: '50mb'}));
+  app.use(bodyParser.json({ limit: '50mb' }));
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
   app.use('/api', require('./api'));

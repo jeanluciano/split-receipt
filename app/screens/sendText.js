@@ -1,64 +1,196 @@
 import axios from 'axios';
 import firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, Text, Button, Linking } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 import secrets from '../../secrets';
+import FriendCard from './components/friendCard';
 
 const TEST_DESTINATION = process.env.TWILIO_TEST_JASON_DESTIONATION;
 const TEST_AMOUNT = process.env.TWILIO_TEST_AMOUNT;
+const TEST_FRIENDS = [
+  {
+    name: 'Jason Hu',
+    items: [
+      {
+        name: 'Chicken and Veg',
+        price: 10.99,
+      },
+      {
+        name: 'Chicken Lo Mein',
+        price: 8.99,
+      },
+      {
+        name: 'Samuel Adams',
+        price: 4.99,
+      },
+      {
+        name: 'T-Bone',
+        price: 20.99,
+      },
+    ],
+    total: 54.23,
+    phone: '1234123412',
+  },
+  {
+    name: 'Raj Kadiyala',
+    items: [
+      {
+        name: 'Mango Chicken',
+        price: 11.99,
+      },
+      {
+        name: 'Ice Cream Sandwich',
+        price: 8.99,
+      },
+      {
+        name: 'Samuel Adams',
+        price: 4.99,
+      },
+      {
+        name: 'T-Bone',
+        price: 20.99,
+      },
+    ],
+    total: 54.23,
+    phone: '1234123412',
+  },
+  {
+    name: 'Raj Kadiyala',
+    items: [
+      {
+        name: 'Mango Chicken',
+        price: 11.99,
+      },
+      {
+        name: 'Ice Cream Sandwich',
+        price: 8.99,
+      },
+      {
+        name: 'Samuel Adams',
+        price: 4.99,
+      },
+      {
+        name: 'T-Bone',
+        price: 20.99,
+      },
+    ],
+    total: 54.23,
+    phone: '1234123412',
+  },
+  {
+    name: 'Raj Kadiyala',
+    items: [
+      {
+        name: 'Mango Chicken',
+        price: 11.99,
+      },
+      {
+        name: 'Ice Cream Sandwich',
+        price: 8.99,
+      },
+      {
+        name: 'Samuel Adams',
+        price: 4.99,
+      },
+      {
+        name: 'T-Bone',
+        price: 20.99,
+      },
+    ],
+    total: 54.23,
+    phone: '1234123412',
+  },
+]
 
 class SendText extends Component {
   constructor() {
     super();
-    this.onPayPalSignUp = this.onPayPalSignUp.bind(this);
-    this.onSMS = this.onSMS.bind(this);
+    this.handleSMS = this.handleSMS.bind(this);
   }
 
-  onPayPalSignUp(navigate) {
-    navigate('paypalMeHandle');
-    const url = 'https://www.paypal.me';
-    Linking.openURL(url)
-      .catch(err => console.error('An error occurred', err));
-  }
-
-  onSMS(navigate) {
+  handleSMS(props) {
+    const { navigate } = props.navigation
     // grab payPalMe handle
     const userId = firebase.auth().currentUser.uid;
-    console.log('SEND SMS', process.env.TWILIO_TEST_JASON_DESTIONATION);
-    console.log('SEND SMS', TEST_DESTINATION);
     firebase.database().ref('/users/' + userId)
       .once('value')
-      .then(snapshot => snapshot.val().payPalMe)
-      .then((payPalMe) => {
+      .then((snapshot) => {
+        console.log('asdfkj')
+        return snapshot.val().payPalMe
+      })
+      .then((payPalMe) =>
         // need to loop through each endpoint
-        return axios.post('http://localhost:8000/api/payPalMe/', {
+        axios.post('http://localhost:8000/api/payPalMe/', {
           destinationNumber: TEST_DESTINATION,
           payPalMe,
           amount: TEST_AMOUNT,
-        });
-      })
+        })
+          .catch(console.err)
+      )
       .catch(console.err);
     navigate('Main');
   }
 
   render() {
     return (
-      <View className="center">
+      <View style={styles.screen}>
         <Text>Review the your splits</Text>
-        <Button
-          title="Back"
-          color="#841584"
-          onPress={() => this.onPayPalSignUp(this.props.navigation.navigate)}
-        />
-        <Button
-          title="Send // Cost $ from trial account!"
-          color="#841584"
-          onPress={() => this.onSMS(this.props.navigation.navigate)}
-        />
+
+        <ScrollView>
+          <View style={styles.table}>
+            {/* this.props.friends.map( friend => (<FriendCard friend={friend} />)) */}
+            {this.props.friends.map(friend => (<FriendCard friend={friend} />))}
+          </View>
+        </ScrollView>
+
+        <View style={styles.button}>
+          <Button
+            title="Send Requests"
+            color="#841584"
+            onPress={() => this.handleSMS(this.props)}
+          />
+        </View>
 
       </View>
     );
   }
 }
 
-export default SendText;
+const mapState = (state) => {
+  return {
+    // friends: state.friends,
+    friends: TEST_FRIENDS,
+  };
+};
+
+const mapDispatch = null;
+
+export default connect(mapState, mapDispatch)(SendText);
+
+/**
+ * PROP TYPES
+ */
+SendText.propTypes = {
+  navigate: PropTypes.func.isRequired,
+  navigation: PropTypes.object,
+  friends: PropTypes.object,
+};
+
+const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: '#ebeef0',
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+  },
+  table: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  button: {
+    alignItems: 'center',
+  },
+});
