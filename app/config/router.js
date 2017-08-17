@@ -10,6 +10,7 @@ import SendText from '../screens/sendText';
 import PayPalWebView from '../screens/linkAccounts/payPalWebView';
 import Landing from '../screens/landing';
 import DevMenu from '../screens/devMenu';
+import Stack from '../screens/stack';
 
 
 export const Root = DrawerNavigator({
@@ -19,6 +20,9 @@ export const Root = DrawerNavigator({
   },
   DevMenu: {
     screen: DevMenu,
+  },
+  Stack: {
+    screen: Stack,
   },
   Camera: {
     screen: Camera,

@@ -1,44 +1,38 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { SearchBar, List, ListItem, Button } from 'react-native-elements';
-import Pagination from './components/pagination';
-
-const fakeContacts = require('./components/fakecontacts');
+import { connect } from 'react-redux'
+import { addFriend } from '../redux/friends'
+import { deleteContact } from '../redux/contacts'
+import fakeContacts from './components/fakecontacts';
 
 class contacts extends Component {
   constructor() {
     super();
     this.state = {
       query: '',
-      contacts: [],
-      group: [],
     };
     this.onAddHandle = this.onAddHandle.bind(this);
-  }
-
-  componentDidMount() {
-    const fakeArr = fakeContacts.contacts.map(person => person);
-    this.setState({ contacts: fakeArr });
+    this.completeHandle = this.completeHandle.bind(this)
   }
 
   onAddHandle(selectedContact) {
-    const { contacts, group } = this.state;
-    const newContacts = contacts.filter(
-      contact => contact.recordID !== selectedContact.recordID
-    );
-    this.setState({
-      contacts: newContacts,
-      group: [...group, selectedContact]
-    });
+    const { addFriend, deleteContact } = this.props;
+    deleteContact(selectedContact)
+    addFriend(selectedContact)
   }
 
+  completeHandle(){
+    this.props.navigation.navigate('Stack')
+  }
+  
   findContacts(query) {
     if (query === '') {
       return [];
     }
-    const { contacts } = this.state;
+    const { myContacts } = this.props;
     const regex = new RegExp(`${query.trim()}`, "i");
-    return contacts.filter(contact => contact.givenName.search(regex) >= 0);
+    return myContacts.filter(contact => contact.givenName.search(regex) >= 0);
   }
 
   render() {
@@ -75,6 +69,7 @@ class contacts extends Component {
           backgroundColor="#03BD5B"
           containerViewStyle={styles.button}
           borderRadius={5}
+          onPress={this.completeHandle}
         />
       </View>
     );
@@ -105,4 +100,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default contacts;
+const mapState = ({ myContacts }) => ({ myContacts })
+const mapDispatch = { addFriend, deleteContact }
+
+
+
+export default connect(mapState, mapDispatch)(contacts)

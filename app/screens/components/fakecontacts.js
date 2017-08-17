@@ -1,4 +1,4 @@
-export const contacts = [
+const contacts = [
     {
   recordID: '6b2237ee0df85980',
   company: "",
@@ -87,7 +87,7 @@ export const contacts = [
     ]
 },
 {
-  recordID: '6b2237ee0df85980',
+  recordID: '6b2237ee0df8v80',
   company: "",
   emailAddresses: [{
     label: "work",
@@ -116,7 +116,7 @@ export const contacts = [
     ]
 },
 {
-  recordID: '6b2287ee0df31980',
+  recordID: '6b2287ee0df4234980',
   company: "",
   emailAddresses: [{
     label: "work",
@@ -145,3 +145,6 @@ export const contacts = [
     ]
 }
 ]
+
+
+export default contacts
