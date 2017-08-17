@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 
 export default FriendCard = (props) => {
   const {friend} = props;
@@ -17,39 +18,37 @@ export default FriendCard = (props) => {
           <Text style={styles.total}>Total</Text>
           <Text style={styles.total}>{friend.total}</Text>
       </View>
-      <View style={styles.button}>
         <Button
           title="Send Request"
-          color="black"
+          color='#000000'
+          backgroundColor='#FFFFFF'
+          borderRadius={25}
           onPress={() => {}}
         />
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'flex-end',
-    flex: 0,
+    flex: 1,
     backgroundColor: 'green',
-    borderRadius: 10,
   },
   friendView: {
     backgroundColor:'#ef553a',
-    width:360,
-    height: 200,
     paddingTop:10,
     paddingBottom:20,
     paddingLeft:10,
-    paddingRight:20, 
+    paddingRight:10, 
     borderRadius:10,
     margin: 5,
+    width: '90%',
   },
   itemView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingLeft:20,
+    margin:2,
   },
   friendName: {
     fontFamily: 'Cochin',
