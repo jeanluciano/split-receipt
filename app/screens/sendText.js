@@ -117,7 +117,6 @@ class SendText extends Component {
     firebase.database().ref('/users/' + userId)
       .once('value')
       .then((snapshot) => {
-        console.log('asdfkj')
         return snapshot.val().payPalMe
       })
       .then((payPalMe) =>

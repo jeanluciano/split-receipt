@@ -8,7 +8,6 @@ const client = require('twilio')(TWILIO_SID, TWILIO_AUTH_TOKEN);
 // api/payPalMe/
 router.post('/', (req, res, next) => {
   const { destinationNumber, payPalMe, amount } = req.body;
-  // console.log(destinationNumber, payPalMe, amount);
   client.messages
     .create({
       to: destinationNumber,
