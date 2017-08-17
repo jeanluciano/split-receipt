@@ -15,47 +15,6 @@ class DevMenu extends Component {
         // Navigate to the Home page
         navigate('DevMenu');
 
-<<<<<<< HEAD
-      <Nav navigation={props.navigation}/>
-      <Text>Main.js adfworks</Text>
-      <Button
-        title="Log In"
-        color="#841584"
-        onPress={() => navigate('Login')}
-      />
-      <Button
-        title="Send Text"
-        color="#841584"
-        onPress={() => navigate('SendText')}
-      />
-      <Button
-        title="Main"
-        color="#841584"
-        onPress={() => navigate('Main')}
-      />
-      <Button
-        title="Login with Dummy"
-        color="#841584"
-        onPress={() => navigate('SendText')}
-      />
-      <Button
-        title="Camera"
-        color="#841584"
-        onPress={() => navigate('Camera')}
-      />
-      <Button
-        title="Stack"
-        color="#841584"
-        onPress={() => navigate('Stack')}
-      />
-      <Button
-        title="Contacts"
-        color="#841584"
-        onPress={() => navigate('Contacts')}
-      />
-    </View>
-  );
-=======
       } catch (error) {
         console.log(error.toString())
       }
@@ -94,9 +53,9 @@ class DevMenu extends Component {
           onPress={() => navigate('Camera')}
         />
         <Button
-          title="Drag and Drop"
+          title="Stack"
           color="#841584"
-          onPress={() => navigate('Dragndrop')}
+          onPress={() => navigate('Stack')}
         />
         <Button
           title="Contacts"
@@ -106,7 +65,6 @@ class DevMenu extends Component {
       </View>
     );
   }
->>>>>>> master
 };
 
 export default DevMenu;
