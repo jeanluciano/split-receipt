@@ -11,6 +11,7 @@ class ReceiptPicture extends Component {
     super(props);
     this.takePicture = this.takePicture.bind(this);
   }
+
   takePicture() {
     this.camera.capture()
       .then(image => axios.post('http://' + IP_ADDRESS + ':8000/api/image/receipt', image))
