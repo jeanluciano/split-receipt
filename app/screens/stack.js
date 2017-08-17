@@ -5,6 +5,9 @@ import { BoxShadow } from 'react-native-shadow';
 import { width, height, totalSize } from 'react-native-dimension';
 import { Button } from 'react-native-elements';
 import Avatars from './components/avatars';
+import { connect } from 'react-redux'
+import fakeReceipt from './components/fakeReceipt';
+import {putFriend} from '../redux/friends'
 
 const styles = {
   wrapper: {
@@ -67,65 +70,35 @@ class Stack extends Component {
           dragY
           loop
         >
-          <BoxShadow setting={shadowOpt}>
-            <View style={styles.slide} onLayout={this.widthGetter}>
-              <Text style={styles.text}>Hamburger</Text>
-              <Text style={styles.text}>Price: $40</Text>
-              <Avatars />
-            </View>
-          </BoxShadow>
-          <BoxShadow setting={shadowOpt}>
-            <View style={styles.slide} onLayout={this.widthGetter}>
-              <Text style={styles.text}>Hamburger</Text>
-              <Text style={styles.text}>Price: $40</Text>
-              <Avatars />
-            </View>
-          </BoxShadow>
-          <BoxShadow setting={shadowOpt}>
-            <View style={styles.slide} onLayout={this.widthGetter}>
-              <Text style={styles.text}>Hamburger</Text>
-              <Text style={styles.text}>Price: $40</Text>
-              <Avatars />
-            </View>
-          </BoxShadow>
-          <BoxShadow setting={shadowOpt}>
-            <View style={styles.slide} onLayout={this.widthGetter}>
-              <Text style={styles.text}>Hamburger</Text>
-              <Text style={styles.text}>Price: $40</Text>
-              <Avatars />
-            </View>
-          </BoxShadow>
-          <BoxShadow setting={shadowOpt}>
-            <View style={styles.slide} onLayout={this.widthGetter}>
-              <Text style={styles.text}>Hamburger</Text>
-              <Text style={styles.text}>Price: $40</Text>
-              <Avatars />
-            </View>
-          </BoxShadow>
-          <BoxShadow setting={shadowOpt}>
-            <View style={styles.slide} onLayout={this.widthGetter}>
-              <Text style={styles.text}>Hamburger</Text>
-              <Text style={styles.text}>Price: $40</Text>
-              <Avatars />
-            </View>
-          </BoxShadow>
+          {fakeReceipt.map((item, ind ) =>
+            <BoxShadow 
+              setting={shadowOpt}
+              key={ind}
+            >
+              <View style={styles.slide} onLayout={this.widthGetter}>
+                <Text style={styles.text}>{item.item}</Text>
+                <Text style={styles.text}>Price: {item.price}</Text>
+                <Avatars />
+              </View>
+            </BoxShadow>,
+          )}
+
         </Swiper>
-        {this.state.complete ?
-          <Button
-            style={styles.button}
-            title="Request"
-            backgroundColor="#03BD5B"
-            borderRadius={25}
-          /> :
-          <Button
-            style={styles.button}
-            title="Request"
-          />
-        }
-        
+        {this.state.complete
+          ? <Button
+              style={styles.button}
+              title="Request"
+              backgroundColor="#03BD5B"
+              borderRadius={25}
+            />
+          : <Button style={styles.button} title="Request" />}
       </View>
     );
   }
 }
 
-export default Stack;
+
+const mapState = ({friends}) => ({friends})
+const mapDispatch ={ putFriend }
+
+export default connect(mapState, mapDispatch)(Stack);

@@ -8,18 +8,18 @@ const readFriends = () => ({ type: READ_FRIENDS });
 const updateFriends = friend => ({ type: UPDATE_FRIEND, friend });
 const destroyFriend = friend => ({ type: DESTROY_FRIEND, friend });
 
-export default function friendsReducer(state = [], action) {
+export default function friendsReducer(friends = [], action) {
   switch (action.type) {
     case CREATE_FRIENDS:
-      return [...state, ...action.friend];
+      return [...friends, action.friend];
     case READ_FRIENDS:
-      return [...state];
+      return [...friends];
     case UPDATE_FRIEND:
-      return state.map(friend => (friend.recordID === action.friend.recordID ? action.friend : friend));
+      return friends.map(friend => (friend.recordID === action.friend.recordID ? action.friend : friend));
     case DESTROY_FRIEND:
-      return state.filter(friend => friend.recordID !== action.friend.recordID);
+      return friends.filter(friend => friend.recordID !== action.friend.recordID);
     default:
-      return state;
+      return friends;
   }
 }
 
