@@ -16,6 +16,7 @@
     "lodash": "^4.17.4",
     "morgan": "^1.8.2",
     "path": "^0.12.7",
+    "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
     "react-native": "0.47.1",
     "react-native-autocomplete-input": "^3.3.1",

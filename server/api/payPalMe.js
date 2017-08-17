@@ -12,7 +12,7 @@ router.post('/', (req, res, next) => {
     .create({
       to: destinationNumber,
       from: TWILIO_PHONE_NUMBER,
-      body: `Please go here to pay your split www.paypal.me/${payPalMe}/${amount}`
+      body: `Please go here to pay your split www.PayPal.Me/${payPalMe}/${amount}`
     })
     .then(message => console.log(message.sid))
     .catch(console.err);
