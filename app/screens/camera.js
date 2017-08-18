@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 
-const IP_ADDRESS = '172.28.116.32'
+const IP_ADDRESS = '172.28.116.90'
 
 class ReceiptPicture extends Component {
 
@@ -13,8 +13,10 @@ class ReceiptPicture extends Component {
   }
 
   takePicture() {
-    this.camera.capture()
-      .then(image => axios.post('http://' + IP_ADDRESS + ':8000/api/image/receipt', image))
+    this.camera.capture({ rotation: 270 })
+      .then((image) => {
+        axios.post('http://' + IP_ADDRESS + ':8000/api/image/receipt', image)
+      })
       .catch(err => console.error(err));
   }
 
@@ -25,6 +27,7 @@ class ReceiptPicture extends Component {
         style={styles.preview}
         aspect={Camera.constants.Aspect.fill}
         captureTarget={Camera.constants.CaptureTarget.memory}
+        orientation={Camera.constants.Orientation.portrait}
       >
         <Text style={styles.capture} onPress={this.takePicture}>
           [CAPTURE]
