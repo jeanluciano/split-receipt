@@ -13,12 +13,6 @@ class Landing extends Component {
   render() {
     return (
       <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ paddingLeft: '10%' }}>
-        <Icon
-          name='navicon'
-          type='evilicon'
-          color='#000'
-
-        />
         <View style={{ paddingLeft: '10%' }}>
           <Text style={styles.welcomeText}>Hey Raj, welcome!</Text>
           <Text>Do you have a receipt to take care of?</Text>
