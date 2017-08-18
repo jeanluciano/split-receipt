@@ -4,10 +4,12 @@ import thunkMiddleware from 'redux-thunk';
 
 import myContacts from './contacts';
 import friends from './friends';
+import auth from './auth';
 
 const reducer = combineReducers({
   myContacts,
   friends,
+  user: auth,
 });
 
 const middleware = compose(

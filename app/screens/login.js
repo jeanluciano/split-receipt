@@ -46,6 +46,7 @@ class Login extends Component {
   render() {
     return (
       <View className="center">
+        <Text>Email</Text>
         <TextInput
           className="email"
           style={{
@@ -57,6 +58,7 @@ class Login extends Component {
           onChangeText={emailText => this.setState({ emailText })}
           value={this.state.emailText}
         />
+        <Text>Password</Text>
         <TextInput
           className="password"
           style={{

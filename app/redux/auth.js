@@ -39,49 +39,43 @@ export default function (state = defaultUser, action) {
 //       .then(res =>
 //         dispatch(updateUser(res.data || defaultUser)))
 //       .catch(err => console.log(err));
-const reformatUser = (userID) => {
+const reformatUser = (userId) => {
   let user = {}
   firebase.database().ref()
     .child('users')
-    .child(userID)
+    .child(userId)
     .once('value', function(snapShot) {
       user = snapShot.val();
       user.id = snapShot.key;
-      console.log('LOG IN RENDER AUTH', user);
     })
   return user;
 }
 
+const updateFirebase = (userId, property) => {
+  firebase
+    .database()
+    .ref()
+    .child('users')
+    .child(userId)
+    .set(property);
+  return reformatUser(userId);
+}
+
 export const signup = (email, password,navigate) =>
   (dispatch) => {
-    // if (password !== repassword) {
-    //   const error = {
-    //     passwordMismatch: true,
-    //     response: { data: 'Password mismatch' },
-    //   };
-    //   console.log(error.toString())
-    //   return dispatch(updateUser({ error }));
-    // } 
-
     const signup = async function (email, password) {
       try {
         const firebaseUser = await firebase.auth()
           .createUserWithEmailAndPassword(email, password)
           .catch(console.err);
-        const id = firebaseUser.uid;
-        // Navigate to the Home page, the user is auto logged in
-        console.log('SIGN UP RENDER AUTH', firebaseUser, id);
-        firebase.database().ref()
-          .child('users')
-          .child(id)
-          .set({ email });
-        let user = reformatUser = (firebaseUser)
+        const user = await updateFirebase(firebaseUser.uid, { email });
+        navigate('LinkAccounts');
+        return dispatch(updateUser(user));
 
-        // navigate('LinkAccounts');
-        // return dispatch(updateUser(user));
       } catch (error) {
         console.log(error.toString())
         return dispatch(updateUser({ error }));
+
       }
     }
     return signup(email, password);
@@ -92,14 +86,11 @@ export const login = (email, password, navigate) =>
   dispatch => {
     const firebaseLogin = async function (email, password) {
       try {
-        firebaseUser = await firebase.auth()
+        const firebaseUser = await firebase.auth()
           .signInWithEmailAndPassword(email, password);
-        // Navigate to the Home page
-        // 1. get user data from firebase
-        let user = reformatUser = (firebaseUser)
-        console.log(user);
-        // await dispatch(updateUser(res.data));
+        const user = reformatUser (firebaseUser.uid);
         await navigate('LinkAccounts')
+        return dispatch(updateUser(user));
 
       } catch (error) {
         console.log(error.toString())
