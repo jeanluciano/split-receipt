@@ -37,8 +37,8 @@ FriendCard = props => {
       </View>
       <Button
         title="Send Request"
-        color="#000000"
-        backgroundColor="#FFFFFF"
+        color="#000000 "
+        backgroundColor="#FFFFFF "
         borderRadius={25}
         onPress={() => {
           props.handleSendText([friend], user.payPalMe)
