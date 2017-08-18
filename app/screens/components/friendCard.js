@@ -1,32 +1,42 @@
 import React from 'react';
 import { View, StyleSheet, Text, Button } from 'react-native';
 
-export default FriendCard = (props) => {
-  const {friend} = props;
-  console.log(friend)
+function totalGetter(items) {
+  let total = 0;
+  items.forEach(item => {
+    total += item.price;
+  });
+  return total;
+}
+
+export default (FriendCard = props => {
+  const { friend } = props;
+  console.log(friend);
   return (
     <View style={styles.friendView}>
-      <Text>{friend.name}</Text>
+      <Text>{`${friend.givenName} ${friend.familyName}`}</Text>
       {friend.items.map(item =>
         <View style={styles.itemView}>
-          <Text>{item.name}</Text>
-          <Text>{item.price}</Text>
-        </View>
+          <Text>
+            {item.item}
+          </Text>
+          <Text>
+            {item.price}
+          </Text>
+        </View>,
       )}
       <View style={styles.itemView}>
-          <Text style={styles.total}>Total</Text>
-          <Text style={styles.total}>{friend.total}</Text>
+        <Text style={styles.total}>Total</Text>
+        <Text style={styles.total}>
+          {totalGetter(friend.items)}
+        </Text>
       </View>
       <View style={styles.button}>
-        <Button
-          title="Send Request"
-          color="black"
-          onPress={() => {}}
-        />
+        <Button title="Send Request" color="black" onPress={() => {}} />
       </View>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   button: {
@@ -36,20 +46,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   friendView: {
-    backgroundColor:'#ef553a',
-    width:360,
+    backgroundColor: '#ef553a',
+    width: 360,
     height: 200,
-    paddingTop:10,
-    paddingBottom:20,
-    paddingLeft:10,
-    paddingRight:20, 
-    borderRadius:10,
+    paddingTop: 10,
+    paddingBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 20,
+    borderRadius: 10,
     margin: 5,
   },
   itemView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft:20,
+    paddingLeft: 20,
   },
   friendName: {
     fontFamily: 'Cochin',
@@ -69,5 +79,4 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     fontWeight: 'bold',
   },
-
 });

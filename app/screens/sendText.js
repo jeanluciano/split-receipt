@@ -159,8 +159,7 @@ class SendText extends Component {
 
 const mapState = (state) => {
   return {
-    // friends: state.friends,
-    friends: TEST_FRIENDS,
+   friends: state.friends,
   };
 };
 
