@@ -1,57 +1,52 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, Linking, TouchableHighlight } from 'react-native';
-import Swiper from 'react-native-swiper';
-import firebase from 'firebase';
+// import firebase from 'firebase';
+import { connect } from 'react-redux';
+import { login, signup } from '../redux/auth';
 
 class Login extends Component {
   constructor() {
     super();
-    this.onLogIn = this.onLogIn.bind(this);
     this.state = {
       emailText: '',
       passwordText: '',
-      paypalMeHandleString: '',
     };
   }
 
-  onLogIn(email, password, navigate) {
-    const login = async function (email, password) {
-      try {
-        await firebase.auth()
-          .signInWithEmailAndPassword(email, password);
-        // Navigate to the Home page
-        navigate('LinkAccounts')
+  // onLogIn(email, password, navigate) {
+  //   const login = async function (email, password) {
+  //     try {
+  //       await firebase.auth()
+  //         .signInWithEmailAndPassword(email, password);
+  //       // Navigate to the Home page
+  //       navigate('LinkAccounts')
 
-      } catch (error) {
-        console.log(error.toString())
-      }
-    }
-    login(email, password);
-  }
+  //     } catch (error) {
+  //       console.log(error.toString())
+  //     }
+  //   }
+  //   login(email, password);
+  // }
 
-  onSignUp(email, password, navigate) {
-    const signup = async function (email, password) {
-      try {
-        await firebase.auth()
-          .createUserWithEmailAndPassword(email, password)
-          .catch(console.err);
-        // Navigate to the Home page, the user is auto logged in
-        navigate('LinkAccounts');
-      } catch (error) {
-          console.log(error.toString())
-      }
-    }
-    signup(email, password);
-  }
+  // onSignUp(email, password, navigate) {
+  //   const signup = async function (email, password) {
+  //     try {
+  //       await firebase.auth()
+  //         .createUserWithEmailAndPassword(email, password)
+  //         .catch(console.err);
+  //       // Navigate to the Home page, the user is auto logged in
+  //       navigate('LinkAccounts');
+  //     } catch (error) {
+  //         console.log(error.toString())
+  //     }
+  //   }
+  //   signup(email, password);
+  // }
 
-  onPayPalSignUp(navigate) {
-    const url = 'https://www.paypal.me/grab?locale.x=en_US&country.x=US';
-    Linking.openURL(url).catch(err => console.error('An error occurred', err));
-  }
-
-  render(props) {
+  render() {
     return (
       <View className="center">
+        <Text>Email</Text>
         <TextInput
           className="email"
           style={{
@@ -63,6 +58,7 @@ class Login extends Component {
           onChangeText={emailText => this.setState({ emailText })}
           value={this.state.emailText}
         />
+        <Text>Password</Text>
         <TextInput
           className="password"
           style={{
@@ -77,7 +73,7 @@ class Login extends Component {
         <Button
           title="Log In"
           color="#841584"
-          onPress={() => this.onLogIn(
+          onPress={() => this.props.handleLogIn(
             this.state.emailText,
             this.state.passwordText,
             this.props.navigation.navigate
@@ -86,7 +82,7 @@ class Login extends Component {
         <Button
           title="Sign Up"
           color="#841584"
-          onPress={() => this.onSignUp(
+          onPress={() => this.props.handleSignUp(
             this.state.emailText,
             this.state.passwordText,
             this.props.navigation.navigate
@@ -97,4 +93,22 @@ class Login extends Component {
   };
 }
 
-export default Login;
+const mapLogin = (state) => {
+  return {
+    // error: state.user.error,
+  };
+};
+
+const mapDispatch = (dispatch) => {
+  console.log('MAP DISPATCH', login)
+  return {
+    handleLogIn(email, password, navigate) {
+      dispatch(login(email, password, navigate));
+    },
+    handleSignUp(email, password, navigate) {
+      dispatch(signup(email, password, navigate));
+    },
+  };
+};
+
+export default connect(mapLogin, mapDispatch)(Login);

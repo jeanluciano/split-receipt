@@ -8,7 +8,8 @@ router.post('/receipt', async (req, res, next) => {
     if (err) next(err);
     await googleRes, body;
     const receiptData = await require('../analysis')(body.responses[0].textAnnotations)
-    return res.json(receiptData);
+    console.log('receiptDatainpostroute', receiptData);
+    res.send(receiptData);
   });
 });
 
