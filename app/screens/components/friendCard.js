@@ -13,7 +13,7 @@ function totalGetter(items) {
   return total;
 }
 
-export default (FriendCard = props => {
+FriendCard = props => {
   const { friend } = props;
   console.log(friend);
   return (
@@ -35,10 +35,6 @@ export default (FriendCard = props => {
           {totalGetter(friend.items)}
         </Text>
       </View>
-      <View style={styles.button}>
-        <Button title="Send Request" color="black" onPress={() => {}} />
-      </View>
-
       <Button
         title="Send Request"
         color="#000000"
@@ -50,7 +46,7 @@ export default (FriendCard = props => {
       />
     </View>
   );
-});
+};
 
 const styles = StyleSheet.create({
   button: {
