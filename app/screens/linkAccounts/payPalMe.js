@@ -19,10 +19,10 @@ class PayPalMe extends Component {
   onSave(navigate, payPalMe) {
     // update firebase
     const userId = firebase.auth().currentUser.uid;
-    firebase.database().ref()
+    const user = firebase.database().ref()
       .child('users')
-      .child(userId)
-      .set({ payPalMe });
+      .child(userId).toJSON();
+
     navigate('LinkAccounts');
   }
 
