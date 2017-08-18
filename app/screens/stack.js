@@ -5,9 +5,9 @@ import { BoxShadow } from 'react-native-shadow';
 import { width, height, totalSize } from 'react-native-dimension';
 import { Button } from 'react-native-elements';
 import Avatars from './components/avatars';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import fakeReceipt from './components/fakeReceipt';
-import {putFriend} from '../redux/friends'
+import { putFriend } from '../redux/friends';
 
 const styles = {
   wrapper: {
@@ -44,6 +44,9 @@ class Stack extends Component {
       complete: true,
     };
   }
+  completeHandler() {
+    this.props.navigation.navigate('SendText');
+  }
 
   render() {
     const shadowOpt = {
@@ -70,26 +73,28 @@ class Stack extends Component {
           dragY
           loop
         >
-          {fakeReceipt.map((item, ind ) =>
-            <BoxShadow 
-              setting={shadowOpt}
-              key={ind}
-            >
+          {fakeReceipt.map((item, ind) => (ind !== fakeReceipt.length -1) &&
+            <BoxShadow setting={shadowOpt} key={ind}>
               <View style={styles.slide} onLayout={this.widthGetter}>
-                <Text style={styles.text}>{item.item}</Text>
-                <Text style={styles.text}>Price: {item.price}</Text>
-                <Avatars />
+                <Text style={styles.text}>
+                  {item.item}
+                </Text>
+                <Text style={styles.text}>
+                  Price: {item.price}
+                </Text>
+                <Avatars item={item} />
               </View>
-            </BoxShadow>,
+            </BoxShadow> 
           )}
-
         </Swiper>
+
         {this.state.complete
           ? <Button
               style={styles.button}
               title="Request"
               backgroundColor="#03BD5B"
               borderRadius={25}
+              onPress={this.completeHandler.bind(this)}
             />
           : <Button style={styles.button} title="Request" />}
       </View>
@@ -97,8 +102,7 @@ class Stack extends Component {
   }
 }
 
-
-const mapState = ({friends}) => ({friends})
-const mapDispatch ={ putFriend }
+const mapState = ({ friends }) => ({ friends });
+const mapDispatch = { putFriend };
 
 export default connect(mapState, mapDispatch)(Stack);

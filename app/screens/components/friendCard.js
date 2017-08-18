@@ -5,24 +5,36 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { sendText } from '../../redux/sendText';
 
-const FriendCard = (props) => {
+function totalGetter(items) {
+  let total = 0;
+  items.forEach(item => {
+    total += item.price;
+  });
+  return total;
+}
+
+FriendCard = props => {
   const { friend } = props;
-  const user = { payPalMe: 'jasonhu0' };
+  console.log(friend);
   return (
     <View style={styles.friendView}>
-      <Text>{friend.name}</Text>
-
+      <Text>{`${friend.givenName} ${friend.familyName}`}</Text>
       {friend.items.map(item =>
-        (<View style={styles.itemView} key={item.id}>
-          <Text>{item.name}</Text>
-          <Text>{item.price}</Text>
-        </View>))}
-
+        <View style={styles.itemView}>
+          <Text>
+            {item.item}
+          </Text>
+          <Text>
+            {item.price}
+          </Text>
+        </View>,
+      )}
       <View style={styles.itemView}>
         <Text style={styles.total}>Total</Text>
-        <Text style={styles.total}>{friend.total}</Text>
+        <Text style={styles.total}>
+          {totalGetter(friend.items)}
+        </Text>
       </View>
-
       <Button
         title="Send Request"
         color="#000000"
@@ -43,10 +55,12 @@ const styles = StyleSheet.create({
   },
   friendView: {
     backgroundColor: '#ef553a',
+    width: 360,
+    height: 200,
     paddingTop: 10,
     paddingBottom: 20,
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 20,
     borderRadius: 10,
     margin: 5,
     width: '90%',
@@ -55,7 +69,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingLeft: 20,
-    margin: 2,
   },
   friendName: {
     fontFamily: 'Cochin',
