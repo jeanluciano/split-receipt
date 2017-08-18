@@ -13,24 +13,13 @@ import DevMenu from '../screens/devMenu';
 import menuify from './menuify';
 import Stack from '../screens/stack';
 
-
 export const Root = DrawerNavigator({
-<<<<<<< HEAD
-
-  DevMenu: {
-    screen: menuify(DevMenu),
-  },
-        Landing: {
-          screen: menuify(Landing),
-        },
-=======
   DevMenu: {
     screen: menuify(DevMenu),
   },
   Landing: {
     screen: menuify(Landing),
   },
->>>>>>> master
   Stack: {
     screen: Stack,
   },
