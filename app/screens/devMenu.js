@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
 import firebase from 'firebase';
+import {  connect } from 'react-redux'
 import Nav from './components/nav';
-
+import { getContacts } from '../redux/contacts'
 class DevMenu extends Component {
 
   onDummy(navigate) {
@@ -22,6 +23,11 @@ class DevMenu extends Component {
     login("jason@one.com", "Jasonone");
   }
   
+
+  componentDidMount(){
+    getContacts()
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -67,4 +73,7 @@ class DevMenu extends Component {
   }
 };
 
-export default DevMenu;
+const mapState = null;
+const mapDispatch = { getContacts }
+
+export default connect(mapState, mapDispatch)(DevMenu)
