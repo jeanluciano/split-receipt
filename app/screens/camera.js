@@ -14,8 +14,9 @@ class ReceiptPicture extends Component {
 
   takePicture() {
     this.camera.capture({ rotation: 270 })
-      .then((image) => {
-        axios.post('http://' + IP_ADDRESS + ':8000/api/image/receipt', image)
+      .then(async (image) => {
+        const response = await axios.post('http://' + IP_ADDRESS + ':8000/api/image/receipt', image)
+        console.log('we are getting this here', response.data);
       })
       .catch(err => console.error(err));
   }
