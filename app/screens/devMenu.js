@@ -25,7 +25,7 @@ class DevMenu extends Component {
   
 
   componentDidMount(){
-    getContacts()
+    this.props.getContacts()
   }
 
   render() {
