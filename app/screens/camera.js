@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 
-const IP_ADDRESS = '172.28.116.90'
+const IP_ADDRESS = '172.28.116.198'
 
 class ReceiptPicture extends Component {
 
@@ -17,6 +17,7 @@ class ReceiptPicture extends Component {
   takePicture() {
     this.camera.capture({ rotation: 270 })
       .then(async (image) => {
+        console.log('something is happening');
         const response = await axios.post('http://' + IP_ADDRESS + ':8000/api/image/receipt', image)
         console.log('we are getting this here', response.data);
         this.props.dispatchUpdateReceiptThunk(response.data);
