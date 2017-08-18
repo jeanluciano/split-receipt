@@ -7,9 +7,7 @@ export default (Comp) => {
     return (
       <View>
         <Nav navigation={props.navigation} />
-        <Text>Welcome</Text>
         <Comp navigation={props.navigation} />
-        <Text>Other text dueeeeeeeee</Text>
       </View>
     );
   };
