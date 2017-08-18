@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
+import firebase from 'firebase';
 import Nav from './components/nav';
 import { connect } from 'react-redux';
 import { login } from '../redux/auth';
 import { getContacts } from '../redux/contacts';
-
 class DevMenu extends Component {
 
   componentDidMount(){

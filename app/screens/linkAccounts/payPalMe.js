@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import { updateUser } from '../../redux/auth'
+import { update } from '../../redux/auth'
 
 class PayPalMe extends Component {
   constructor() {
@@ -10,7 +10,6 @@ class PayPalMe extends Component {
     this.state = {
       paypalMeHandleString: '',
     };
-    this.onSave = this.onSave.bind(this);
   }
 
   componentDidMount() {
@@ -40,7 +39,11 @@ class PayPalMe extends Component {
           color="#841584"
           onPress={() => {
             const payPalMe = this.state.paypalMeHandleString;
-            return this.props.updateUser(this.props.user.id, {payPalMe});
+            return this.props.update(
+              this.props.user.id,
+              {payPalMe},
+              this.props.navigation.navigate
+              );
           }}
         />
       </View>
@@ -48,10 +51,11 @@ class PayPalMe extends Component {
   }
 }
 
-const mapState = (state) => {
-  user = state.user
-}
-const mapDispatch = { updateUser };
+const mapState = (state) => ({
+  user: state.user
+})
+
+const mapDispatch = { update };
 
 
 export default connect(mapState, mapDispatch)(PayPalMe);

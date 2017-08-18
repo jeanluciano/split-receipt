@@ -52,7 +52,7 @@ const reformatUser = async (userId) => {
 }
 
 const firebaseUpdateUser = (userId, property) => {
-  if(property) firebase.database().ref().child('users').child(userId).set(property);
+  if(property) firebase.database().ref().child('users').child(userId).update(property);
   return reformatUser(userId);
 }
 
@@ -88,12 +88,14 @@ const firebaseSignUp = async function (email, password) {
   }
 }
 
+
 export const login = (email, password, navigate) =>
   dispatch =>
     firebaseLogIn(email, password)
       .then(user => dispatch(updateUser(user)))
-      .then(() => navigate('LinkAccounts'))
+      .then(() => navigate('Camera'))
       .catch(console.error)
+
 
 export const signup = (email, password, navigate) =>
   dispatch => 
@@ -101,6 +103,7 @@ export const signup = (email, password, navigate) =>
       .then(user => dispatch(updateUser(user)))
       .then(() => navigate('LinkAccounts'))
       .catch(console.error);
+
 
 export const logout = () =>
   dispatch =>
@@ -110,7 +113,8 @@ export const logout = () =>
       })
       .catch(console.error);
 
-export const updateUser = (userId, property, navigate) => 
+
+export const update = (userId, property, navigate) => 
   dispatch => 
     firebaseUpdateUser(userId, property)
       .then(user => dispatch(updateUser(user)))
