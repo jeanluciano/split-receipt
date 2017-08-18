@@ -8,13 +8,19 @@ import LinkAccounts from '../screens/linkAccounts';
 import PayPalMe from '../screens/linkAccounts/payPalMe';
 import SendText from '../screens/sendText';
 import PayPalWebView from '../screens/linkAccounts/payPalWebView';
+import Landing from '../screens/landing';
 import DevMenu from '../screens/devMenu';
+import menuify from './menuify';
 import Stack from '../screens/stack';
 
+
 export const Root = DrawerNavigator({
-  
+
+  Landing: {
+    screen: menuify(Landing),
+  },
   DevMenu: {
-    screen: DevMenu,
+    screen: menuify(DevMenu),
   },
   Stack: {
     screen: Stack,

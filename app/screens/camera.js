@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 
-const IP_ADDRESS = '172.28.116.200'
+const IP_ADDRESS = '172.28.116.32'
 
 class ReceiptPicture extends Component {
 
@@ -11,6 +11,7 @@ class ReceiptPicture extends Component {
     super(props);
     this.takePicture = this.takePicture.bind(this);
   }
+
   takePicture() {
     this.camera.capture()
       .then(image => axios.post('http://' + IP_ADDRESS + ':8000/api/image/receipt', image))

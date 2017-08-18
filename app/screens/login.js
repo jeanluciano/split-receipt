@@ -15,7 +15,7 @@ class Login extends Component {
   }
 
   onLogIn(email, password, navigate) {
-    const login = async function (email, password) { 
+    const login = async function (email, password) {
       try {
         await firebase.auth()
           .signInWithEmailAndPassword(email, password);
