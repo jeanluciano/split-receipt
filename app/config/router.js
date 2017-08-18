@@ -10,6 +10,7 @@ import SendText from '../screens/sendText';
 import PayPalWebView from '../screens/linkAccounts/payPalWebView';
 import Landing from '../screens/landing';
 import DevMenu from '../screens/devMenu';
+import func from './func';
 import Stack from '../screens/stack';
 
 
@@ -19,7 +20,7 @@ export const Root = DrawerNavigator({
     screen: Landing,
   },
   DevMenu: {
-    screen: DevMenu,
+    screen: func(DevMenu),
   },
   Stack: {
     screen: Stack,
