@@ -73,18 +73,20 @@ class Stack extends Component {
           dragY
           loop
         >
-          {fakeReceipt.map((item, ind) => (ind !== fakeReceipt.length -1) &&
-            <BoxShadow setting={shadowOpt} key={ind}>
-              <View style={styles.slide} onLayout={this.widthGetter}>
-                <Text style={styles.text}>
-                  {item.item}
-                </Text>
-                <Text style={styles.text}>
-                  Price: {item.price}
-                </Text>
-                <Avatars item={item} />
-              </View>
-            </BoxShadow> 
+          {fakeReceipt.map(
+            (item, ind) =>
+              ind !== fakeReceipt.length - 1 &&
+              <BoxShadow setting={shadowOpt} key={ind}>
+                <View style={styles.slide} onLayout={this.widthGetter}>
+                  <Text style={styles.text}>
+                    {item.item}
+                  </Text>
+                  <Text style={styles.text}>
+                    Price: {item.price}
+                  </Text>
+                  <Avatars item={item} />
+                </View>
+              </BoxShadow>,
           )}
         </Swiper>
 

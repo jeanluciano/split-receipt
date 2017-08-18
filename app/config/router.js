@@ -16,12 +16,12 @@ import Stack from '../screens/stack';
 
 export const Root = DrawerNavigator({
 
-  Landing: {
-    screen: menuify(Landing),
-  },
   DevMenu: {
     screen: menuify(DevMenu),
   },
+        Landing: {
+          screen: menuify(Landing),
+        },
   Stack: {
     screen: Stack,
   },
