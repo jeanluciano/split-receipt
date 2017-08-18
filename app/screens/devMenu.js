@@ -9,7 +9,7 @@ class DevMenu extends Component {
 
   onDummy(navigate) {
     console.log('DUMMY LOG IN')
-    const login = async function(email, password) { 
+    const login = async function(email, password) {
       try {
         await firebase.auth()
           .signInWithEmailAndPassword(email, password)
@@ -22,10 +22,10 @@ class DevMenu extends Component {
     }
     login("jason@one.com", "Jasonone");
   }
-  
+
 
   componentDidMount(){
-    getContacts()
+    this.props.getContacts()
   }
 
   render() {
