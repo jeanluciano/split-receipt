@@ -13,8 +13,10 @@ class ReceiptPicture extends Component {
   }
 
   takePicture() {
-    this.camera.capture()
-      .then(image => axios.post('http://' + IP_ADDRESS + ':8000/api/image/receipt', image))
+    this.camera.capture({ rotation: 270 })
+      .then((image) => {
+        axios.post('http://' + IP_ADDRESS + ':8000/api/image/receipt', image)
+      })
       .catch(err => console.error(err));
   }
 
@@ -25,6 +27,7 @@ class ReceiptPicture extends Component {
         style={styles.preview}
         aspect={Camera.constants.Aspect.fill}
         captureTarget={Camera.constants.CaptureTarget.memory}
+        orientation={Camera.constants.Orientation.portrait}
       >
         <Text style={styles.capture} onPress={this.takePicture}>
           [CAPTURE]
