@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 
-const IP_ADDRESS = '172.28.116.200'
+const IP_ADDRESS = '172.28.116.32'
 
 class ReceiptPicture extends Component {
 
