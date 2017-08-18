@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, Linking, TouchableHighlight } from 'react-native';
-// import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { login, signup } from '../redux/auth';
 
@@ -12,36 +11,6 @@ class Login extends Component {
       passwordText: '',
     };
   }
-
-  // onLogIn(email, password, navigate) {
-  //   const login = async function (email, password) {
-  //     try {
-  //       await firebase.auth()
-  //         .signInWithEmailAndPassword(email, password);
-  //       // Navigate to the Home page
-  //       navigate('LinkAccounts')
-
-  //     } catch (error) {
-  //       console.log(error.toString())
-  //     }
-  //   }
-  //   login(email, password);
-  // }
-
-  // onSignUp(email, password, navigate) {
-  //   const signup = async function (email, password) {
-  //     try {
-  //       await firebase.auth()
-  //         .createUserWithEmailAndPassword(email, password)
-  //         .catch(console.err);
-  //       // Navigate to the Home page, the user is auto logged in
-  //       navigate('LinkAccounts');
-  //     } catch (error) {
-  //         console.log(error.toString())
-  //     }
-  //   }
-  //   signup(email, password);
-  // }
 
   render() {
     return (
@@ -100,9 +69,9 @@ const mapLogin = (state) => {
 };
 
 const mapDispatch = (dispatch) => {
-  console.log('MAP DISPATCH', login)
   return {
     handleLogIn(email, password, navigate) {
+      console.log('MAP DISPATCH', email, password, navigate);
       dispatch(login(email, password, navigate));
     },
     handleSignUp(email, password, navigate) {
