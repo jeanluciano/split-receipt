@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
 import firebase from 'firebase';
+import {  connect } from 'react-redux'
 import Nav from './components/nav';
 import { connect } from 'react-redux';
 import { login } from '../redux/auth';
-
-
+import { getContacts } from '../redux/contacts';
 class DevMenu extends Component {
+
+  componentDidMount(){
+    this.props.getContacts()
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -57,22 +62,7 @@ class DevMenu extends Component {
   }
 };
 
+const mapState = null;
+const mapDispatch = { login, getContacts };
 
-
-const mapLogin = (state) => {
-  return {
-    // error: state.user.error,
-  };
-};
-
-const mapDispatch = (dispatch) => {
-  return {
-    handleLogIn(email, password, navigate) {
-      console.log('MAP DISPATCH', login)
-      dispatch(login(email, password, navigate));
-    },
-  };
-};
-
-export default connect(mapLogin, mapDispatch)(DevMenu);
-
+export default connect(mapState, mapDispatch)(DevMenu);

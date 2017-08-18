@@ -13,7 +13,6 @@ import DevMenu from '../screens/devMenu';
 import menuify from './menuify';
 import Stack from '../screens/stack';
 
-
 export const Root = DrawerNavigator({
   DevMenu: {
     screen: menuify(DevMenu),

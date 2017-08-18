@@ -59,6 +59,8 @@ class Stack extends Component {
       x: 0.3,
       y: 2,
     };
+
+    const receiptData = this.props.receipt.receiptData;
     return (
       <View style={styles.wrapper}>
         <Swiper
@@ -73,18 +75,20 @@ class Stack extends Component {
           dragY
           loop
         >
-          {fakeReceipt.map((item, ind) => (ind !== fakeReceipt.length -1) &&
-            <BoxShadow setting={shadowOpt} key={ind}>
-              <View style={styles.slide} onLayout={this.widthGetter}>
-                <Text style={styles.text}>
-                  {item.item}
-                </Text>
-                <Text style={styles.text}>
-                  Price: {item.price}
-                </Text>
-                <Avatars item={item} />
-              </View>
-            </BoxShadow> 
+          {receiptData.map(
+            (item, ind) =>
+              ind !== receiptData.length - 1 &&
+              <BoxShadow setting={shadowOpt} key={ind}>
+                <View style={styles.slide} onLayout={this.widthGetter}>
+                  <Text style={styles.text}>
+                    {item.item}
+                  </Text>
+                  <Text style={styles.text}>
+                    Price: {item.price}
+                  </Text>
+                  <Avatars item={item} />
+                </View>
+              </BoxShadow>,
           )}
         </Swiper>
 
@@ -102,7 +106,7 @@ class Stack extends Component {
   }
 }
 
-const mapState = ({ friends }) => ({ friends });
+const mapState = ({ receipt }) => ({ receipt });
 const mapDispatch = { putFriend };
 
 export default connect(mapState, mapDispatch)(Stack);
