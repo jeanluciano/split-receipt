@@ -35,7 +35,7 @@ class DevMenu extends Component {
         <Button
           title="Login with Dummy"
           color="#841584"
-          onPress={() => this.props.handleLogIn(
+          onPress={() => this.props.login(
             "jason@one.com",
             "Jasonone",
             navigate

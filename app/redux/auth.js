@@ -39,9 +39,9 @@ export default function (state = defaultUser, action) {
 //       .then(res =>
 //         dispatch(updateUser(res.data || defaultUser)))
 //       .catch(err => console.log(err));
-const reformatUser = (userId) => {
+const reformatUser = async (userId) => {
   let user = {}
-  firebase.database().ref()
+  await firebase.database().ref()
     .child('users')
     .child(userId)
     .once('value', function(snapShot) {
@@ -51,7 +51,7 @@ const reformatUser = (userId) => {
   return user;
 }
 
-const updateFirebase = (userId, property) => {
+const firebaseUpdateUser = (userId, property) => {
   if(property) firebase.database().ref().child('users').child(userId).set(property);
   return reformatUser(userId);
 }
@@ -79,7 +79,7 @@ const firebaseSignUp = async function (email, password) {
     const firebaseUser = await firebase.auth()
       .createUserWithEmailAndPassword(email, password)
       .catch(console.err);
-    const user = await updateFirebase(firebaseUser.uid, { email });
+    const user = await firebaseUpdateUser(firebaseUser.uid, { email });
     return user
 
   } catch (error) {
@@ -89,20 +89,18 @@ const firebaseSignUp = async function (email, password) {
 }
 
 export const login = (email, password, navigate) =>
-  dispatch => {
-    return firebaseLogIn(email, password)
-      .then((user) => dispatch(updateUser(user)))
+  dispatch =>
+    firebaseLogIn(email, password)
+      .then(user => dispatch(updateUser(user)))
       .then(() => navigate('LinkAccounts'))
       .catch(console.error)
-  }
 
-export const signup = (email, password,navigate) =>
-  (dispatch) => {
-    return firebaseSignUp(email, password)
-      .then((user) => dispatch(updateUser(user)))
+export const signup = (email, password, navigate) =>
+  dispatch => 
+    firebaseSignUp(email, password)
+      .then(user => dispatch(updateUser(user)))
       .then(() => navigate('LinkAccounts'))
-      .catch(console.error)
-  };
+      .catch(console.error);
 
 export const logout = () =>
   dispatch =>
@@ -110,5 +108,12 @@ export const logout = () =>
       .then((res) => {
         dispatch(removeUser());
       })
-      .catch(err => console.log(err));
+      .catch(console.error);
+
+export const updateUser = (userId, property, navigate) => 
+  dispatch => 
+    firebaseUpdateUser(userId, property)
+      .then(user => dispatch(updateUser(user)))
+      .then(() => navigate('DevMenu'))
+      .catch(console.error);
 
