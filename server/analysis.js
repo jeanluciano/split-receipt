@@ -49,9 +49,9 @@ const extractRelevantText = (data, receiptLines = {}, receiptItem_ySets = new Se
 
         const candidate_xSet = candidateTextVertices.map(vertex => vertex.x);
         const candidateObj = { xSet: candidate_xSet, description };
-        console.log('desc', description, dumb_vert);
+        // console.log('desc', description, dumb_vert);
         const keyVertices = adjustLineVertices(candidateTextVertices, receiptLines);
-        console.log('desc', description, keyVertices);
+        // console.log('desc', description, keyVertices);
 
         if (!receiptLines[keyVertices]) receiptLines[keyVertices] = [candidateObj];
         else receiptLines[keyVertices].push(candidateObj);
@@ -79,7 +79,7 @@ ANALYZE RECEIPT
 
 module.exports = async (data) => {
 
-    console.log('dataaaaaa', data[0]);
+    // console.log('dataaaaaa', data[0]);
 
     const { receiptLines, receiptItem_ySets, receiptTotal_ySet } = extractRelevantText(data);
     const analyzedReceiptObj = [];
@@ -108,17 +108,17 @@ module.exports = async (data) => {
     let totalPrice = [ { description: '0.00' }]; //accounts for edge case where references to 'total' are > 1 as in the case of /tests/images/image6
     if (totalLineItemData.length > 1) {
         totalPrice = totalLineItemData.filter(lineItem => {
-            console.log('lineitem', lineItem);
+            // console.log('lineitem', lineItem);
             return isTotalPrice(lineItem.description.replace(/\D/g,'.'));
-            console.log('yes or no', isTotalPrice(lineItem.description.replace(/\D/g,'.')))
+            // console.log('yes or no', isTotalPrice(lineItem.description.replace(/\D/g,'.')))
         }); //ocr may read 54.50 as 54,50 sometimes
-        console.log('inside totalPrice', totalPrice);
+        // console.log('inside totalPrice', totalPrice);
     }
 
     totalPrice = totalPrice.length ? totalPrice : [ { description: '0.00' }];
-    console.log('totalPrice[0]', totalPrice[0]);
+    // console.log('totalPrice[0]', totalPrice[0]);
     analyzedReceiptObj.push( { price: Number(totalPrice[0].description.replace(/\D/g,'.')), 'item': 'total' } );
 
-    console.log('receipt data', analyzedReceiptObj);
+    // console.log('receipt data', analyzedReceiptObj);
     return analyzedReceiptObj;
 }

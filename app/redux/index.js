@@ -5,10 +5,12 @@ import thunkMiddleware from 'redux-thunk';
 import myContacts from './contacts';
 import friends from './friends';
 import auth from './auth';
+import receipt from './receipt';
 
 const reducer = combineReducers({
   myContacts,
   friends,
+  receipt,
   user: auth,
 });
 
