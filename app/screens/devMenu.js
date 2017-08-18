@@ -4,25 +4,10 @@ import { Icon } from 'react-native-elements';
 import firebase from 'firebase';
 import {  connect } from 'react-redux'
 import Nav from './components/nav';
-import { getContacts } from '../redux/contacts'
+import { connect } from 'react-redux';
+import { login } from '../redux/auth';
+import { getContacts } from '../redux/contacts';
 class DevMenu extends Component {
-
-  onDummy(navigate) {
-    console.log('DUMMY LOG IN')
-    const login = async function(email, password) { 
-      try {
-        await firebase.auth()
-          .signInWithEmailAndPassword(email, password)
-        // Navigate to the Home page
-        navigate('DevMenu');
-
-      } catch (error) {
-        console.log(error.toString())
-      }
-    }
-    login("jason@one.com", "Jasonone");
-  }
-  
 
   componentDidMount(){
     this.props.getContacts()
@@ -51,7 +36,11 @@ class DevMenu extends Component {
         <Button
           title="Login with Dummy"
           color="#841584"
-          onPress={() => this.onDummy(navigate)}
+          onPress={() => this.props.handleLogIn(
+            "jason@one.com",
+            "Jasonone",
+            navigate
+          )}
         />
         <Button
           title="Camera"
@@ -74,6 +63,6 @@ class DevMenu extends Component {
 };
 
 const mapState = null;
-const mapDispatch = { getContacts }
+const mapDispatch = { login, getContacts };
 
-export default connect(mapState, mapDispatch)(DevMenu)
+export default connect(mapState, mapDispatch)(DevMenu);
