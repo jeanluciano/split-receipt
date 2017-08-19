@@ -12,16 +12,20 @@ class Landing extends Component {
 
   render() {
     return (
-      <LinearGradient colors={['#8f53f7', '#3d6ddf']} start={[0, 0]} end={[1, 0]}>
-      <View style={styles.gradientView}>
-          <Text style={styles.welcomeText}>Hey Raj, welcome!</Text>
-          <Text>Do you have a receipt to take care of?</Text>
-          <Icon
-            name='linked-camera'
-            color='#161338'
-          />
+      <View style={styles.outerView} >
+        <View style={styles.innerView}>
+          <Text style={styles.welcomeText}>Hey Raj, do you have a receipt you want to take care of?</Text>
+        </View>
+        <View style={styles.innerView}>
+          <View style={styles.icon}>
+            <Icon
+              name='linked-camera'
+              color='#161338'
+              size={60}
+            />
           </View>
-      </LinearGradient>
+        </View>
+      </View>
     );
 
   }
@@ -38,20 +42,34 @@ class Landing extends Component {
 const styles = StyleSheet.create({
 
   gradientView: {
+  },
+
+  outerView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  innerView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft: '20%',
   },
 
   welcomeText: {
-    fontSize: 25,
+    fontSize: 15,
+    alignSelf: 'flex-end',
+    paddingLeft: '30%',
+    paddingBottom: '6%',
     fontFamily: 'Georgia-Bold',
     color: '#161338',
+    textAlign: 'right',
   },
 
-
+  icon: {
+    flex: 1,
+    paddingLeft: '20%',
+    paddingRight: '30%',
+    alignSelf: 'flex-start',
+  },
 });
 
 export default Landing;
-// export default (mapState, mapDispatch)(Landing);
+// export default connect(mapState, mapDispatch)(Landing);

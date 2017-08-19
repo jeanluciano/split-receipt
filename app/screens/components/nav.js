@@ -4,21 +4,16 @@ import { Icon } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 
-const Nav = (props) => {
-
-  const { backgroundColor, navigation } = props;
-  if (backgroundColor) styles.navicon.backgroundColor = backgroundColor;
+const Nav = ({ navigation }) => {
 
   return (
-    <LinearGradient colors={['#8f53f7', '#3d6ddf']} start={[0, 0]} end={[1, 0]} >
-      <Icon
-        name="navicon"
-        type="evilicon"
-        color="#fff"
-        style={ styles.navicon }
-        onPress={() => navigation.navigate('DrawerOpen')}
-      />
-    </LinearGradient>
+    <Icon
+      name="navicon"
+      type="evilicon"
+      color="#161338"
+      style={styles.navicon}
+      onPress={() => navigation.navigate('DrawerOpen')}
+    />
   );
 };
 
@@ -26,15 +21,14 @@ Nav.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }),
-  backgroundColor: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
 
   navicon: {
-    paddingTop: '10%',
-    paddingLeft: '10%',
-    // backgroundColor: '#3d4d65',
+    paddingTop: '9%',
+    paddingLeft: '7%',
+    paddingBottom: '2%',
   },
 
 });
