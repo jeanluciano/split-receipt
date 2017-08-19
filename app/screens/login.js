@@ -71,7 +71,6 @@ const mapLogin = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     handleLogIn(email, password, navigate) {
-      console.log('MAP DISPATCH', email, password, navigate);
       dispatch(login(email, password, navigate));
     },
     handleSignUp(email, password, navigate) {

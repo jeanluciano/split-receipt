@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
 import firebase from 'firebase';
+import { connect } from 'react-redux';
+import { update } from '../../redux/auth'
 
 class PayPalMe extends Component {
   constructor() {
@@ -8,22 +10,13 @@ class PayPalMe extends Component {
     this.state = {
       paypalMeHandleString: '',
     };
-    this.onSave = this.onSave.bind(this);
   }
+
   componentDidMount() {
     const params = this.props.navigation.state.params;
     if (params && params.signUp) {
       this.props.navigation.navigate('PayPalWebView');
     }
-  }
-  onSave(navigate, payPalMe) {
-    // update firebase
-    const userId = firebase.auth().currentUser.uid;
-    const user = firebase.database().ref()
-      .child('users')
-      .child(userId).toJSON();
-
-    navigate('LinkAccounts');
   }
 
   render() {
@@ -44,13 +37,25 @@ class PayPalMe extends Component {
         <Button
           title="Save!"
           color="#841584"
-          onPress={() => this.onSave(
-            this.props.navigation.navigate,
-            this.state.paypalMeHandleString)}
+          onPress={() => {
+            const payPalMe = this.state.paypalMeHandleString;
+            return this.props.update(
+              this.props.user.id,
+              {payPalMe},
+              this.props.navigation.navigate
+              );
+          }}
         />
       </View>
     );
   }
 }
 
-export default PayPalMe;
+const mapState = (state) => ({
+  user: state.user
+})
+
+const mapDispatch = { update };
+
+
+export default connect(mapState, mapDispatch)(PayPalMe);

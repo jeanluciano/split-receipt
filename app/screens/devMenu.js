@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Nav from './components/nav';
 import { login } from '../redux/auth';
 import { getContacts } from '../redux/contacts';
+
 class DevMenu extends Component {
 
   componentDidMount(){
@@ -35,7 +36,7 @@ class DevMenu extends Component {
         <Button
           title="Login with Dummy"
           color="#841584"
-          onPress={() => this.props.handleLogIn(
+          onPress={() => this.props.login(
             "jason@one.com",
             "Jasonone",
             navigate
