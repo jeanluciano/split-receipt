@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 
-const IP_ADDRESS = '172.28.116.198'
+const IP_ADDRESS = '172.28.116.54'
 
 class ReceiptPicture extends Component {
 

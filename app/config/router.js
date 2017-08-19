@@ -18,7 +18,7 @@ export const Root = DrawerNavigator({
     screen: menuify(DevMenu),
   },
   Landing: {
-    screen: menuify(Landing),
+    screen: menuify(Landing, ['#fff', '#eceff4', '#fff']),
   },
   Stack: {
     screen: Stack,
