@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { SearchBar, List, ListItem, Button } from 'react-native-elements';
-import { connect } from 'react-redux'
-import { addFriend } from '../redux/friends'
-import { deleteContact } from '../redux/contacts'
+import { connect } from 'react-redux';
+import { addFriend } from '../redux/friends';
+import { deleteContact } from '../redux/contacts';
 import fakeContacts from './components/fakecontacts';
 
 class contacts extends Component {
@@ -13,26 +13,30 @@ class contacts extends Component {
       query: '',
     };
     this.onAddHandle = this.onAddHandle.bind(this);
-    this.completeHandle = this.completeHandle.bind(this)
+    this.completeHandle = this.completeHandle.bind(this);
   }
 
   onAddHandle(selectedContact) {
     const { addFriend, deleteContact } = this.props;
-    deleteContact(selectedContact)
-    addFriend(selectedContact)
+    deleteContact(selectedContact);
+    addFriend(selectedContact);
+    this.search.clearText();
   }
 
-  completeHandle(){
-    this.props.navigation.navigate('Stack')
+  completeHandle() {
+    this.props.navigation.navigate('Stack');
   }
-  
+
   findContacts(query) {
     if (query === '') {
       return [];
     }
     const { myContacts } = this.props;
-    const regex = new RegExp(`${query.trim()}`, "i");
-    return myContacts.filter(contact => contact.givenName.search(regex) >= 0);
+    const regex = new RegExp(`${query.trim()}`, 'i');
+    return myContacts.filter(contact => (
+      contact.givenName.search(regex) >= 0 ||
+        contact.givenName.search(regex) >= 0
+    ));
   }
 
   render() {
@@ -41,6 +45,7 @@ class contacts extends Component {
     return (
       <View style={styles.contacts}>
         <SearchBar
+          ref={search => this.search = search}
           noIcon
           round
           containerStyle={styles.SearchBar}
@@ -59,7 +64,7 @@ class contacts extends Component {
                 containerStyle={styles.listItem}
                 phone={phoneNumber}
                 onPress={() => this.onAddHandle(contact)}
-                title={contact.givenName + " " + contact.familyName}
+                title={`${contact.givenName} ${contact.familyName}`}
               />
             );
           })}
@@ -68,7 +73,7 @@ class contacts extends Component {
           title="That's everybody!"
           backgroundColor="#03BD5B"
           containerViewStyle={styles.button}
-          borderRadius={5}
+          borderRadius={20}
           onPress={this.completeHandle}
         />
       </View>
@@ -80,13 +85,16 @@ const styles = StyleSheet.create({
   contacts: {
     flex: 1,
     backgroundColor: '#3D4D65',
+    paddingTop: '20%'
   },
   searchContainer: {
     borderTopWidth: 0,
+    height: '70%',
+    backgroundColor: '#3D4D65'
   },
   SearchBar: {
     backgroundColor: '#3D4D65',
-    borderWidth: 0,
+    borderTopWidth: 0,
     borderBottomWidth: 0,
   },
   listItem: {
@@ -100,9 +108,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapState = ({ myContacts }) => ({ myContacts })
-const mapDispatch = { addFriend, deleteContact }
+const mapState = ({ myContacts }) => ({ myContacts });
+const mapDispatch = { addFriend, deleteContact };
 
-
-
-export default connect(mapState, mapDispatch)(contacts)
+export default connect(mapState, mapDispatch)(contacts);
