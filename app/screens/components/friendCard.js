@@ -28,7 +28,7 @@ FriendCard = (props) => {
             {item.price}
           </Text>
         </View>);
-      )}}
+      })}
       <View style={styles.itemView}>
         <Text style={styles.total}>Total</Text>
         <Text style={styles.total}>
