@@ -77,8 +77,9 @@ export default connect(mapState, mapDispatch)(SendText);
  * PROP TYPES
  */
 SendText.propTypes = {
-  navigate: PropTypes.func.isRequired,
-  navigation: PropTypes.object,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }),
   friends: PropTypes.object,
 };
 

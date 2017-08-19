@@ -13,22 +13,22 @@ function totalGetter(items) {
   return total;
 }
 
-FriendCard = props => {
+FriendCard = (props) => {
   const { friend } = props;
   console.log(friend);
   return (
     <View style={styles.friendView}>
       <Text>{`${friend.givenName} ${friend.familyName}`}</Text>
-      {friend.items.map(item =>
-        <View style={styles.itemView}>
+      {friend.items.map((item) => {
+        return (<View style={styles.itemView}>
           <Text>
             {item.item}
           </Text>
           <Text>
             {item.price}
           </Text>
-        </View>,
-      )}
+        </View>);
+      })}
       <View style={styles.itemView}>
         <Text style={styles.total}>Total</Text>
         <Text style={styles.total}>
