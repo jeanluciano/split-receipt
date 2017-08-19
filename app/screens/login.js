@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import { Button } from 'react-native-elements';
 import { login, signup } from '../redux/auth';
+import { masterStyle, colors } from '../values/stylesheet'
 
 class Login extends Component {
   constructor() {
@@ -17,39 +19,32 @@ class Login extends Component {
     if(user.payPalMe) this.props.navigation.navigate('Camera');
     else if(user.id) this.props.navigation.navigate('LinkAccounts');
     return (
-      <View style={styles.screen} >
+      <View style={masterStyle.body} >
         <Text>Email</Text>
         <TextInput
           className="email"
-          style={{
-            height: 40,
-            borderColor: 'gray',
-            borderWidth: 1,
-            textAlign: 'center',
-          }}
+          style={masterStyle.textInput}
           onChangeText={emailText => this.setState({ emailText })}
           value={this.state.emailText}
         />
         <Text>Password</Text>
         <TextInput
           className="password"
-          style={{
-            height: 40,
-            borderColor: 'gray',
-            borderWidth: 1,
-            textAlign: 'center',
-          }}
+          style={masterStyle.textInput}
           onChangeText={passwordText => this.setState({ passwordText })}
           value={this.state.passwordText}
         />
         {user.code && 
-          <View style={styles.warning}>
-            <Text style={styles.warningText}>{user.message}</Text>
+          <View style={masterStyle.warningView}>
+            <Text style={masterStyle.warningText}>{user.message}</Text>
           </View>
         }
         <Button
           title="Log In"
-          color="#841584"
+          margin={3}
+          color={colors.buttonColor}
+          backgroundColor={colors.buttonBackground}
+          borderRadius={10}
           onPress={() => this.props.handleLogIn(
             this.state.emailText,
             this.state.passwordText,
@@ -58,7 +53,10 @@ class Login extends Component {
         />
         <Button
           title="Sign Up"
-          color="#841584"
+          margin={3}
+          color={colors.buttonColor}
+          backgroundColor={colors.buttonBackground}
+          borderRadius={10}
           onPress={() => this.props.handleSignUp(
             this.state.emailText,
             this.state.passwordText,
@@ -89,27 +87,4 @@ const mapDispatch = (dispatch) => {
 
 export default connect(mapLogin, mapDispatch)(Login);
 
-const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-  },
-  screen: {
-    padding: 5,
-    paddingTop: 20,
-    backgroundColor: '#ebeef0',
-  },
-  table: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  warning: {
-    margin: 5,
-    padding: 5,
-    borderRadius: 10,
-    backgroundColor: '#FFCCCB',
-  },
-  warningText: {
-    color: '#AA5556',
-  }
-});
+const styles = StyleSheet.create({});

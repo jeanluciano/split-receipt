@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import Swiper from 'react-native-swiper-animated';
 import { BoxShadow } from 'react-native-shadow';
 import { width, height, totalSize } from 'react-native-dimension';
@@ -9,34 +9,6 @@ import { connect } from 'react-redux';
 import fakeReceipt from './components/fakeReceipt';
 import { putFriend } from '../redux/friends';
 
-const styles = {
-  wrapper: {
-    backgroundColor: '#3D4D65',
-    flex: 1,
-  },
-  swiperContainer: {
-    paddingLeft: width(5),
-    paddingTop: height(5),
-  },
-  slide: {
-    height: height(70),
-    width: width(90),
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFEEA',
-    borderRadius: 7,
-    shadowColor: 'black',
-  },
-  button: {
-    paddingBottom: height(8),
-  },
-  text: {
-    color: 'black',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-};
-
 class Stack extends Component {
   constructor() {
     super();
@@ -44,6 +16,7 @@ class Stack extends Component {
       complete: true,
     };
   }
+
   completeHandler() {
     this.props.navigation.navigate('SendText');
   }
@@ -110,3 +83,32 @@ const mapState = ({ receipt }) => ({ receipt });
 const mapDispatch = { putFriend };
 
 export default connect(mapState, mapDispatch)(Stack);
+
+
+const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: '#3D4D65',
+    flex: 1,
+  },
+  swiperContainer: {
+    paddingLeft: width(5),
+    paddingTop: height(5),
+  },
+  slide: {
+    height: height(70),
+    width: width(90),
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFEEA',
+    borderRadius: 7,
+    shadowColor: 'black',
+  },
+  button: {
+    paddingBottom: height(8),
+  },
+  text: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+});
