@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, Linking, TouchableHighlight } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { login, signup } from '../redux/auth';
 
@@ -13,8 +13,11 @@ class Login extends Component {
   }
 
   render() {
+    const user = this.props.user
+    if(user.payPalMe) this.props.navigation.navigate('Camera');
+    else if(user.id) this.props.navigation.navigate('LinkAccounts');
     return (
-      <View className="center">
+      <View style={styles.screen} >
         <Text>Email</Text>
         <TextInput
           className="email"
@@ -39,6 +42,11 @@ class Login extends Component {
           onChangeText={passwordText => this.setState({ passwordText })}
           value={this.state.passwordText}
         />
+        {user.code && 
+          <View style={styles.warning}>
+            <Text style={styles.warningText}>{user.message}</Text>
+          </View>
+        }
         <Button
           title="Log In"
           color="#841584"
@@ -64,7 +72,7 @@ class Login extends Component {
 
 const mapLogin = (state) => {
   return {
-    // error: state.user.error,
+    user: state.user,
   };
 };
 
@@ -80,3 +88,28 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapLogin, mapDispatch)(Login);
+
+const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+  },
+  screen: {
+    padding: 5,
+    paddingTop: 20,
+    backgroundColor: '#ebeef0',
+  },
+  table: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  warning: {
+    margin: 5,
+    padding: 5,
+    borderRadius: 10,
+    backgroundColor: '#FFCCCB',
+  },
+  warningText: {
+    color: '#AA5556',
+  }
+});

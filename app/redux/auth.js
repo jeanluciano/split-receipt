@@ -93,16 +93,12 @@ export const login = (email, password, navigate) =>
   dispatch =>
     firebaseLogIn(email, password)
       .then(user => dispatch(updateUser(user)))
-      .then(() => navigate('Camera'))
-      .catch(console.error)
 
 
 export const signup = (email, password, navigate) =>
   dispatch => 
     firebaseSignUp(email, password)
       .then(user => dispatch(updateUser(user)))
-      .then(() => navigate('LinkAccounts'))
-      .catch(console.error);
 
 
 export const logout = () =>
@@ -118,6 +114,4 @@ export const update = (userId, property, navigate) =>
   dispatch => 
     firebaseUpdateUser(userId, property)
       .then(user => dispatch(updateUser(user)))
-      .then(() => navigate('DevMenu'))
-      .catch(console.error);
 
