@@ -93,8 +93,8 @@ export const login = (email, password, navigate) =>
   dispatch =>
     firebaseLogIn(email, password)
       .then(user => dispatch(updateUser(user)))
-      .then(() => navigate('Camera'))
-      .catch(console.error)
+      // .then(() => navigate('Camera'))
+      // .catch(console.error)
 
 
 export const signup = (email, password, navigate) =>
