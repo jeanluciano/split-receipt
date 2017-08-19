@@ -12,16 +12,15 @@ class Landing extends Component {
 
   render() {
     return (
-      <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ paddingLeft: '10%' }}>
-        <View style={{ paddingLeft: '10%' }}>
+      <LinearGradient colors={['#8f53f7', '#3d6ddf']} start={[0, 0]} end={[1, 0]}>
+      <View style={styles.gradientView}>
           <Text style={styles.welcomeText}>Hey Raj, welcome!</Text>
           <Text>Do you have a receipt to take care of?</Text>
           <Icon
             name='linked-camera'
-            color='#fff'
+            color='#161338'
           />
-
-        </View>
+          </View>
       </LinearGradient>
     );
 
@@ -38,12 +37,18 @@ class Landing extends Component {
 
 const styles = StyleSheet.create({
 
+  gradientView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: '20%',
+  },
+
   welcomeText: {
     fontSize: 25,
+    fontFamily: 'Georgia-Bold',
+    color: '#161338',
   },
-  topView: {
-    backgroundColor: '#3d4d65',
-  }
 
 
 });

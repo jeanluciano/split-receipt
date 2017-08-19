@@ -101,7 +101,6 @@ export const signup = (email, password, navigate) =>
       .then(user => dispatch(updateUser(user)))
 
 
-
 export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
@@ -115,5 +114,4 @@ export const update = (userId, property, navigate) =>
   dispatch => 
     firebaseUpdateUser(userId, property)
       .then(user => dispatch(updateUser(user)))
-
 
