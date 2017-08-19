@@ -36,7 +36,7 @@ export const Root = DrawerNavigator({
     screen: Dragndrop,
   },
   Login: {
-    screen: Login,
+    screen: menuify(Login),
   },
   LinkAccounts: {
     screen: LinkAccounts,

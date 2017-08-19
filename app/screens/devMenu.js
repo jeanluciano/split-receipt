@@ -16,7 +16,7 @@ class DevMenu extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-    <View className="center" style={{paddingTop: '20%'}}>
+    <View>
         <Text>DevMenu</Text>
         <Button
           title="Log In"
