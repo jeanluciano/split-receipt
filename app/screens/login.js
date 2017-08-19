@@ -14,7 +14,8 @@ class Login extends Component {
 
   render() {
     const user = this.props.user
-    if(user.id) this.props.navigation.navigate('Camera'); // 
+    if(user.payPalMe) this.props.navigation.navigate('Camera');
+    else if(user.id) this.props.navigation.navigate('LinkAccounts');
     return (
       <View style={styles.screen} >
         <Text>Email</Text>
