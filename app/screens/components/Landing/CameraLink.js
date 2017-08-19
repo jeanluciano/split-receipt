@@ -20,16 +20,13 @@ export default () => (
 );
 
 const styles = StyleSheet.create({
-
   outerView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-
   innerView: {
     flex: 1,
   },
-
   welcomeText: {
     fontSize: 15,
     alignSelf: 'flex-end',
@@ -39,7 +36,6 @@ const styles = StyleSheet.create({
     color: '#161338',
     textAlign: 'right',
   },
-
   icon: {
     flex: 1,
     paddingLeft: '20%',

@@ -7,7 +7,7 @@ import Nav from '../screens/components/nav';
 
 export default (Comp, colorArr) => {
 
-  let backgroundColor = colorArr || ['#fff', '#fff']
+  const backgroundColor = colorArr || ['#fff', '#fff']
 
   return (props) => {
     return (
@@ -18,4 +18,6 @@ export default (Comp, colorArr) => {
     );
   };
 };
+
+
 

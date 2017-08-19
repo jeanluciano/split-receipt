@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-// import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux';
 
 import CameraLink from './components/Landing/CameraLink';
@@ -14,7 +13,7 @@ class Landing extends Component {
   render() {
     return (
       <View>
-      <CameraLink />
+        <CameraLink />
       </View>
     );
   }
@@ -22,4 +21,3 @@ class Landing extends Component {
 
 
 export default Landing;
-// export default connect(mapState, mapDispatch)(Landing);
