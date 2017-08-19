@@ -6,6 +6,7 @@ import Nav from './components/nav';
 import { connect } from 'react-redux';
 import { login } from '../redux/auth';
 import { getContacts } from '../redux/contacts';
+
 class DevMenu extends Component {
 
   componentDidMount(){
