@@ -109,6 +109,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFCCCB',
   },
   warningText: {
-    color: '#AA5556'
+    color: '#AA5556',
   }
 });
