@@ -13,11 +13,11 @@ class Landing extends Component {
   render() {
     return (
       <View>
-        <CameraLink />
+        <CameraLink navigation={this.props.navigation}/>
       </View>
     );
   }
 }
 
 
-export default Landing;
+export default connect(null, null)(Landing);

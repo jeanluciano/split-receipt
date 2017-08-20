@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-export default () => (
+export default ({ navigation }) => (
   <View style={styles.outerView} >
     <View style={styles.innerView}>
       <Text style={styles.welcomeText}>Hey Raj, do you have a receipt you want to take care of?</Text>
@@ -13,6 +13,7 @@ export default () => (
           name="linked-camera"
           color="#161338"
           size={60}
+          onPress={() => navigation.navigate('Camera')}
         />
       </View>
     </View>

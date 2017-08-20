@@ -14,17 +14,17 @@ import menuify from './menuify';
 import Stack from '../screens/stack';
 
 export const Root = DrawerNavigator({
+  Landing: {
+    screen: menuify(Landing, ['#fff', '#cad3df', '#fff']),
+  },
   DevMenu: {
     screen: menuify(DevMenu),
-  },
-  Landing: {
-    screen: menuify(Landing, ['#fff', '#eceff4', '#fff']),
   },
   Stack: {
     screen: Stack,
   },
   Camera: {
-    screen: Camera,
+    screen: menuify(Camera),
   },
   Main: {
     screen: Main,
