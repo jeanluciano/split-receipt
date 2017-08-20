@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import CameraLink from './components/Landing/CameraLink';
@@ -13,7 +13,10 @@ class Landing extends Component {
   render() {
     return (
       <View>
-        <CameraLink navigation={this.props.navigation}/>
+        <CameraLink navigation={this.props.navigation} />
+        <View style={{backgroundColor: 'white'}}>
+          <Text>Pending Transactions</Text>
+        </View>
       </View>
     );
   }
