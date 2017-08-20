@@ -1,13 +1,23 @@
+/**
+ * ACTION TYPES
+ */
 const CREATE_FRIENDS = 'CREATE_FRIENDS';
 const READ_FRIENDS = 'READ_FRIENDS';
 const UPDATE_FRIEND = 'UPDATE_FRIEND';
 const DESTROY_FRIEND = 'DESTROY_FRIENDS';
 
+/**
+ * ACTION CREATORS
+ */
 const createFriends = friend => ({ type: CREATE_FRIENDS, friend });
 const readFriends = () => ({ type: READ_FRIENDS });
 const updateFriends = friend => ({ type: UPDATE_FRIEND, friend });
 const destroyFriend = friend => ({ type: DESTROY_FRIEND, friend });
 
+
+/**
+ * REDUCER
+ */
 export default function friendsReducer(friends = [], action) {
   switch (action.type) {
     case CREATE_FRIENDS:
@@ -23,6 +33,9 @@ export default function friendsReducer(friends = [], action) {
   }
 }
 
+/**
+ * THUNK CREATORS
+ */
 export const getFriends = function () {
   return function thunk(dispatch) {
     dispatch(readFriends())
