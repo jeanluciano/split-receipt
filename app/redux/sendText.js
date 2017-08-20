@@ -2,13 +2,25 @@ import axios from 'axios';
 import { putFriend } from './friends';
 
 /**
+ * ACTION TYPES
+ */
+
+/**
+ * ACTION CREATORS
+ */
+
+/**
+ * REDUCER
+ */
+
+/**
  * THUNK CREATORS
  */
 export const sendText = (friends, payPalMe) => (dispatch) => {
   friends.map((friend) => {
     const destinationNumber = friend.phone;
     const amount = friend.total;
-    axios.post('http://localhost:8000/api/payPalMe/', {
+    return axios.post('http://localhost:8000/api/payPalMe/', {
       destinationNumber,
       payPalMe,
       amount,

@@ -29,7 +29,36 @@ export default function (state = {}, action) {
 /**
  * THUNK CREATORS
  */
-const reformatUser = async (userId) => {
+export const login = (email, password, navigate) =>
+  dispatch =>
+    firebaseLogIn(email, password)
+      .then(user => dispatch(updateUser(user)))
+
+
+export const signup = (email, password, navigate) =>
+  dispatch => 
+    firebaseSignUp(email, password)
+      .then(user => dispatch(updateUser(user)))
+
+
+export const logout = () =>
+  dispatch =>
+    axios.post('/auth/logout')
+      .then((res) => {
+        dispatch(removeUser());
+      })
+      .catch(console.error);
+
+
+export const update = (userId, property, navigate) => 
+  dispatch => 
+    firebaseUpdateUser(userId, property)
+      .then(user => dispatch(updateUser(user)))
+
+/**
+ * HELPER FUNCTIONS
+ */
+const reformatUser = async function (userId) {
   let user = {}
   await firebase.database().ref()
     .child('users')
@@ -77,31 +106,3 @@ const firebaseSignUp = async function (email, password) {
 
   }
 }
-
-
-export const login = (email, password, navigate) =>
-  dispatch =>
-    firebaseLogIn(email, password)
-      .then(user => dispatch(updateUser(user)))
-
-
-export const signup = (email, password, navigate) =>
-  dispatch => 
-    firebaseSignUp(email, password)
-      .then(user => dispatch(updateUser(user)))
-
-
-export const logout = () =>
-  dispatch =>
-    axios.post('/auth/logout')
-      .then((res) => {
-        dispatch(removeUser());
-      })
-      .catch(console.error);
-
-
-export const update = (userId, property, navigate) => 
-  dispatch => 
-    firebaseUpdateUser(userId, property)
-      .then(user => dispatch(updateUser(user)))
-
