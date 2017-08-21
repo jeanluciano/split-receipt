@@ -22,6 +22,5 @@ export const createTransaction = async function(transaction) {
   if(validateShape(transaction, 'TRANSACTION')) {
     const firebaseTransaction = await firebase.database().ref().child('transactions').push(transaction)
   }
-  const transaction = await reformatTransaction(firebaseTransaction.id);
-  return transaction
+  return await reformatTransaction(firebaseTransaction.id);
 }
