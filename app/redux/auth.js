@@ -5,6 +5,7 @@ import {
   firebaseLogOut,
 } from '../firebase/auth'
 
+/*
  * ACTION TYPES
  */
 const REMOVE_USER = 'REMOVE_USER';
