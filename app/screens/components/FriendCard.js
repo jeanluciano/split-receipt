@@ -7,28 +7,27 @@ import { sendText } from '../../redux/sendText';
 
 function totalGetter(items) {
   let total = 0;
-  items.forEach(item => {
+  items.forEach((item) => {
     total += item.price;
   });
-  return total;
+  return Math.round(total * 100) / 100;
 }
 
-FriendCard = (props) => {
-  const { friend } = props;
-  console.log(friend);
+const FriendCard = (props) => {
+  const { friend, user } = props;
   return (
     <View style={styles.friendView}>
       <Text>{`${friend.givenName} ${friend.familyName}`}</Text>
-      {friend.items.map((item) => {
-        return (<View style={styles.itemView}>
+      {friend.items.map(item =>
+        (<View style={styles.itemView}>
           <Text>
             {item.item}
           </Text>
           <Text>
             {item.price}
           </Text>
-        </View>);
-      })}
+        </View>))
+      }
       <View style={styles.itemView}>
         <Text style={styles.total}>Total</Text>
         <Text style={styles.total}>
@@ -105,6 +104,9 @@ export default connect(mapState, mapDispatch)(FriendCard);
  * PROP TYPES
  */
 FriendCard.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }),
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }),

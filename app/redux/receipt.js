@@ -1,3 +1,7 @@
+
+/**
+ * ACTION TYPES
+ */
 const UPDATE_RECEIPT_DATA = 'UPDATE_RECEIPT_DATA';
 
 const updateReceipt = receiptData => ({
@@ -13,6 +17,9 @@ const initialReceipt = {
   receiptData: initialReceiptData,
 };
 
+/**
+ * THUNK CREATORS
+ */
 export default function receiptReducer(receipt = initialReceipt, action) {
   switch (action.type) {
     case UPDATE_RECEIPT_DATA:

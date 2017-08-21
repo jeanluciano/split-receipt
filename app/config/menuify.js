@@ -1,15 +1,20 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import Nav from '../screens/components/nav';
+import LinearGradient from 'react-native-linear-gradient';
+import Nav from '../screens/components/Nav';
 
-export default (Comp) => {
+// <LinearGradient colors={['#8f53f7', '#3d6ddf']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} >
+
+export default (Comp, colorArr) => {
+
+  const backgroundColor = colorArr || ['#fff', '#fff']
+
   return (props) => {
     return (
-      <View>
+      <LinearGradient colors={backgroundColor} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} >
         <Nav navigation={props.navigation} />
         <Comp navigation={props.navigation} />
-      </View>
+      </LinearGradient>
     );
   };
 };
-

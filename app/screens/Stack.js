@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import Swiper from 'react-native-swiper-animated';
 import { BoxShadow } from 'react-native-shadow';
 import { width, height, totalSize } from 'react-native-dimension';
 import { Button } from 'react-native-elements';
-import Avatars from './components/avatars';
+import Avatars from './components/Avatars';
 import { connect } from 'react-redux';
 import fakeReceipt from './components/fakeReceipt';
 import { putFriend } from '../redux/friends';
@@ -51,7 +51,6 @@ class Stack extends Component {
     };
     this.completeCheck = this.completeCheck.bind(this)
   }
-
 
   completeHandler() {
     this.tempFriends.forEach(friend =>{
