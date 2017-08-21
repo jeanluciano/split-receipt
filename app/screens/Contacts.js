@@ -20,7 +20,6 @@ class contacts extends Component {
     const { addFriend, deleteContact } = this.props;
     deleteContact(selectedContact);
     addFriend(selectedContact);
-    this.search.clearText();
   }
 
   completeHandle() {
@@ -45,7 +44,6 @@ class contacts extends Component {
     return (
       <View style={styles.contacts}>
         <SearchBar
-          ref={search => this.search = search}
           noIcon
           round
           containerStyle={styles.SearchBar}
