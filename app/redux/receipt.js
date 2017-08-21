@@ -33,7 +33,7 @@ export const updateReceiptThunkCreator = receiptData => (dispatch) => {
   if (!receiptData) {
     console.error('receiptData is not what you want it to be bro');
   } else {
-    receiptData = receiptData.forEach((item, ind) => {
+    receiptData.forEach((item, ind) => {
       item.id = ind;
     });
     dispatch(updateReceipt(receiptData));
