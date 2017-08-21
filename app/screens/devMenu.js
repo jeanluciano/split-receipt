@@ -3,7 +3,7 @@ import { View, Text, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import Nav from './components/nav';
+import Nav from './components/Nav';
 import { login } from '../redux/auth';
 import { getContacts } from '../redux/contacts';
 import { friends } from '../../tests/testData';

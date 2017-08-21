@@ -1,24 +1,24 @@
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
-import Main from '../screens/main';
-import Camera from '../screens/camera';
-import Login from '../screens/login';
-import Dragndrop from '../screens/dragNDrop';
-import Contacts from '../screens/contacts';
+import Main from '../screens/Main';
+import Camera from '../screens/Camera';
+import Login from '../screens/Login';
+import Dragndrop from '../screens/DragNDrop';
+import Contacts from '../screens/Contacts';
 import LinkAccounts from '../screens/linkAccounts';
-import PayPalMe from '../screens/linkAccounts/payPalMe';
-import SendText from '../screens/sendText';
-import PayPalWebView from '../screens/linkAccounts/payPalWebView';
-import Landing from '../screens/landing';
-import DevMenu from '../screens/devMenu';
+import PayPalMe from '../screens/linkAccounts/PayPalMe';
+import SendText from '../screens/SendText';
+import PayPalWebView from '../screens/linkAccounts/PayPalWebView';
+import Landing from '../screens/Landing';
+import DevMenu from '../screens/DevMenu';
 import menuify from './menuify';
-import Stack from '../screens/stack';
+import Stack from '../screens/Stack';
 
 export const Root = DrawerNavigator({
-  Landing: {
-    screen: menuify(Landing, ['#fff', '#cad3df', '#fff']),
-  },
   DevMenu: {
     screen: menuify(DevMenu),
+  },
+  Landing: {
+    screen: menuify(Landing, ['#fff', '#cad3df', '#fff']),
   },
   Stack: {
     screen: Stack,

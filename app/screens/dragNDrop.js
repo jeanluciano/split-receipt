@@ -7,7 +7,7 @@ import {
   Animated,
   Dimensions,
 } from 'react-native';
-import Paginator from './components/pagination';
+import Paginator from './components/Pagination';
 
 const { width, height } = Dimensions.get('window');
 

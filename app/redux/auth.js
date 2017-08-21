@@ -1,14 +1,10 @@
 import firebase from "firebase";
+
 /**
  * ACTION TYPES
  */
 const REMOVE_USER = 'REMOVE_USER';
 const UPDATE_USER = 'UPDATE_USER';
-
-/**
- * INITIAL STATE
- */
-const defaultUser = {};
 
 /**
  * ACTION CREATORS
@@ -19,10 +15,10 @@ const updateUser = user => ({ type: UPDATE_USER, user });
 /**
  * REDUCER
  */
-export default function (state = defaultUser, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case REMOVE_USER:
-      return defaultUser;
+      return {};
     case UPDATE_USER:
       return action.user;
     default:
@@ -33,13 +29,36 @@ export default function (state = defaultUser, action) {
 /**
  * THUNK CREATORS
  */
-// export const me = () =>
-//   dispatch =>
-//     axios.get('/auth/me')
-//       .then(res =>
-//         dispatch(updateUser(res.data || defaultUser)))
-//       .catch(err => console.log(err));
-const reformatUser = async (userId) => {
+export const login = (email, password, navigate) =>
+  dispatch =>
+    firebaseLogIn(email, password)
+      .then(user => dispatch(updateUser(user)))
+
+
+export const signup = (email, password, navigate) =>
+  dispatch => 
+    firebaseSignUp(email, password)
+      .then(user => dispatch(updateUser(user)))
+
+
+export const logout = () =>
+  dispatch =>
+    axios.post('/auth/logout')
+      .then((res) => {
+        dispatch(removeUser());
+      })
+      .catch(console.error);
+
+
+export const update = (userId, property, navigate) => 
+  dispatch => 
+    firebaseUpdateUser(userId, property)
+      .then(user => dispatch(updateUser(user)))
+
+/**
+ * HELPER FUNCTIONS
+ */
+const reformatUser = async function (userId) {
   let user = {}
   await firebase.database().ref()
     .child('users')
@@ -87,31 +106,3 @@ const firebaseSignUp = async function (email, password) {
 
   }
 }
-
-
-export const login = (email, password, navigate) =>
-  dispatch =>
-    firebaseLogIn(email, password)
-      .then(user => dispatch(updateUser(user)))
-
-
-export const signup = (email, password, navigate) =>
-  dispatch => 
-    firebaseSignUp(email, password)
-      .then(user => dispatch(updateUser(user)))
-
-
-export const logout = () =>
-  dispatch =>
-    axios.post('/auth/logout')
-      .then((res) => {
-        dispatch(removeUser());
-      })
-      .catch(console.error);
-
-
-export const update = (userId, property, navigate) => 
-  dispatch => 
-    firebaseUpdateUser(userId, property)
-      .then(user => dispatch(updateUser(user)))
-
