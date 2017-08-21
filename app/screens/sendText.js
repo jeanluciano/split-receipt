@@ -15,30 +15,7 @@ const TEST_AMOUNT = process.env.TWILIO_TEST_AMOUNT;
 class SendText extends Component {
   constructor() {
     super();
-    // this.handleSMS = this.handleSMS.bind(this);
   }
-
-  // handleSMS(props) {
-  //   const { navigate } = props.navigation
-  //   // grab payPalMe handle
-  //   const userId = firebase.auth().currentUser.uid;
-  //   firebase.database().ref('/users/' + userId)
-  //     .once('value')
-  //     .then((snapshot) => {
-  //       return snapshot.val().payPalMe
-  //     })
-  //     .then((payPalMe) =>
-  //       // need to loop through each endpoint
-  //       axios.post('http://localhost:8000/api/payPalMe/', {
-  //         destinationNumber: TEST_DESTINATION,
-  //         payPalMe,
-  //         amount: TEST_AMOUNT,
-  //       })
-  //         .catch(console.err)
-  //     )
-  //     .catch(console.err);
-  //   navigate('Main');
-  // }
 
   render() {
     return (
