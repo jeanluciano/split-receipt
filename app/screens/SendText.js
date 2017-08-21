@@ -1,22 +1,12 @@
-import axios from 'axios';
-import firebase from 'firebase';
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
-import secrets from '../../secrets';
+import PropTypes from 'prop-types';
 import { sendText } from '../redux/sendText';
 import FriendCard from './components/FriendCard';
 
 
-const TEST_DESTINATION = process.env.TWILIO_TEST_JASON_DESTIONATION;
-const TEST_AMOUNT = process.env.TWILIO_TEST_AMOUNT;
-
 class SendText extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <View style={styles.screen}>
@@ -64,6 +54,7 @@ SendText.propTypes = {
     navigate: PropTypes.func.isRequired,
   }),
   friends: PropTypes.object,
+  handleSendText: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

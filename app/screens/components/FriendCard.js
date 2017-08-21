@@ -105,6 +105,9 @@ export default connect(mapState, mapDispatch)(FriendCard);
  * PROP TYPES
  */
 FriendCard.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }),
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }),
