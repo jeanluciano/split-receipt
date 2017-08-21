@@ -21,16 +21,26 @@ export const sendText = (friends, user) => (dispatch) => {
   friends.map((friend) => {
     const destinationNumber = friend.phone;
     const amount = friend.total;
-    return axios.post('http://localhost:8000/api/payPalMe/', {
-      destinationNumber,
-      payPalMe,
-      amount,
-    })
-      // update store
-      .then(() => {
-        friend.payStatus = 'requested'
-        return dispatch(putFriend(friend))
+    if (friend.status === 'selected') {
+      return axios.post('http://localhost:8000/api/payPalMe/', {
+        destinationNumber,
+        payPalMe,
+        amount,
       })
-      .catch(error => dispatch(putFriend({ error })))
+        // update store
+        // update db
+        .then(() => {
+          friend.payStatus = 'requested'
+          return dispatch(putFriend(friend))
+        })
+        .catch(error => dispatch(putFriend({ error })))
+    }
+    return null;
   })
 }
+
+export const selectFriend = (selected) => (dispatch) => {
+  // update db
+  return dispatch(putFriend({ status: 'selected' }));
+}
+

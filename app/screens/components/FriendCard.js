@@ -3,7 +3,9 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { sendText } from '../../redux/sendText';
+import CheckBox from 'react-native-checkbox';
+import { sendText, selectFriend } from '../../redux/sendText';
+
 
 function totalGetter(items) {
   let total = 0;
@@ -34,6 +36,12 @@ const FriendCard = (props) => {
           {totalGetter(friend.items)}
         </Text>
       </View>
+      <CheckBox
+        label="Label"
+        checked={false}
+        onChange={(checked) => {}}
+      />
+
       <Button
         title="Send Request"
         color="#000000"
@@ -94,6 +102,9 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   handleSendText(friend, payPalMe) {
+    dispatch(sendText(friend, payPalMe))
+  },
+  handleSelectFriend(friend, payPalMe) {
     dispatch(sendText(friend, payPalMe))
   },
 });
