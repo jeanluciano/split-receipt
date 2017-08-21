@@ -4,16 +4,11 @@ import {
   firebaseSignUp,
   firebaseLogOut,
 } from '../firebase/auth'
-/**
+
  * ACTION TYPES
  */
 const REMOVE_USER = 'REMOVE_USER';
 const UPDATE_USER = 'UPDATE_USER';
-
-/**
- * INITIAL STATE
- */
-const defaultUser = {};
 
 /**
  * ACTION CREATORS
@@ -24,10 +19,10 @@ const updateUser = user => ({ type: UPDATE_USER, user });
 /**
  * REDUCER
  */
-export default function (state = defaultUser, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case REMOVE_USER:
-      return defaultUser;
+      return {};
     case UPDATE_USER:
       return action.user;
     default:
@@ -57,4 +52,3 @@ export const update = (userId, property) =>
   dispatch =>
     firebaseUpdateUser(userId, property)
       .then(() => dispatch(removeUser()))
-

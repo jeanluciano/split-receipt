@@ -5,7 +5,7 @@ import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import secrets from '../../secrets';
-import FriendCard from './components/friendCard';
+import FriendCard from './components/FriendCard';
 
 const TEST_DESTINATION = process.env.TWILIO_TEST_JASON_DESTIONATION;
 const TEST_AMOUNT = process.env.TWILIO_TEST_AMOUNT;
