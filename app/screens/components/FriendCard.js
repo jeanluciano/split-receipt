@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import CheckBox from 'react-native-checkbox';
+// import CheckBox from 'react-native-checkbox';
 import { sendText, selectTransaction } from '../../redux/sendText';
 
 
@@ -36,11 +36,11 @@ const TransactionCard = (props) => {
           {totalGetter(transaction.items)}
         </Text>
       </View>
-      <CheckBox
+      {/* <CheckBox
         label="Label"
         checked={false}
-        onChange={(checked) => selectTransaction(transaction, checked)}
-      />
+        onChange={checked => selectTransaction(transaction, checked)}
+      /> */}
 
       <Button
         title="Send Request"
@@ -104,8 +104,8 @@ const mapDispatch = dispatch => ({
   handleSendText(transaction, payPalMe) {
     dispatch(sendText(transaction, payPalMe))
   },
-  handleSelectTransaction(transaction, payPalMe) {
-    dispatch(sendText(transaction, payPalMe))
+  handleSelectTransaction(transaction, status) {
+    dispatch(selectTransaction(transaction, status))
   },
 });
 

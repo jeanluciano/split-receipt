@@ -1,3 +1,5 @@
+import { firebaseCreateTransaction } from '../firebase/transactions'
+
 /**
  * ACTION TYPES
  */
@@ -9,7 +11,7 @@ const DESTROY_TRANSACTION = 'DESTROY_TRANSACTIONS';
 /**
  * ACTION CREATORS
  */
-const createTransaction = transaction => ({ type: CREATE_TRANSACTIONS, transaction });
+const createTransaction = friend => ({ type: CREATE_TRANSACTIONS, friend });
 const readTransaction = () => ({ type: READ_TRANSACTIONS });
 const updateTransaction = transaction => ({ type: UPDATE_TRANSACTION, transaction });
 const destroyTransaction = transaction => ({ type: DESTROY_TRANSACTION, transaction });
@@ -21,7 +23,7 @@ const destroyTransaction = transaction => ({ type: DESTROY_TRANSACTION, transact
 export default function transactionsReducer(transactions = [], action) {
   switch (action.type) {
     case CREATE_TRANSACTIONS:
-      return [...transactions, action.transaction];
+      return [...transactions, action.friend];
     case READ_TRANSACTIONS:
       return [...transactions];
     case UPDATE_TRANSACTION:
@@ -42,9 +44,10 @@ export const getTransaction = function () {
   };
 };
 
-export const addTransaction = function (transaction) {
+export const addTransaction = function (friend) {
   return function thunk(dispatch) {
-    dispatch(createTransaction(transaction))
+    firebaseCreateTransaction(friend);
+    dispatch(createTransaction(friend));
   };
 };
 
