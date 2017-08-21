@@ -1,7 +1,9 @@
 import React, { Component, Dimensions } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import { Icon } from 'react-native-elements'
 import { updateReceiptThunkCreator } from '../redux/receipt';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 
@@ -34,9 +36,15 @@ class ReceiptPicture extends Component {
         captureTarget={Camera.constants.CaptureTarget.memory}
         orientation={Camera.constants.Orientation.portrait}
       >
-        <Text style={styles.capture} onPress={this.takePicture}>
-          [CAPTURE]
-        </Text>
+        <LinearGradient
+          style={styles.capture}
+          colors={['#29D168', '#0081D5']}
+        >
+        <Icon
+        name='camera'
+        size={70}
+        color='white' />
+        </LinearGradient>
       </Camera>
     );
   }
@@ -51,12 +59,18 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    color: '#000',
-    padding: 10,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     margin: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon:{
+    borderWidth:9,
+    borderColor: 'black'
+
+
   }
 })
 
