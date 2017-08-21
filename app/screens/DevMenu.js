@@ -6,6 +6,11 @@ import { connect } from 'react-redux';
 import Nav from './components/Nav';
 import { login } from '../redux/auth';
 import { getContacts } from '../redux/contacts';
+import { friends } from '../../tests/testData';
+import { sendDummyText } from '../../tests/testMethods'
+import { updateFriends } from '../redux/friends';
+import { masterStyle } from '../values/stylesheet'
+
 
 class DevMenu extends Component {
 
@@ -16,7 +21,7 @@ class DevMenu extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-    <View>
+    <View style={masterStyle.body}>
         <Text>DevMenu</Text>
         <Button
           title="Log In"
@@ -26,7 +31,8 @@ class DevMenu extends Component {
         <Button
           title="Send Text"
           color="#841584"
-          onPress={() => navigate('SendText')}
+          onPress={() => 
+            this.props.sendDummyText( friends, () => navigate('SendText'))}
         />
         <Button
           title="Main"
@@ -63,6 +69,6 @@ class DevMenu extends Component {
 };
 
 const mapState = null;
-const mapDispatch = { login, getContacts };
+const mapDispatch = { login, getContacts, sendDummyText };
 
 export default connect(mapState, mapDispatch)(DevMenu);

@@ -39,7 +39,7 @@ export const Root = DrawerNavigator({
     screen: menuify(Login),
   },
   LinkAccounts: {
-    screen: LinkAccounts,
+    screen: menuify(LinkAccounts),
   },
   PayPalMe: {
     screen: PayPalMe,
