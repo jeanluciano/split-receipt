@@ -45,11 +45,22 @@ const styles = {
 
 class Stack extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       complete: false,
+      tempFriends: this.props.tempFriends
     };
+    this.tempFriends = this.props.tempFriends.map(friend => {
+      friend.items = []
+      return friend
+    })
+    this.toggled = fakeReceipt.reduce((obj, val) => {
+      obj[val.id] = 0
+      return obj
+    },{})
+
     this.completeCheck = this.completeCheck.bind(this)
+
   }
 
   completeHandler() {
@@ -59,25 +70,28 @@ class Stack extends Component {
     this.props.navigation.navigate('SendText');
   }
 
-  tempFriends(){
-    return this.props.friends.map(friend => {
-      friend.items = []
-      return friend
+  tempFriendUpdate(toggle, friend, item){
+    let friendIdx;
+    this.tempFriends.forEach((tempFriend, ind)=>{
+      if(tempFriend.recordID === friend.recordID) friendIdx = ind
     })
+    if(toggle === -1){
+      this.tempFriends[friend.recordID].items.filter(cItem => cItem.id !== item)
+    } else {
+      this.tempFriends[friendIdx].items.push(item);
+    }
   }
 
-  completeCheck(item, toggle){
-    const receiptData = this.props.receipt.receiptData
+  completeCheck(item, toggle, friend){
+    const receiptData = fakeReceipt
     const numberOfCards = receiptData.length-1
-    let toggled = {}
-    for(let i = 0; i < receiptData.length-1; i++){
-      toggled[receiptData[i].id] = 0
-    }
-    toggled[item] += toggle
+    
+    this.toggled[item.id] += toggle
+    this.tempFriendUpdate(toggle, friend, item)
     return (() => {
       let count = 0;
-      for(let item in toggled){
-        if(toggled[item] > 0) count++
+      for(let item in this.toggled){
+        if(this.toggled[item] > 0) count++
       }
       if(count === numberOfCards){
         this.setState({complete:true})
@@ -99,7 +113,7 @@ class Stack extends Component {
       y: 2,
     };
 
-    const receiptData = this.props.receipt.receiptData;
+    const receiptData = fakeReceipt;
     return (
       <View style={styles.wrapper}>
         <Swiper
@@ -127,7 +141,7 @@ class Stack extends Component {
                       $ {item.price}
                     </Text>
                   </View>
-                  <Avatars item={item} tempFriends={this.tempFriends()} completeCheck={this.completeCheck}/>
+                  <Avatars item={item} tempFriends={this.props.tempFriends} completeCheck={this.completeCheck}/>
                 </View>
               </BoxShadow>,
           )}
@@ -151,6 +165,7 @@ const mapState = (store) => {
   return {
     friends: store.friends,
     receipt: store.receipt,
+    tempFriends: store.friends
   };
 };
 const mapDispatch = { putFriend };

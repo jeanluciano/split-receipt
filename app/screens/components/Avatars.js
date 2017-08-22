@@ -49,13 +49,10 @@ class Avatars extends Component {
 
   selectHandle(friend) {
     if (this.state[friend.recordID]) {
-      friend.items.filter(item => item.id !== this.props.item);
-      this.props.completeCheck(this.props.item.id, -1);
+      this.props.completeCheck(this.props.item, -1, friend);
       this.setState({ [friend.recordID]: false });
     } else {
-      friend.items.push(this.props.item);
-      this.props.completeCheck(this.props.item.id, 1);
-      isSelected = true;
+      this.props.completeCheck(this.props.item, 1, friend);
       this.setState({ [friend.recordID]: true });
     }
   }
@@ -97,3 +94,4 @@ const mapState = (store, ownProps) => {
 const mapDispatch = { putFriend };
 
 export default connect(mapState, mapDispatch)(Avatars);
+
