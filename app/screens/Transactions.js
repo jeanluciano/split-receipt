@@ -2,66 +2,62 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, ScrollView, Text, Button, Image, View } from 'react-native';
 import { Icon, Tabs, Tab } from 'react-native-elements';
+import { TabNavigator } from "react-navigation";
+import Left from './components/Left';
 
-export default class Transactions extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      selectedTab: 'profile',
-    }
-  }
+const allIcon = <Icon name="wallet" type="entypo" color="#fff"/>
+const completedIcon = <Icon name="md-done-all" type="ionicon" color="#fff"/>
+const pendingIcon = <Icon name="assignment-late" color="#fff"/>
+// const = <Icon name="md-done-all" type="ionicon" color="#fff"/>
 
-  changeTab(selectedTab) {
-    this.setState({ selectedTab })
+class RecentChatsScreen extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'Home',
+    tabBarIcon: allIcon,
   }
 
   render() {
-
+    console.log('this.props', this.props.navigation);
     return (
       <View>
-        <View style={{flexDirection: 'row'}}>
-          <Icon
-            name="arrow-left"
-            type="material-community"
-            color="#161338"
-            style={styles.navicon}
-            onPress={() => navigation.navigate('DrawerOpen')}
-          />
-          <Text style={{ color: '#000' }}>Why is this not working?</Text>
-          <Text style={{ color: '#000' }}>fdkjnvajkdsvnkjavnjkasnfjvkasndvkjnsadvsaddscsadcsadcasdsvdcsdcscdscsdcsdcsdv</Text>
-          <Text style={{ color: '#000' }}>fdkjnvajkdsvnkjavnjkasnfjvkasndvkjnsadvsaddscsadcsadcasdsvdcsdcscdscsdcsdcsdv</Text>
-          <Text style={{ color: '#000' }}>fdkjnvajkdsvnkjavnjkasnfjvkasndvkjnsadvsaddscsadcsadcasdsvdcsdcscdscsdcsdcsdv</Text>
-        </View>
-        <Tabs>
-          <Tab
-            titleStyle={{ fontWeight: 'bold', fontSize: 10 }}
-            selectedTitleStyle={{ marginTop: -1, marginBottom: 6 }}
-            renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center', marginTop: 12 }} color={'#5e6977'} name='whatshot' size={33} />}
-            renderSelectedIcon={() => <Icon color={'#6296f9'} name='whatshot' size={30} />}
-            onPress={() => this.changeTab('feed')}>
-          </Tab>
-          <Tab
-            titleStyle={{ fontWeight: 'bold', fontSize: 10 }}
-            selectedTitleStyle={{ marginTop: -1, marginBottom: 6 }}
-            renderIcon={() => <Icon containerStyle={{ justifyContent: 'center', alignItems: 'center', marginTop: 12 }} color={'#5e6977'} name='person' size={33} />}
-            renderSelectedIcon={() => <Icon color={'#6296f9'} name='person' size={30} />}
-            onPress={() => this.changeTab('profile')}>
-          </Tab>
-        </Tabs>
+        <Left navigation={this.props.navigation}/>
+        <Text>List of recent chats</Text>
       </View>
     );
-
   }
-
 }
 
+class AllContactsScreen extends Component {
+  render() {
+    console.log('this.props', this.props.navigation);
+    return (
+      <View>
+        <Left navigation={this.props.navigation} />
+        <Text>List of recent chats</Text>
+      </View>
+    );
+  }
+}
+
+const MainScreenNavigator = TabNavigator({
+  Thing: { screen: RecentChatsScreen },
+  All: { screen: AllContactsScreen },
+}, { tabBarPosition: 'bottom' });
+
+export default MainScreenNavigator;
+
 const styles = StyleSheet.create({
+  tyles: {
 
-  navicon: {
-    paddingTop: '9%',
-    paddingLeft: '7%',
-    paddingBottom: '2%',
   },
+  tyles: {
 
+  },
+  style: {
+
+  },
+  tyles: {
+
+  },
 });
