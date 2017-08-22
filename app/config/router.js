@@ -16,7 +16,7 @@ import Transactions from '../screens/Transactions';
 
 Transactions.navigationOptions = { title: 'My chats' };
 
-export const Root = DrawerNavigator({
+export default DrawerNavigator({
   Transactions: {
     screen: Transactions,
   },
