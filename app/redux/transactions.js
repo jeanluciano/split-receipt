@@ -61,9 +61,9 @@ export const addTransaction = (friend, user) =>
       });
 
 
-export const putTransaction = transaction =>
+export const putTransaction = (transaction, property) =>
   dispatch =>
-    firebaseUpdateTransaction(transaction)
+    firebaseUpdateTransaction(transaction.id, property)
       .then(transaction => dispatch(updateTransaction(transaction)))
       .catch(error => dispatch(updateTransaction({ error })));
 

@@ -3,6 +3,7 @@ import {
   firebaseLogIn,
   firebaseSignUp,
   firebaseLogOut,
+  firebaseUpdateUserAddTo,
 } from '../firebase/auth'
 
 /*
@@ -42,14 +43,19 @@ export const login = (email, password) =>
 export const logout = () =>
   dispatch =>
     firebaseLogOut()
-      .then(user => dispatch(updateUser(user)))
+      .then(user => dispatch(removeUser()))
 
 export const signup = (email, password) =>
   dispatch =>
     firebaseSignUp(email, password)
       .then(user => dispatch(updateUser(user)))
 
-export const update = (userId, property) =>
+export const userUpdate = (userId, property) =>
   dispatch =>
     firebaseUpdateUser(userId, property)
-      .then(() => dispatch(removeUser()))
+      .then(user => dispatch(updateUser(user)))
+
+export const updateUserAddTo = (userId, transactionId, status) =>
+  dispatch =>
+    firebaseUpdateUserAddTo(userId, transactionId, status)
+      .then(user => dispatch(updateUser(user)))

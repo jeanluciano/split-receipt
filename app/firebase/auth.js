@@ -13,10 +13,16 @@ export const reformatUser = async function(userId) {
   return user;
 }
 
-export const firebaseUpdateUser = async function (userId, property) {
+export const firebaseUpdateUser = async function (userId, property, value) {
   if(property) await firebase.database().ref().child('users').child(userId).update(property);
   return await reformatUser(userId);
 }
+
+export const firebaseUpdateUserAddTo = async function (userId, transactionId, status) {
+  if(property) await firebase.database().ref().child('users').child(userId).child('to').update({transactionId:status});
+  return await reformatUser(userId);
+}
+
 
 export const firebaseLogIn = async function (email, password) {
   try {

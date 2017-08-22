@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { putTransactions } from './transactions';
+import { userUpdateTo } from './auth';
 
 /**
  * ENUM VALUES
  */
 const SELECTED = 'SELECTED';
 const REQUESTED = 'REQUESTED';
-const PAID = 'PAID'
+const PAID = 'SETTLED'
 
 /**
  * ACTION TYPES
@@ -26,7 +27,7 @@ const PAID = 'PAID'
 export const sendText = (transactions, user) => (dispatch) => {
   const payPalMe = user.payPalMe
   transactions.map((transaction) => {
-    const destinationNumber = transaction.phone;
+    const destinationNumber = transaction.to.phone;
     const amount = transaction.total;
     if (transaction.status === SELECTED) {
       return axios.post('http://localhost:8000/api/payPalMe/', {
@@ -37,8 +38,13 @@ export const sendText = (transactions, user) => (dispatch) => {
         // update store
         // update db
         .then(() => {
-          transaction.status = REQUESTED
-          return dispatch(putTransactions(transaction))
+          const property = REQUESTED
+          dispatch(putTransactions(transaction.id, property));
+          // update users.from.child(tid)
+          dispatch(userUpdateTo(user.id, transaction.id, REQUESTED));
+          dispatch(firebaseUserIfExist(transaction.to.phone));
+          // dispatch(firebaseUpdateUser());
+          // dispatch(firebaseUserIfExist());
         })
         .catch(error => dispatch(putTransactions({ error })))
     }
