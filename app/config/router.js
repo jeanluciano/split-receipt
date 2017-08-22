@@ -12,8 +12,14 @@ import Landing from '../screens/Landing';
 import DevMenu from '../screens/DevMenu';
 import menuify from './menuify';
 import Stack from '../screens/Stack';
+import Transactions from '../screens/Transactions';
+
+Transactions.navigationOptions = { title: 'My chats' };
 
 export const Root = DrawerNavigator({
+  Transactions: {
+    screen: Transactions,
+  },
   DevMenu: {
     screen: menuify(DevMenu),
   },
