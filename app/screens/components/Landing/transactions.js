@@ -36,8 +36,8 @@ const transactions = [
     id: '324qwea',
     purpose: 'dinner last Friday',
     total: 54.96,
-    status: 'requested', //enum('requested', 'settled')
-    date: Date.now().toString(),
+    status: 'REQUESTED', //enum('requested', 'settled')
+    date: Date.now() + '',
   },
   {
     to: {
@@ -76,8 +76,8 @@ const transactions = [
     id: '324qwea',
     purpose: 'dinner last Friday',
     total: 54.96,
-    status: 'requested', //enum('requested', 'settled')
-    date: Date.now().toString(),
+    status: 'REQUESTED', //enum('requested', 'settled')
+    date: Date.now() + '',
   },
 ]
 
