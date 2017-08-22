@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { sendText } from '../redux/sendText';
 import TransactionCard from './components/TransactionCard';
+import { masterStyle } from '../values/stylesheet';
 
 
 class SendText extends Component {
@@ -11,7 +12,7 @@ class SendText extends Component {
     return (
       <View style={styles.screen}>
         <Text>Review the your splits</Text>
-
+        
         <ScrollView>
           <View style={styles.table}>
             {this.props.transactions.map(transaction => (<TransactionCard transaction={transaction} />))}

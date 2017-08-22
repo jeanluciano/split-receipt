@@ -1,6 +1,7 @@
 import {
   firebaseCreateTransaction,
   firebaseUpdateTransaction,
+  firebaseDestroy,
 } from '../firebase/transactions'
 
 /**
@@ -51,14 +52,16 @@ export const addTransaction = (friend, user) =>
   dispatch =>
     firebaseCreateTransaction(friend, user)
       .then(transaction => dispatch(createTransaction(transaction)))
+      .catch(error => dispatch(createTransaction({ error })));
 
 
-export const putTransaction = transaction => 
-  dispatch => 
+export const putTransaction = transaction =>
+  dispatch =>
     firebaseUpdateTransaction(transaction)
       .then(transaction => dispatch(updateTransaction(transaction)))
+      .catch(error => dispatch(updateTransaction({ error })));
 
-export const deleteTransaction = transaction => 
+export const deleteTransaction = transaction =>
   dispatch =>
     firebaseDestroy(transaction)
       .then(dispatch(destroyTransaction(transaction)))
