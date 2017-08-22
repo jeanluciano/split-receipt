@@ -20,7 +20,6 @@ class contacts extends Component {
     const { addFriend, deleteContact } = this.props;
     deleteContact(selectedContact);
     addFriend(selectedContact);
-    this.search.clearText();
   }
 
   completeHandle() {
@@ -45,7 +44,6 @@ class contacts extends Component {
     return (
       <View style={styles.contacts}>
         <SearchBar
-          ref={search => this.search = search}
           noIcon
           round
           containerStyle={styles.SearchBar}
@@ -54,7 +52,7 @@ class contacts extends Component {
         />
         <List containerStyle={styles.searchContainer}>
           {contacts.map((contact, ind) => {
-            const phoneNumber = contact.phoneNumbers[0].number;
+            
             return (
               <ListItem
                 key={ind}
@@ -62,7 +60,6 @@ class contacts extends Component {
                 underlayColor="#374355"
                 titleStyle={styles.listText}
                 containerStyle={styles.listItem}
-                phone={phoneNumber}
                 onPress={() => this.onAddHandle(contact)}
                 title={`${contact.givenName} ${contact.familyName}`}
               />

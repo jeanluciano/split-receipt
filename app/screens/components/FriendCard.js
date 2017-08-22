@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     borderRadius: 10,
     margin: 5,
-    width: '90%',
   },
   itemView: {
     flexDirection: 'row',
