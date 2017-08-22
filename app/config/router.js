@@ -24,7 +24,7 @@ export const Root = DrawerNavigator({
     screen: Stack,
   },
   Camera: {
-    screen: menuify(Camera),
+    screen: Camera,
   },
   Main: {
     screen: Main,
