@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
 import { List, ListItem, Icon } from 'react-native-elements';
 import fakeTransactions from './transactions';
 
@@ -10,12 +10,19 @@ export default () => (
       <Text style={styles.titleText}>Pending Transactions</Text>
       <Text style={styles.descriptionText}>Oh Oh, it looks these transactions have yet to be taken care of</Text>
     </View>
+    <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, flexDirection: 'row' }}><Text>Click here</Text>
+    <Icon
+    name="chevron-down"
+    type="evilicon"
+    color="#161338"
+    />
+    </View>
     <List>
     {
       fakeTransactions.map((transaction,index) => (
         <ListItem
         key={index}
-        title={ `${transaction.givenName} ${transaction.familyName}` }
+        title={ `${transaction.to.givenName} ${transaction.to.familyName}` }
         subtitle={ transaction.purpose }
         rightTitle={ `$${transaction.total}` }
         ></ListItem>

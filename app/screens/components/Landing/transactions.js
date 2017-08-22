@@ -1,111 +1,83 @@
 const transactions = [
   {
-    givenName: 'Jason',
-    familyName: 'Hu',
-    recordID: '324qwea',
-    toID: 'lakj23s',
-    items: {
-      aalsdkjfadsl: {
+    to: {
+      givenName: 'Jason',
+      familyName: 'Hu',
+      id: 'person who needs to pay id',
+      phone: '4126097288',
+    },
+    from: {
+      givenName: 'Raj',
+      familyName: 'Kadiyala',
+      id: 'person who needs to get paid id',
+    },
+    items: [
+      {
+        id: 'aalsdkjfadsl',
         item: 'Chicken and Veg',
         price: 10.99,
       },
-      kjh21kjhas: {
+      {
+        id: 'kjh21kjhas',
         item: 'Chicken Lo Mein',
         price: 8.99,
       },
-      alsdfkjasdflka: {
+      {
+        id: 'alsdfkjasdflka',
         item: 'Samuel Adams',
         price: 4.99,
       },
-      asdlfkajsdlf: {
+      {
+        id: 'asdlfkajsdlf',
         item: 'T-Bone',
         price: 20.99,
       },
-    },
+    ],
+    id: '324qwea',
     purpose: 'dinner last Friday',
-    phone: '4126097288',
     total: 54.96,
+    status: 'requested', //enum('requested', 'settled')
+    date: Date.now().toString(),
   },
   {
-    givenName: 'Jason',
-    familyName: 'Hu',
-    recordID: '324qwea',
-    toID: 'lakj23s',
-    items: {
-      aalsdkjfadsl: {
+    to: {
+      givenName: 'Jason',
+      familyName: 'Hu',
+      id: 'person who needs to pay id',
+      phone: '4126097288',
+    },
+    from: {
+      givenName: 'Raj',
+      familyName: 'Kadiyala',
+      id: 'person who needs to get paid id',
+    },
+    items: [
+      {
+        id: 'aalsdkjfadsl',
         item: 'Chicken and Veg',
         price: 10.99,
       },
-      kjh21kjhas: {
+      {
+        id: 'kjh21kjhas',
         item: 'Chicken Lo Mein',
         price: 8.99,
       },
-      alsdfkjasdflka: {
+      {
+        id: 'alsdfkjasdflka',
         item: 'Samuel Adams',
         price: 4.99,
       },
-      asdlfkajsdlf: {
+      {
+        id: 'asdlfkajsdlf',
         item: 'T-Bone',
         price: 20.99,
       },
-    },
+    ],
+    id: '324qwea',
     purpose: 'dinner last Friday',
-    phone: '4126097288',
     total: 54.96,
-  },
-  {
-    givenName: 'Jason',
-    familyName: 'Hu',
-    recordID: '324qwea',
-    toID: 'lakj23s',
-    items: {
-      aalsdkjfadsl: {
-        item: 'Chicken and Veg',
-        price: 10.99,
-      },
-      kjh21kjhas: {
-        item: 'Chicken Lo Mein',
-        price: 8.99,
-      },
-      alsdfkjasdflka: {
-        item: 'Samuel Adams',
-        price: 4.99,
-      },
-      asdlfkajsdlf: {
-        item: 'T-Bone',
-        price: 20.99,
-      },
-    },
-    purpose: 'dinner last Friday',
-    phone: '4126097288',
-    total: 54.96,
-  },
-  {
-    givenName: 'Jason',
-    familyName: 'Hu',
-    recordID: '324qwea',
-    fromID: 'lakj23s',
-    items: {
-      aalsdkjfadsl: {
-        item: 'Chicken and Veg',
-        price: 10.99,
-      },
-      kjh21kjhas: {
-        item: 'Chicken Lo Mein',
-        price: 8.99,
-      },
-      alsdfkjasdflka: {
-        item: 'Samuel Adams',
-        price: 4.99,
-      },
-      asdlfkajsdlf: {
-        item: 'T-Bone',
-        price: 20.99,
-      },
-    },
-    purpose: 'dinner last Friday',
-    phone: '4126097288',
-    total: 54.96,
+    status: 'requested', //enum('requested', 'settled')
+    date: Date.now().toString(),
   },
 ]
 
