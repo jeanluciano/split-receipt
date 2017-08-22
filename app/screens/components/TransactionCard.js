@@ -17,9 +17,10 @@ function totalGetter(items) {
 
 const TransactionCard = (props) => {
   const { transaction, user } = props;
+  console.log('TRANSACTION CARD', transaction)
   return (
     <View style={styles.transactionView}>
-      <Text>{`${transaction.givenName} ${transaction.familyName}`}</Text>
+      <Text>{`${transaction.to.givenName} ${transaction.to.familyName}`}</Text>
       {transaction.items.map(item =>
         (<View style={styles.itemView}>
           <Text>

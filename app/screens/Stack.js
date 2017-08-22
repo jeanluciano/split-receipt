@@ -51,25 +51,37 @@ class Stack extends Component {
     this.state = {
       complete: false,
     };
-    this.completeCheck = this.completeCheck.bind(this)
+    this.completeCheck = this.completeCheck.bind(this);
+    this.completeHandler = this.completeHandler.bind(this);
+    this.tempFriends = this.tempFriends.bind(this);
   }
 
   completeHandler() {
-    this.tempFriends.forEach(friend =>{
-      this.props.putFriend(friend)
-      this.props.addTransaction(friend)
+    console.log('complete', this.tempFriends, this.props.friends);
+    this.props.addTransaction(this.props.friends);
+    this.tempFriends().forEach((friend) => {
+      console.log(friend);
+      this.props.putFriend(friend);
     })
     this.props.navigation.navigate('SendText');
   }
 
-  tempFriends(){
-    return this.props.friends.map(friend => {
+  tempFriends() {
+    return this.props.friends.map((friend) => {
       friend.items = []
       return friend
     })
   }
 
-  completeCheck(item, toggle){
+  completeCheck(item, toggle) {
+    // asignItem = item;
+    console.log('COMPLETE CHECK')
+    // // const items = this.props.receipt.receiptData
+    // assignedItem.assigned = true;
+    // if (this.props.receipt.receiptData.every(item => (item.assigned))) {
+    //   return this.setState({ complete: true });
+    // }
+
     const receiptData = this.props.receipt.receiptData
     const numberOfCards = receiptData.length - 1
     let toggled = {}
@@ -82,11 +94,15 @@ class Stack extends Component {
       for (let item in toggled){
         if (toggled[item] > 0) count++
       }
+      console.log('CHECKCOMPLETE', numberOfCards, count);
       if (count === numberOfCards){
         this.setState({ complete: true })
       } else {
         this.setState({ complete: false })
       }
+      // CAN'T GET THE REQUEST TO WORK WITH FUNCTION
+      // WORK AROUND:
+      return this.setState({ complete: true });
     })()
   }
 
@@ -117,9 +133,8 @@ class Stack extends Component {
           dragY
           loop
         >
-          {receiptData.map(
-            (item, ind) =>
-              ind !== receiptData.length - 1 &&
+          {receiptData.map((item, ind) =>
+            ind !== receiptData.length - 1 &&
               <BoxShadow setting={shadowOpt} key={ind}>
                 <View style={styles.slide} onLayout={this.widthGetter}>
                   <View style={styles.textContainer}>
@@ -130,10 +145,10 @@ class Stack extends Component {
                       ${item.price}
                     </Text>
                   </View>
-                  <Avatars item={item} tempFriends={this.tempFriends()} completeCheck={this.completeCheck}/>
+                  <Avatars item={item} tempFriends={this.tempFriends()} completeCheck={this.completeCheck} />
                 </View>
-              </BoxShadow>
-          )}
+              </BoxShadow>)
+          }
         </Swiper>
 
         {this.state.complete
@@ -142,9 +157,9 @@ class Stack extends Component {
             title="Request"
             backgroundColor="#03BD5B"
             borderRadius={25}
-            onPress={this.completeHandler.bind(this)}
+            onPress={() => this.completeHandler()}
           />
-          : <Button style={styles.button} title="Request" />}
+          : <Button style={styles.button} title="Disabled Request" />}
       </View>
     );
   }
@@ -153,7 +168,7 @@ class Stack extends Component {
 const mapState = (store) => {
   return {
     friends: store.friends,
-    receipt: store.receipt,
+    receipt: fakeReceipt,
     transaction: store.transaction,
   };
 };

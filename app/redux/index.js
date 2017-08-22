@@ -6,12 +6,14 @@ import myContacts from './contacts';
 import friends from './friends';
 import auth from './auth';
 import receipt from './receipt';
+import transactions from './transactions'
 
 const reducer = combineReducers({
   myContacts,
   friends,
   receipt,
   user: auth,
+  transactions,
 });
 
 const middleware = compose(
