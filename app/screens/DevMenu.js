@@ -14,14 +14,14 @@ import { masterStyle } from '../values/stylesheet'
 
 class DevMenu extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.getContacts()
   }
 
   render() {
     const { navigate } = this.props.navigation;
     return (
-    <View style={masterStyle.body}>
+      <View style={masterStyle.body}>
         <Text>DevMenu</Text>
         <Button
           title="Log In"
@@ -31,8 +31,8 @@ class DevMenu extends Component {
         <Button
           title="Send Text"
           color="#841584"
-          onPress={() => 
-            this.props.sendDummyText( friends, () => navigate('SendText'))}
+          onPress={() =>
+            this.props.sendDummyText(friends, () => navigate('SendText'))}
         />
         <Button
           title="Main"

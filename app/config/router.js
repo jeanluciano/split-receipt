@@ -12,11 +12,20 @@ import Landing from '../screens/Landing';
 import DevMenu from '../screens/DevMenu';
 import menuify from './menuify';
 import Stack from '../screens/Stack';
+<<<<<<< HEAD
 import EditTable from '../screens/EditTable'
+=======
+import Transactions from '../screens/Transactions';
+>>>>>>> master
 
-export const Root = DrawerNavigator({
+Transactions.navigationOptions = { title: 'My chats' };
+
+export default DrawerNavigator({
   DevMenu: {
     screen: menuify(DevMenu),
+  },
+  Transactions: {
+    screen: Transactions,
   },
   Landing: {
     screen: menuify(Landing, ['#fff', '#cad3df', '#fff']),
@@ -25,7 +34,7 @@ export const Root = DrawerNavigator({
     screen: Stack,
   },
   Camera: {
-    screen: menuify(Camera),
+    screen: Camera,
   },
   Main: {
     screen: Main,

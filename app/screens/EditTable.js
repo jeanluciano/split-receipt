@@ -25,6 +25,11 @@ class EditTable extends Component {
     return 400 + FakeReceipt.length * height(6.5);
   }
 
+<<<<<<< HEAD
+=======
+  
+
+>>>>>>> master
   render() {
     return (
       <View style={styles.viewcontainer}>

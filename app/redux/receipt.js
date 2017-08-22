@@ -3,7 +3,15 @@
  * ACTION TYPES
  */
 const UPDATE_RECEIPT_DATA = 'UPDATE_RECEIPT_DATA';
+const FIX_PRICE = 'FIX_PRICE'
 
+<<<<<<< HEAD
+=======
+const fixPrice = receipt => ({
+  type: FIX_PRICE,
+  receipt
+})
+>>>>>>> master
 const updateReceipt = receiptData => ({
   type: UPDATE_RECEIPT_DATA,
   receiptData,
@@ -24,6 +32,8 @@ export default function receiptReducer(receipt = initialReceipt, action) {
   switch (action.type) {
     case UPDATE_RECEIPT_DATA:
       return Object.assign({}, receipt, { receiptData: action.receiptData });
+      case FIX_PRICE:
+        return Object.assign({}, receipt,{} )
     default:
       return receipt;
   }
@@ -40,6 +50,11 @@ export const updateReceiptThunkCreator = receiptData => (dispatch) => {
   }
 };
 
+<<<<<<< HEAD
 export const fixReceiptData = receiptData => (dispatch) => {
+=======
+
+export const putPrice = receiptData => (dispatch) => {
+>>>>>>> master
   dispatch(updateReceipt(receiptData))
 }
