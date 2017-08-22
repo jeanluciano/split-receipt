@@ -1,5 +1,5 @@
 export const validateShape = function(obj, type) {
-  let {
+  const {
     total,
     status,
     date,
@@ -9,9 +9,9 @@ export const validateShape = function(obj, type) {
     transactions,
     payer,
   } = obj;
-  switch(type) {
+  switch (type) {
     case 'TRANSACTION':
-      return (total && status && date && receiptId && origin && destination);
+      return true;
     case 'USER':
       return (total && status && date && receiptId && origin && destination);
     case 'RECEIPT':

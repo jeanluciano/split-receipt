@@ -3,7 +3,9 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { sendText } from '../../redux/sendText';
+// import CheckBox from 'react-native-checkbox';
+import { sendText, selectTransaction } from '../../redux/sendText';
+
 
 function totalGetter(items) {
   let total = 0;
@@ -13,12 +15,13 @@ function totalGetter(items) {
   return Math.round(total * 100) / 100;
 }
 
-const FriendCard = (props) => {
-  const { friend, user } = props;
+const TransactionCard = (props) => {
+  const { transaction, user } = props;
+  console.log('TRANSACTION CARD', transaction)
   return (
-    <View style={styles.friendView}>
-      <Text>{`${friend.givenName} ${friend.familyName}`}</Text>
-      {friend.items.map(item =>
+    <View style={styles.transactionView}>
+      <Text>{`${transaction.to.givenName} ${transaction.to.familyName}`}</Text>
+      {transaction.items.map(item =>
         (<View style={styles.itemView}>
           <Text>
             {item.item}
@@ -31,16 +34,22 @@ const FriendCard = (props) => {
       <View style={styles.itemView}>
         <Text style={styles.total}>Total</Text>
         <Text style={styles.total}>
-          {totalGetter(friend.items)}
+          {totalGetter(transaction.items)}
         </Text>
       </View>
+      {/* <CheckBox
+        label="Label"
+        checked={false}
+        onChange={checked => selectTransaction(transaction, checked)}
+      /> */}
+
       <Button
         title="Send Request"
         color="#000000"
         backgroundColor="#FFFFFF"
         borderRadius={25}
         onPress={() => {
-          props.handleSendText([friend], user.payPalMe)
+          props.handleSendText([transaction], user.payPalMe)
         }}
       />
     </View>
@@ -52,7 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'green',
   },
-  friendView: {
+  transactionView: {
     backgroundColor: '#ef553a',
     width: 360,
     height: 200,
@@ -68,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 20,
   },
-  friendName: {
+  transactionName: {
     fontFamily: 'Cochin',
   },
   itemName: {
@@ -93,24 +102,27 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  handleSendText(friend, payPalMe) {
-    dispatch(sendText(friend, payPalMe))
+  handleSendText(transaction, payPalMe) {
+    dispatch(sendText(transaction, payPalMe))
+  },
+  handleSelectTransaction(transaction, status) {
+    dispatch(selectTransaction(transaction, status))
   },
 });
 
-export default connect(mapState, mapDispatch)(FriendCard);
+export default connect(mapState, mapDispatch)(TransactionCard);
 
 /**
  * PROP TYPES
  */
-FriendCard.propTypes = {
+TransactionCard.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }),
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }),
-  friend: PropTypes.shape({
+  transaction: PropTypes.shape({
     recordID: PropTypes.string.isRequired,
   }),
   handleSendText: PropTypes.func.isRequired,
