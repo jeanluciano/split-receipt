@@ -8,6 +8,8 @@ import Avatars from './components/Avatars';
 import { connect } from 'react-redux';
 import fakeReceipt from './components/fakeReceipt';
 import { putFriend } from '../redux/friends';
+import PropTypes from 'prop-types';
+import { addTransaction } from '../redux/transactions';
 
 const styles = {
   wrapper: {
@@ -34,13 +36,13 @@ const styles = {
     color: 'black',
     fontSize: 30,
     fontWeight: 'bold',
-    padding: '5%'
+    padding: '5%',
   },
   textContainer: {
     paddingTop: '10%',
-    paddingBottom:'15%',
-    alignItems: 'center'
-  }
+    paddingBottom: '15%',
+    alignItems: 'center',
+  },
 };
 
 class Stack extends Component {
@@ -48,59 +50,60 @@ class Stack extends Component {
     super(props);
     this.state = {
       complete: false,
-      tempFriends: this.props.tempFriends
+      tempFriends: this.props.tempFriends,
     };
     this.tempFriends = this.props.tempFriends.map(friend => {
-      friend.items = []
-      return friend
-    })
+      friend.items = [];
+      return friend;
+    });
     this.toggled = fakeReceipt.reduce((obj, val) => {
-      obj[val.id] = 0
-      return obj
-    },{})
+      obj[val.id] = 0;
+      return obj;
+    }, {});
 
-    this.completeCheck = this.completeCheck.bind(this)
-
+    this.completeCheck = this.completeCheck.bind(this);
   }
 
   completeHandler() {
-    this.tempFriends.forEach(friend =>{
-      this.props.putFriend(friend)
-    })
+    this.tempFriends.forEach(friend => {
+      this.props.putFriend(friend);
+    });
     this.props.navigation.navigate('SendText');
   }
 
-  tempFriendUpdate(toggle, friend, item){
+  tempFriendUpdate(toggle, friend, item) {
     let friendIdx;
-    this.tempFriends.forEach((tempFriend, ind)=>{
-      if(tempFriend.recordID === friend.recordID) friendIdx = ind
-    })
-    if(toggle === -1){
-      this.tempFriends[friend.recordID].items.filter(cItem => cItem.id !== item)
+    this.tempFriends.forEach((tempFriend, ind) => {
+      if (tempFriend.recordID === friend.recordID) friendIdx = ind;
+    });
+    if (toggle === -1) {
+      this.tempFriends[friend.recordID].items.filter(
+        cItem => cItem.id !== item,
+      );
     } else {
       this.tempFriends[friendIdx].items.push(item);
     }
   }
 
-  completeCheck(item, toggle, friend){
-    const receiptData = fakeReceipt
-    const numberOfCards = receiptData.length-1
-    
-    this.toggled[item.id] += toggle
-    this.tempFriendUpdate(toggle, friend, item)
+  completeCheck(item, toggle, friend) {
+    const receiptData = fakeReceipt;
+    const numberOfCards = receiptData.length - 1;
+
+    this.toggled[item.id] += toggle;
+    this.tempFriendUpdate(toggle, friend, item);
     return (() => {
       let count = 0;
-      for(let item in this.toggled){
-        if(this.toggled[item] > 0) count++
+      for (let item in this.toggled) {
+        if (this.toggled[item] > 0) count++;
       }
-      if(count === numberOfCards){
-        this.setState({complete:true})
+      if (count === numberOfCards) {
+        this.setState({ complete: true });
       } else {
-        this.setState({complete:false})
+        this.setState({ complete: false });
       }
-    })()
+    })();
   }
-  
+
   render() {
     const shadowOpt = {
       height: height(70),
@@ -141,7 +144,11 @@ class Stack extends Component {
                       $ {item.price}
                     </Text>
                   </View>
-                  <Avatars item={item} tempFriends={this.props.tempFriends} completeCheck={this.completeCheck}/>
+                  <Avatars
+                    item={item}
+                    tempFriends={this.props.tempFriends}
+                    completeCheck={this.completeCheck}
+                  />
                 </View>
               </BoxShadow>,
           )}
@@ -161,13 +168,27 @@ class Stack extends Component {
   }
 }
 
-const mapState = (store) => {
+const mapState = store => {
   return {
     friends: store.friends,
     receipt: store.receipt,
-    tempFriends: store.friends
+    tempFriends: store.friends,
+    transaction: store.transaction,
   };
 };
 const mapDispatch = { putFriend };
 
 export default connect(mapState, mapDispatch)(Stack);
+
+Stack.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      recordID: PropTypes.string.isRequired,
+    }),
+  ),
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }),
+  addTransaction: PropTypes.func.isRequired,
+  putFriend: PropTypes.func.isRequired,
+};
