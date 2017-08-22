@@ -12,6 +12,7 @@ import Landing from '../screens/Landing';
 import DevMenu from '../screens/DevMenu';
 import menuify from './menuify';
 import Stack from '../screens/Stack';
+import EditTable from '../screens/EditTable'
 
 export const Root = DrawerNavigator({
   DevMenu: {
@@ -49,5 +50,8 @@ export const Root = DrawerNavigator({
   },
   SendText: {
     screen: SendText,
+  },
+  EditTable:{
+    screen: EditTable,
   },
 });
