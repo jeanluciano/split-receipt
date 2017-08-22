@@ -11,6 +11,7 @@ import { List, ListItem, Button } from 'react-native-elements';
 import { connect } from 'react-redux'
 import { width, height } from 'react-native-dimension';
 import FakeReceipt from './components/fakeReceipt';
+import fixPrice from '../redux/receipt'
 
 class EditTable extends Component {
   constructor() {
@@ -21,7 +22,7 @@ class EditTable extends Component {
   }
 
   stretcher() {
-    return 400 + FakeReceipt.length * height(6);
+    return 400 + FakeReceipt.length * height(6.5);
   }
 
   render() {
@@ -63,18 +64,20 @@ class EditTable extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: .6,
+    position: 'absolute',
     backgroundColor: '#3D4D65',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   viewcontainer: {
     flex: 1,
+    position: 'relative',
     backgroundColor: '#3D4D65',
   },
   background: {
     marginTop: '10%',
     padding: '15%',
-    width: '100%',
+    width: width(100),
 
     resizeMode: 'stretch',
   },
@@ -98,4 +101,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default EditTable;
+const mapToState = (store) => {
+  return {
+    receiptData: store.receipt.receiptData
+  }
+}
+
+const mapDispatch = { fixPrice }
+
+
+export default connect(mapToState, mapDispatch)(EditTable);
