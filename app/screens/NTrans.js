@@ -2,74 +2,37 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, ScrollView, Text, Button, Image, View } from 'react-native';
 import { Icon, Tabs, Tab } from 'react-native-elements';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator } from "react-navigation";
+import menuify from '../config/menuify';
+import Nav from './components/Nav';
 
-
-class MyHomeScreen extends Component {
-  static navigationOptions = {
-    tabBarLabel: 'Home',
-    // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-    tabBarIcon: ({ tintColor }) => (
-      <Image
-        source={'none'}
-        style={[styles.icon, { tintColor: tintColor }]}
-      />
-    ),
-  };
-
+class RecentChatsScreen extends Component {
   render() {
+    console.log('this.props', this.props.navigation);
     return (
-      <Button
-        onPress={() => this.props.navigation.navigate('Notifications')}
-        title="Go to notifications"
-      />
+      <View>
+        <Nav navigation={this.props.navigation}/>
+        <Text>List of recent chats</Text>
+      </View>
     );
   }
 }
 
-class MyNotificationsScreen extends Component {
-  static navigationOptions = {
-    tabBarLabel: 'Notifications',
-    tabBarIcon: ({ tintColor }) => (
-      <Image
-        source={'none'}
-        style={[styles.icon, { tintColor: tintColor }]}
-      />
-    ),
-  };
-
+class AllContactsScreen extends Component {
   render() {
+    console.log('this.props', this.props.navigation);
     return (
-      <Button
-        onPress={() => this.props.navigation.goBack()}
-        title="Go back home"
-      />
+      <View>
+        <Nav navigation={this.props.navigation} />
+        <Text>List of recent chats</Text>
+      </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  icon: {
-    width: 26,
-    height: 26,
-  },
+const MainScreenNavigator = TabNavigator({
+  Recent: { screen: RecentChatsScreen },
+  All: { screen: AllContactsScreen },
 });
 
-export default () => (
-
-  {
-    TabNavigator({
-        Home: {
-          screen: MyHomeScreen,
-        },
-      Notifications: {
-          screen: MyNotificationsScreen,
-        },
-      }, {
-          tabBarOptions: {
-            activeTintColor: '#e91e63'
-          },
-        })
-  }
-
-);
+export default MainScreenNavigator;

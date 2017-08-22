@@ -15,8 +15,8 @@ class Landing extends Component {
   render() {
     return (
       <View>
-      <CameraLink navigation={this.props.navigation} />
-      <TransactionLinks />
+        <CameraLink navigation={this.props.navigation} />
+        <TransactionLinks />
         <PendingTransactions navigation={this.props.navigation} />
       </View>
     );
