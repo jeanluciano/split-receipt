@@ -10,6 +10,13 @@ export default () => (
       <Text style={styles.titleText}>Pending Transactions</Text>
       <Text style={styles.descriptionText}>Oh Oh, it looks these transactions have yet to be taken care of</Text>
     </View>
+    <View style={{justifyContent: 'center', alignItems: 'center', flex: 1, flexDirection: 'row' }}><Text>Click here</Text>
+    <Icon
+    name="chevron-down"
+    type="evilicon"
+    color="#161338"
+    />
+    </View>
     <List>
     {
       fakeTransactions.map((transaction,index) => (
