@@ -4,12 +4,12 @@ import Swiper from 'react-native-swiper-animated';
 import { BoxShadow } from 'react-native-shadow';
 import { width, height, totalSize } from 'react-native-dimension';
 import { Button } from 'react-native-elements';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import Avatars from './components/Avatars';
+import { connect } from 'react-redux';
 import fakeReceipt from './components/fakeReceipt';
 import { putFriend } from '../redux/friends';
-import { addTransaction } from '../redux/transactions'
+import PropTypes from 'prop-types';
+import { addTransaction } from '../redux/transactions';
 
 const styles = {
   wrapper: {
@@ -47,52 +47,63 @@ const styles = {
 
 class Stack extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       complete: false,
+      tempFriends: this.props.tempFriends,
     };
+    this.tempFriends = this.props.tempFriends.map(friend => {
+      friend.items = [];
+      return friend;
+    });
+    this.toggled = fakeReceipt.reduce((obj, val) => {
+      obj[val.id] = 0;
+      return obj;
+    }, {});
+
     this.completeCheck = this.completeCheck.bind(this);
-    this.completeHandler = this.completeHandler.bind(this);
-    this.tempFriends = this.tempFriends.bind(this);
   }
 
   completeHandler() {
-    this.tempFriends().forEach((friend) => {
+        
+    this.tempFriends.forEach(friend => {
       this.props.addTransaction(friend, this.props.user)
       this.props.putFriend(friend);
-    })
+    });
     this.props.navigation.navigate('SendText');
   }
 
-  tempFriends() {
-    return this.props.friends.map((friend) => {
-      friend.items = []
-      return friend
-    })
+  tempFriendUpdate(toggle, friend, item) {
+    let friendIdx;
+    this.tempFriends.forEach((tempFriend, ind) => {
+      if (tempFriend.recordID === friend.recordID) friendIdx = ind;
+    });
+    if (toggle === -1) {
+      this.tempFriends[friend.recordID].items.filter(
+        cItem => cItem.id !== item,
+      );
+    } else {
+      this.tempFriends[friendIdx].items.push(item);
+    }
   }
 
-  completeCheck(item, toggle) {
-    const receiptData = this.props.receipt.receiptData
-    const numberOfCards = receiptData.length - 1
-    let toggled = {}
-    for (let i = 0; i < receiptData.length - 1; i++){
-      toggled[receiptData[i].id] = 0
-    }
-    toggled[item] += toggle
+  completeCheck(item, toggle, friend) {
+    const receiptData = fakeReceipt;
+    const numberOfCards = receiptData.length - 1;
+
+    this.toggled[item.id] += toggle;
+    this.tempFriendUpdate(toggle, friend, item);
     return (() => {
       let count = 0;
-      for (let item in toggled){
-        if (toggled[item] > 0) count++
+      for (let item in this.toggled) {
+        if (this.toggled[item] > 0) count++;
       }
-      if (count === numberOfCards){
-        this.setState({ complete: true })
+      if (count === numberOfCards) {
+        this.setState({ complete: true });
       } else {
-        this.setState({ complete: false })
+        this.setState({ complete: false });
       }
-      // CAN'T GET THE REQUEST TO WORK WITH FUNCTION
-      // WORK AROUND:
-      return this.setState({ complete: true });
-    })()
+    })();
   }
 
   render() {
@@ -107,7 +118,7 @@ class Stack extends Component {
       y: 2,
     };
 
-    const receiptData = this.props.receipt.receiptData;
+    const receiptData = fakeReceipt;
     return (
       <View style={styles.wrapper}>
         <Swiper
@@ -122,8 +133,9 @@ class Stack extends Component {
           dragY
           loop
         >
-          {receiptData.map((item, ind) =>
-            ind !== receiptData.length - 1 &&
+          {receiptData.map(
+            (item, ind) =>
+              ind !== receiptData.length - 1 &&
               <BoxShadow setting={shadowOpt} key={ind}>
                 <View style={styles.slide} onLayout={this.widthGetter}>
                   <View style={styles.textContainer}>
@@ -131,49 +143,54 @@ class Stack extends Component {
                       {item.item}
                     </Text>
                     <Text style={styles.text}>
-                      ${item.price}
+                      $ {item.price}
                     </Text>
                   </View>
-                  <Avatars item={item} tempFriends={this.tempFriends()} completeCheck={this.completeCheck} />
+                  <Avatars
+                    item={item}
+                    tempFriends={this.props.tempFriends}
+                    completeCheck={this.completeCheck}
+                  />
                 </View>
-              </BoxShadow>)
-          }
+              </BoxShadow>,
+          )}
         </Swiper>
 
         {this.state.complete
           ? <Button
-            style={styles.button}
-            title="Request"
-            backgroundColor="#03BD5B"
-            borderRadius={25}
-            onPress={() => this.completeHandler()}
-          />
-          : <Button style={styles.button} title="Disabled Request" />}
+              style={styles.button}
+              title="Request"
+              backgroundColor="#03BD5B"
+              borderRadius={25}
+              onPress={this.completeHandler.bind(this)}
+            />
+          : <Button style={styles.button} title="Request" />}
       </View>
     );
   }
 }
 
-const mapState = (store) => {
+const mapState = store => {
   return {
-    user: store.user,
     friends: store.friends,
-    receipt: fakeReceipt,
+    receipt: store.receipt,
+    tempFriends: store.friends,
     transaction: store.transaction,
   };
 };
-const mapDispatch = { putFriend, addTransaction };
+const mapDispatch = { putFriend };
 
 export default connect(mapState, mapDispatch)(Stack);
 
 Stack.propTypes = {
-  friends: PropTypes.arrayOf(PropTypes.shape({
-    recordID: PropTypes.string.isRequired,
-  })),
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      recordID: PropTypes.string.isRequired,
+    }),
+  ),
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }),
   addTransaction: PropTypes.func.isRequired,
   putFriend: PropTypes.func.isRequired,
 };
-
