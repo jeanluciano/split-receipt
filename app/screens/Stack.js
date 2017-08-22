@@ -190,3 +190,4 @@ Stack.propTypes = {
   addTransaction: PropTypes.func.isRequired,
   putFriend: PropTypes.func.isRequired,
 };
+
