@@ -178,7 +178,7 @@ const mapState = store => {
     transaction: store.transaction,
   };
 };
-const mapDispatch = { putFriend };
+const mapDispatch = { putFriend, addTransaction };
 
 export default connect(mapState, mapDispatch)(Stack);
 
