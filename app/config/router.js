@@ -12,11 +12,8 @@ import Landing from '../screens/Landing';
 import DevMenu from '../screens/DevMenu';
 import menuify from './menuify';
 import Stack from '../screens/Stack';
-<<<<<<< HEAD
-import EditTable from '../screens/EditTable'
-=======
+import EditTable from '../screens/EditTable';
 import Transactions from '../screens/Transactions';
->>>>>>> master
 
 Transactions.navigationOptions = { title: 'My chats' };
 

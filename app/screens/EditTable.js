@@ -25,11 +25,11 @@ class EditTable extends Component {
     return 400 + FakeReceipt.length * height(6.5);
   }
 
-<<<<<<< HEAD
-=======
+  onFixHandle(text, item) {
+    item.price = text
+    this.props.fixPrice(item)
+  }
   
-
->>>>>>> master
   render() {
     return (
       <View style={styles.viewcontainer}>
@@ -49,6 +49,7 @@ class EditTable extends Component {
                     keyboardType='numeric'
                     maxLength={5}
                     placeholderTextColor={'#5e5e5e'}
+                    onChangeText={(text) => this.onFixHandle(text, receipt)}
                   />
                 </View>
               ))}
@@ -56,10 +57,10 @@ class EditTable extends Component {
           </Image>
         </ScrollView>
         <Button
-        style={styles.button}
-        title="Looks Good!"
-        backgroundColor="#03BD5B"
-        borderRadius={25}
+          style={styles.button}
+          title="Looks Good!"
+          backgroundColor="#03BD5B"
+          borderRadius={25}
       />
       </View>
     );

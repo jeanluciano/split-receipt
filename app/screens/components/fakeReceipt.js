@@ -1,7 +1,6 @@
 const fakeReceipt = [
   {
     price: 10.95,
-<<<<<<< HEAD
     item: 'SF Brocc-CHX ',
     duplicity: 1,
     id: 122095
@@ -21,11 +20,6 @@ const fakeReceipt = [
   {
     price: 25.14,
     item: 'Total',
-  },
-=======
-    item: ' SF Brocc-CHX ',
-    id: 'asdjflkasdf',
-    duplicity: 1,
   },
   {
     price: 10.95,
@@ -49,7 +43,6 @@ const fakeReceipt = [
     price: 25.14,
     item: 'total',
   },
->>>>>>> master
 ];
 
 export default fakeReceipt;
