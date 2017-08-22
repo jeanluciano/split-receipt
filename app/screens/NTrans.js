@@ -1,52 +1,75 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import { connect } from 'react-redux';
+import { StyleSheet, ScrollView, Text, Button, Image, View } from 'react-native';
+import { Icon, Tabs, Tab } from 'react-native-elements';
+import { TabNavigator } from 'react-navigation';
 
-const FirstRoute = () => <View style={[styles.container, { backgroundColor: '#ff4081' }]} />;
-const SecondRoute = () => <View style={[styles.container, { backgroundColor: '#673ab7' }]} />;
 
-export default class TabViewExample extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      index: 0,
-      routes: [
-        { key: '1', title: 'First' },
-        { key: '2', title: 'Second' },
-      ],
-    };
-    this._handleIndexChange = this._handleIndexChange.bind(this);
-    this._renderHeader = this._renderHeader.bind(this);
-    this._renderScene = SceneMap({
-      '1': FirstRoute,
-      '2': SecondRoute,
-    })
-  }
-
-  _handleIndexChange(index) {
-    this.setState({ index });
-  }
-
-  _renderHeader(props) {
-    return <TabBar { ...props } />;
-  }
+class MyHomeScreen extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'Home',
+    // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={'none'}
+        style={[styles.icon, { tintColor: tintColor }]}
+      />
+    ),
+  };
 
   render() {
     return (
-      <TabViewAnimated
-        style={styles.container}
-        navigationState={this.state}
-        renderScene={this._renderScene}
-        renderHeader={this._renderHeader}
-        onIndexChange={this._handleIndexChange}
+      <Button
+        onPress={() => this.props.navigation.navigate('Notifications')}
+        title="Go to notifications"
+      />
+    );
+  }
+}
+
+class MyNotificationsScreen extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'Notifications',
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={'none'}
+        style={[styles.icon, { tintColor: tintColor }]}
+      />
+    ),
+  };
+
+  render() {
+    return (
+      <Button
+        onPress={() => this.props.navigation.goBack()}
+        title="Go back home"
       />
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  icon: {
+    width: 26,
+    height: 26,
   },
 });
+
+export default () => (
+
+  {
+    TabNavigator({
+        Home: {
+          screen: MyHomeScreen,
+        },
+      Notifications: {
+          screen: MyNotificationsScreen,
+        },
+      }, {
+          tabBarOptions: {
+            activeTintColor: '#e91e63'
+          },
+        })
+  }
+
+);

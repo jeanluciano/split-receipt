@@ -13,20 +13,20 @@ import DevMenu from '../screens/DevMenu';
 import menuify from './menuify';
 import Stack from '../screens/Stack';
 import Transactions from '../screens/Transactions';
-import NTrans from '../screens/NTrans';
+// import NTrans from '../screens/NTrans';
 // import NTransactions from '../screens/NTransactions';
 
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
+  Landing: {
+    screen: menuify(Landing, ['#fff', '#cad3df', '#fff']),
+  },
   Transactions: {
-    screen: NTrans,
+    screen: Transactions,
   },
   DevMenu: {
     screen: menuify(DevMenu),
-  },
-  Landing: {
-    screen: menuify(Landing, ['#fff', '#cad3df', '#fff']),
   },
   Stack: {
     screen: Stack,
