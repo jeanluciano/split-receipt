@@ -57,10 +57,13 @@ class Stack extends Component {
   }
 
   completeHandler() {
-    console.log('complete', this.tempFriends, this.props.friends);
-    this.props.addTransaction(this.props.friends);
+    // this.props.friends.map(friend => {
+    //   console.log('COMPLETE HANDLER', friend);
+    //   this.props.addTransaction(friend, this.props.user)
+    // });
     this.tempFriends().forEach((friend) => {
-      console.log(friend);
+      console.log('COMPLETE HANDLER', friend);
+      this.props.addTransaction(friend, this.props.user)
       this.props.putFriend(friend);
     })
     this.props.navigation.navigate('SendText');
@@ -167,6 +170,7 @@ class Stack extends Component {
 
 const mapState = (store) => {
   return {
+    user: store.user,
     friends: store.friends,
     receipt: fakeReceipt,
     transaction: store.transaction,
@@ -177,9 +181,9 @@ const mapDispatch = { putFriend, addTransaction };
 export default connect(mapState, mapDispatch)(Stack);
 
 Stack.propTypes = {
-  friend: PropTypes.shape({
+  friends: PropTypes.arrayOf(PropTypes.shape({
     recordID: PropTypes.string.isRequired,
-  }),
+  })),
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }),
