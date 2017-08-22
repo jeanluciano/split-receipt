@@ -11,11 +11,9 @@ export const reformatTransaction = async function(transactionId) {
     .child(transactionId)
     .once('value', function(snapShot) {
       transaction = snapShot.val();
-      console.log('2 @ REFORMAT TRANSACTION', transaction);
       transaction.recordID = snapShot.key;
-      for( var key in snapShot.items ) {
+      for( let key in snapShot.items ) {
         let item = snapShot.items[key].val();
-        console.log('4 @ REFORMAT TRANSACTION', item)
         item.id= key;
         items.push(item);
       }
@@ -24,12 +22,12 @@ export const reformatTransaction = async function(transactionId) {
   return transaction;
 }
 
-const friendToTransaction = (friend, user) => {
-  console.log('1 @ FRIEND TO TRANSACTION', friend, user, Date.now()+'');
-  return {
-    to: {
+const friendToTransaction = (friend, user) => 
+  ({to: {
       givenName: friend.givenName,
       familyName: friend.familyName,
+      phone: friend.phone,
+      id: null,
     },
     from: {
       givenName: user.givenName,
@@ -37,10 +35,9 @@ const friendToTransaction = (friend, user) => {
       id: user.id,
     },
     purpose: '',
-    status: 'UNPAID',
+    status: 'ASSIGNED',
     date: Date.now()+'',
-  } ;
-}
+  })
 
 export const firebaseUpdateTransaction = async function (transactionId, property) {
   if(property) await firebase.database().ref().child('transactions').child(transactionId).update(property);
@@ -51,9 +48,6 @@ export const firebaseCreateTransaction = async function(friend, user) {
   const transaction = await friendToTransaction(friend, user);
   if(validateShape(transaction, 'TRANSACTION')) {
     const firebaseTransaction = await firebase.database().ref().child('transactions').push(transaction);
-    await friend.items.forEach(item => {
-      firebaseTransaction.child(items).push(item);
-    });
     return await reformatTransaction(firebaseTransaction.key);
   }
   return new Error('TRANSACTION VALIDATION FAILED');
