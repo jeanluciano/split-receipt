@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { sendText } from '../redux/sendText';
-import FriendCard from './components/FriendCard';
+import TransactionCard from './components/TransactionCard';
 
 
 class SendText extends Component {
@@ -14,7 +14,7 @@ class SendText extends Component {
 
         <ScrollView>
           <View style={styles.table}>
-            {this.props.friends.map(friend => (<FriendCard friend={friend} />))}
+            {this.props.transactions.map(transaction => (<TransactionCard transaction={transaction} />))}
           </View>
         </ScrollView>
 
@@ -22,7 +22,7 @@ class SendText extends Component {
           <Button
             title="Send Selected"
             color="#841584"
-            onPress={() => this.props.handleSendText(this.props.friends, this.user)}
+            onPress={() => this.props.handleSendText(this.props.transactions, this.user)}
           />
         </View>
 
@@ -33,14 +33,14 @@ class SendText extends Component {
 
 const mapState = (state) => {
   return {
-    friends: state.friends,
+    transactions: state.transactions,
     user: state.user,
   };
 };
 
 const mapDispatch = dispatch => ({
-  handleSendText(friends, user) {
-    dispatch(sendText(friends, user));
+  handleSendText(transactions, user) {
+    dispatch(sendText(transactions, user));
   },
 });
 
@@ -53,7 +53,9 @@ SendText.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }),
-  friends: PropTypes.object,
+  transactions: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })),
   handleSendText: PropTypes.func.isRequired,
 };
 
