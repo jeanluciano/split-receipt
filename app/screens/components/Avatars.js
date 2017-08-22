@@ -64,7 +64,11 @@ class Avatars extends Component {
     return (
       <View style={styles.container}>
         {this.props.friends.map((friend, ind) =>
+<<<<<<< HEAD
           <View style={styles.avatarContainer}>
+=======
+          <View style={styles.avatarContainer} key={ind + 1}>
+>>>>>>> 71b01175d3734292f0a636d3d122d33c820a225b
             <Avatar
               key={ind + 1}
               containerStyle={

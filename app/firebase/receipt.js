@@ -18,7 +18,7 @@ export const firebaseUpdateReceipt = async function (receiptId, property) {
   return await reformatReceipt(receiptId);
 }
 
-export const createReceipt = async function(receipt) {
+export const firebaseCreateReceipt = async function(receipt) {
   if(validateShape(receipt, 'RECEIPT')) {
     const firebaseReceipt = await firebase.database().ref().child('receipts').push(receipt)
   }
