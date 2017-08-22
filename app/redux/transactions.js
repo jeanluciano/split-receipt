@@ -31,9 +31,9 @@ export default function transactionsReducer(transactions = [], action) {
     case READ_TRANSACTIONS:
       return [...transactions];
     case UPDATE_TRANSACTION:
-      return transactions.map(transaction => (transaction.recordID === action.transaction.recordID ? action.transaction : transaction));
+      return transactions.map(transaction => (transaction.id === action.transaction.id ? action.transaction : transaction));
     case DESTROY_TRANSACTION:
-      return transactions.filter(transaction => transaction.recordID !== action.transaction.recordID);
+      return transactions.filter(transaction => transaction.id !== action.transaction.id);
     default:
       return transactions;
   }
@@ -51,8 +51,14 @@ export const getTransaction = () =>
 export const addTransaction = (friend, user) =>
   dispatch =>
     firebaseCreateTransaction(friend, user)
-      .then(transaction => dispatch(createTransaction(transaction)))
-      .catch(error => dispatch(createTransaction({ error })));
+      .then(transaction => {
+        console.log('ADD TRANSACTION', transaction, friend, user);
+        return dispatch(createTransaction(transaction))
+      })
+      .catch(error => {
+        console.log('ADD TRANSACTION', error);
+        dispatch(createTransaction({ error }))
+      });
 
 
 export const putTransaction = transaction =>

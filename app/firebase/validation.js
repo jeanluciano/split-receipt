@@ -5,7 +5,6 @@ export const validateShape = function(obj, type) {
     date,
     receiptId,
     origin, destination,
-    items,
     transactions,
     payer,
   } = obj;

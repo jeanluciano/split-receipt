@@ -67,7 +67,8 @@ class Stack extends Component {
   completeHandler() {
         
     this.tempFriends.forEach(friend => {
-      this.props.addTransaction(friend, this.props.user)
+      this.props.addTransaction(friend, this.props.user);
+      console.log('COMPETE HANDLER', friend);
       this.props.putFriend(friend);
     });
     this.props.navigation.navigate('SendText');
@@ -79,7 +80,7 @@ class Stack extends Component {
       if (tempFriend.recordID === friend.recordID) friendIdx = ind;
     });
     if (toggle === -1) {
-      this.tempFriends[friend.recordID].items.filter(
+      this.tempFriends[friendIdx].items.filter(
         cItem => cItem.id !== item,
       );
     } else {
@@ -172,6 +173,7 @@ class Stack extends Component {
 
 const mapState = store => {
   return {
+    user: store.user,
     friends: store.friends,
     receipt: store.receipt,
     tempFriends: store.friends,

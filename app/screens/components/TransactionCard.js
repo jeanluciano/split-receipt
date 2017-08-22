@@ -17,11 +17,12 @@ function totalGetter(items) {
 
 const TransactionCard = (props) => {
   const { transaction, user } = props;
-  console.log('TRANSACTION CARD', transaction)
+  // const items = Object.values(transaction.items);
+  // console.log('TRANSACTION CARD', transaction, items)
   return (
     <View style={styles.transactionView}>
       <Text>{`${transaction.to.givenName} ${transaction.to.familyName}`}</Text>
-      {transaction.items.map(item =>
+      {Object.values(transaction.items).map(item =>
         (<View style={styles.itemView}>
           <Text>
             {item.item}
@@ -123,7 +124,7 @@ TransactionCard.propTypes = {
     navigate: PropTypes.func.isRequired,
   }),
   transaction: PropTypes.shape({
-    recordID: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }),
   handleSendText: PropTypes.func.isRequired,
 };
