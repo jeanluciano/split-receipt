@@ -86,7 +86,7 @@ class Stack extends Component {
       }
     })()
   }
-  
+
   render() {
     const shadowOpt = {
       height: height(70),

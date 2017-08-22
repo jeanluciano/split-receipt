@@ -15,7 +15,7 @@ export default () => (
       fakeTransactions.map((transaction,index) => (
         <ListItem
         key={index}
-        title={ `${transaction.givenName} ${transaction.familyName}` }
+        title={ `${transaction.to.givenName} ${transaction.to.familyName}` }
         subtitle={ transaction.purpose }
         rightTitle={ `$${transaction.total}` }
         ></ListItem>
