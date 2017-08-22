@@ -57,12 +57,7 @@ class Stack extends Component {
   }
 
   completeHandler() {
-    // this.props.friends.map(friend => {
-    //   console.log('COMPLETE HANDLER', friend);
-    //   this.props.addTransaction(friend, this.props.user)
-    // });
     this.tempFriends().forEach((friend) => {
-      console.log('COMPLETE HANDLER', friend);
       this.props.addTransaction(friend, this.props.user)
       this.props.putFriend(friend);
     })
@@ -77,14 +72,6 @@ class Stack extends Component {
   }
 
   completeCheck(item, toggle) {
-    // asignItem = item;
-    console.log('COMPLETE CHECK')
-    // // const items = this.props.receipt.receiptData
-    // assignedItem.assigned = true;
-    // if (this.props.receipt.receiptData.every(item => (item.assigned))) {
-    //   return this.setState({ complete: true });
-    // }
-
     const receiptData = this.props.receipt.receiptData
     const numberOfCards = receiptData.length - 1
     let toggled = {}
@@ -97,7 +84,6 @@ class Stack extends Component {
       for (let item in toggled){
         if (toggled[item] > 0) count++
       }
-      console.log('CHECKCOMPLETE', numberOfCards, count);
       if (count === numberOfCards){
         this.setState({ complete: true })
       } else {

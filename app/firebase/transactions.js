@@ -48,23 +48,16 @@ export const firebaseUpdateTransaction = async function (transactionId, property
 }
 
 export const firebaseCreateTransaction = async function(friend, user) {
-  // console.log('1 @ CREATE TRANSACTION THUNK', friend, user);
-  // REMOVE FAKE ITEMS BEFORE DEPLOY
-  // friend.items = fakeItems;
-  console.log('4 @ CREATE TRANSACTION THUNK', friend.items);
   const transaction = await friendToTransaction(friend, user);
   if(validateShape(transaction, 'TRANSACTION')) {
     const firebaseTransaction = await firebase.database().ref().child('transactions').push(transaction);
-    // FREIND.ITEMS IS CLEARED OUT BY THE TIME IT REACH HERE!
-    console.log('4 @ CREATE TRANSACTION THUNK', friend.items);
     await friend.items.forEach(item => {
       firebaseTransaction.child(items).push(item);
     });
-    console.log('3 @ CREATE TRANSACTION THUNK', firebaseTransaction.key);
-
     return await reformatTransaction(firebaseTransaction.key);
   }
-  console.log('ERROR AT TRANSACTION VALIDATION FAILED');
+  return new Error('TRANSACTION VALIDATION FAILED');
+  
 }
 
 export const firebaseDestroy = async function() {
