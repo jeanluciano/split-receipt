@@ -48,6 +48,6 @@ export const updateReceiptThunkCreator = receiptData => (dispatch) => {
 };
 
 
-export const fixPrice = receiptData => (dispatch) => {
+export const putPrice = receiptData => (dispatch) => {
   dispatch(updateReceipt(receiptData))
 }
