@@ -65,7 +65,9 @@ class Stack extends Component {
   }
 
   completeHandler() {
+        
     this.tempFriends.forEach(friend => {
+      this.props.addTransaction(friend, this.props.user)
       this.props.putFriend(friend);
     });
     this.props.navigation.navigate('SendText');
