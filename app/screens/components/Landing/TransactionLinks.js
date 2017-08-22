@@ -7,17 +7,17 @@ import oweImg from '../../../assets/owe.jpg';
 
 
 export default () => (
-    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.transactionView} >
+  <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.transactionView} >
     <Card image={completedImg} imageWrapperStyle={styles.imageStyle} containerStyle={styles.cardStyle}>
-    <Text style={{marginBottom: 10}}>All Transactions</Text>
-  </Card>
-  <Card image={owedImg} imageWrapperStyle={styles.imageStyle} containerStyle={styles.cardStyle}>
-  <Text style={{marginBottom: 10}}>Money you are owed</Text>
-</Card>
-<Card image={oweImg} imageWrapperStyle={styles.imageStyle} containerStyle={styles.cardStyle}>
-<Text style={{marginBottom: 10}}>Money you owe</Text>
-</Card>
-    </ScrollView>
+      <Text style={{ marginBottom: 10 }}>All Transactions</Text>
+    </Card>
+    <Card image={owedImg} imageWrapperStyle={styles.imageStyle} containerStyle={styles.cardStyle}>
+      <Text style={{ marginBottom: 10 }}>Money you are owed</Text>
+    </Card>
+    <Card image={oweImg} imageWrapperStyle={styles.imageStyle} containerStyle={styles.cardStyle}>
+      <Text style={{ marginBottom: 10 }}>Money you owe</Text>
+    </Card>
+  </ScrollView>
 );
 
 
