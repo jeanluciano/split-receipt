@@ -37,7 +37,7 @@ const transactions = [
     purpose: 'dinner last Friday',
     total: 54.96,
     status: 'requested', //enum('requested', 'settled')
-    date: Date.now(),
+    date: Date.now().toString(),
   },
   {
     to: {
@@ -77,7 +77,7 @@ const transactions = [
     purpose: 'dinner last Friday',
     total: 54.96,
     status: 'requested', //enum('requested', 'settled')
-    date: Date.now(),
+    date: Date.now().toString(),
   },
 ]
 
