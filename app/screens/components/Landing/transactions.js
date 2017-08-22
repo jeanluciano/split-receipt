@@ -36,7 +36,7 @@ const transactions = [
     id: '324qwea',
     purpose: 'dinner last Friday',
     total: 54.96,
-    status: 'requested', //enum('requested', 'settled')
+    status: 'unpaidkl', //enum('requested', 'settled')
     date: Date.now().toString(),
   },
   {

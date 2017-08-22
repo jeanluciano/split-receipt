@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, ScrollView, Text, Button, Image } from 'react-native';
+import { StyleSheet, ScrollView, Text, Button, Image, View } from 'react-native';
 import { Icon, Tabs, Tab } from 'react-native-elements';
 import { TabNavigator } from 'react-navigation';
+
 
 class MyHomeScreen extends Component {
   static navigationOptions = {
@@ -11,7 +12,7 @@ class MyHomeScreen extends Component {
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={'none'}
-        style={[styles.icon, {tintColor: tintColor}]}
+        style={[styles.icon, { tintColor: tintColor }]}
       />
     ),
   };
@@ -32,7 +33,7 @@ class MyNotificationsScreen extends Component {
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={'none'}
-        style={[styles.icon, {tintColor: tintColor}]}
+        style={[styles.icon, { tintColor: tintColor }]}
       />
     ),
   };
@@ -54,15 +55,24 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TabNavigator({
-  Home: {
-    screen: MyHomeScreen,
-  },
-  Notifications: {
-    screen: MyNotificationsScreen,
-  },
-}, {
-  tabBarOptions: {
-    activeTintColor: '#e91e63',
-  },
-});
+export default () => (
+
+  <View style={{ flex: 1 }}>
+    {
+      TabNavigator({
+        Home: {
+          screen: MyHomeScreen,
+        },
+        Notifications: {
+          screen: MyNotificationsScreen,
+        },
+      }, {
+          tabBarOptions: {
+            activeTintColor: '#e91e63',
+          },
+        })
+    }
+
+  </View>
+
+);
