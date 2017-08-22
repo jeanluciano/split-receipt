@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
 import { List, ListItem, Icon } from 'react-native-elements';
 import fakeTransactions from './transactions';
 
