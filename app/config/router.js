@@ -17,11 +17,11 @@ import Transactions from '../screens/Transactions';
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
-  Transactions: {
-    screen: Transactions,
-  },
   DevMenu: {
     screen: menuify(DevMenu),
+  },
+  Transactions: {
+    screen: Transactions,
   },
   Landing: {
     screen: menuify(Landing, ['#fff', '#cad3df', '#fff']),
