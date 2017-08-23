@@ -1,3 +1,5 @@
+import FakeReceipt from '../screens/components/fakeReceipt';
+
 /**
  * ACTION TYPES
  */
@@ -23,7 +25,7 @@ const initialReceipt = {
 };
 
 /**
- * THUNK CREATORS
+ * REDUCER
  */
 export default function receiptReducer(receipt = initialReceipt, action) {
   switch (action.type) {
@@ -40,11 +42,15 @@ export default function receiptReducer(receipt = initialReceipt, action) {
   }
 }
 
+
+/**
+ * THUNK CREATORS
+ */
 export const updateReceiptThunkCreator = receiptData => (dispatch) => {
   if (!receiptData) {
     console.error('receiptData is not what you want it to be bro');
   } else {
-    receiptData = receiptData.forEach((item, ind) => {
+    receiptData.forEach((item, ind) => {
       item.id = ind;
     });
     dispatch(updateReceipt(receiptData));
@@ -55,4 +61,11 @@ export const putReceipt = function (receiptData) {
   return function thunk(dispatch) {
     dispatch(fixPrice(receiptData))
   };
+};
+
+export const loadFakeData = function () {
+  return function thunk(dispatch) {
+    console.log('LOAD FAKE DATA', FakeReceipt)
+    dispatch(updateReceiptThunkCreator(FakeReceipt))
+  }
 };

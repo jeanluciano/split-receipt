@@ -10,7 +10,7 @@ import {
 import { List, ListItem, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { width, height } from 'react-native-dimension';
-import FakeReceipt from './components/fakeReceipt';
+import receiptData from './components/fakeReceipt';
 import { putReceipt } from '../redux/receipt';
 
 class EditTable extends Component {
@@ -22,7 +22,7 @@ class EditTable extends Component {
   }
 
   stretcher() {
-    return 400 + FakeReceipt.length * height(6.5);
+    return 400 + receiptData.length * height(6.5);
   }
 
   onFixPrice(price, item) {
@@ -48,7 +48,7 @@ class EditTable extends Component {
           >
             <Text style={styles.header}>Is this right?</Text>
             <List>
-              {FakeReceipt.map(receipt =>
+              {receiptData.map(receipt =>
                 <View style={styles.listItem}>
                   <TextInput
                     placeholder={`${receipt.item}`}
@@ -62,7 +62,7 @@ class EditTable extends Component {
                     placeholderTextColor={'#5e5e5e'}
                     onChangeText={text => this.onFixPrice(text, receipt)}
                   />
-                </View>,
+                </View>
               )}
             </List>
           </Image>
@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 4,
     borderColor: 'grey',
-    borderWidth: 1
-  }
+    borderWidth: 1,
+  },
 });
 
 const mapToState = store => {

@@ -2,6 +2,7 @@ import {
   firebaseCreateTransaction,
   firebaseUpdateTransaction,
   firebaseDestroy,
+  firebaseGetTransactions,
 } from '../firebase/transactions'
 
 /**
@@ -41,10 +42,10 @@ export default function transactionsReducer(transactions = [], action) {
 /**
  * THUNK CREATORS
  */
-export const getTransaction = (transactionId) =>
+export const getTransactionsOnToUser = (userId) =>
   dispatch =>
-    firebaseGetTransaction(transactionId)
-      .then(transaction => dispatch(readTransaction()))
+    firebaseGetTransactions(userId)
+      .then(transactions => dispatch(readTransaction()))
 
 
 export const addTransaction = (friend, user) =>
