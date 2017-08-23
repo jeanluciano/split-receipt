@@ -32,8 +32,6 @@ class EditTable extends Component {
     }
   }
 
-  
-
   onFixName(text, item) {
     item.item = text;
     this.props.putReceipt(item);
@@ -43,7 +41,7 @@ class EditTable extends Component {
     return (
       <View style={styles.viewcontainer}>
         <ScrollView contentContainerStyle={styles.container}>
-          <Image
+{/*          <Image
             source={require('../assets/receipt.png')}
             style={styles.background}
             height={this.stretcher()}
@@ -67,7 +65,7 @@ class EditTable extends Component {
                 </View>,
               )}
             </List>
-          </Image>
+          </Image>*/}
         </ScrollView>
         <Button
           style={styles.button}

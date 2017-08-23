@@ -20,6 +20,15 @@ import Splash from '../screens/Splash';
 import PreLogin from '../screens/PreLogin';
 
 
+const WebViews = StackNavigator({
+  LinkAccounts: {
+    screen: LinkAccounts,
+  },
+  PayPalWebView: {
+    screen: PayPalWebView,
+  },
+})
+
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
@@ -59,19 +68,16 @@ export default DrawerNavigator({
   Dragndrop: {
     screen: Dragndrop,
   },
-  LinkAccounts: {
-    screen: LinkAccounts,
+  WebViews: {
+    screen: WebViews,
   },
   PayPalMe: {
-    screen: PayPalMe,
-  },
-  PayPalWebView: {
-    screen: PayPalWebView,
+    screen: menuify(PayPalMe),
   },
   SendText: {
     screen: SendText,
   },
-  EditTable:{
+  EditTable: {
     screen: EditTable,
   },
 });

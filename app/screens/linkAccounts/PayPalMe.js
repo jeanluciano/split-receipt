@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Button, TextInput } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { userUpdate } from '../../redux/auth'
+import { width, height } from 'react-native-dimension';
+import { userUpdate } from '../../redux/auth';
+import { Button } from 'react-native-elements';
+
 
 class PayPalMe extends Component {
   constructor() {
@@ -18,10 +21,21 @@ class PayPalMe extends Component {
     }
   }
 
+  onSave(userId, payPalMe, navigate) {
+    this.props.userUpdate(
+      userId,
+      { payPalMe });
+    navigate('Camera');
+  }
+
   render() {
     return (
-      <View className="center">
-        <Text>Enter your PayPal.me</Text>
+      <View style={styles.wrapper}>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>
+            Enter your PayPalMe handle
+          </Text>
+        </View>
         <TextInput
           className="paypalMeHandle"
           style={{
@@ -35,12 +49,13 @@ class PayPalMe extends Component {
         />
         <Button
           title="Save!"
-          color="#841584"
+          style={styles.button}
+          backgroundColor="#03BD5B"
+          borderRadius={25}
           onPress={() => {
-            const payPalMe = this.state.paypalMeHandleString;
-            return this.props.userUpdate(
+            return this.onSave(
               this.props.user.id,
-              { payPalMe },
+              this.state.paypalMeHandleString,
               this.props.navigation.navigate);
           }}
         />
@@ -53,7 +68,41 @@ const mapState = (state) => ({
   user: state.user,
 })
 
-const mapDispatch = { userUpdate };
 
+const styles = {
+  wrapper: {
+    backgroundColor: '#3D4D65',
+    height: height(100),
+    flex: 0,
+  },
+  swiperContainer: {
+    paddingLeft: width(5),
+    paddingTop: height(5),
+  },
+  slide: {
+    height: height(70),
+    width: width(90),
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#FFFEEA',
+    borderRadius: 7,
+    shadowColor: 'black',
+  },
+  button: {
+    paddingBottom: height(8),
+  },
+  text: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'bold',
+    padding: '5%',
+  },
+  textContainer: {
+    paddingTop: '10%',
+    paddingBottom: '15%',
+    alignItems: 'center',
+  },
+};
+const mapDispatch = { userUpdate };
 
 export default connect(mapState, mapDispatch)(PayPalMe);
