@@ -95,6 +95,15 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapDispatch ={ updateReceiptThunkCreator, getContacts }
+const mapDispatch = dispatch => {
+  return {
+    dispatchUpdateReceiptThunk: receiptData => {
+      dispatch(updateReceiptThunkCreator(receiptData));
+    },
+    getContacts: () => {
+      dispatch(getContacts());
+    }
+  };
+};
 
 export default connect(null, mapDispatch)(ReceiptPicture);
