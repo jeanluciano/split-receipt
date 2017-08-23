@@ -14,10 +14,27 @@ import menuify from './menuify';
 import Stack from '../screens/Stack';
 import EditTable from '../screens/EditTable';
 import Transactions from '../screens/Transactions';
+import Animate from '../screens/Animate';
+import Explanation1 from '../screens/components/Initial/Explanation4';
+import Splash from '../screens/Splash';
+import PreLogin from '../screens/PreLogin';
+
 
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
+  TestLogin: {
+    screen: PreLogin,
+  },
+  Splash: {
+    screen: Splash,
+  },
+  Animate1: {
+    screen: Explanation1,
+  },
+  Login: {
+    screen: Login,
+  },
   Transactions: {
     screen: Transactions,
   },
@@ -42,11 +59,8 @@ export default DrawerNavigator({
   Dragndrop: {
     screen: Dragndrop,
   },
-  Login: {
-    screen: menuify(Login),
-  },
   LinkAccounts: {
-    screen: menuify(LinkAccounts),
+    screen: LinkAccounts,
   },
   PayPalMe: {
     screen: PayPalMe,
