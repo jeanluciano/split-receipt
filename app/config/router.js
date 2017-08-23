@@ -59,14 +59,8 @@ export default DrawerNavigator({
   Camera: {
     screen: Camera,
   },
-  Main: {
-    screen: Main,
-  },
   Contacts: {
     screen: Contacts,
-  },
-  Dragndrop: {
-    screen: Dragndrop,
   },
   WebViews: {
     screen: WebViews,
