@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
-import firebase from 'firebase';
 import { connect } from 'react-redux';
-import { update } from '../../redux/auth'
+import { userUpdate } from '../../redux/auth'
 
 class PayPalMe extends Component {
   constructor() {
@@ -39,11 +38,10 @@ class PayPalMe extends Component {
           color="#841584"
           onPress={() => {
             const payPalMe = this.state.paypalMeHandleString;
-            return this.props.update(
+            return this.props.userUpdate(
               this.props.user.id,
-              {payPalMe},
-              this.props.navigation.navigate
-              );
+              { payPalMe },
+              this.props.navigation.navigate);
           }}
         />
       </View>
@@ -52,10 +50,10 @@ class PayPalMe extends Component {
 }
 
 const mapState = (state) => ({
-  user: state.user
+  user: state.user,
 })
 
-const mapDispatch = { update };
+const mapDispatch = { userUpdate };
 
 
 export default connect(mapState, mapDispatch)(PayPalMe);
