@@ -51,6 +51,8 @@ export const updateReceiptThunkCreator = receiptData => (dispatch) => {
   }
 };
 
-export const putPrice = receiptData => (dispatch) => {
-  dispatch(fixPrice(receiptData));
+export const putReceipt = function (receiptData) {
+  return function thunk(dispatch) {
+    dispatch(fixPrice(receiptData))
+  };
 };
