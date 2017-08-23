@@ -6,35 +6,27 @@ import PropTypes from 'prop-types';
 // import CheckBox from 'react-native-checkbox';
 import { sendText, selectTransaction } from '../../redux/sendText';
 
-
-function totalGetter(items) {
-  let total = 0;
-  items.forEach((item) => {
-    total += item.price;
-  });
-  return Math.round(total * 100) / 100;
-}
-
 const TransactionCard = (props) => {
   const { transaction, user } = props;
-  console.log('TRANSACTION CARD', transaction)
+  // const items = Object.values(transaction.items);
+  // console.log('TRANSACTION CARD', transaction, items)
   return (
     <View style={styles.transactionView}>
       <Text>{`${transaction.to.givenName} ${transaction.to.familyName}`}</Text>
-      {transaction.items.map(item =>
+      {Object.values(transaction.items).map(item =>
         (<View style={styles.itemView}>
           <Text>
             {item.item}
           </Text>
           <Text>
-            {item.price}
+            ${item.price}
           </Text>
         </View>))
       }
       <View style={styles.itemView}>
         <Text style={styles.total}>Total</Text>
         <Text style={styles.total}>
-          {totalGetter(transaction.items)}
+          ${transaction.total}
         </Text>
       </View>
       {/* <CheckBox
@@ -42,16 +34,6 @@ const TransactionCard = (props) => {
         checked={false}
         onChange={checked => selectTransaction(transaction, checked)}
       /> */}
-
-      <Button
-        title="Send Request"
-        color="#000000"
-        backgroundColor="#FFFFFF"
-        borderRadius={25}
-        onPress={() => {
-          props.handleSendText([transaction], user.payPalMe)
-        }}
-      />
     </View>
   );
 };
@@ -64,7 +46,7 @@ const styles = StyleSheet.create({
   transactionView: {
     backgroundColor: '#ef553a',
     width: 360,
-    height: 200,
+    height: 100,
     paddingTop: 10,
     paddingBottom: 20,
     paddingLeft: 10,
@@ -123,7 +105,7 @@ TransactionCard.propTypes = {
     navigate: PropTypes.func.isRequired,
   }),
   transaction: PropTypes.shape({
-    recordID: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }),
   handleSendText: PropTypes.func.isRequired,
 };

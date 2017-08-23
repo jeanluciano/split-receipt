@@ -1,68 +1,63 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, ScrollView, Text, Button, Image } from 'react-native';
+import { StyleSheet, ScrollView, Text, Button, Image, View } from 'react-native';
 import { Icon, Tabs, Tab } from 'react-native-elements';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator } from "react-navigation";
+import Left from './components/Left';
 
-class MyHomeScreen extends Component {
+
+const allIcon = <Icon name="wallet" type="entypo" color="#fff"/>
+const completedIcon = <Icon name="md-done-all" type="ionicon" color="#fff"/>
+const pendingIcon = <Icon name="assignment-late" color="#fff"/>
+// const = <Icon name="md-done-all" type="ionicon" color="#fff"/>
+
+class RecentChatsScreen extends Component {
   static navigationOptions = {
     tabBarLabel: 'Home',
-    // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-    tabBarIcon: ({ tintColor }) => (
-      <Image
-        source={'none'}
-        style={[styles.icon, {tintColor: tintColor}]}
-      />
-    ),
-  };
+    tabBarIcon: allIcon,
+  }
 
   render() {
+    console.log('this.props', this.props.navigation);
     return (
-      <Button
-        onPress={() => this.props.navigation.navigate('Notifications')}
-        title="Go to notifications"
-      />
+      <View>
+        <Left navigation={this.props.navigation}/>
+        <Text>List of recent chats</Text>
+      </View>
     );
   }
 }
 
-class MyNotificationsScreen extends Component {
-  static navigationOptions = {
-    tabBarLabel: 'Notifications',
-    tabBarIcon: ({ tintColor }) => (
-      <Image
-        source={'none'}
-        style={[styles.icon, {tintColor: tintColor}]}
-      />
-    ),
-  };
-
+class AllContactsScreen extends Component {
   render() {
+    console.log('this.props', this.props.navigation);
     return (
-      <Button
-        onPress={() => this.props.navigation.goBack()}
-        title="Go back home"
-      />
+      <View>
+        <Left navigation={this.props.navigation} />
+        <Text>List of recent chats</Text>
+      </View>
     );
   }
 }
+
+const MainScreenNavigator = TabNavigator({
+  Thing: { screen: RecentChatsScreen },
+  All: { screen: AllContactsScreen },
+}, { tabBarPosition: 'bottom' });
+
+export default MainScreenNavigator;
 
 const styles = StyleSheet.create({
-  icon: {
-    width: 26,
-    height: 26,
-  },
-});
+  tyles: {
 
-export default TabNavigator({
-  Home: {
-    screen: MyHomeScreen,
   },
-  Notifications: {
-    screen: MyNotificationsScreen,
+  tyles: {
+
   },
-}, {
-  tabBarOptions: {
-    activeTintColor: '#e91e63',
+  style: {
+
+  },
+  tyles: {
+
   },
 });
