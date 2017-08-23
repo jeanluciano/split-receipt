@@ -88,8 +88,7 @@ class Stack extends Component {
   }
 
   completeCheck(item, toggle, friend) {
-    const receiptData = fakeReceipt;
-    const numberOfCards = receiptData.length - 1;
+    const numberOfCards = this.props.receiptData.length - 1;
 
     this.toggled[item.id] += toggle;
     this.tempFriendUpdate(toggle, friend, item);
@@ -118,7 +117,6 @@ class Stack extends Component {
       y: 2,
     };
 
-    // const receiptData = fakeReceipt;
     return (
       <View style={styles.wrapper}>
         <Swiper
@@ -133,9 +131,9 @@ class Stack extends Component {
           dragY
           loop
         >
-          {this.receipt.receiptData.map(
+          {this.props.receiptData.map(
             (item, ind) =>
-              ind !== receiptData.length - 1 &&
+              ind !== this.props.receiptData.length - 1 &&
               <BoxShadow setting={shadowOpt} key={ind}>
                 <View style={styles.slide} onLayout={this.widthGetter}>
                   <View style={styles.textContainer}>
@@ -174,7 +172,7 @@ const mapState = store => {
   return {
     user: store.user,
     friends: store.friends,
-    receipt: store.receipt,
+    receiptData: store.receipt.receiptData,
     tempFriends: store.friends,
     transaction: store.transaction,
   };

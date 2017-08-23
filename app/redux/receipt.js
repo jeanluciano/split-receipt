@@ -65,7 +65,6 @@ export const putReceipt = function (receiptData) {
 
 export const loadFakeData = function () {
   return function thunk(dispatch) {
-    console.log('LOAD FAKE DATA', FakeReceipt)
     dispatch(updateReceiptThunkCreator(FakeReceipt))
   }
 };

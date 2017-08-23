@@ -14,7 +14,6 @@ class SendText extends Component {
     };
   }
   render() {
-    if (this.sent) this.props.navigation.navigate('Landing');
     return (
       <View style={styles.screen}>
         <Text>Review the your splits</Text>
@@ -40,6 +39,7 @@ class SendText extends Component {
                 this.props.transactions,
                 this.props.user,
               );
+              this.props.navigation.navigate('Camera')
             }}
           />
       </View>
