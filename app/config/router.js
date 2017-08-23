@@ -33,12 +33,6 @@ export default DrawerNavigator({
   PreLogin: {
     screen: PreLogin,
   },
-  Splash: {
-    screen: Splash,
-  },
-  Animate1: {
-    screen: Explanation1,
-  },
   Login: {
     screen: Login,
   },

@@ -2,6 +2,7 @@ import React, { Component, Dimensions } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { updateReceiptThunkCreator } from '../redux/receipt';
+import { getContacts } from '../redux/contacts';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import Camera from 'react-native-camera';
@@ -13,6 +14,10 @@ class ReceiptPicture extends Component {
   constructor(props) {
     super(props);
     this.takePicture = this.takePicture.bind(this);
+  }
+  
+  componentDidMount(){
+    this.props.getContacts()
   }
 
   takePicture() {
@@ -90,12 +95,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapDispatch = dispatch => {
-  return {
-    dispatchUpdateReceiptThunk: receiptData => {
-      dispatch(updateReceiptThunkCreator(receiptData));
-    },
-  };
-};
+const mapDispatch ={ updateReceiptThunkCreator, getContacts }
 
 export default connect(null, mapDispatch)(ReceiptPicture);
