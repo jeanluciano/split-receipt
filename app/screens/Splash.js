@@ -7,6 +7,10 @@ import {
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
+import Explanation1 from './components/Initial/Explanation1';
+import Explanation2 from './components/Initial/Explanation2';
+import Explanation3 from './components/Initial/Explanation3';
+import Explanation4 from './components/Initial/Explanation4';
 
 var styles = StyleSheet.create({
   wrapper: {
@@ -40,15 +44,10 @@ var swiper = React.createClass({
   render: function () {
     return (
       <Swiper style={styles.wrapper} showsButtons={true}>
-        <View style={styles.slide1}>
-          <Text style={styles.text}>Hello Swiper</Text>
-        </View>
-        <View style={styles.slide2}>
-          <Text style={styles.text}>Beautiful</Text>
-        </View>
-        <View style={styles.slide3}>
-          <Text style={styles.text}>And simple</Text>
-        </View>
+      <Explanation1 />
+      <Explanation2 />
+      <Explanation3 />
+      <Explanation4 />
       </Swiper>
     )
   }

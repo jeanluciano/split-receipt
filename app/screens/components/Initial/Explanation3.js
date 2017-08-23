@@ -4,43 +4,49 @@ import * as Animatable from 'react-native-animatable';
 import { Icon } from 'react-native-elements';
 
 
-export default class FirstAnimation extends Component {
+export default class ThirdExplanation extends Component {
   constructor() {
     super();
   }
 
   render() {
     return (
-      <View>
-        <Animatable.View animation="slideInRight" iterationCount={7} duration={2000} >
-          <Icon
-            name="script"
-            type="material-community"
-            color="#FFB6E5"
-            size={65}
-            style={styles.navicon}
-          />
-        </Animatable.View>
+      <View style={{ flex: 1, backgroundColor: '#374355' }}>
+      <View style={styles.topView}>
+      <Animatable.View animation="slideInRight" iterationCount={Infinity} duration={2000} >
+        <Icon
+          name="script"
+          type="material-community"
+          color="#FFB6E5"
+          size={65}
+          style={styles.navicon}
+        />
+      </Animatable.View>
 
-        <Animatable.View animation="fadeIn" iterationCount={7} duration={2000} >
-          <Icon
-            name="checkbox-marked-circle-outline"
-            type="material-community"
-            color="#FFB6E5"
-            size={65}
-            style={styles.navicon}
-          />
-        </Animatable.View>
+      <Animatable.View animation="fadeIn" iterationCount={Infinity} duration={2000} >
+        <Icon
+          name="checkbox-marked-circle-outline"
+          type="material-community"
+          color="#a9b9ca"
+          size={45}
+          style={styles.navicon}
+        />
+      </Animatable.View>
 
-        <Animatable.View animation="slideInLeft" iterationCount={7} duration={2000} >
-          <Icon
-            name="money"
-            type="font-awesome"
-            color="#FFB6E5"
-            size={65}
-            style={styles.navicon}
-          />
-        </Animatable.View>
+      <Animatable.View animation="slideInLeft" iterationCount={Infinity} duration={2000} >
+        <Icon
+          name="money"
+          type="font-awesome"
+          color="#FFB6E5"
+          size={65}
+          style={styles.navicon}
+        />
+      </Animatable.View>
+    </View>
+        <View style={{ flex: 1, alignItems: 'center' }}>
+          <Text style={styles.titleText}>Automated, pre-populated payment requests. </Text>
+          <Text style={styles.descriptionText}>We pull user-specified contacts from the phone and automatically send out text messages with a link to your PayPal.Me and a pre-filled payment form with the money owed.</Text>
+        </View>
       </View>
     );
   }
@@ -49,11 +55,28 @@ export default class FirstAnimation extends Component {
 
 const styles = StyleSheet.create({
 
-  navicon: {
-    paddingTop: '5%',
-    paddingLeft: '7%',
-    paddingBottom: '2%',
-    shadowColor: 'red',
+  topView: {
+    flex: 1,
+    alignItems: 'flex-end',
+    paddingBottom: '7%',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
+  titleText: {
+    color: '#fff',
+    justifyContent: 'flex-start',
+    alignSelf: 'center',
+    padding: 0,
+    margin: 0,
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  descriptionText: {
+    paddingLeft: '10%',
+    paddingRight: '10%',
+    paddingTop: '3%',
+    alignSelf: 'center',
+    textAlign: 'center',
+  }
 
 });

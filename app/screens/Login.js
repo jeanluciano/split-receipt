@@ -34,7 +34,7 @@ class Login extends Component {
           onChangeText={passwordText => this.setState({ passwordText })}
           value={this.state.passwordText}
         />
-        {user.code && 
+        {user.code &&
           <View style={masterStyle.warningView}>
             <Text style={masterStyle.warningText}>{user.message}</Text>
           </View>

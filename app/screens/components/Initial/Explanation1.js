@@ -4,34 +4,40 @@ import * as Animatable from 'react-native-animatable';
 import { Icon } from 'react-native-elements';
 
 
-export default class FirstAnimation extends Component {
+export default class FirstExplanation extends Component {
   constructor() {
     super();
   }
 
   render() {
     return (
-      <View>
-        <Animatable.View animation="fadeInUp" iterationCount={7} duration={2000} >
+      <View style={{flex: 1, backgroundColor: '#374355'}}>
+        <View style={styles.topView}>
+          <Animatable.View animation="shake" iterationCount={Infinity} duration={2000} >
+            <Icon
+              name="shredder"
+              type="material-community"
+              color="#a9b9ca"
+              size={65}
+              raised={true}
+              style={styles.navicon}
+            />
+          </Animatable.View>
+          <Animatable.View animation="swing" iterationCount={Infinity} duration={2000} >
           <Icon
-            name="call-split"
-            type="material-community"
+            name="air"
+            type="entypo"
             color="#FFB6E5"
             size={65}
             raised={true}
             style={styles.navicon}
           />
         </Animatable.View>
-        <Animatable.View animation="shake" iterationCount={7} duration={2000} >
-          <Icon
-            name="shredder"
-            type="material-community"
-            color="#FFB6E5"
-            size={65}
-            raised={true}
-            style={styles.navicon}
-          />
-        </Animatable.View>
+      </View>
+        <View style={{flex: 1, alignItems: 'center'}}>
+        <Text style={styles.titleText}>Split the check, simple as that.</Text>
+        <Text style={styles.descriptionText}>Using OCR, we can extract the relevant information from any receipt and calculate the appropriate amount each person should pay based on his or her order.</Text>
+        </View>
       </View>
     );
   }
@@ -40,11 +46,28 @@ export default class FirstAnimation extends Component {
 
 const styles = StyleSheet.create({
 
-  navicon: {
-    paddingTop: '5%',
-    paddingLeft: '7%',
-    paddingBottom: '2%',
-    shadowColor: 'red',
+  topView: {
+    flex: 1,
+    alignItems: 'flex-end',
+    paddingBottom: '7%',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
+  titleText: {
+    color: '#fff',
+    justifyContent: 'flex-start',
+    alignSelf: 'center',
+    padding: 0,
+    margin: 0,
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  descriptionText: {
+    paddingLeft: '10%',
+    paddingRight: '10%',
+    paddingTop: '3%',
+    alignSelf: 'center',
+    textAlign: 'center',
+  }
 
 });

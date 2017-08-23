@@ -20,11 +20,11 @@ import Splash from '../screens/Splash';
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
-  Animate1: {
-    screen: Explanation1,
-  },
   Splash: {
     screen: Splash,
+  },
+  Animate1: {
+    screen: Explanation1,
   },
   Login: {
     screen: Login,
