@@ -30,18 +30,19 @@ class SendText extends Component {
   }
 }
 
-const mapState = (state) => {
-  return {
+const mapState = (state) =>
+  ({
     transactions: state.transactions,
     user: state.user,
-  };
-};
+  })
 
-const mapDispatch = dispatch => ({
-  handleSendText(transactions, user) {
-    dispatch(sendText(transactions, user));
-  },
-});
+const mapDispatch = dispatch =>
+  ({
+    handleSendText(transactions, user) {
+      dispatch(sendText(transactions, user));
+      this.props.navigation.navigate('Landing');
+    },
+  })
 
 export default connect(mapState, mapDispatch)(SendText);
 
@@ -56,6 +57,9 @@ SendText.propTypes = {
     id: PropTypes.string.isRequired,
   })),
   handleSendText: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }),
 };
 
 const styles = StyleSheet.create({
