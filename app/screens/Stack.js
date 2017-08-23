@@ -56,7 +56,7 @@ class Stack extends Component {
       friend.items = [];
       return friend;
     });
-    this.toggled = fakeReceipt.reduce((obj, val) => {
+    this.toggled = this.props.receiptData.reduce((obj, val) => {
       obj[val.id] = 0;
       return obj;
     }, {});
@@ -68,7 +68,6 @@ class Stack extends Component {
         
     this.tempFriends.forEach(friend => {
       this.props.addTransaction(friend, this.props.user);
-      console.log('COMPETE HANDLER', friend);
       this.props.putFriend(friend);
     });
     this.props.navigation.navigate('SendText');
@@ -81,7 +80,7 @@ class Stack extends Component {
     });
     if (toggle === -1) {
       this.tempFriends[friendIdx].items.filter(
-        cItem => cItem.id !== item,
+        cItem => cItem.id !== item.id
       );
     } else {
       this.tempFriends[friendIdx].items.push(item);
@@ -119,7 +118,7 @@ class Stack extends Component {
       y: 2,
     };
 
-    const receiptData = fakeReceipt;
+    // const receiptData = fakeReceipt;
     return (
       <View style={styles.wrapper}>
         <Swiper
@@ -134,7 +133,7 @@ class Stack extends Component {
           dragY
           loop
         >
-          {receiptData.map(
+          {this.receipt.receiptData.map(
             (item, ind) =>
               ind !== receiptData.length - 1 &&
               <BoxShadow setting={shadowOpt} key={ind}>

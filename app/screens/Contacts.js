@@ -4,7 +4,7 @@ import { SearchBar, List, ListItem, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { addFriend } from '../redux/friends';
 import { deleteContact } from '../redux/contacts';
-import fakeContacts from './components/fakecontacts';
+// import fakeContacts from './components/fakecontacts';
 
 class contacts extends Component {
   constructor() {

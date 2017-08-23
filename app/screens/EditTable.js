@@ -8,10 +8,10 @@ import {
   TextInput,
 } from 'react-native';
 import { List, ListItem, Button } from 'react-native-elements';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { width, height } from 'react-native-dimension';
-import FakeReceipt from './components/fakeReceipt';
-import fixPrice from '../redux/receipt'
+import receiptData from './components/fakeReceipt';
+import { putReceipt } from '../redux/receipt';
 
 class EditTable extends Component {
   constructor() {
@@ -22,10 +22,20 @@ class EditTable extends Component {
   }
 
   stretcher() {
-    return 400 + FakeReceipt.length * height(6.5);
+    return 400 + receiptData.length * height(6.5);
   }
 
-  
+  onFixPrice(price, item) {
+    if(!isNaN(price)){
+      item.price = price;
+      this.props.putReceipt(item);
+    }
+  }
+
+  onFixName(text, item) {
+    item.item = text;
+    this.props.putReceipt(item);
+  }
 
   render() {
     return (
@@ -38,26 +48,32 @@ class EditTable extends Component {
           >
             <Text style={styles.header}>Is this right?</Text>
             <List>
-              {FakeReceipt.map(receipt =>(
+              {receiptData.map(receipt =>
                 <View style={styles.listItem}>
-                  <Text style={styles.itemName}> {receipt.item} </Text>
+                  <TextInput
+                    placeholder={`${receipt.item}`}
+                    placeholderTextColor={'#5e5e5e'}
+                    onChangeText={text => this.onFixName(text, receipt)}
+                  />
                   <TextInput
                     placeholder={`${receipt.price}`}
-                    keyboardType='numeric'
+                    keyboardType="numeric"
                     maxLength={5}
                     placeholderTextColor={'#5e5e5e'}
+                    onChangeText={text => this.onFixPrice(text, receipt)}
                   />
                 </View>
-              ))}
+              )}
             </List>
           </Image>
         </ScrollView>
         <Button
-        style={styles.button}
-        title="Looks Good!"
-        backgroundColor="#03BD5B"
-        borderRadius={25}
-      />
+          style={styles.button}
+          title="Looks Good!"
+          backgroundColor="#03BD5B"
+          borderRadius={25}
+          onPress={() =>this.props.navigation.navigate('Contacts')}
+        />
       </View>
     );
   }
@@ -65,7 +81,7 @@ class EditTable extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: .6,
+    flex: 0.6,
     position: 'absolute',
     backgroundColor: '#3D4D65',
     justifyContent: 'flex-start',
@@ -93,23 +109,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: height(6),
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   itemName: {
-    fontSize: 19
+    fontSize: 19,
   },
   button: {
-    paddingBottom: 30
-  }
+    paddingBottom: 30,
+  },
+  tip: {
+    width: 30,
+    borderRadius: 4,
+    borderColor: 'grey',
+    borderWidth: 1,
+  },
 });
 
-const mapToState = (store) => {
+const mapToState = store => {
   return {
-    receiptData: store.receipt.receiptData
-  }
-}
+    receiptData: store.receipt.receiptData,
+  };
+};
 
-const mapDispatch = { fixPrice }
-
+const mapDispatch = { putReceipt };
 
 export default connect(mapToState, mapDispatch)(EditTable);
