@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
   titleText: {
     color: '#fff',
     justifyContent: 'flex-start',
-    alignSelf: 'center',
     padding: 0,
     margin: 0,
     fontWeight: 'bold',
@@ -75,7 +74,6 @@ const styles = StyleSheet.create({
     paddingLeft: '10%',
     paddingRight: '10%',
     paddingTop: '3%',
-    alignSelf: 'center',
     textAlign: 'center',
   }
 

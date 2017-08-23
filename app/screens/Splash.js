@@ -18,19 +18,16 @@ var styles = StyleSheet.create({
   },
   slide1: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#9DD6EB',
   },
   slide2: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#97CAE5',
   },
   slide3: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#92BBD9',
   },
@@ -43,8 +40,9 @@ var styles = StyleSheet.create({
 
 var swiper = React.createClass({
   render: function () {
+
     return (
-      <Swiper style={styles.wrapper} showsButtons={false} loop={false}>
+      <Swiper style={styles.wrapper} showsButtons={false} loop={false} showsPagination={true}>
       <Title />
       <Explanation1 />
       <Explanation2 />

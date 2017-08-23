@@ -56,7 +56,8 @@ class ReceiptPicture extends Component {
         style={styles.capture} 
         colors={['#29D168', '#0081D5']}
         >
-          <Icon name="camera" size={70} color="white" 
+          <Icon name="camera" size={70} color="white"   
+          underlayColor="transparent"
           onPress={this.takePicture.bind(this)}/>
         </LinearGradient>
       </Camera>
