@@ -12,3 +12,5 @@ dark blue - 00044
 silver - c0c0c0
 
 
+eef1f6
+#b4bdca

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
+import Title from './components/Initial/Title';
 import Explanation1 from './components/Initial/Explanation1';
 import Explanation2 from './components/Initial/Explanation2';
 import Explanation3 from './components/Initial/Explanation3';
@@ -43,7 +44,8 @@ var styles = StyleSheet.create({
 var swiper = React.createClass({
   render: function () {
     return (
-      <Swiper style={styles.wrapper} showsButtons={true}>
+      <Swiper style={styles.wrapper} showsButtons={false} loop={false}>
+      <Title />
       <Explanation1 />
       <Explanation2 />
       <Explanation3 />
