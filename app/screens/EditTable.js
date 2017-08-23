@@ -10,7 +10,6 @@ import {
 import { List, ListItem, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { width, height } from 'react-native-dimension';
-import receiptData from './components/fakeReceipt';
 import { putReceipt } from '../redux/receipt';
 
 class EditTable extends Component {
@@ -22,7 +21,7 @@ class EditTable extends Component {
   }
 
   stretcher() {
-    return 400 + receiptData.length * height(6.5);
+    return 400 + this.props.receiptData.length * height(6.5);
   }
 
   onFixPrice(price, item) {
@@ -38,6 +37,7 @@ class EditTable extends Component {
   }
 
   render() {
+    const receiptData = this.props.receiptData;
     return (
       <View style={styles.viewcontainer}>
         <ScrollView contentContainerStyle={styles.container}>
