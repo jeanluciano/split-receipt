@@ -1,35 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
+import { width, height, totalSize } from 'react-native-dimension';
+import { Button } from 'react-native-elements';
 
 
 class Main extends Component {
-  constructor() {
-    super();
-    this.onPayPalSignUp = this.onPayPalSignUp.bind(this);
-    this.onSkip = this.onSkip.bind(this);
-  }
-
-  onPayPalSignUp(navigate) {
-    navigate('PayPalMe', { signUp: true });
-  }
-
-  onSkip(navigate) {
-    navigate('PayPalMe');
-  }
 
   render() {
     return (
-      <View className="center">
-        <Text>Link your accounts!</Text>
+      <View style={styles.wrapper}>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>
+            Link your account!
+          </Text>
+        </View>
         <Button
-          title="PayPal"
-          color="#841584"
-          onPress={() => this.onPayPalSignUp(this.props.navigation.navigate)}
+          title="Get my PayPalMe handle"
+          style={styles.button}
+          backgroundColor="#03BD5B"
+          borderRadius={25}
+          onPress={() => this.props.navigation.navigate('PayPalMe', { signUp: true })}
         />
         <Button
-          title="Skip"
-          color="#841584"
-          onPress={() => this.onSkip(this.props.navigation.navigate)}
+          title="I have a PayPalMe handle"
+          style={styles.button}
+          backgroundColor="#03BD5B"
+          borderRadius={25}
+          onPress={() => this.props.navigation.navigate('PayPalMe', { signUp: false })}
         />
 
       </View>
@@ -38,3 +35,37 @@ class Main extends Component {
 }
 
 export default Main;
+
+const styles = {
+  wrapper: {
+    backgroundColor: '#3D4D65',
+    flex: 1,
+  },
+  swiperContainer: {
+    paddingLeft: width(5),
+    paddingTop: height(5),
+  },
+  slide: {
+    height: height(70),
+    width: width(90),
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#FFFEEA',
+    borderRadius: 7,
+    shadowColor: 'black',
+  },
+  button: {
+    paddingBottom: height(8),
+  },
+  text: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'bold',
+    padding: '5%',
+  },
+  textContainer: {
+    paddingTop: '10%',
+    paddingBottom: '15%',
+    alignItems: 'center',
+  },
+};
