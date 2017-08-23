@@ -16,6 +16,7 @@ class ReceiptPicture extends Component {
   }
 
   takePicture() {
+    console.log('this works')
     this.camera
       .capture({ rotation: 270 })
       .then(async image => {
@@ -25,7 +26,9 @@ class ReceiptPicture extends Component {
           image,
         );
         console.log('we are getting this here', response.data);
-        this.props.dispatchUpdateReceiptThunk(response.data);
+        this.props.dispatchUpdateReceiptThunk(response.data)
+        this.props.navigation.navigate('Contacts')
+        ;
       })
       .catch(err => console.error(err));
   }
@@ -49,8 +52,12 @@ class ReceiptPicture extends Component {
           size={40}
           onPress={()=> this.props.navigation.navigate('DrawerOpen')}
         />
-        <LinearGradient style={styles.capture} colors={['#29D168', '#0081D5']}>
-          <Icon name="camera" size={70} color="white" />
+        <LinearGradient 
+        style={styles.capture} 
+        colors={['#29D168', '#0081D5']}
+        >
+          <Icon name="camera" size={70} color="white" 
+          onPress={this.takePicture.bind(this)}/>
         </LinearGradient>
       </Camera>
     );
