@@ -20,7 +20,6 @@ const readTransaction = () => ({ type: READ_TRANSACTIONS });
 const updateTransaction = transaction => ({ type: UPDATE_TRANSACTION, transaction });
 const destroyTransaction = transaction => ({ type: DESTROY_TRANSACTION, transaction });
 
-
 /**
  * REDUCER
  */
@@ -42,30 +41,33 @@ export default function transactionsReducer(transactions = [], action) {
 /**
  * THUNK CREATORS
  */
-export const getTransaction = () =>
+export const getTransaction = (transactionId) =>
   dispatch =>
-    firebaseGetTransaction()
+    firebaseGetTransaction(transactionId)
       .then(transaction => dispatch(readTransaction()))
 
 
 export const addTransaction = (friend, user) =>
   dispatch =>
     firebaseCreateTransaction(friend, user)
-      .then(transaction => {
-        console.log('ADD TRANSACTION', transaction, friend, user);
-        return dispatch(createTransaction(transaction))
-      })
+      .then(transaction => dispatch(createTransaction(transaction)))
       .catch(error => {
-        console.log('ADD TRANSACTION', error);
-        dispatch(createTransaction({ error }))
+        console.log('ADD TRANSACTION THUNK', error)
+        return dispatch(createTransaction({ error }))
       });
 
 
-export const putTransaction = transaction =>
-  dispatch =>
-    firebaseUpdateTransaction(transaction)
+export const putTransaction = (transaction, property) =>
+  dispatch => {
+    console.log('PUT TRANSACTION', transaction, property)
+    firebaseUpdateTransaction(transaction.id, property)
       .then(transaction => dispatch(updateTransaction(transaction)))
-      .catch(error => dispatch(updateTransaction({ error })));
+      .catch((error) => {
+        console.log('UPDATE TRANSACTION THUNK', error)
+        return dispatch(updateTransaction({ error }))
+      });
+  }
+
 
 export const deleteTransaction = transaction =>
   dispatch =>

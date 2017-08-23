@@ -6,7 +6,14 @@ import { sendText } from '../redux/sendText';
 import TransactionCard from './components/TransactionCard';
 
 class SendText extends Component {
+  constructor() {
+    super();
+    this.state = {
+      sent: false,
+    };
+  }
   render() {
+    if (this.sent) this.props.navigation.navigate('Landing');
     return (
       <View style={styles.screen}>
         <Text>Review the your splits</Text>
@@ -21,7 +28,10 @@ class SendText extends Component {
           <Button
             title="Send Selected"
             color="#841584"
-            onPress={() => this.props.handleSendText(this.props.transactions, this.user)}
+            onPress={() => {
+              this.setState({sent: true});
+              this.props.handleSendText(this.props.transactions, this.props.user)}
+            }
           />
         </View>
 
@@ -30,18 +40,18 @@ class SendText extends Component {
   }
 }
 
-const mapState = (state) => {
-  return {
+const mapState = (state) =>
+  ({
     transactions: state.transactions,
     user: state.user,
-  };
-};
+  })
 
-const mapDispatch = dispatch => ({
-  handleSendText(transactions, user) {
-    dispatch(sendText(transactions, user));
-  },
-});
+const mapDispatch = dispatch =>
+  ({
+    handleSendText(transactions, user) {
+      dispatch(sendText(transactions, user));
+    },
+  })
 
 export default connect(mapState, mapDispatch)(SendText);
 
@@ -56,6 +66,9 @@ SendText.propTypes = {
     id: PropTypes.string.isRequired,
   })),
   handleSendText: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }),
 };
 
 const styles = StyleSheet.create({
