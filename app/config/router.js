@@ -1,8 +1,6 @@
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
-import Main from '../screens/Main';
 import Camera from '../screens/Camera';
 import Login from '../screens/Login';
-import Dragndrop from '../screens/DragNDrop';
 import Contacts from '../screens/Contacts';
 import LinkAccounts from '../screens/linkAccounts';
 import PayPalMe from '../screens/linkAccounts/PayPalMe';
@@ -20,10 +18,19 @@ import Splash from '../screens/Splash';
 import PreLogin from '../screens/PreLogin';
 
 
+const WebViews = StackNavigator({
+  LinkAccounts: {
+    screen: LinkAccounts,
+  },
+  PayPalWebView: {
+    screen: PayPalWebView,
+  },
+})
+
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
-  TestLogin: {
+  PreLogin: {
     screen: PreLogin,
   },
   Splash: {
@@ -50,28 +57,19 @@ export default DrawerNavigator({
   Camera: {
     screen: Camera,
   },
-  Main: {
-    screen: Main,
-  },
   Contacts: {
     screen: Contacts,
   },
-  Dragndrop: {
-    screen: Dragndrop,
-  },
-  LinkAccounts: {
-    screen: LinkAccounts,
+  WebViews: {
+    screen: WebViews,
   },
   PayPalMe: {
-    screen: PayPalMe,
-  },
-  PayPalWebView: {
-    screen: PayPalWebView,
+    screen: menuify(PayPalMe),
   },
   SendText: {
     screen: SendText,
   },
-  EditTable:{
+  EditTable: {
     screen: EditTable,
   },
 });

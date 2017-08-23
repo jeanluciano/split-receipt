@@ -32,8 +32,6 @@ class EditTable extends Component {
     }
   }
 
-  
-
   onFixName(text, item) {
     item.item = text;
     this.props.putReceipt(item);
