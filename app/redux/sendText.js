@@ -8,7 +8,7 @@ import { firebaseUpdateToUser } from '../firebase/toUser'
  */
 const SELECTED = 'SELECTED';
 const REQUESTED = 'REQUESTED';
-const PAID = 'SETTLED'
+const SETTLED = 'SETTLED'
 
 /**
  * ACTION TYPES
