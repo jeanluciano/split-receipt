@@ -12,6 +12,7 @@ import Landing from '../screens/Landing';
 import DevMenu from '../screens/DevMenu';
 import menuify from './menuify';
 import Stack from '../screens/Stack';
+import EditTable from '../screens/EditTable';
 import Transactions from '../screens/Transactions';
 
 Transactions.navigationOptions = { title: 'My chats' };
@@ -55,5 +56,8 @@ export default DrawerNavigator({
   },
   SendText: {
     screen: SendText,
+  },
+  EditTable:{
+    screen: EditTable,
   },
 });

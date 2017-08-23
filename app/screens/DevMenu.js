@@ -63,6 +63,11 @@ class DevMenu extends Component {
           color="#841584"
           onPress={() => navigate('Contacts')}
         />
+        <Button
+        title="Edit Table"
+        color="#841584"
+        onPress={() => navigate('EditTable')}
+      />
       </View>
     );
   }

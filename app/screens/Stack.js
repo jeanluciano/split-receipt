@@ -68,7 +68,6 @@ class Stack extends Component {
         
     this.tempFriends.forEach(friend => {
       this.props.addTransaction(friend, this.props.user);
-      console.log('COMPETE HANDLER', friend);
       this.props.putFriend(friend);
     });
     this.props.navigation.navigate('SendText');
@@ -81,7 +80,7 @@ class Stack extends Component {
     });
     if (toggle === -1) {
       this.tempFriends[friendIdx].items.filter(
-        cItem => cItem.id !== item,
+        cItem => cItem.id !== item.id
       );
     } else {
       this.tempFriends[friendIdx].items.push(item);
