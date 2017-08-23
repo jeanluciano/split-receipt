@@ -19,6 +19,8 @@ router.post('/', (req, res, next) => {
     .then(message => console.log(destinationNumber, message.sid))
     .then(res.sendStatus(200))
     .catch(next);
+  // console.log('PAYMENT REQUESTED:', destinationNumber, amount, payPalMe)
+  // res.sendStatus(200);
 });
 
 module.exports = router;

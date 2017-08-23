@@ -18,6 +18,14 @@ export const reformatTransaction = async function(transactionId) {
   return transaction;
 }
 
+const totalGetter = items => {
+  let total = 0;
+  items.forEach((item) => {
+    total += item.price;
+  });
+  return Math.round(total * 100) / 100;
+}
+
 const friendToTransaction = (friend, user) => {
   // console.log('FRIEND TO TRANSACTION', friend, user);
   return ({
@@ -36,12 +44,21 @@ const friendToTransaction = (friend, user) => {
     purpose: '',
     status: 'ASSIGNED',
     date: Date.now()+'',
+    total: totalGetter(friend.items)
   })
 }
 
 export const firebaseUpdateTransaction = async function (transactionId, property) {
-  if(property) await firebase.database().ref().child('transactions').child(transactionId).update(property);
-  return await reformatTransaction(transactionId);
+  try {
+    if(property) await firebase.database().ref()
+      .child('transactions')
+      .child(transactionId)
+      .update(property);
+    return await reformatTransaction(transactionId);
+  } catch (error) {
+    console.log('FIREBASE UPDATE TRANSACTION', error)
+    return error
+  }
 }
 
 export const firebaseCreateTransaction = async function(friend, user) {
@@ -55,10 +72,22 @@ export const firebaseCreateTransaction = async function(friend, user) {
     // console.log('FIREBASE CRETE TRANSACTION FB_TRANSACTION', firebaseTransaction);
     return await reformatTransaction(firebaseTransaction.key);
   } catch (error) {
+    console.log('FIREBASE CREATE TRANSACTION', error)
     return error
   }
   
 }
+
+// export firebaseGetTransaction = async function (user) {
+//   try {
+//     firebase.database.ref()
+//       .child('transactions')
+//       .child()
+//   } catch () {
+//     console.log('FIREBASE GET TRANSACTION', error)
+//     return error
+//   }
+// }
 
 export const firebaseDestroy = async function() {
 

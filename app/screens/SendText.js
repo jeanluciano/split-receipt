@@ -6,7 +6,14 @@ import { sendText } from '../redux/sendText';
 import TransactionCard from './components/TransactionCard';
 
 class SendText extends Component {
+  constructor() {
+    super();
+    this.state = {
+      sent: false,
+    };
+  }
   render() {
+    if (this.sent) this.props.navigation.navigate('Landing');
     return (
       <View style={styles.screen}>
         <Text>Review the your splits</Text>
@@ -21,7 +28,10 @@ class SendText extends Component {
           <Button
             title="Send Selected"
             color="#841584"
-            onPress={() => this.props.handleSendText(this.props.transactions, this.props.user)}
+            onPress={() => {
+              this.setState({sent: true});
+              this.props.handleSendText(this.props.transactions, this.props.user)}
+            }
           />
         </View>
 
@@ -40,7 +50,6 @@ const mapDispatch = dispatch =>
   ({
     handleSendText(transactions, user) {
       dispatch(sendText(transactions, user));
-      this.props.navigation.navigate('Landing');
     },
   })
 

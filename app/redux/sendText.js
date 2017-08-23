@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { putTransactions } from './transactions';
-import { userUpdateTo } from './auth';
+import { putTransaction } from './transactions';
+import { updateUserFrom } from './auth';
+import { firebaseUpdateToUser } from '../firebase/toUser'
 
 /**
  * ENUM VALUES
@@ -27,28 +28,22 @@ const PAID = 'SETTLED'
 export const sendText = (transactions, user) => (dispatch) => {
   if (!user) throw Error('NO USER LOGGED IN');
   if (!user.id) throw Error('NO USER LOGGED IN');
-  console.log('SEND TEXT', user);
   const payPalMe = user.payPalMe
-  transactions.map((transaction) => {
+
+  return transactions.map((transaction) => {
     const destinationNumber = transaction.to.phone;
     const amount = transaction.total;
+    const phone = transaction.to.phone;
     // if (transaction.status === SELECTED) {
-      return axios.post('http://localhost:8000/api/payPalMe/', {
-        destinationNumber,
-        payPalMe,
-        amount,
-      })
-        .then(() => {
-          console.log('SEND TEXT 2', transaction)
-          const property = REQUESTED
-          dispatch(putTransactions(transaction.id, property));
-          dispatch(userUpdateTo(user.id, transaction.id, REQUESTED));
-          // dispatch(firebaseUserIfExist(transaction.to.phone));
-          // dispatch(firebaseUserIfExist());
-        })
-        .catch(error => dispatch(putTransactions({ error })))
+    return axios.post('http://localhost:8000/api/payPalMe/', {
+      destinationNumber,
+      payPalMe,
+      amount,
+    }).then(() => dispatch(putTransaction(transaction, { status: REQUESTED })))
+      .then(() => dispatch(updateUserFrom(user.id, transaction.id, REQUESTED)))
+      .then(() => firebaseUpdateToUser(phone, transaction.id, REQUESTED))
+      .catch(console.error)
     // }
-    return null;
   })
 }
 
@@ -57,8 +52,7 @@ export const selectTransaction = (transaction, status) => (dispatch) => {
   if (transaction.status !== PAID) {
     transaction.status = status
     return dispatch(putTransactions(transaction));
-  }
-  else {
+  } else {
     const error = new Error('transaction is paid already')
     return dispatch(putTransactions({ error }))
   }
