@@ -8,7 +8,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 import Menu from './components/Nav';
-const IP_ADDRESS = '172.28.116.221';
 
 class ReceiptPicture extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ class ReceiptPicture extends Component {
       .then(async image => {
         console.log('something is happening');
         const response = await axios.post(
-          'http://' + IP_ADDRESS + ':8000/api/image/receipt',
+          'http://' + process.env.IP_ADDRESS + ':8000/api/image/receipt',
           image,
         );
         console.log('we are getting this here', response.data);

@@ -8,7 +8,8 @@ import { firebaseUpdateToUser } from '../firebase/toUser'
  */
 const SELECTED = 'SELECTED';
 const REQUESTED = 'REQUESTED';
-const SETTLED = 'SETTLED'
+const SETTLED = 'SETTLED';
+const IP_ADDRESS = '172.28.116.221';
 
 /**
  * ACTION TYPES
@@ -35,7 +36,7 @@ export const sendText = (transactions, user) => (dispatch) => {
     const amount = transaction.total;
     const phone = transaction.to.phone;
     // if (transaction.status === SELECTED) {
-    return axios.post('http://localhost:8000/api/payPalMe/', {
+    return axios.post('http://' + process.env.IP_ADDRESS +':8000/api/payPalMe/', {
       destinationNumber,
       payPalMe,
       amount,
