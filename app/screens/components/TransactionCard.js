@@ -34,16 +34,6 @@ const TransactionCard = (props) => {
         checked={false}
         onChange={checked => selectTransaction(transaction, checked)}
       /> */}
-
-      {/* <Button
-        title="Send Request"
-        color="#000000"
-        backgroundColor="#FFFFFF"
-        borderRadius={25}
-        onPress={() => {
-          props.handleSendText([transaction], user.payPalMe)
-        }}
-      /> */}
     </View>
   );
 };
