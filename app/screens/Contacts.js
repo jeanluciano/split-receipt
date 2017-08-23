@@ -56,7 +56,7 @@ class contacts extends Component {
             return (
               <ListItem
                 key={ind}
-                chevronColor="#0081D5"
+                hideChevron
                 underlayColor="#374355"
                 titleStyle={styles.listText}
                 containerStyle={styles.listItem}

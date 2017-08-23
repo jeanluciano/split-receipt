@@ -164,7 +164,7 @@ class Stack extends Component {
               borderRadius={25}
               onPress={this.completeHandler.bind(this)}
             />
-          : <Button style={styles.button} title="Request" />}
+          : <Button style={styles.button} borderRadius={25} title="Request" />}
       </View>
     );
   }
