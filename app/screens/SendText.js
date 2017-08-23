@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Button } from 'react-native-elements'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { sendText } from '../redux/sendText';
@@ -20,38 +21,42 @@ class SendText extends Component {
 
         <ScrollView>
           <View style={styles.table}>
-            {this.props.transactions.map(transaction => (<TransactionCard key={transaction.id} transaction={transaction} />))}
+            {this.props.transactions.map(transaction =>
+              <TransactionCard
+                key={transaction.id}
+                transaction={transaction}
+              />,
+            )}
           </View>
         </ScrollView>
 
-        <View style={styles.button}>
           <Button
-            title="Send Selected"
-            color="#841584"
+            title="Request"
+            backgroundColor="#03BD5B"
+            borderRadius={25}
+            containerViewStyle={styles.button}
             onPress={() => {
-              this.setState({sent: true});
-              this.props.handleSendText(this.props.transactions, this.props.user)}
-            }
+              this.props.handleSendText(
+                this.props.transactions,
+                this.props.user,
+              );
+            }}
           />
-        </View>
-
       </View>
     );
   }
 }
 
-const mapState = (state) =>
-  ({
-    transactions: state.transactions,
-    user: state.user,
-  })
+const mapState = state => ({
+  transactions: state.transactions,
+  user: state.user,
+});
 
-const mapDispatch = dispatch =>
-  ({
-    handleSendText(transactions, user) {
-      dispatch(sendText(transactions, user));
-    },
-  })
+const mapDispatch = dispatch => ({
+  handleSendText(transactions, user) {
+    dispatch(sendText(transactions, user));
+  },
+});
 
 export default connect(mapState, mapDispatch)(SendText);
 
@@ -62,9 +67,11 @@ SendText.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }),
-  transactions: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  })),
+  transactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  ),
   handleSendText: PropTypes.func.isRequired,
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -73,17 +80,15 @@ SendText.propTypes = {
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: '#ebeef0',
     flex: 1,
-    justifyContent: 'space-between',
-    flexDirection: 'column',
+    backgroundColor: '#3D4D65'
   },
   table: {
     flex: 1,
-    flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'space-between'
   },
   button: {
-    alignItems: 'center',
+    padding: 20
   },
 });
