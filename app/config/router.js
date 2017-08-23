@@ -1,8 +1,6 @@
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
-import Main from '../screens/Main';
 import Camera from '../screens/Camera';
 import Login from '../screens/Login';
-import Dragndrop from '../screens/DragNDrop';
 import Contacts from '../screens/Contacts';
 import LinkAccounts from '../screens/linkAccounts';
 import PayPalMe from '../screens/linkAccounts/PayPalMe';
@@ -59,14 +57,8 @@ export default DrawerNavigator({
   Camera: {
     screen: Camera,
   },
-  Main: {
-    screen: Main,
-  },
   Contacts: {
     screen: Contacts,
-  },
-  Dragndrop: {
-    screen: Dragndrop,
   },
   WebViews: {
     screen: WebViews,
