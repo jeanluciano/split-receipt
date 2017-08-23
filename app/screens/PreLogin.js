@@ -56,6 +56,7 @@ class Login extends Component {
           <FormInput
             placeholder={'password'}
             placeholderTextColor='#a9b9ca'
+            secureTextEntry
             inputStyle={{color: '#fff'}}
             onChangeText={ passText => this.handlePassword(passText) }
             value={this.state.passwordText}
