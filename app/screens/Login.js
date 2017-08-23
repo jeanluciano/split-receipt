@@ -21,6 +21,7 @@ class Login extends Component {
     const user = this.props.user
     if (user.payPalMe) this.props.navigation.navigate('Camera');
     else if (user.id) this.props.navigation.navigate('LinkAccounts');
+
     return (
       <View style={masterStyle.body} >
         {(this.state.form === 'SIGNUP')
@@ -94,7 +95,7 @@ class Login extends Component {
         />
       </View>
     );
-  };
+  }
 }
 
 const mapLogin = (state) => {
