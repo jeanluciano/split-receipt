@@ -17,9 +17,8 @@ router.post('/', (req, res, next) => {
       body: `Please go here to pay your split www.PayPal.Me/${payPalMe}/${amount}`,
     })
     .then(message => console.log(destinationNumber, message.sid))
+    .then(res.sendStatus(200))
     .catch(next);
-
-  res.sendStatus(200);
 });
 
 module.exports = router;

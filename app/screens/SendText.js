@@ -21,7 +21,7 @@ class SendText extends Component {
           <Button
             title="Send Selected"
             color="#841584"
-            onPress={() => this.props.handleSendText(this.props.transactions, this.user)}
+            onPress={() => this.props.handleSendText(this.props.transactions, this.props.user)}
           />
         </View>
 

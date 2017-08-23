@@ -25,29 +25,29 @@ const PAID = 'SETTLED'
  * THUNK CREATORS
  */
 export const sendText = (transactions, user) => (dispatch) => {
+  if (!user) throw Error('NO USER LOGGED IN');
+  if (!user.id) throw Error('NO USER LOGGED IN');
+  console.log('SEND TEXT', user);
   const payPalMe = user.payPalMe
   transactions.map((transaction) => {
     const destinationNumber = transaction.to.phone;
     const amount = transaction.total;
-    if (transaction.status === SELECTED) {
+    // if (transaction.status === SELECTED) {
       return axios.post('http://localhost:8000/api/payPalMe/', {
         destinationNumber,
         payPalMe,
         amount,
       })
-        // update store
-        // update db
         .then(() => {
+          console.log('SEND TEXT 2', transaction)
           const property = REQUESTED
           dispatch(putTransactions(transaction.id, property));
-          // update users.from.child(tid)
           dispatch(userUpdateTo(user.id, transaction.id, REQUESTED));
-          dispatch(firebaseUserIfExist(transaction.to.phone));
-          // dispatch(firebaseUpdateUser());
+          // dispatch(firebaseUserIfExist(transaction.to.phone));
           // dispatch(firebaseUserIfExist());
         })
         .catch(error => dispatch(putTransactions({ error })))
-    }
+    // }
     return null;
   })
 }
