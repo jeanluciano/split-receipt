@@ -22,7 +22,7 @@ import PreLogin from '../screens/PreLogin';
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
-  TestLogin: {
+  PreLogin: {
     screen: PreLogin,
   },
   Splash: {
