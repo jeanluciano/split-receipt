@@ -16,14 +16,14 @@ import Transactions from '../screens/Transactions';
 import Animate from '../screens/Animate';
 import Explanation1 from '../screens/components/Initial/Explanation4';
 import Splash from '../screens/Splash';
-import SplashLogin from '../screens/TestLogin';
+import PreLogin from '../screens/PreLogin';
 
 
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
   TestLogin: {
-    screen: SplashLogin,
+    screen: PreLogin,
   },
   Splash: {
     screen: Splash,

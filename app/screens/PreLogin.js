@@ -9,16 +9,14 @@ import Splash from './Splash';
 class Login extends Component {
   constructor() {
     super();
-    this.state = {
-      emailText: '',
-      passwordText: '',
-    };
+  }
+
+  handleLoginPress() {
+
   }
 
   render() {
-    const user = this.props.user
-    if(user.payPalMe) this.props.navigation.navigate('Camera');
-    else if(user.id) this.props.navigation.navigate('LinkAccounts');
+    const { navigation } = this.props;
     return (
       <View style={{flex: 1, backgroundColor: '#374355'}}>
         <Splash />
@@ -28,11 +26,7 @@ class Login extends Component {
           margin={3}
           backgroundColor={'#374355'}
           borderRadius={10}
-          onPress={() => this.props.handleLogIn(
-            this.state.emailText,
-            this.state.passwordText,
-            this.props.navigation.navigate
-          )}
+          onPress={() => navigation.navigate('Login')}
         />
         <Button
           title="Sign Up"
@@ -40,11 +34,7 @@ class Login extends Component {
           backgroundColor={'#FFB6E5'}
           style={styles.signupButton}
           borderRadius={10}
-          onPress={() => this.props.handleSignUp(
-            this.state.emailText,
-            this.state.passwordText,
-            this.props.navigation.navigate
-          )}
+          onPress={() => navigation.navigate('Signup')}
         />
       </View>
     );

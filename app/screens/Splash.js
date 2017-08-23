@@ -56,4 +56,3 @@ var swiper = React.createClass({
 })
 
 export default swiper;
-
