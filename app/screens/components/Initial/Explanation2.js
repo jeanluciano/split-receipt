@@ -37,7 +37,7 @@ export default class SecondExplanation extends Component {
         </View>
         <View style={{ flex: 1, alignItems: 'center' }}>
           <Text style={styles.titleText}>Save time, your's and the restaurant's.</Text>
-          <Text style={styles.descriptionText}>Instead of splitting the bill amongst multiple credit cards, have one person foot the bill and simply take a picture of it.  What each person pays will be more fair and your waiter will thank you.</Text>
+          <Text style={styles.descriptionText}>Instead of splitting the bill amongst multiple credit cards, have one person foot the bill and take a picture of it.  Your waiter will thank you.</Text>
         </View>
       </View>
     );
