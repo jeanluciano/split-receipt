@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     paddingRight: '10%',
     paddingTop: '3%',
     textAlign: 'center',
+    color: '#a9b9ca',
   }
 
 });
