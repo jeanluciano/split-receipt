@@ -41,10 +41,10 @@ const TransactionCard = (props) => {
 const styles = StyleSheet.create({
   button: {
     flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: 'white',
   },
   transactionView: {
-    backgroundColor: '#ef553a',
+    backgroundColor: 'white',
     width: 360,
     height: 100,
     paddingTop: 10,

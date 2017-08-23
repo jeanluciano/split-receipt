@@ -15,17 +15,13 @@ const fakeReceipt = [
     price: 0.65,
     item: 'White Rice',
     duplicity: 1,
-    id: 1232,
+    id: 1232
   },
   {
-    price: 0,
-    item: '*Spring Roll',
+    price: 10.95,
+    item: '  Szech Eggplant',
     duplicity: 1,
-    id: 'alsk1231',
-  },
-  {
-    price: 25.14,
-    item: 'total',
+    id: 'asd1234lkjs',
   },
 ];
 

@@ -15,7 +15,7 @@ export default class ThirdExplanation extends Component {
       <View style={styles.topView}>
       <Animatable.View animation="slideInRight" iterationCount={Infinity} duration={2000} >
         <Icon
-          name="script"
+          name="receipt"
           type="material-community"
           color="#FFB6E5"
           size={65}
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     paddingRight: '10%',
     paddingTop: '3%',
     textAlign: 'center',
+    color: '#a9b9ca',
   }
 
 });

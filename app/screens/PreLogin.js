@@ -46,6 +46,8 @@ class Login extends Component {
           <View style={styles.emailForm}>
           <FormInput
             placeholder={'e-mail'}
+            placeholderTextColor='#a9b9ca'
+            inputStyle={{color: '#fff'}}
             onChangeText={ emailText => this.handleEmail(emailText) }
             value={this.state.emailText}
           />
@@ -53,6 +55,8 @@ class Login extends Component {
           <View style={styles.passForm}>
           <FormInput
             placeholder={'password'}
+            placeholderTextColor='#a9b9ca'
+            inputStyle={{color: '#fff'}}
             onChangeText={ passText => this.handlePassword(passText) }
             value={this.state.passwordText}
           />

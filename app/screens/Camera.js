@@ -26,9 +26,9 @@ class ReceiptPicture extends Component {
           image,
         );
         console.log('we are getting this here', response.data);
-        this.props.dispatchUpdateReceiptThunk(response.data)
-        this.props.navigation.navigate('Contacts')
-        ;
+        this.props.dispatchUpdateReceiptThunk(response.data);
+        this.props.navigation.navigate('Contacts');
+        
       })
       .catch(err => console.error(err));
   }
