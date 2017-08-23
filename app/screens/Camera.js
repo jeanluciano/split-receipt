@@ -8,14 +8,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 import Menu from './components/Nav';
-const IP_ADDRESS = '172.28.116.54';
+const IP_ADDRESS = '172.28.116.221';
 
 class ReceiptPicture extends Component {
   constructor(props) {
     super(props);
     this.takePicture = this.takePicture.bind(this);
   }
-  
+
   componentDidMount(){
     this.props.getContacts()
   }
@@ -33,7 +33,7 @@ class ReceiptPicture extends Component {
         console.log('we are getting this here', response.data);
         this.props.dispatchUpdateReceiptThunk(response.data);
         this.props.navigation.navigate('Contacts');
-        
+
       })
       .catch(err => console.error(err));
   }
@@ -57,11 +57,11 @@ class ReceiptPicture extends Component {
           size={40}
           onPress={()=> this.props.navigation.navigate('DrawerOpen')}
         />
-        <LinearGradient 
-        style={styles.capture} 
+        <LinearGradient
+        style={styles.capture}
         colors={['#29D168', '#0081D5']}
         >
-          <Icon name="camera" size={70} color="white"   
+          <Icon name="camera" size={70} color="white"
           underlayColor="transparent"
           onPress={this.takePicture.bind(this)}/>
         </LinearGradient>
