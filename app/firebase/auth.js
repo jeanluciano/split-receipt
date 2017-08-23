@@ -11,11 +11,16 @@ export const reformatUser = async function (userId) {
       user = snapShot.val();
       user.id = snapShot.key;
     })
+    .catch(console.log)
   return user;
 }
 
-export const firebaseUpdateUser = async function (userId, property, value) {
-  if(property) await firebase.database().ref().child('users').child(userId).update(property);
+export const firebaseUpdateUser = async function (userId, property) {
+  if(property) await firebase.database().ref()
+    .child('users')
+    .child(userId)
+    .update(property)
+    .catch(console.log);
   return await reformatUser(userId);
 }
 
@@ -69,15 +74,17 @@ export const firebaseLogOut = async function () {
   }
 }
 
-export const firebaseSignUp = async function (email, password) {
+export const firebaseSignUp = async function (email, password, givenName, familyName) {
   try {
     const firebaseUser = await firebase.auth()
       .createUserWithEmailAndPassword(email, password)
-      .catch(console.err);
-    const user = await firebaseUpdateUser(firebaseUser.uid, { email });
-    return user
+      .catch(console.log);
+    await firebaseUpdateUser(firebaseUser.uid, {email});
+    await firebaseUpdateUser(firebaseUser.uid, {givenName});
+    return await firebaseUpdateUser(firebaseUser.uid, {familyName});
 
   } catch (error) {
+    console.log('FIREBASE SIGN UP', error)
     return error;
 
   }
