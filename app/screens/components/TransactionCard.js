@@ -13,8 +13,8 @@ const TransactionCard = (props) => {
   return (
     <View style={styles.transactionView}>
       <Text>{`${transaction.to.givenName} ${transaction.to.familyName}`}</Text>
-      {Object.values(transaction.items).map(item =>
-        (<View style={styles.itemView}>
+      {Object.values(transaction.items).map((item, ind) =>
+        (<View key={ind} style={styles.itemView}>
           <Text>
             {item.item}
           </Text>
