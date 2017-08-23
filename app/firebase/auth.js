@@ -16,7 +16,6 @@ export const reformatUser = async function (userId) {
 }
 
 export const firebaseUpdateUser = async function (userId, property) {
-  console.log('UPDATE USER', userId, property);
   if(property) await firebase.database().ref()
     .child('users')
     .child(userId)
@@ -80,11 +79,10 @@ export const firebaseSignUp = async function (email, password, givenName, family
     const firebaseUser = await firebase.auth()
       .createUserWithEmailAndPassword(email, password)
       .catch(console.log);
-    console.log('FIREBASE SIGN UP', firebaseUser);
     await firebaseUpdateUser(firebaseUser.uid, {email});
     await firebaseUpdateUser(firebaseUser.uid, {givenName});
     return await firebaseUpdateUser(firebaseUser.uid, {familyName});
-    
+
   } catch (error) {
     console.log('FIREBASE SIGN UP', error)
     return error;
