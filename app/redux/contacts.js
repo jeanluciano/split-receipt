@@ -6,18 +6,20 @@ import fakeContacts from '../screens/components/fakecontacts'
  */
 const READ_CONTACTS = 'READ_CONTACTS';
 const REMOVE_CONTACT = 'REMOVE_CONTACT';
-
+const CREATE_CONTACT = 'CREATE_CONTACT';
 /**
  * ACTION CREATORS
  */
 const readContacts = contacts => ({ type: READ_CONTACTS, contacts });
 const removeContact = contact => ({ type: REMOVE_CONTACT, contact });
-
+const createContact = contact => ({type: CREATE_CONTACT, contact });
 /**
  * REDUCER
  */
 export default function contactsReducer(myContacts = fakeContacts, action) {
   switch (action.type) {
+    case CREATE_CONTACT:
+      return [...myContacts, action.contact]
     case READ_CONTACTS:
       return action.contacts;
     case REMOVE_CONTACT:
@@ -41,6 +43,12 @@ export const getContacts = function () {
     });
   };
 };
+
+export const addContact = function (contact) {
+  return function thunk(dispatch) {
+    dispatch(createContact(contact))
+  }
+}
 
 export const deleteContact = function (contact) {
   return function thunk(dispatch) {

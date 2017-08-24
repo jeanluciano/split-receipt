@@ -10,7 +10,7 @@ import {
 } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { addFriend, deleteFriend } from '../redux/friends';
-import { deleteContact } from '../redux/contacts';
+import { deleteContact, addContact } from '../redux/contacts';
 // import fakeContacts from './components/fakecontacts';
 
 class contacts extends Component {
@@ -48,11 +48,11 @@ class contacts extends Component {
   }
 
   onRemoveFriend(friend){
+    this.props.addContact(friend)
     this.props.deleteFriend(friend)
   }
 
   render() {
-    console.log(this.props.friends)
     const { query } = this.state;
     const contacts = this.findContacts(query);
     return (
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     borderTopWidth: 0,
-    height: '60%',
+    height: '55%',
     backgroundColor: '#3D4D65',
   },
   SearchBar: {
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
 
   },
   friendsContainer: {
-    height:'15%',
+    height:'20%',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -155,6 +155,6 @@ const styles = StyleSheet.create({
 });
 
 const mapState = ({ myContacts, friends }) => ({ myContacts, friends });
-const mapDispatch = { addFriend, deleteContact, deleteFriend };
+const mapDispatch = { addFriend, deleteContact, deleteFriend, addContact };
 
 export default connect(mapState, mapDispatch)(contacts);
