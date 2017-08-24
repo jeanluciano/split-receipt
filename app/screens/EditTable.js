@@ -7,10 +7,10 @@ import {
   Text,
   TextInput,
 } from 'react-native';
-import { List, ListItem, Button } from 'react-native-elements';
+import { List, ListItem, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { width, height } from 'react-native-dimension';
-import { putReceipt } from '../redux/receipt';
+import { putReceipt, removeItem } from '../redux/receipt';
 
 class EditTable extends Component {
   constructor() {
@@ -18,6 +18,7 @@ class EditTable extends Component {
     this.state = {
       why: 'shut the fuck up linter',
     };
+    this.onDeleteHandle = this.onDeleteHandle.bind(this)
   }
 
   stretcher() {
@@ -25,7 +26,7 @@ class EditTable extends Component {
   }
 
   onFixPrice(price, item) {
-    if(!isNaN(price)){
+    if (!isNaN(price)) {
       item.price = price;
       this.props.putReceipt(item);
     }
@@ -34,6 +35,10 @@ class EditTable extends Component {
   onFixName(text, item) {
     item.item = text;
     this.props.putReceipt(item);
+  }
+
+  onDeleteHandle(item) {
+    this.props.removeItem(item);
   }
 
   render() {
@@ -48,21 +53,28 @@ class EditTable extends Component {
           >
             <Text style={styles.header}>Is this right?</Text>
             <List>
-              {receiptData.map(receipt =>
+              {receiptData.map(item =>
                 <View style={styles.listItem}>
                   <TextInput
-                    placeholder={`${receipt.item}`}
+                    placeholder={`${item.item}`}
                     placeholderTextColor={'#5e5e5e'}
-                    onChangeText={text => this.onFixName(text, receipt)}
+                    onChangeText={text => this.onFixName(text, item)}
                   />
                   <TextInput
-                    placeholder={`${receipt.price}`}
+                    placeholder={`${item.price}`}
                     keyboardType="numeric"
                     maxLength={5}
                     placeholderTextColor={'#5e5e5e'}
-                    onChangeText={text => this.onFixPrice(text, receipt)}
+                    onChangeText={text => this.onFixPrice(text, item)}
                   />
-                </View>
+                  <Icon
+                    size={30}
+                    name="close-o"
+                    type="evilicon"
+                    color="black"
+                    onPress={() => this.onDeleteHandle(item)}
+                  />
+                </View>,
               )}
             </List>
           </Image>
@@ -72,7 +84,7 @@ class EditTable extends Component {
           title="Looks Good!"
           backgroundColor="#03BD5B"
           borderRadius={25}
-          onPress={() =>this.props.navigation.navigate('Contacts')}
+          onPress={() => this.props.navigation.navigate('Contacts')}
         />
       </View>
     );
@@ -131,6 +143,6 @@ const mapToState = store => {
   };
 };
 
-const mapDispatch = { putReceipt };
+const mapDispatch = { putReceipt, removeItem };
 
 export default connect(mapToState, mapDispatch)(EditTable);
