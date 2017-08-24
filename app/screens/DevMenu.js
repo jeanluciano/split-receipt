@@ -60,6 +60,9 @@ class DevMenu extends Component {
           onPress={() => {
             this.props.loadFakeData();
             navigate('Stack');
+            this.props.login(
+              'jason@one.com',
+              'Jasonone')
           }}
         />
         <Button
@@ -68,6 +71,20 @@ class DevMenu extends Component {
           onPress={() => {
             this.props.loadFakeData();
             navigate('Contacts');
+            this.props.login(
+              'jason@one.com',
+              'Jasonone');
+          }}
+        />
+        <Button
+          title="Landing"
+          color="#841584"
+          onPress={() => {
+            this.props.loadFakeData();
+            navigate('Landing');
+            this.props.login(
+              'jason@one.com',
+              'Jasonone');
           }}
         />
         <Button
@@ -76,6 +93,9 @@ class DevMenu extends Component {
           onPress={() => {
             this.props.loadFakeData()
             navigate('EditTable');
+            this.props.login(
+              'jason@one.com',
+              'Jasonone')
           }}
         />
       </View>

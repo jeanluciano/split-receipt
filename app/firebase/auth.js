@@ -1,8 +1,11 @@
 import firebase from 'firebase';
 import { validateShape } from './validation';
-import { firebaseGetTransaction } from './transactions';
+import { firebaseGetTransactionsHelper } from './transactions';
 
+
+// GET AND CONVERT FIREBASE USER TO STORE USER
 export const reformatUser = async function (userId) {
+  console.log('reformatUser', userId)
   let user = {}
   await firebase.database().ref()
     .child('users')
@@ -10,11 +13,26 @@ export const reformatUser = async function (userId) {
     .once('value', function(snapShot) {
       user = snapShot.val();
       user.id = snapShot.key;
+      return user
+    })
+    .then(async () => {
+      if(user.to) await firebaseGetTransactionsHelper(user.to)
+        .then(toTransactions => {
+          console.log('FIREBASE GET TO TRANSACTIONS', toTransactions)
+          user.to = toTransactions
+        })
+      if(user.from) await firebaseGetTransactionsHelper(user.from)
+        .then(fromTransactions => {
+          user.from = fromTransactions
+          console.log('FIREBASE GET FROM TRANSACTIONS', user)
+        })
+      // firebaseGetTransactions(transaction)
     })
     .catch(console.log)
   return user;
 }
 
+// GENERAL UPDATE FUNCTION
 export const firebaseUpdateUser = async function (userId, property) {
   if(property) await firebase.database().ref()
     .child('users')
@@ -24,6 +42,7 @@ export const firebaseUpdateUser = async function (userId, property) {
   return await reformatUser(userId);
 }
 
+// SPECIFIC UPDATE FUNCTION: FROM_TRANSACTIONS
 export const firebaseUpdateUserFrom = async function (userId, transactionId, status) {
   try {
     firebase.database().ref()
@@ -46,13 +65,7 @@ export const firebaseLogIn = async function (email, password) {
   try {
     let user = {}
     const firebaseUser = await firebase.auth().signInWithEmailAndPassword(email, password)
-    await firebase.database().ref()
-      .child('users')
-      .child(firebaseUser.uid)
-      .once('value', function(snapShot) {
-        user = snapShot.val();
-        user.id = snapShot.key;
-      });
+    return await reformatUser(firebaseUser.uid);
     // user = await user.to.firebaseGetTransaction(user);
     return user;
 

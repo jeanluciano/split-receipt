@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import CameraLink from './components/Landing/CameraLink';
 import TransactionLinks from './components/Landing/TransactionLinks';
 import PendingTransactions from './components/Landing/PendingTransactions';
-import { getTransactionsOnToUser } from '../redux/transactions';
+// import { getTransactionsOnToUser } from '../redux/transactions';
 
 class Landing extends Component {
 
@@ -13,9 +13,9 @@ class Landing extends Component {
     super();
   }
 
-  componentDidMount() {
-    this.props.loadTransactionsOnToUser(this.props.user)
-  }
+  // componentDidMount() {
+  //   this.props.loadTransactionsOnToUser(this.props.user)
+  // }
 
   render() {
     return (
@@ -36,9 +36,9 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadTransactionsOnToUser(user) {
-      dispatch(getTransactionsOnToUser(user));
-    },
+    // loadTransactionsOnToUser(user) {
+    //   dispatch(getTransactionsOnToUser(user));
+    // },
   };
 };
 

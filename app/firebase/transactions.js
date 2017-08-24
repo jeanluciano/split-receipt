@@ -78,14 +78,51 @@ export const firebaseCreateTransaction = async function(friend, user) {
   
 }
 
-// export firebaseGetTransaction = async function (user) {
+export const firebaseGetTransactionsHelper = (transactionsObj) => {
+  try {
+    const transactionsPromiseArray = [];
+    for(key in transactionsObj){
+      transactionsPromiseArray.push(
+      firebase.database().ref()
+        .child('transactions')
+        .child(key)
+        .once('value')
+        .then(function(snapShot) {
+          transaction = {}
+          transaction = snapShot.val();
+          transaction.id = snapShot.key;
+          return transaction;
+
+        })
+        .catch(console.error)
+      )
+    }
+    return Promise.all(transactionsPromiseArray)
+
+  } catch (e){
+    throw e;
+  }
+}
+
+// export const firebaseGetTransactions = async function (user) {
 //   try {
-//     firebase.database.ref()
-//       .child('transactions')
-//       .child()
-//   } catch () {
-//     console.log('FIREBASE GET TRANSACTION', error)
+
+//     if(user.to)  await firebaseGetTransactionsHelper(user.to)
+//       .then(toTransactions => {
+//         console.log('FIREBASE GET TO TRANSACTIONS', toTransactions)
+//         user.to = toTransactions
+//       })
+//     if(user.from) await firebaseGetTransactionsHelper(user.from)
+//       .then(fromTransactions => {
+//         user.from = fromTransactions
+//         console.log('FIREBASE GET FROM TRANSACTIONS', user)
+//       })
+//     return user
+
+//   } catch (error) {
+//     console.log('FIREBASE GET TRANSACTIONS', error)
 //     return error
+
 //   }
 // }
 
