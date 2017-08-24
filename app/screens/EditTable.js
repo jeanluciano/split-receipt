@@ -17,10 +17,10 @@ class EditTable extends Component {
     super();
     this.state = {
       itemName: '',
-      itemPrice: ''
+      itemPrice: '',
     };
     this.onDeleteHandle = this.onDeleteHandle.bind(this);
-    this.onAddHandle = this.onAddHandle.bind(this)
+    this.onAddHandle = this.onAddHandle.bind(this);
   }
 
   stretcher() {
@@ -34,17 +34,17 @@ class EditTable extends Component {
     }
   }
 
-  onAddHandle(){
-    if(this.state.itemName && this.state.itemPrice){
+  onAddHandle() {
+    if (this.state.itemName && this.state.itemPrice) {
       let newItem = {
         item: this.state.itemName,
-        price: this.state.itemPrice
-      }
-      this.props.addItem(newItem)
+        price: this.state.itemPrice,
+      };
+      this.props.addItem(newItem);
       this.setState({
         itemName: '',
-        itemPrice: ''
-      })
+        itemPrice: '',
+      });
     }
   }
 
@@ -59,7 +59,7 @@ class EditTable extends Component {
 
   render() {
     const receiptData = this.props.receiptData;
-    console.log('Receipt props from store----', receiptData)
+
     return (
       <View style={styles.viewcontainer}>
         <ScrollView contentContainerStyle={styles.container}>
@@ -68,7 +68,18 @@ class EditTable extends Component {
             style={styles.background}
             height={this.stretcher()}
           >
-            <Text style={styles.header}>Is this right?</Text>
+            <View style={styles.headerContainer}>
+              <Icon
+                style={styles.redo}
+                size={30}
+                name="redo"
+                type="evilicon"
+                color="black"
+                onPress={() => this.props.navigation.navigate('Camera')}
+              />
+              <Text style={styles.header}>Is this right?</Text>
+            </View>
+
             <List>
               {receiptData.map(item =>
                 <View style={styles.listItem}>
@@ -95,18 +106,18 @@ class EditTable extends Component {
               )}
               <View style={styles.listItem}>
                 <TextInput
-                  placeholder='Item Name'
+                  placeholder="Item Name"
                   placeholderTextColor={'#5e5e5e'}
                   value={this.state.itemName}
-                  onChangeText={text => this.setState({itemName:text})}
+                  onChangeText={text => this.setState({ itemName: text })}
                 />
                 <TextInput
-                  placeholder='Item Price'
+                  placeholder="Item Price"
                   keyboardType="numeric"
                   value={this.state.itemPrice}
                   maxLength={5}
                   placeholderTextColor={'#5e5e5e'}
-                  onChangeText={text => this.setState({itemPrice: text})}
+                  onChangeText={text => this.setState({ itemPrice: text })}
                 />
                 <Icon
                   size={30}
@@ -156,6 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontStyle: 'italic',
     textAlign: 'center',
+    padding: 15
   },
   listItem: {
     flexDirection: 'row',
@@ -174,6 +186,9 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: 'grey',
     borderWidth: 1,
+  },
+  headerContainer: {
+    flexDirection: 'row',
   },
 });
 
