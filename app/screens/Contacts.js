@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { SearchBar, List, ListItem, Button } from 'react-native-elements';
+import { View, StyleSheet, Text } from 'react-native';
+import {
+  SearchBar,
+  List,
+  ListItem,
+  Button,
+  Badge,
+  Icon,
+} from 'react-native-elements';
 import { connect } from 'react-redux';
-import { addFriend } from '../redux/friends';
+import { addFriend, deleteFriend } from '../redux/friends';
 import { deleteContact } from '../redux/contacts';
 // import fakeContacts from './components/fakecontacts';
 
@@ -14,6 +21,7 @@ class contacts extends Component {
     };
     this.onAddHandle = this.onAddHandle.bind(this);
     this.completeHandle = this.completeHandle.bind(this);
+    this.onRemoveFriend = this.onRemoveFriend.bind(this)
   }
 
   onAddHandle(selectedContact) {
@@ -32,13 +40,19 @@ class contacts extends Component {
     }
     const { myContacts } = this.props;
     const regex = new RegExp(`${query.trim()}`, 'i');
-    return myContacts.filter(contact => (
-      contact.givenName.search(regex) >= 0 ||
-        contact.givenName.search(regex) >= 0
-    ));
+    return myContacts.filter(
+      contact =>
+        contact.givenName.search(regex) >= 0 ||
+        contact.givenName.search(regex) >= 0,
+    );
+  }
+
+  onRemoveFriend(friend){
+    this.props.deleteFriend(friend)
   }
 
   render() {
+    console.log(this.props.friends)
     const { query } = this.state;
     const contacts = this.findContacts(query);
     return (
@@ -52,7 +66,6 @@ class contacts extends Component {
         />
         <List containerStyle={styles.searchContainer}>
           {contacts.map((contact, ind) => {
-            
             return (
               <ListItem
                 key={ind}
@@ -66,11 +79,32 @@ class contacts extends Component {
             );
           })}
         </List>
+        
+        <View style={styles.friendsContainer}>
+        {this.props.friends.map((friend, ind) => {
+          return (
+            <Badge 
+            key={ind}
+            containerStyle={styles.badge}>
+              <Text>
+                {friend.givenName}
+              </Text>
+              <Icon size={20} name="close" 
+              type="evilicon" 
+              color="black"
+              onPress={() => this.onRemoveFriend(friend)}
+              underlayColor='transparent'
+               />
+            </Badge>
+          )
+        })}
+      </View>
+        
         <Button
           title="That's everybody!"
           backgroundColor="#03BD5B"
           containerViewStyle={styles.button}
-          borderRadius={20}
+          borderRadius={25}
           onPress={this.completeHandle}
         />
       </View>
@@ -82,12 +116,12 @@ const styles = StyleSheet.create({
   contacts: {
     flex: 1,
     backgroundColor: '#3D4D65',
-    paddingTop: '20%'
+    paddingTop: '20%',
   },
   searchContainer: {
     borderTopWidth: 0,
-    height: '70%',
-    backgroundColor: '#3D4D65'
+    height: '60%',
+    backgroundColor: '#3D4D65',
   },
   SearchBar: {
     backgroundColor: '#3D4D65',
@@ -101,11 +135,26 @@ const styles = StyleSheet.create({
     color: '#8493A8',
   },
   button: {
-    borderRadius: 5,
+    marginBottom:40
+
   },
+  friendsContainer: {
+    height:'15%',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    paddingRight: 20,
+    paddingLeft: 20,
+  },
+  badge: {
+    flexDirection: 'row',
+    backgroundColor: '#0081D5',
+    margin: 5
+  }
 });
 
-const mapState = ({ myContacts }) => ({ myContacts });
-const mapDispatch = { addFriend, deleteContact };
+const mapState = ({ myContacts, friends }) => ({ myContacts, friends });
+const mapDispatch = { addFriend, deleteContact, deleteFriend };
 
 export default connect(mapState, mapDispatch)(contacts);
