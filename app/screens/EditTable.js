@@ -10,15 +10,17 @@ import {
 import { List, ListItem, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { width, height } from 'react-native-dimension';
-import { putReceipt, removeItem } from '../redux/receipt';
+import { putReceipt, removeItem, addItem } from '../redux/receipt';
 
 class EditTable extends Component {
   constructor() {
     super();
     this.state = {
-      why: 'shut the fuck up linter',
+      itemName: '',
+      itemPrice: ''
     };
-    this.onDeleteHandle = this.onDeleteHandle.bind(this)
+    this.onDeleteHandle = this.onDeleteHandle.bind(this);
+    this.onAddHandle = this.onAddHandle.bind(this)
   }
 
   stretcher() {
@@ -29,6 +31,20 @@ class EditTable extends Component {
     if (!isNaN(price)) {
       item.price = price;
       this.props.putReceipt(item);
+    }
+  }
+
+  onAddHandle(){
+    if(this.state.itemName && this.state.itemPrice){
+      let newItem = {
+        item: this.state.itemName,
+        price: this.state.itemPrice
+      }
+      this.props.addItem(newItem)
+      this.setState({
+        itemName: '',
+        itemPrice: ''
+      })
     }
   }
 
@@ -43,6 +59,7 @@ class EditTable extends Component {
 
   render() {
     const receiptData = this.props.receiptData;
+    console.log('Receipt props from store----', receiptData)
     return (
       <View style={styles.viewcontainer}>
         <ScrollView contentContainerStyle={styles.container}>
@@ -76,6 +93,29 @@ class EditTable extends Component {
                   />
                 </View>,
               )}
+              <View style={styles.listItem}>
+                <TextInput
+                  placeholder='Item Name'
+                  placeholderTextColor={'#5e5e5e'}
+                  value={this.state.itemName}
+                  onChangeText={text => this.setState({itemName:text})}
+                />
+                <TextInput
+                  placeholder='Item Price'
+                  keyboardType="numeric"
+                  value={this.state.itemPrice}
+                  maxLength={5}
+                  placeholderTextColor={'#5e5e5e'}
+                  onChangeText={text => this.setState({itemPrice: text})}
+                />
+                <Icon
+                  size={30}
+                  name="plus"
+                  type="evilicon"
+                  color="black"
+                  onPress={() => this.onAddHandle()}
+                />
+              </View>
             </List>
           </Image>
         </ScrollView>
@@ -143,6 +183,6 @@ const mapToState = store => {
   };
 };
 
-const mapDispatch = { putReceipt, removeItem };
+const mapDispatch = { putReceipt, removeItem, addItem };
 
 export default connect(mapToState, mapDispatch)(EditTable);
