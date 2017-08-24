@@ -2,7 +2,6 @@ import {
   firebaseCreateTransaction,
   firebaseUpdateTransaction,
   firebaseDestroy,
-  firebaseGetTransactions,
 } from '../firebase/transactions';
 import { updateUser } from './auth';
 
@@ -43,19 +42,6 @@ export default function transactionsReducer(transactions = [], action) {
 /**
  * THUNK CREATORS
  */
-// export const getTransactionsOnToUser = (user) =>
-//   dispatch =>
-//     firebaseGetTransactions(user)
-//       .then(user => {
-//         console.log('GET TRANSACTIONS THUNK', updateUser)
-//         dispatch(updateUser(user))
-//       })
-//       .catch((error) => {
-//         console.log('GET TRANSACTIONS THUNK', error)
-//         return dispatch(createTransaction({ error }))
-//       });
-
-
 export const addTransaction = (friend, user) =>
   dispatch =>
     firebaseCreateTransaction(friend, user)

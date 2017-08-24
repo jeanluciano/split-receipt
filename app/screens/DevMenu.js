@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
-import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import Nav from './components/Nav';
 import { login } from '../redux/auth';
 import { getContacts } from '../redux/contacts';
 import { friends } from '../../tests/testData';
 import { sendDummyText } from '../../tests/testMethods'
-import { updateFriends } from '../redux/friends';
 import { loadFakeData } from '../redux/receipt'
 import { masterStyle } from '../values/stylesheet'
 
@@ -103,9 +100,9 @@ class DevMenu extends Component {
   }
 }
 
-const mapState = store => {
+const mapState = (state) => {
   return {
-    receiptData: store.receipt.receiptData,
+    receiptData: state.receipt.receiptData,
   };
 };
 const mapDispatch = { loadFakeData, login, getContacts, sendDummyText };

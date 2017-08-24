@@ -1,11 +1,10 @@
 import firebase from 'firebase';
 import { validateShape } from './validation';
-import { firebaseGetTransactionsHelper } from './transactions';
+import { firebaseGetTransactions } from './transactions';
 
 
 // GET AND CONVERT FIREBASE USER TO STORE USER
 export const reformatUser = async function (userId) {
-  console.log('reformatUser', userId)
   let user = {}
   await firebase.database().ref()
     .child('users')
@@ -16,17 +15,14 @@ export const reformatUser = async function (userId) {
       return user
     })
     .then(async () => {
-      if(user.to) await firebaseGetTransactionsHelper(user.to)
+      if(user.to) await firebaseGetTransactions(user.to)
         .then(toTransactions => {
-          console.log('FIREBASE GET TO TRANSACTIONS', toTransactions)
           user.to = toTransactions
         })
-      if(user.from) await firebaseGetTransactionsHelper(user.from)
+      if(user.from) await firebaseGetTransactions(user.from)
         .then(fromTransactions => {
           user.from = fromTransactions
-          console.log('FIREBASE GET FROM TRANSACTIONS', user)
         })
-      // firebaseGetTransactions(transaction)
     })
     .catch(console.log)
   return user;
@@ -60,13 +56,11 @@ export const firebaseUpdateUserFrom = async function (userId, transactionId, sta
   }
 }
 
-
 export const firebaseLogIn = async function (email, password) {
   try {
     let user = {}
     const firebaseUser = await firebase.auth().signInWithEmailAndPassword(email, password)
     return await reformatUser(firebaseUser.uid);
-    // user = await user.to.firebaseGetTransaction(user);
     return user;
 
   } catch (error) {

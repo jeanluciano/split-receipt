@@ -46,21 +46,19 @@ export const logout = () =>
       .then(() => dispatch(removeUser()))
 
 export const signup = (email, password, givenName, familyName) =>
-  (dispatch) => {
-    console.log(email, password, givenName, familyName);
+  (dispatch) =>
     firebaseSignUp(email, password, givenName, familyName)
       .then(user => dispatch(updateUser(user)))
-      .catch(error => console.error(error))
-  }
+      .catch(console.error)
 
 export const userUpdate = (userId, property) =>
   dispatch =>
     firebaseUpdateUser(userId, property)
       .then(user => dispatch(updateUser(user)))
-      .catch(error => console.error(error))
+      .catch(console.error)
 
 export const updateUserFrom = (userId, transactionId, status) =>
   dispatch =>
     firebaseUpdateUserFrom(userId, transactionId, status)
       .then(user => dispatch(updateUser(user)))
-      .catch(error => console.error(error))
+      .catch(console.error)
