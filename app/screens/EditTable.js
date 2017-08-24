@@ -53,26 +53,26 @@ class EditTable extends Component {
           >
             <Text style={styles.header}>Is this right?</Text>
             <List>
-              {receiptData.map(receipt =>
+              {receiptData.map(item =>
                 <View style={styles.listItem}>
                   <TextInput
-                    placeholder={`${receipt.item}`}
+                    placeholder={`${item.item}`}
                     placeholderTextColor={'#5e5e5e'}
-                    onChangeText={text => this.onFixName(text, receipt)}
+                    onChangeText={text => this.onFixName(text, item)}
                   />
                   <TextInput
-                    placeholder={`${receipt.price}`}
+                    placeholder={`${item.price}`}
                     keyboardType="numeric"
                     maxLength={5}
                     placeholderTextColor={'#5e5e5e'}
-                    onChangeText={text => this.onFixPrice(text, receipt)}
+                    onChangeText={text => this.onFixPrice(text, item)}
                   />
                   <Icon
                     size={30}
                     name="close-o"
                     type="evilicon"
                     color="black"
-                    onPress={() => this.onDeleteHandle(receipt)}
+                    onPress={() => this.onDeleteHandle(item)}
                   />
                 </View>,
               )}
