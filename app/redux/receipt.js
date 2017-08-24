@@ -5,11 +5,17 @@ import FakeReceipt from '../screens/components/fakeReceipt';
  */
 const UPDATE_RECEIPT_DATA = 'UPDATE_RECEIPT_DATA';
 const FIX_PRICE = 'FIX_PRICE';
+const DELETE_ITEM = 'DELETE_ITEM'
 
 const updateReceipt = receiptData => ({
   type: UPDATE_RECEIPT_DATA,
   receiptData,
 });
+
+const deleteItem = item => ({
+  type: DELETE_ITEM, 
+  item
+})
 
 const fixPrice = receipt => ({
   type: FIX_PRICE,
@@ -35,7 +41,13 @@ export default function receiptReducer(receipt = initialReceipt, action) {
       return Object.assign({}, receipt, {
         receiptData: receipt.receiptData.map((item) => {
           return (item.id === action.receipt.id) ? action.receipt : item
-        }),
+        })
+      });
+    case DELETE_ITEM:
+      return Object.assign({}, receipt, {
+        receiptData: receipt.receiptData.filter((item) => {
+          return item.id !== action.item.id
+        })
       });
     default:
       return receipt;
@@ -66,5 +78,12 @@ export const putReceipt = function (receiptData) {
 export const loadFakeData = function () {
   return function thunk(dispatch) {
     dispatch(updateReceiptThunkCreator(FakeReceipt))
+  }
+};
+
+
+export const removeItem = function (item) {
+  return function thunk(dispatch) {
+    dispatch(deleteItem(item))
   }
 };
