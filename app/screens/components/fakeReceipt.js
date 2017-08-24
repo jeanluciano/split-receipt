@@ -1,7 +1,7 @@
 const fakeReceipt = [
   {
     price: 10.95,
-    item: 'SF Brocc-CHX',
+    item: 'SF Brocc-CHXe',
     duplicity: 1,
     id: 122095,
   },

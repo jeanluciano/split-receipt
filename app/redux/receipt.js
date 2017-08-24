@@ -5,7 +5,13 @@ import FakeReceipt from '../screens/components/fakeReceipt';
  */
 const UPDATE_RECEIPT_DATA = 'UPDATE_RECEIPT_DATA';
 const FIX_PRICE = 'FIX_PRICE';
-const DELETE_ITEM = 'DELETE_ITEM'
+const DELETE_ITEM = 'DELETE_ITEM';
+const CREATE_ITEM = 'CREATE_ITEM';
+
+const createItem = item => ({
+  type: CREATE_ITEM,
+  item,
+});
 
 const updateReceipt = receiptData => ({
   type: UPDATE_RECEIPT_DATA,
@@ -13,9 +19,9 @@ const updateReceipt = receiptData => ({
 });
 
 const deleteItem = item => ({
-  type: DELETE_ITEM, 
-  item
-})
+  type: DELETE_ITEM,
+  item,
+});
 
 const fixPrice = receipt => ({
   type: FIX_PRICE,
@@ -39,21 +45,21 @@ export default function receiptReducer(receipt = initialReceipt, action) {
       return Object.assign({}, receipt, { receiptData: action.receiptData });
     case FIX_PRICE:
       return Object.assign({}, receipt, {
-        receiptData: receipt.receiptData.map((item) => {
-          return (item.id === action.receipt.id) ? action.receipt : item
-        })
+        receiptData: receipt.receiptData.map(item => (item.id === action.receipt.id ? action.receipt : item)),
+      });
+    case CREATE_ITEM:
+      console.log(action.item)
+      return Object.assign({}, receipt, {
+        receiptData: [...receipt.receiptData, action.item]
       });
     case DELETE_ITEM:
       return Object.assign({}, receipt, {
-        receiptData: receipt.receiptData.filter((item) => {
-          return item.id !== action.item.id
-        })
+        receiptData: receipt.receiptData.filter(item => item.id !== action.item.id),
       });
     default:
       return receipt;
   }
 }
-
 
 /**
  * THUNK CREATORS
@@ -71,19 +77,24 @@ export const updateReceiptThunkCreator = receiptData => (dispatch) => {
 
 export const putReceipt = function (receiptData) {
   return function thunk(dispatch) {
-    dispatch(fixPrice(receiptData))
+    dispatch(fixPrice(receiptData));
   };
 };
 
 export const loadFakeData = function () {
   return function thunk(dispatch) {
-    dispatch(updateReceiptThunkCreator(FakeReceipt))
-  }
+    dispatch(updateReceiptThunkCreator(FakeReceipt));
+  };
 };
-
 
 export const removeItem = function (item) {
   return function thunk(dispatch) {
-    dispatch(deleteItem(item))
-  }
+    dispatch(deleteItem(item));
+  };
+};
+
+export const addItem = function (item) {
+  return function thunk(dispatch) {
+    dispatch(createItem(item));
+  };
 };
