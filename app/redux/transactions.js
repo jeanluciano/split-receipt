@@ -2,8 +2,8 @@ import {
   firebaseCreateTransaction,
   firebaseUpdateTransaction,
   firebaseDestroy,
-  firebaseGetTransactions,
-} from '../firebase/transactions'
+} from '../firebase/transactions';
+import { updateUser } from './auth';
 
 /**
  * ACTION TYPES
@@ -42,12 +42,6 @@ export default function transactionsReducer(transactions = [], action) {
 /**
  * THUNK CREATORS
  */
-export const getTransactionsOnToUser = (userId) =>
-  dispatch =>
-    firebaseGetTransactions(userId)
-      .then(transactions => dispatch(readTransaction()))
-
-
 export const addTransaction = (friend, user) =>
   dispatch =>
     firebaseCreateTransaction(friend, user)

@@ -1,7 +1,9 @@
 import firebase from 'firebase';
 import { validateShape } from './validation';
-import { firebaseGetTransaction } from './transactions';
+import { firebaseGetTransactions } from './transactions';
 
+
+// GET AND CONVERT FIREBASE USER TO STORE USER
 export const reformatUser = async function (userId) {
   let user = {}
   await firebase.database().ref()
@@ -10,11 +12,23 @@ export const reformatUser = async function (userId) {
     .once('value', function(snapShot) {
       user = snapShot.val();
       user.id = snapShot.key;
+      return user
+    })
+    .then(async () => {
+      if(user.to) await firebaseGetTransactions(user.to)
+        .then(toTransactions => {
+          user.to = toTransactions
+        })
+      if(user.from) await firebaseGetTransactions(user.from)
+        .then(fromTransactions => {
+          user.from = fromTransactions
+        })
     })
     .catch(console.log)
   return user;
 }
 
+// GENERAL UPDATE FUNCTION
 export const firebaseUpdateUser = async function (userId, property) {
   if(property) await firebase.database().ref()
     .child('users')
@@ -24,6 +38,7 @@ export const firebaseUpdateUser = async function (userId, property) {
   return await reformatUser(userId);
 }
 
+// SPECIFIC UPDATE FUNCTION: FROM_TRANSACTIONS
 export const firebaseUpdateUserFrom = async function (userId, transactionId, status) {
   try {
     firebase.database().ref()
@@ -41,19 +56,11 @@ export const firebaseUpdateUserFrom = async function (userId, transactionId, sta
   }
 }
 
-
 export const firebaseLogIn = async function (email, password) {
   try {
     let user = {}
     const firebaseUser = await firebase.auth().signInWithEmailAndPassword(email, password)
-    await firebase.database().ref()
-      .child('users')
-      .child(firebaseUser.uid)
-      .once('value', function(snapShot) {
-        user = snapShot.val();
-        user.id = snapShot.key;
-      });
-    // user = await user.to.firebaseGetTransaction(user);
+    return await reformatUser(firebaseUser.uid);
     return user;
 
   } catch (error) {
