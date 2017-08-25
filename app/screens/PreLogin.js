@@ -46,7 +46,7 @@ class Login extends Component {
             onPress={() => this.props.handleLogIn(
               this.state.emailText,
               this.state.passwordText,
-              this.props.navigation.navigate
+              this.props.navigation.navigate('Login')
             )}
           />
         </View>
