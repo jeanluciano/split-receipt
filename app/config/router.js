@@ -13,8 +13,8 @@ import Stack from '../screens/Stack';
 import EditTable from '../screens/EditTable';
 import Transactions from '../screens/Transactions';
 import Animate from '../screens/Animate';
-import Explanation1 from '../screens/components/Initial/Explanation4';
-import Splash from '../screens/Splash';
+import InnerLogin from '../screens/components/Entry/Login';
+import Splash from '../screens/components/Entry/Splash';
 import PreLogin from '../screens/PreLogin';
 
 
@@ -30,11 +30,17 @@ const WebViews = StackNavigator({
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
-  DevMenu: {
-    screen: menuify(DevMenu),
-  },
   PreLogin: {
     screen: PreLogin,
+  },
+  InnerLogin: {
+    screen: InnerLogin,
+  },
+  Splash: {
+    screen: Splash,
+  },
+  DevMenu: {
+    screen: menuify(DevMenu),
   },
   Login: {
     screen: Login,

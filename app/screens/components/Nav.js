@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 const Nav = ({ navigation }) => {
 
   return (
+    <View>
     <Icon
       name="navicon"
       type="evilicon"
@@ -14,6 +15,7 @@ const Nav = ({ navigation }) => {
       style={styles.navicon}
       onPress={() => navigation.navigate('DrawerOpen')}
     />
+    </View>
   );
 };
 
@@ -26,9 +28,9 @@ Nav.propTypes = {
 const styles = StyleSheet.create({
 
   navicon: {
-    paddingTop: '9%',
-    paddingLeft: '7%',
-    paddingBottom: '2%',
+    marginTop: '9%',
+    marginLeft: '7%',
+    marginBottom: '2%',
   },
 
 });

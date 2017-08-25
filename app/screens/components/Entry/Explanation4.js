@@ -2,71 +2,47 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { Icon } from 'react-native-elements';
+import styles from './style';
+import { colors } from '../../../values/stylesheet';
 
 
 export default class FourthExplanation extends Component {
+
   constructor() {
     super();
   }
 
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: '#374355'}}>
-        <View  style={styles.topView}>
+      <View style={styles.topView}>
+        <View  style={styles.animationsView}>
         <Animatable.View animation="pulse" iterationCount={Infinity} duration={2000} style={styles.navicon} >
           <Icon
             name="people"
             type="simple-line-icon"
-            color="#a9b9ca"
-            size={96}
+            color={colors.splitGray}
+            size={65}
             raised={true}
-            style={styles.navicon}
+            style={styles.default}
           />
         </Animatable.View>
         <Animatable.View animation="flash" iterationCount={Infinity} delay={100} duration={2000} style={styles.navicon} >
           <Icon
             name="comment-alert-outline"
             type="material-community"
-            color="#FFB6E5"
+            color={colors.splitGold}
             size={43}
             raised={true}
-            style={styles.navicon}
+            style={styles.default}
           />
         </Animatable.View>
         </View>
-        <View style={{flex: 1, alignItems: 'center'}}>
-        <Text style={styles.titleText}>Don't worry about geting paid back.</Text>
+        <View style={styles.textView}>
+        <Text style={styles.titleText}>Reminders.</Text>
         <Text style={styles.descriptionText}>Cutomizable reminder settings and automatic alerts allow you to ping your friends until you are paid back what you are owed.</Text>
         </View>
       </View>
+
     );
   }
 };
-
-
-const styles = StyleSheet.create({
-
-  topView: {
-    flex: 1,
-    alignItems: 'flex-end',
-    paddingBottom: '7%',
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  titleText: {
-    color: '#fff',
-    justifyContent: 'flex-start',
-    padding: 0,
-    margin: 0,
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  descriptionText: {
-    paddingLeft: '10%',
-    paddingRight: '10%',
-    paddingTop: '3%',
-    textAlign: 'center',
-    color: '#a9b9ca',
-  }
-
-});
