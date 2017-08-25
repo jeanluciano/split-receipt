@@ -11,7 +11,7 @@ export default class SecondExplanation extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: '#374355' }}>
+      <View style={{ flex: 1 }}>
         <View style={styles.topView}>
           <Animatable.View animation="bounceInLeft" iterationCount={Infinity} duration={2000} >
             <Icon

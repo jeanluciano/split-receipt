@@ -14,3 +14,9 @@ silver - c0c0c0
 
 eef1f6
 #b4bdca
+
+gold - #D7CABD
+final blue - #7c96ff
+silver = #c6cacd
+background blue - '#374355'
+

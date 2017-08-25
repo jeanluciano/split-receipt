@@ -6,6 +6,7 @@ import { login, signup } from '../redux/auth';
 import { masterStyle, colors } from '../values/stylesheet';
 import Splash from './Splash';
 import { height } from 'react-native-dimension';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 
@@ -37,7 +38,7 @@ class Login extends Component {
     else if(user.id) navigation.navigate('LinkAccounts');
 
     return (
-      <View style={{ flex: 1, backgroundColor: '#374355' }}>
+      <LinearGradient colors={['#232526', '#414345']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, backgroundColor: '#374355' }}>
       {
         this.state.showPagination ? <Splash style={{height: height(50)}}/> : <View style={{height: height(50)}}><Text style={styles.titleText}> Split.</Text><Text style={styles.descriptionText}> Welcome back!</Text></View>
       }
@@ -69,7 +70,8 @@ class Login extends Component {
           }
           <Button
             title="Log In"
-            backgroundColor={'#FFB6E5'}
+            color="#374355"
+            backgroundColor="#D7CABD"
             borderRadius={10}
             style={styles.loginButton}
             onPress={() => this.props.handleLogIn(
@@ -80,13 +82,13 @@ class Login extends Component {
           />
           <Button
             title="Sign Up"
-            backgroundColor={'#374355'}
+            backgroundColor="transparent"
             style={styles.signupButton}
             borderRadius={10}
             onPress={() => navigation.navigate('Signup')}
           />
         </View>
-      </View>
+      </LinearGradient>
     );
   };
 }

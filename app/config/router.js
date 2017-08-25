@@ -30,11 +30,11 @@ const WebViews = StackNavigator({
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
-  DevMenu: {
-    screen: menuify(DevMenu),
-  },
   PreLogin: {
     screen: PreLogin,
+  },
+  DevMenu: {
+    screen: menuify(DevMenu),
   },
   Login: {
     screen: Login,

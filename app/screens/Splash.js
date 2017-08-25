@@ -42,7 +42,7 @@ var swiper = React.createClass({
   render: function () {
 
     return (
-      <Swiper style={styles.wrapper} showsButtons={false} loop={false} showsPagination={true}>
+      <Swiper style={styles.wrapper} showsButtons={false} loop={false} activeDotColor="#7c96ff" showsPagination={true}>
       <Title />
       <Explanation1 />
       <Explanation2 />

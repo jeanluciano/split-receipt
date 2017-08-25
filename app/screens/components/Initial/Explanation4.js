@@ -11,7 +11,7 @@ export default class FourthExplanation extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: '#374355'}}>
+      <View style={{flex: 1 }}>
         <View  style={styles.topView}>
         <Animatable.View animation="pulse" iterationCount={Infinity} duration={2000} style={styles.navicon} >
           <Icon

@@ -11,13 +11,13 @@ export default class FirstExplanation extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: '#374355'}}>
+      <View style={{flex: 1}}>
         <View style={styles.topView}>
           <Animatable.View animation="shake" iterationCount={Infinity} duration={2000} >
             <Icon
               name="shredder"
               type="material-community"
-              color="#a9b9ca"
+              color="#c6cacd"
               size={65}
               raised={true}
               style={styles.navicon}
@@ -27,7 +27,7 @@ export default class FirstExplanation extends Component {
           <Icon
             name="air"
             type="entypo"
-            color="#FFB6E5"
+            color="#D7CABD"
             size={65}
             raised={true}
             style={styles.navicon}
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     paddingRight: '10%',
     paddingTop: '3%',
     textAlign: 'center',
-    color: '#a9b9ca',
+    color: '#c6cacd',
   }
 
 });

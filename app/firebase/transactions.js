@@ -69,7 +69,7 @@ export const firebaseCreateTransaction = async function(friend, user) {
     console.log('FIREBASE CREATE TRANSACTION', error)
     return error
   }
-  
+
 }
 
 export const firebaseGetTransactions = (transactionsObj) => {
