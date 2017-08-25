@@ -37,7 +37,7 @@ export default class FirstExplanation extends Component {
           </Animatable.View>
         </View>
         <View style={styles.textView}>
-          <Text style={styles.titleText}>Split the check, simple as that.</Text>
+          <Text style={styles.titleText}>No math, ever.</Text>
           <Text style={styles.descriptionText}>Using OCR, we can extract the relevant information from any receipt and calculate the appropriate amount each person should pay based on his or her order.</Text>
         </View>
       </View>

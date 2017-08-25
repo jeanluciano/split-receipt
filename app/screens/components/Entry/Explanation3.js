@@ -46,7 +46,7 @@ export default class ThirdExplanation extends Component {
       </Animatable.View>
     </View>
         <View style={styles.textView}>
-          <Text style={styles.titleText}>Automated, pre-populated payment requests. </Text>
+          <Text style={styles.titleText}>Automated payment requests.</Text>
           <Text style={styles.descriptionText}>We pull user-specified contacts from the phone and automatically send out text messages with a link to your PayPal.Me and a pre-filled payment form with the money owed.</Text>
         </View>
       </View>

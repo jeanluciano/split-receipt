@@ -38,7 +38,7 @@ export default class FourthExplanation extends Component {
         </Animatable.View>
         </View>
         <View style={styles.textView}>
-        <Text style={styles.titleText}>Don't worry about geting paid back.</Text>
+        <Text style={styles.titleText}>Reminders.</Text>
         <Text style={styles.descriptionText}>Cutomizable reminder settings and automatic alerts allow you to ping your friends until you are paid back what you are owed.</Text>
         </View>
       </View>
