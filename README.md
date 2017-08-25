@@ -18,5 +18,7 @@ eef1f6
 gold - #D7CABD
 final blue - #7c96ff
 silver = #c6cacd
-background blue - '#374355'
+midnight city = #232526 => #414345
+white - #fff
+
 
