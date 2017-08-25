@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { Icon } from 'react-native-elements';
+import styles from './style';
+import { colors } from '../../../values/stylesheet';
 
 
 export default class ThirdExplanation extends Component {
@@ -11,15 +13,15 @@ export default class ThirdExplanation extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
       <View style={styles.topView}>
+      <View style={styles.animationsView}>
       <Animatable.View animation="slideInRight" iterationCount={Infinity} duration={2000} >
         <Icon
           name="receipt"
           type="material-community"
-          color="#FFB6E5"
+          color={colors.splitGold}
           size={65}
-          style={styles.navicon}
+          style={styles.default}
         />
       </Animatable.View>
 
@@ -27,9 +29,9 @@ export default class ThirdExplanation extends Component {
         <Icon
           name="checkbox-marked-circle-outline"
           type="material-community"
-          color="#a9b9ca"
+          color={colors.splitGray}
           size={45}
-          style={styles.navicon}
+          style={styles.default}
         />
       </Animatable.View>
 
@@ -37,13 +39,13 @@ export default class ThirdExplanation extends Component {
         <Icon
           name="money"
           type="font-awesome"
-          color="#FFB6E5"
+          color={colors.splitGold}
           size={65}
-          style={styles.navicon}
+          style={styles.default}
         />
       </Animatable.View>
     </View>
-        <View style={{ flex: 1, alignItems: 'center' }}>
+        <View style={styles.textView}>
           <Text style={styles.titleText}>Automated, pre-populated payment requests. </Text>
           <Text style={styles.descriptionText}>We pull user-specified contacts from the phone and automatically send out text messages with a link to your PayPal.Me and a pre-filled payment form with the money owed.</Text>
         </View>
@@ -51,31 +53,3 @@ export default class ThirdExplanation extends Component {
     );
   }
 };
-
-
-const styles = StyleSheet.create({
-
-  topView: {
-    flex: 1,
-    alignItems: 'flex-end',
-    paddingBottom: '7%',
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  titleText: {
-    color: '#fff',
-    justifyContent: 'flex-start',
-    padding: 0,
-    margin: 0,
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  descriptionText: {
-    paddingLeft: '10%',
-    paddingRight: '10%',
-    paddingTop: '3%',
-    textAlign: 'center',
-    color: '#a9b9ca',
-  }
-
-});
