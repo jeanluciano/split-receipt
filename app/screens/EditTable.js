@@ -11,20 +11,31 @@ import { List, ListItem, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { width, height } from 'react-native-dimension';
 import { putReceipt, removeItem, addItem } from '../redux/receipt';
-
+import roundPrecision from 'round-precision'
 class EditTable extends Component {
   constructor() {
     super();
     this.state = {
       itemName: '',
       itemPrice: '',
+      tax:0
     };
     this.onDeleteHandle = this.onDeleteHandle.bind(this);
     this.onAddHandle = this.onAddHandle.bind(this);
+    this.tipGenerator = this.tipGenerator.bind(this)
+    this.onConfirm = this.onConfirm.bind(this)
   }
 
   stretcher() {
     return 400 + this.props.receiptData.length * height(6.5);
+  }
+
+  tipGenerator(item) {
+    if(item.price){
+      let price = (item.price + (item.price * (this.state.tax * .001)))
+      return roundPrecision(price, 2)
+
+    }
   }
 
   onFixPrice(price, item) {
@@ -57,6 +68,15 @@ class EditTable extends Component {
     this.props.removeItem(item);
   }
 
+  onConfirm(){
+    this.props.receiptData.forEach(item => {
+      let price = (item.price + (item.price * (this.state.tax * .001)))
+      item.price = roundPrecision()
+      this.putReceipt(item)
+    })
+    this.props.navigation.navigate('Contacts')
+  }
+
   render() {
     const receiptData = this.props.receiptData;
 
@@ -84,14 +104,15 @@ class EditTable extends Component {
               {receiptData.map(item =>
                 <View style={styles.listItem}>
                   <TextInput
+                    style={styles.itemName}
                     placeholder={`${item.item}`}
                     placeholderTextColor={'#5e5e5e'}
                     onChangeText={text => this.onFixName(text, item)}
                   />
                   <TextInput
-                    placeholder={`${item.price}`}
+                    placeholder={`${this.tipGenerator(item)}`}
                     keyboardType="numeric"
-                    maxLength={5}
+                   
                     placeholderTextColor={'#5e5e5e'}
                     onChangeText={text => this.onFixPrice(text, item)}
                   />
@@ -128,6 +149,20 @@ class EditTable extends Component {
                 />
               </View>
             </List>
+            <View style={styles.tipContainer}>
+            <TextInput
+            style={styles.tip}
+            placeholder="Tax"
+            keyboardType="numeric"
+            value={this.state.tax}
+            maxLength={5}
+            placeholderTextColor={'#5e5e5e'}
+            onChangeText={text => this.setState({ tax: text })}
+          />
+          <Text
+          style={styles.tipText}
+          > %</Text>
+          </View>
           </Image>
         </ScrollView>
         <Button
@@ -135,7 +170,7 @@ class EditTable extends Component {
           title="Looks Good!"
           backgroundColor="#03BD5B"
           borderRadius={25}
-          onPress={() => this.props.navigation.navigate('Contacts')}
+          onPress={() => this.onConfirm()}
         />
       </View>
     );
@@ -177,6 +212,7 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: 19,
+    width: 180
   },
   button: {
     paddingBottom: 30,
@@ -186,6 +222,13 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: 'grey',
     borderWidth: 1,
+  },
+  tipContainer: {
+    flexDirection: 'row'
+  },
+  tipText: {
+    backgroundColor:'transparent',
+    fontSize: 19
   },
   headerContainer: {
     flexDirection: 'row',
