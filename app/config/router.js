@@ -16,6 +16,7 @@ import Animate from '../screens/Animate';
 import InnerLogin from '../screens/components/Entry/Login';
 import Splash from '../screens/components/Entry/Splash';
 import PreLogin from '../screens/PreLogin';
+import ModalTest from '../screens/ModalTest';
 
 
 const WebViews = StackNavigator({
@@ -30,11 +31,14 @@ const WebViews = StackNavigator({
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
-  InnerLogin: {
-    screen: InnerLogin,
+  ModalTest: {
+    screen: ModalTest,
   },
   PreLogin: {
     screen: PreLogin,
+  },
+  InnerLogin: {
+    screen: InnerLogin,
   },
   Splash: {
     screen: Splash,

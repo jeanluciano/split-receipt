@@ -7,14 +7,32 @@ import { masterStyle, colors } from '../values/stylesheet';
 import Splash from './components/Entry/Splash';
 import { height } from 'react-native-dimension';
 import LinearGradient from 'react-native-linear-gradient';
+import Modal from 'react-native-modalbox';
+import InnerLogin from './components/Entry/Login';
 
-class Login extends Component {
+class Entry extends Component {
   constructor() {
     super();
     this.state = {
       emailText: '',
       passwordText: '',
+      isOpen: false,
+      isDisabled: false,
+      swipeToClose: true,
+      sliderValue: 0.3,
     };
+  }
+
+  onClose() {
+    console.log('Modal just closed');
+  }
+
+  onOpen() {
+    console.log('Modal just openned');
+  }
+
+  onClosingState(state) {
+    console.log('the open/close of the swipeToClose just changed');
   }
 
   render() {
@@ -41,19 +59,30 @@ class Login extends Component {
             backgroundColor="transparent"
             borderRadius={10}
             style={styles.loginButton}
-            onPress={() => this.props.handleLogIn(
-              this.state.emailText,
-              this.state.passwordText,
-              this.props.navigation.navigate('Login')
-            )}
+            onPress={() => this.refs.modal1.open()}
           />
+
+          <Modal
+          zIndex= {3}
+          style={[styles.modal, styles.modal1]}
+          ref={"modal1"}
+          swipeToClose={this.state.swipeToClose}
+          onClosed={this.onClose}
+          onOpened={this.onOpen}
+          onClosingState={this.onClosingState}>
+            <InnerLogin />
+        </Modal>
+
         </View>
+
+
+
       </LinearGradient>
     );
   };
 }
 
-const mapLogin = (state) => {
+const mapState = (state) => {
   return {
     user: state.user,
   };
@@ -70,7 +99,7 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapLogin, mapDispatch)(Login);
+export default connect(mapState, mapDispatch)(Entry);
 
 var styles = StyleSheet.create({
 
