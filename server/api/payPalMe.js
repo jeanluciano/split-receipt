@@ -18,7 +18,7 @@ router.post('/', (req, res, next) => {
       from: TWILIO_PHONE_NUMBER,
       body:
         `
-        Hi ${toName}! \n${fromName} has requested payment${transaction.purpose ? (` for ${transaction.purpose}`) : ''}. \nYou have ordered: \n${transaction.items.map(item => (`${item.item} --- ${item.price}\n`))} \nTOTAL --- ${transaction.total}\nPay here: www.PayPal.Me/${payPalMe}/${amount}`,
+        Hi ${toName}! \n${fromName} has requested a payment ${transaction.purpose ? (` for ${transaction.purpose}`) : ''}. \nYou have ordered: \n${transaction.items.map(item => (`${item.item} --- ${item.price}\n`))} \nTOTAL --- ${transaction.total}\nPay here: www.PayPal.Me/${payPalMe}/${amount}`,
     })
     .then(message => console.log(destinationNumber, message.sid))
     .then(res.sendStatus(200))
