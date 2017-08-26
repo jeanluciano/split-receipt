@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
+import { Button, Icon, Divider } from 'react-native-elements';
 
 import { connect } from 'react-redux';
 import { colors } from '../../../values/stylesheet';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 class Login extends Component {
 
@@ -13,7 +15,7 @@ class Login extends Component {
 
   render() {
     return (
-      <View>
+      <LinearGradient colors={colors.splitGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.gradientView}>
         <View style={styles.logoView}>
           <Text style={styles.logoText}>Split.</Text>
           <Text style={styles.builtWithText}>built with <View style={{ height: 12, width: 30 }}><Icon
@@ -23,7 +25,8 @@ class Login extends Component {
             style={styles.navicon}
           /></View>by JRJ</Text>
         </View>
-      </View>
+        <Divider />
+      </LinearGradient>
     );
   }
 
@@ -32,11 +35,19 @@ class Login extends Component {
 
 const styles = StyleSheet.create({
 
+  gradientView: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+
   logoText: {
-    color: 'black',
+    color: colors.splitWhite,
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 30,
+    marginTop: '15%',
+    marginBottom: '1%',
+    alignItems: 'center',
   },
 
   builtWithText: {
@@ -47,11 +58,16 @@ const styles = StyleSheet.create({
   },
 
   logoView: {
-    borderWidth: 1,
-    borderStyle: 'dashed',
+    // borderBottomWidth: 1,
+    borderStyle: 'solid',
+    borderBottomColor: colors.splitGold,
     marginLeft: '5%',
     marginRight: '5%',
-  }
+  },
+
+  dividerStyle: {
+    borderStyle: 'dashed',
+  },
 
 
 });

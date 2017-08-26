@@ -8,8 +8,6 @@ import Splash from './components/Entry/Splash';
 import { height } from 'react-native-dimension';
 import LinearGradient from 'react-native-linear-gradient';
 
-
-
 class Login extends Component {
   constructor() {
     super();
@@ -25,7 +23,7 @@ class Login extends Component {
     else if (user.id) navigation.navigate('LinkAccounts');
 
     return (
-      <LinearGradient colors={colors.splitGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, backgroundColor: '#374355' }}>
+      <LinearGradient colors={colors.splitGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1}}>
         <Splash style={{ height: height(80) }} />
 
         <View style={{ height: height(20) }}>
@@ -75,10 +73,13 @@ const mapDispatch = (dispatch) => {
 export default connect(mapLogin, mapDispatch)(Login);
 
 var styles = StyleSheet.create({
+
+
   loginButton: {
     marginLeft: '10%',
     marginRight: '10%',
   },
+
   signupButton: {
     marginLeft: '10%',
     marginRight: '10%',
