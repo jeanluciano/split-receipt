@@ -40,6 +40,7 @@ export const sendText = (transactions, user) => (dispatch) => {
       destinationNumber,
       payPalMe,
       amount,
+      transaction,
     }).then(() => dispatch(putTransaction(transaction, { status: REQUESTED })))
       .then(() => dispatch(updateUserFrom(user.id, transaction.id, REQUESTED)))
       .then(() => firebaseUpdateToUser(phone, transaction.id, REQUESTED))
