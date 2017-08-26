@@ -62,7 +62,7 @@ class ReceiptPicture extends Component {
         >
           <Icon name="camera" size={70} color="white"
           underlayColor="transparent"
-          onPress={this.takePicture.bind(this)}/>
+          onPress={() => this.takePicture()}/>
         </LinearGradient>
       </Camera>
     );
