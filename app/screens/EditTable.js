@@ -70,8 +70,8 @@ class EditTable extends Component {
   onConfirm() {
     this.props.receiptData.forEach(item => {
       let price = item.price + item.price * (this.state.tax * 0.001);
-      item.price = roundPrecision();
-      this.putReceipt(item);
+      item.price = roundPrecision(price, 2);
+      this.props.putReceipt(item);
     });
     this.props.navigation.navigate("Contacts");
   }
