@@ -40,8 +40,8 @@ class DevMenu extends Component {
           title="Login with Dummy"
           color="#841584"
           onPress={() => this.props.login(
-            'jason@one.com',
-            'Jasonone')
+            'ross@friends.com',
+            'Rossfriends')
           }
         />
         <Button
@@ -58,8 +58,8 @@ class DevMenu extends Component {
             this.props.loadFakeData();
             navigate('Stack');
             this.props.login(
-              'jason@one.com',
-              'Jasonone')
+              'ross@friends.com',
+              'Rossfriends')
           }}
         />
         <Button
@@ -69,8 +69,8 @@ class DevMenu extends Component {
             this.props.loadFakeData();
             navigate('Contacts');
             this.props.login(
-              'jason@one.com',
-              'Jasonone');
+              'ross@friends.com',
+              'Rossfriends');
           }}
         />
         <Button
@@ -80,8 +80,8 @@ class DevMenu extends Component {
             this.props.loadFakeData();
             navigate('Landing');
             this.props.login(
-              'jason@one.com',
-              'Jasonone');
+              'ross@friends.com',
+              'Rossfriends');
           }}
         />
         <Button
@@ -91,8 +91,8 @@ class DevMenu extends Component {
             this.props.loadFakeData()
             navigate('EditTable');
             this.props.login(
-              'jason@one.com',
-              'Jasonone')
+              'ross@friends.com',
+              'Rossfriends')
           }}
         />
       </View>
