@@ -150,7 +150,7 @@ class EditTable extends Component {
                 />
               </View>
             </List>
-            <View style={styles.tipContainer}>
+{/*            <View style={styles.tipContainer}>
               <TextInput
                 style={styles.tip}
                 placeholder="Tax"
@@ -160,8 +160,7 @@ class EditTable extends Component {
                 placeholderTextColor={"#5e5e5e"}
                 onChangeText={text => this.setState({ tax: text })}
               />
-              <Text style={styles.tipText}> %</Text>
-            </View>
+            </View>*/}
           </Image>
         </ScrollView>
         <Button
