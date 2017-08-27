@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
+import LinearGradient from 'react-native-linear-gradient';
 import { login, signup } from '../redux/auth';
 import { masterStyle, colors } from '../values/stylesheet'
 
@@ -23,37 +24,43 @@ class Login extends Component {
     else if (user.id) this.props.navigation.navigate('LinkAccounts');
 
     return (
-      <View style={masterStyle.body} >
+      <LinearGradient colors={colors.splitGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, backgroundColor: '#374355' }}>
+
+      <View style={styles.form}>
         {(this.state.form === 'SIGNUP')
           ? (<View>
-            <Text>First Name</Text>
+          <Text style={styles.text}>
+            First Name</Text>
             <TextInput
               className="givenName"
-              style={masterStyle.textInput}
+              style={styles.input}
               onChangeText={givenNameText => this.setState({ givenNameText })}
               value={this.state.givenNameText}
             />
-            <Text>Last Name</Text>
+            <Text style={styles.text}>
+              Last Name</Text>
             <TextInput
               className="email"
-              style={masterStyle.textInput}
-              onChangeText={familyNameText => this.setState({ familyNameText })}
+              style={styles.input}
               value={this.state.familyNameText}
             />
           </View>)
           : (<View />)
         }
-        <Text>Email</Text>
+          <Text style={styles.text}>
+            Email
+          </Text>
         <TextInput
           className="email"
-          style={masterStyle.textInput}
+          style={styles.input}
           onChangeText={emailText => this.setState({ emailText })}
           value={this.state.emailText}
         />
-        <Text>Password</Text>
+          <Text style={styles.text}>
+        Password</Text>
         <TextInput
           className="password"
-          style={masterStyle.textInput}
+          style={styles.input}
           onChangeText={passwordText => this.setState({ passwordText })}
           value={this.state.passwordText}
         />
@@ -62,12 +69,12 @@ class Login extends Component {
             <Text style={masterStyle.warningText}>{user.message}</Text>
           </View>
         }
-        <Button
+      <Button
           title="Log In"
-          margin={3}
-          color={colors.buttonColor}
-          backgroundColor={colors.buttonBackground}
+          color={colors.splitWhite}
+          backgroundColor="transparent"
           borderRadius={10}
+          style={styles.loginButton}
           onPress={() => {
             (this.state.form === 'LOGIN')
               ? this.props.handleLogIn(
@@ -79,9 +86,9 @@ class Login extends Component {
         />
         <Button
           title="Sign Up"
-          margin={3}
-          color={colors.buttonColor}
-          backgroundColor={colors.buttonBackground}
+          color={colors.splitBackground2}
+          backgroundColor={colors.splitGold}
+          style={styles.signupButton}
           borderRadius={10}
           onPress={() => {
             (this.state.form === 'SIGNUP')
@@ -94,6 +101,7 @@ class Login extends Component {
           }}
         />
       </View>
+      </LinearGradient>
     );
   }
 }
@@ -117,4 +125,29 @@ const mapDispatch = (dispatch) => {
 
 export default connect(mapLogin, mapDispatch)(Login);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  input: {
+    color: 'white',
+    height: 30,
+    backgroundColor: 'transparent',
+    borderBottomWidth: 1,
+  },
+  form: {
+    padding: '5%',
+    paddingTop: '20%',
+  },
+  text: {
+    color: colors.splitGold,
+    fontSize: 20,
+    backgroundColor: 'transparent',
+    paddingTop: '3%',
+  },
+  loginButton: {
+    marginLeft: '10%',
+    marginRight: '10%',
+  },
+  signupButton: {
+    marginLeft: '10%',
+    marginRight: '10%',
+  },
+});
