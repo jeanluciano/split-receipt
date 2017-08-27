@@ -1,63 +1,54 @@
 import React, { Component } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { StyleSheet, ScrollView, Text, Button, Image, View } from 'react-native';
-import { Icon, Tabs, Tab } from 'react-native-elements';
-import { TabNavigator } from "react-navigation";
-import Left from './components/Left';
+import { colors } from '../values/stylesheet';
 
-
-const allIcon = <Icon name="wallet" type="entypo" color="#fff"/>
-const completedIcon = <Icon name="md-done-all" type="ionicon" color="#fff"/>
-const pendingIcon = <Icon name="assignment-late" color="#fff"/>
-// const = <Icon name="md-done-all" type="ionicon" color="#fff"/>
-
-class RecentChatsScreen extends Component {
-  static navigationOptions = {
-    tabBarLabel: 'Home',
-    tabBarIcon: allIcon,
+class Transactions extends Component {
+  constructor() {
+    super();
   }
 
   render() {
-    console.log('this.props', this.props.navigation);
     return (
-      <View>
-        <Left navigation={this.props.navigation}/>
-        <Text>List of recent chats</Text>
+      <View style={styles.outerView}>
+      <View style={styles.slideUpView}>
+        <Icon
+          name="chevron-down"
+          type="font-awesome"
+          color={colors.splitGray}
+          size={12}
+        />
+        <Text> Slide down for camera view </Text>
+        <Icon
+          name="chevron-down"
+          type="font-awesome"
+          color={colors.splitGray}
+          size={12}
+        />
+        </View>
       </View>
+
+
     );
   }
+
 }
 
-class AllContactsScreen extends Component {
-  render() {
-    console.log('this.props', this.props.navigation);
-    return (
-      <View>
-        <Left navigation={this.props.navigation} />
-        <Text>List of recent chats</Text>
-      </View>
-    );
-  }
-}
-
-const MainScreenNavigator = TabNavigator({
-  Thing: { screen: RecentChatsScreen },
-  All: { screen: AllContactsScreen },
-}, { tabBarPosition: 'bottom' });
-
-export default MainScreenNavigator;
+export default connect(null, null)(Transactions);
 
 const styles = StyleSheet.create({
-  tyles: {
 
+  outerView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
-  tyles: {
 
+  slideUpView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
-  style: {
 
-  },
-  tyles: {
 
-  },
 });

@@ -11,6 +11,7 @@ import DevMenu from '../screens/DevMenu';
 import menuify from './menuify';
 import Stack from '../screens/Stack';
 import EditTable from '../screens/EditTable';
+import OldTransactions from '../screens/OldTransactions';
 import Transactions from '../screens/Transactions';
 import InnerLogin from '../screens/components/Entry/Login';
 import Splash from '../screens/components/Entry/Splash';
@@ -30,6 +31,9 @@ const WebViews = StackNavigator({
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
+  Transactions: {
+    screen: Transactions,
+  },
   Login: {
     screen: Login,
   },
