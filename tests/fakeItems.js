@@ -5,7 +5,7 @@ export default [
     'duplicity': 1,
   },
   {
-    'price': 10.95,
+    'price': 10.90,
     'item': '  Szech Eggplant',
     'duplicity': 1,
   },

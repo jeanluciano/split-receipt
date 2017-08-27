@@ -62,11 +62,28 @@ class Stack extends Component {
     }, {});
 
     this.completeCheck = this.completeCheck.bind(this);
+    this.priceToString = this.priceToString.bind(this);
+    this.friendPriceToString = this.friendPriceToString.bind(this);
+  }
+
+  priceToString(priceNum) {
+    if(!priceNum) console.error('ITEM HAS NO PRICE');
+    price = priceNum.toString().split('.')
+    let dollar = price[0].padStart(1,'0');
+    if(!price[1]) cent = '00';
+    else cent = price[1].padEnd(2, '0');
+    return `${dollar}.${cent}`;
+  }
+
+  friendPriceToString(friend) {
+    friend.items.forEach(item => {item.price = this.priceToString(item.price)})
+    return friend
   }
 
   completeHandler() {
         
     this.tempFriends.forEach(friend => {
+      friend = this.friendPriceToString(friend);
       this.props.addTransaction(friend, this.props.user);
       this.props.putFriend(friend);
     });

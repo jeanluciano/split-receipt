@@ -107,5 +107,5 @@ TransactionCard.propTypes = {
   transaction: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }),
-  handleSendText: PropTypes.func.isRequired,
+  // handleSendText: PropTypes.func.isRequired,
 };
