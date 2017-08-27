@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Icon, List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { colors } from '../values/stylesheet';
-import _ from 'lodash';
+import fakeTransactions from './fakeTransactions';
 
 
 let tabs = {
@@ -64,7 +64,7 @@ class Transactions extends Component {
             color={colors.splitGold}
             size={12}
           />
-          <Text style={{fontFamily: 'AvenirNext-Regular', color: colors.splitGray }}> Slide down for camera view </Text>
+          <Text style={{ fontFamily: 'AvenirNext-Regular', color: colors.splitGray }}> Slide down for camera view </Text>
           <Icon
             name="chevron-down"
             type="font-awesome"
@@ -104,6 +104,18 @@ class Transactions extends Component {
             </TouchableOpacity>
           </View>
         </View>
+        <List>
+          {
+            fakeTransactions.map((transaction, index) => (
+              <ListItem
+                key={index}
+                title={`${transaction.to.givenName} ${transaction.to.familyName}`}
+                subtitle={transaction.purpose}
+                rightTitle={`$${transaction.total}`}
+              ></ListItem>
+            ))
+          }
+        </List>
       </ScrollView>
 
 
