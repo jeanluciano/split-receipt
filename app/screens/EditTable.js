@@ -47,7 +47,7 @@ class EditTable extends Component {
 
   tipGenerator(item) {
     if (item.price) {
-      let price = item.price + item.price * (this.state.tip * 0.01);
+      let price = Number(item.price) + Number(item.price) * (this.state.tip * 0.01);
       return roundPrecision(price, 2);
     }
   }
