@@ -23,17 +23,6 @@ class Entry extends Component {
     };
   }
 
-  onClose() {
-    console.log('Modal just closed');
-  }
-
-  onOpen() {
-    console.log('Modal just openned');
-  }
-
-  onClosingState(state) {
-    console.log('the open/close of the swipeToClose just changed');
-  }
 
   render() {
     const { navigation, user } = this.props;

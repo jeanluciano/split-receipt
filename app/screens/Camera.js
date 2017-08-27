@@ -52,18 +52,15 @@ class ReceiptPicture extends Component {
           containerStyle={styles.menu}
           name="navicon"
           type="evilicon"
-          color="#29D168"
-          size={40}
+          color="#fff"
+          size={30}
           onPress={()=> this.props.navigation.navigate('DrawerOpen')}
         />
-        <LinearGradient
-        style={styles.capture}
-        colors={['#29D168', '#0081D5']}
-        >
+        <View style={{paddingBottom: '10%'}}>
           <Icon name="camera" size={70} color="white"
           underlayColor="transparent"
           onPress={this.takePicture.bind(this)}/>
-        </LinearGradient>
+        </View>
       </Camera>
     );
   }
@@ -88,7 +85,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
   },
   menu : {
-    bottom: '66%',
+    bottom: '70%',
     alignSelf: 'flex-start',
     padding: '5%'
   }
