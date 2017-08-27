@@ -8,6 +8,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 import Menu from './components/Nav';
+import { colors } from '../values/stylesheet';
 
 class ReceiptPicture extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class ReceiptPicture extends Component {
     this.takePicture = this.takePicture.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.getContacts()
   }
 
@@ -49,18 +50,29 @@ class ReceiptPicture extends Component {
         orientation={Camera.constants.Orientation.portrait}
       >
         <Icon
-          containerStyle={styles.menu}
-          name="navicon"
-          type="evilicon"
-          color="#fff"
-          size={30}
-          onPress={()=> this.props.navigation.navigate('DrawerOpen')}
+          containerStyle={styles.linkIcon}
+          name="account-settings"
+          type="material-community"
+          color={colors.splitGray}
+          size={25}
+          onPress={() => this.props.navigation.navigate('DrawerOpen')}
         />
-        <View style={{paddingBottom: '10%'}}>
-          <Icon name="camera" size={70} color="white"
+        <View style={styles.clickIcon}>
+          <Icon
+          name="camera"
+          size={60}
+          color={colors.splitGray}
           underlayColor="transparent"
-           onPress={() => this.takePicture()}/>
+          onPress={() => this.takePicture()}/>
         </View>
+        <Icon
+          containerStyle={styles.linkIcon}
+          name="exchange"
+          type="font-awesome"
+          color={colors.splitGray}
+          size={25}
+          onPress={() => this.props.navigation.navigate('DrawerOpen')}
+        />
       </Camera>
     );
   }
@@ -69,26 +81,18 @@ class ReceiptPicture extends Component {
 const styles = StyleSheet.create({
   preview: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
   },
-  capture: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    margin: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
+  linkIcon: {
+    marginTop: '7%',
   },
-  icon: {
-    borderWidth: 9,
-    borderColor: 'black',
-  },
-  menu : {
-    bottom: '70%',
-    alignSelf: 'flex-start',
-    padding: '5%'
+  clickIcon: {
+    alignSelf: 'flex-end',
+    marginBottom: '7%',
   }
+
 });
 
 const mapDispatch = dispatch => {

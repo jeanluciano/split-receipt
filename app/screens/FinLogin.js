@@ -18,8 +18,6 @@ import {
 
 import LinearGradient from 'react-native-linear-gradient';
 
-var screen = Dimensions.get('window');
-
 export default class Example extends React.Component {
 
   constructor() {
@@ -107,6 +105,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     paddingRight: '4%',
     paddingTop: '4%',
+    backgroundColor: colors.splitBackground1,
   },
   loginButton: {
     marginLeft: '10%',
