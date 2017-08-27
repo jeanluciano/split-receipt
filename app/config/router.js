@@ -55,6 +55,9 @@ export default DrawerNavigator({
   EditTable: {
     screen: EditTable,
   },
+  Contacts: {
+    screen: Contacts,
+  },
   PreLogin: {
     screen: PreLogin,
   },
