@@ -19,7 +19,7 @@ export default () => (
     <Explanation1 />
     <Explanation2 />
     <Explanation3 />
-    <Explanation4 />
+
   </Swiper>
 );
 
