@@ -32,15 +32,19 @@ class Transactions extends Component {
   constructor() {
     super();
     this.state = {
-      active: 'all',
+      active: 'in',
     };
-    this.allColor = colors.splitBackground1;
-    this.allBack = colors.splitGold;
-    this.inColor = colors.splitGold;
-    this.inBack = colors.splitBackground1;
+    this.inColor = colors.splitBackground1;
+    this.inBack = colors.splitGold;
+    this.allColor = colors.splitGold;
+    this.allBack = colors.splitBackground1;
     this.outColor = colors.splitGold;
     this.outBack = colors.splitBackground1;
     this.toggleActive = this.toggleActive.bind(this);
+  }
+
+  componentDidMount() {
+    console.log('userrrrr', this.props.user);
   }
 
   toggleActive(active) {
@@ -55,6 +59,7 @@ class Transactions extends Component {
 
 
   render() {
+    const userGivenName = this.props.user.givenName;
     return (
       <ScrollView contentContainerStyle={styles.outerView}>
         <View style={styles.slideUpView}>
@@ -79,7 +84,7 @@ class Transactions extends Component {
                 name="wallet"
                 type="entypo"
                 color={this.allColor}
-                size={12}
+                size={16}
               />
             </TouchableOpacity>
           </View>
@@ -89,7 +94,7 @@ class Transactions extends Component {
                 name="login"
                 type="entypo"
                 color={this.inColor}
-                size={12}
+                size={16}
               />
             </TouchableOpacity>
           </View>
@@ -99,21 +104,33 @@ class Transactions extends Component {
                 name="log-out"
                 type="entypo"
                 color={this.outColor}
-                size={12}
+                size={16}
               />
             </TouchableOpacity>
           </View>
         </View>
-        <List>
+        <List
+          containerStyle={styles.listStyle}
+        >
           {
-            fakeTransactions.map((transaction, index) => (
-              <ListItem
+            fakeTransactions.map((transaction, index) => {
+              const intrans = <Icon name="login" type="entypo" color={colors.splitGold} size={16} />;
+              const outtrans = <Icon name="logout" type="entypo" color={colors.splitGold} size={16} />;
+
+              const rightIcon = <Icon name="checkbox-blank-outline" type="material-community" color={colors.splitGray} size={15} />;
+              // if (transaction.to.)
+              return (<ListItem
+                containerStyle={styles.listItemStyle}
+                titleStyle={styles.titleStyle}
+                subtitleStyle={styles.subtitleStyle}
+                rightTitleStyle={styles.rightTitleStyle}
                 key={index}
+                rightIcon={rightIcon}
                 title={`${transaction.to.givenName} ${transaction.to.familyName}`}
                 subtitle={transaction.purpose}
                 rightTitle={`$${transaction.total}`}
-              ></ListItem>
-            ))
+              />);
+            })
           }
         </List>
       </ScrollView>
@@ -124,18 +141,26 @@ class Transactions extends Component {
 
 }
 
-export default connect(null, null)(Transactions);
+const mapState = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapState, null)(Transactions);
 
 const styles = StyleSheet.create({
 
   outerView: {
     flex: 1,
     backgroundColor: colors.splitBackground1,
+    paddingTop: '7%',
   },
 
   slideUpView: {
     flexDirection: 'row',
     justifyContent: 'center',
+    marginBottom: '2%',
   },
 
   tabsView: {
@@ -143,6 +168,35 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginLeft: '5%',
     marginRight: '5%',
+  },
+
+  titleStyle: {
+    fontFamily: 'AvenirNext-Regular',
+    color: colors.splitGray,
+  },
+
+  subtitleStyle: {
+    fontFamily: 'Courier',
+    color: colors.splitGray
+  },
+
+  rightTitleStyle: {
+    fontFamily: 'Courier',
+    color: colors.splitGold,
+  },
+
+  listStyle: {
+    backgroundColor: colors.splitBackground1,
+    borderColor: colors.splitGray,
+    marginRight: '2%',
+    marginLeft: '2%',
+  },
+
+  listItemStyle: {
+    borderColor: colors.splitGray,
+    marginLeft: '2%',
+    marginRight: '2%',
+    padding: 0,
   },
 
 
