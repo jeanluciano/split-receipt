@@ -9,6 +9,8 @@ import Camera from 'react-native-camera';
 import axios from 'axios';
 import Menu from './components/Nav';
 import { colors } from '../values/stylesheet';
+import Modal from 'react-native-modalbox';
+import Transactions from './Transactions';
 
 class ReceiptPicture extends Component {
   constructor(props) {
@@ -40,6 +42,7 @@ class ReceiptPicture extends Component {
 
   render() {
     return (
+      <View style={{flex: 1}}>
       <Camera
         ref={cam => {
           this.camera = cam;
@@ -59,11 +62,11 @@ class ReceiptPicture extends Component {
         />
         <View style={styles.clickIcon}>
           <Icon
-          name="camera"
-          size={60}
-          color={colors.splitGray}
-          underlayColor="transparent"
-          onPress={() => this.takePicture()}/>
+            name="camera"
+            size={60}
+            color={colors.splitGray}
+            underlayColor="transparent"
+            onPress={() => this.takePicture()} />
         </View>
         <Icon
           containerStyle={styles.linkIcon}
@@ -71,9 +74,21 @@ class ReceiptPicture extends Component {
           type="font-awesome"
           color={colors.splitGray}
           size={25}
-          onPress={() => this.props.navigation.navigate('DrawerOpen')}
+          onPress={() => this.refs.trans.open()}
         />
+
       </Camera>
+
+      <Modal
+      ref={"trans"}
+      swipeToClose={true}
+      coverScreen={true}
+    >
+      <View style={{ flex: 1, backgroundColor: colors.splitBackground1, }}>
+        <Transactions />
+      </View>
+    </Modal>
+    </View>
     );
   }
 }
