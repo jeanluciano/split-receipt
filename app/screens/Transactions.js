@@ -69,7 +69,7 @@ class Transactions extends Component {
             color={colors.splitGold}
             size={12}
           />
-          <Text style={{ fontFamily: 'AvenirNext-Regular', color: colors.splitGray }}> Slide down for camera view </Text>
+          <Text style={{ fontFamily: 'AvenirNext-Regular', color: colors.splitGray }}> Slide down to return to camera view </Text>
           <Icon
             name="chevron-down"
             type="font-awesome"
