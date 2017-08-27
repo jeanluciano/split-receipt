@@ -115,7 +115,8 @@ class EditTable extends Component {
             </View>
 
             <List style={styles.list}>
-              {receiptData.map(item => (
+              {receiptData.map((item, ind => (
+                ind !== receiptData.length - 1 &&
                 <View style={styles.listItem}>
                   <TextInput
                     style={this.state.editable ? styles.itemNameEdit : styles.itemName}
