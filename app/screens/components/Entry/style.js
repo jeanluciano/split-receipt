@@ -29,6 +29,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'center',
+    fontFamily: 'AvenirNext-Regular'
   },
 
   descriptionText: {
@@ -37,6 +38,7 @@ export default StyleSheet.create({
     paddingLeft: '12%',
     paddingRight: '12%',
     paddingTop: '3%',
+    fontFamily: 'Courier',
   },
 
   default: {

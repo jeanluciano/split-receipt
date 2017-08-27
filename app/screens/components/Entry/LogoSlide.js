@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 60,
+    fontFamily: 'AvenirNext-Bold'
   },
 
   swipeText: {
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
     paddingTop: '3%',
     textAlign: 'center',
     color: colors.splitGray,
+    fontFamily: 'Courier',
   },
 
 });

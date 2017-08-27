@@ -47,7 +47,7 @@ export default class ThirdExplanation extends Component {
     </View>
         <View style={styles.textView}>
           <Text style={styles.titleText}>Automated payment requests.</Text>
-          <Text style={styles.descriptionText}>We pull user-specified contacts from the phone and automatically send out text messages with a link to your PayPal.Me and a pre-filled payment form with the money owed.</Text>
+          <Text style={styles.descriptionText}>We pull user-specified contacts from the phone and automatically send out text messages with a link to your Paypal handle and a populated payment request.</Text>
         </View>
       </View>
     );

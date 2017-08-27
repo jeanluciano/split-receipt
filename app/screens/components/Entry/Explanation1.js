@@ -17,7 +17,7 @@ export default class FirstExplanation extends Component {
         <View style={styles.animationsView}>
           <Animatable.View animation="shake" iterationCount={Infinity} duration={2000} >
             <Icon
-              name="shredder"
+              name="numeric"
               type="material-community"
               color={colors.splitGray}
               size={65}
@@ -27,8 +27,8 @@ export default class FirstExplanation extends Component {
           </Animatable.View>
           <Animatable.View animation="swing" iterationCount={Infinity} duration={2000} >
             <Icon
-              name="air"
-              type="entypo"
+              name="ban"
+              type="font-awesome"
               color={colors.splitGold}
               size={65}
               raised={true}
@@ -38,7 +38,7 @@ export default class FirstExplanation extends Component {
         </View>
         <View style={styles.textView}>
           <Text style={styles.titleText}>No math, ever.</Text>
-          <Text style={styles.descriptionText}>Using OCR, we can extract the relevant information from any receipt and calculate the appropriate amount each person should pay based on his or her order.</Text>
+          <Text style={styles.descriptionText}>Using image recognition, we extract the items and prices from the receipt and take care of all calculations.</Text>
         </View>
       </View>
     );
