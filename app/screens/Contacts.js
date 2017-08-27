@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { addFriend, deleteFriend } from '../redux/friends';
 import { deleteContact, addContact } from '../redux/contacts';
+import { colors } from '../values/stylesheet';
 // import fakeContacts from './components/fakecontacts';
 
 class contacts extends Component {
@@ -105,7 +106,8 @@ class contacts extends Component {
         <View style={styles.buttonContainer}>
         <Button
           title="That's everybody!"
-          backgroundColor="#03BD5B"
+          backgroundColor={colors.splitGold}
+          color={colors.splitBackground1}
           containerViewStyle={styles.button}
           borderRadius={25}
           onPress={this.completeHandle}
@@ -119,24 +121,24 @@ class contacts extends Component {
 const styles = StyleSheet.create({
   contacts: {
     flex: 1,
-    backgroundColor: '#3D4D65',
+    backgroundColor: colors.splitBackground1,
     paddingTop: '10%',
   },
   searchContainer: {
     borderTopWidth: 0,
     height: '75%',
-    backgroundColor: '#3D4D65',
+    backgroundColor: colors.splitBackground1,
   },
   SearchBar: {
-    backgroundColor: '#3D4D65',
+    backgroundColor: colors.splitBackground1,
     borderTopWidth: 0,
     borderBottomWidth: 0,
   },
   listItem: {
-    backgroundColor: '#374355',
+    backgroundColor: colors.splitBackground1,
   },
   listText: {
-    color: '#8493A8',
+    color: colors.splitGray,
   },
   button: {
     marginBottom:40,
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 30,
     width: 100,
-    backgroundColor: '#0081D5',
+    backgroundColor: colors.splitGold,
     marginLeft: 8
   }
 });
