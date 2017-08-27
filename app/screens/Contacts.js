@@ -57,6 +57,28 @@ class contacts extends Component {
     const contacts = this.findContacts(query);
     return (
       <View style={styles.contacts}>
+
+        
+        <View style={styles.friendsContainer}>
+        {this.props.friends.map((friend, ind) => {
+          return (
+            <Badge 
+            key={ind}
+            containerStyle={styles.badge}>
+              <Text>
+                {friend.givenName}
+              </Text>
+              <Icon size={20} name="close" 
+              type="evilicon" 
+              color="black"
+              onPress={() => this.onRemoveFriend(friend)}
+              underlayColor='transparent'
+               />
+            </Badge>
+          )
+        })}
+      </View>
+
         <SearchBar
           noIcon
           round
@@ -79,27 +101,7 @@ class contacts extends Component {
             );
           })}
         </List>
-        
-        <View style={styles.friendsContainer}>
-        {this.props.friends.map((friend, ind) => {
-          return (
-            <Badge 
-            key={ind}
-            containerStyle={styles.badge}>
-              <Text>
-                {friend.givenName}
-              </Text>
-              <Icon size={20} name="close" 
-              type="evilicon" 
-              color="black"
-              onPress={() => this.onRemoveFriend(friend)}
-              underlayColor='transparent'
-               />
-            </Badge>
-          )
-        })}
-      </View>
-        
+        <View style={styles.buttonContainer}>
         <Button
           title="That's everybody!"
           backgroundColor="#03BD5B"
@@ -107,6 +109,7 @@ class contacts extends Component {
           borderRadius={25}
           onPress={this.completeHandle}
         />
+        </View>
       </View>
     );
   }
@@ -116,11 +119,11 @@ const styles = StyleSheet.create({
   contacts: {
     flex: 1,
     backgroundColor: '#3D4D65',
-    paddingTop: '20%',
+    paddingTop: '10%',
   },
   searchContainer: {
     borderTopWidth: 0,
-    height: '55%',
+    height: '75%',
     backgroundColor: '#3D4D65',
   },
   SearchBar: {
@@ -135,22 +138,23 @@ const styles = StyleSheet.create({
     color: '#8493A8',
   },
   button: {
-    marginBottom:40
-
+    marginBottom:40,
+  },
+  buttonContainer: {
+    justifyContent: 'flex-end',
   },
   friendsContainer: {
-    height:'20%',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    paddingRight: 20,
-    paddingLeft: 20,
+    justifyContent: 'flex-start',
   },
   badge: {
     flexDirection: 'row',
+    height: 30,
+    width: 100,
     backgroundColor: '#0081D5',
-    margin: 5
+    marginLeft: 8
   }
 });
 

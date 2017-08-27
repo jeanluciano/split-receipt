@@ -59,7 +59,7 @@ class ReceiptPicture extends Component {
         <View style={{paddingBottom: '10%'}}>
           <Icon name="camera" size={70} color="white"
           underlayColor="transparent"
-          onPress={this.takePicture.bind(this)}/>
+           onPress={() => this.takePicture()}/>
         </View>
       </Camera>
     );
