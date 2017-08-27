@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { colors } from '../../values/stylesheet';
 // import CheckBox from 'react-native-checkbox';
 // import { sendText, selectTransaction } from '../../redux/sendText';
 
@@ -12,21 +13,21 @@ const TransactionCard = (props) => {
   // console.log('TRANSACTION CARD', transaction, items)
   return (
     <View style={styles.transactionView}>
-      <Text>{`${transaction.to.givenName} ${transaction.to.familyName}`}</Text>
+      <Text style={styles.toName}>{`${transaction.to.givenName} ${transaction.to.familyName}`}</Text>
       {Object.values(transaction.items).map((item, ind) =>
         (<View key={ind} style={styles.itemView}>
-          <Text>
+          <Text style={styles.itemName}>
             {item.item}
           </Text>
-          <Text>
-            ${item.price}
+          <Text style={styles.itemPrice}>
+          ${`${Math.round(100 * Number(item.price)) / 100}`}
           </Text>
         </View>))
       }
       <View style={styles.itemView}>
         <Text style={styles.total}>Total</Text>
         <Text style={styles.total}>
-          ${transaction.total}
+        ${`${Math.round(100 * Number(transaction.total)) / 100}`}
         </Text>
       </View>
       {/* <CheckBox
@@ -44,7 +45,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   transactionView: {
-    backgroundColor: 'white',
+    marginTop: '7%',
+    backgroundColor: colors.splitGray,
     width: 360,
     height: 100,
     paddingTop: 10,
@@ -54,28 +56,40 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     margin: 5,
   },
+  toName: {
+    fontWeight: 'bold',
+    fontFamily: 'AvenirNext-Regular',
+    fontSize: 15,
+    color: colors.splitBackground1,
+
+  },
   itemView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingLeft: 20,
   },
   transactionName: {
-    fontFamily: 'Cochin',
+    fontFamily: 'Courier',
   },
   itemName: {
-    fontSize: 20,
+    fontSize: 14,
     textAlign: 'left',
-    fontWeight: 'bold',
+    fontFamily: 'Courier',
+    color: colors.splitBackground1,
   },
   itemPrice: {
-    fontSize: 20,
+    fontSize: 14,
     textAlign: 'right',
-    fontWeight: 'bold',
+    fontFamily: 'Courier',
+    color: colors.splitBackground1,
   },
   total: {
-    fontSize: 20,
+    fontSize: 14,
     textAlign: 'right',
     fontWeight: 'bold',
+    marginBottom: '2%',
+    fontFamily: 'Courier',
+    color: colors.splitBackground1,
   },
 });
 
