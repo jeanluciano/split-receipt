@@ -18,6 +18,8 @@ class Login extends Component {
     this.state = {
       emailText: '',
       passwordText: '',
+      givenNameText: '',
+      familyNameText: '',
     }
   }
 
@@ -46,9 +48,58 @@ class Login extends Component {
                 fontFamily="AvenirNext-Regular"
                 labelStyle={styles.labelStyle}
               >
+                First Name
+        </FormLabel>
+            </View>
+
+            <View style={styles.inputView}>
+              <FormInput
+                fontFamily="Courier"
+                inputStyle={styles.inputStyle}
+                selectionColor={colors.splitBlue}
+                placeholder="jrj@split.com"
+                placeholderTextColor={colors.splitBackground2}
+                onChangeText={emailText => this.setState({ emailText })}
+                value={this.state.emailText}
+              />
+            </View>
+          </View>
+
+          <View style={styles.emailView}>
+            <View style={{ flex: 1 }}>
+              <FormLabel
+                fontFamily="AvenirNext-Regular"
+                labelStyle={styles.labelStyle}
+              >
+                Last Name
+        </FormLabel>
+            </View>
+
+            <View style={styles.inputView}>
+              <FormInput
+                fontFamily="Courier"
+                inputStyle={styles.inputStyle}
+                selectionColor={colors.splitBlue}
+                placeholder="jrj@split.com"
+                placeholderTextColor={colors.splitBackground2}
+                onChangeText={emailText => this.setState({ emailText })}
+                value={this.state.emailText}
+              />
+            </View>
+          </View>
+
+
+
+          <View style={styles.emailView}>
+            <View style={{ flex: 1 }}>
+              <FormLabel
+                fontFamily="AvenirNext-Regular"
+                labelStyle={styles.labelStyle}
+              >
                 E-mail
             </FormLabel>
             </View>
+
             <View style={styles.inputView}>
               <FormInput
                 fontFamily="Courier"

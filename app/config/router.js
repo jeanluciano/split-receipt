@@ -16,6 +16,7 @@ import Animate from '../screens/Animate';
 import InnerLogin from '../screens/components/Entry/Login';
 import Splash from '../screens/components/Entry/Splash';
 import PreLogin from '../screens/PreLogin';
+import FinLogin from '../screens/FinLogin';
 
 
 const WebViews = StackNavigator({
@@ -30,6 +31,12 @@ const WebViews = StackNavigator({
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
+  FinLogin: {
+    screen: FinLogin,
+  },
+  Camera: {
+    screen: Camera,
+  },
   PreLogin: {
     screen: PreLogin,
   },
@@ -53,9 +60,6 @@ export default DrawerNavigator({
   },
   Stack: {
     screen: Stack,
-  },
-  Camera: {
-    screen: Camera,
   },
   Contacts: {
     screen: Contacts,
