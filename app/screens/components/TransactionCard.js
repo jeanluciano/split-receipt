@@ -20,7 +20,7 @@ const TransactionCard = (props) => {
           </Text>
           <Text>
             ${item.price}
-          </Text>
+          </Text>k
         </View>))
       }
       <View style={styles.itemView}>
