@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   transactionView: {
-    marginTop: '7%',
+    marginTop: '5%',
     backgroundColor: colors.splitGray,
     width: 360,
     height: 100,
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 20,
     borderRadius: 10,
-    margin: 5,
   },
   toName: {
     fontWeight: 'bold',

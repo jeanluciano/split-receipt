@@ -10,10 +10,11 @@ import fakeReceipt from './components/fakeReceipt';
 import { putFriend } from '../redux/friends';
 import PropTypes from 'prop-types';
 import { addTransaction } from '../redux/transactions';
+import { colors } from '../values/stylesheet';
 
 const styles = {
   wrapper: {
-    backgroundColor: '#232526',
+    backgroundColor: colors.splitBackground1,
     flex: 1,
   },
   swiperContainer: {
@@ -143,7 +144,7 @@ class Stack extends Component {
                       {item.item}
                     </Text>
                     <Text style={styles.text}>
-                      $ {item.priceString}
+                      ${item.priceString}
                     </Text>
                   </View>
                   <Avatars
@@ -160,11 +161,12 @@ class Stack extends Component {
           ? <Button
               style={styles.button}
               title="Request"
-              backgroundColor="#dccabd"
+              backgroundColor={colors.splitGold}
+              color={colors.splitBackground1}
               borderRadius={10}
               onPress={this.completeHandler.bind(this)}
             />
-          : <Button style={styles.button} borderRadius={10} title="Request" />}
+          : <Button style={styles.button} backgroundColor={colors.splitBackground2} color={colors.splitBackground1} borderRadius={10} title="Request" />}
       </View>
     );
   }

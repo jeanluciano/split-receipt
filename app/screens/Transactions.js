@@ -6,6 +6,7 @@ import { colors } from '../values/stylesheet';
 import fakeTransactions from './components/Landing/transactions';
 
 
+
 let tabs = {
   allStyle: {
     flex: 1,
@@ -129,7 +130,7 @@ class Transactions extends Component {
                 rightIcon={rightIcon}
                 title={`${transaction.to.givenName} ${transaction.to.familyName}`}
                 subtitle={transaction.items.map(item => item.item).join(' ')}
-                rightTitle={`$${transaction.total}`}
+                rightTitle={`$${transaction.totalString}`}
               />);
             })
           }

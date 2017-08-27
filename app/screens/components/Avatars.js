@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import fakeContacts from './fakecontacts';
 import { putFriend } from '../../redux/friends';
 import { width, height,totalSize } from 'react-native-dimension';
+import { colors } from '../../values/stylesheet';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,11 +18,11 @@ const styles = StyleSheet.create({
   },
   avatar: {
     margin: totalSize(1),
-    backgroundColor: '#0081D5',
+    backgroundColor: colors.splitBackground1,
   },
   avatarToggled: {
     margin: totalSize(1),
-    backgroundColor: '#A939B9',
+    backgroundColor: colors.splitBlue,
   },
   avatarContainer: {
     alignItems: 'center',
