@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { sendText } from '../redux/sendText';
+import { colors } from '../values/stylesheet';
 import TransactionCard from './components/TransactionCard';
 
 class SendText extends Component {
@@ -31,8 +32,10 @@ class SendText extends Component {
 
           <Button
             title="Request"
-            backgroundColor="#03BD5B"
-            borderRadius={25}
+            backgroundColor={colors.splitGold}
+            borderRadius={10}
+            color={colors.splitBackground1}
+            fontFamily="AvenirNext-Regular"
             containerViewStyle={styles.button}
             onPress={() => {
               this.props.handleSendText(
@@ -81,7 +84,7 @@ SendText.propTypes = {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#3D4D65'
+    backgroundColor: colors.splitBackground1,
   },
   table: {
     flex: 1,
@@ -89,6 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   button: {
-    padding: 20
+    padding: 20,
+    color: 'black',
   },
 });
