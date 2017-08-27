@@ -47,7 +47,7 @@ class EditTable extends Component {
 
   tipGenerator(item) {
     if (item.price) {
-      let price = item.price + item.price * (this.state.tip * 0.001);
+      let price = item.price + item.price * (this.state.tip * 0.01);
       return roundPrecision(price, 2);
     }
   }
@@ -88,10 +88,10 @@ class EditTable extends Component {
     if (!this.state.editable) this.setState({ editable: true });
     else this.setState({ editable: false });
   }
-  
+
   onConfirm() {
     this.props.receiptData.forEach( async item => {
-      let price = item.price + item.price * (this.state.tip * 0.001);
+      let price = item.price + item.price * (this.state.tip * 0.01);
       item.price = await roundPrecision(price, 2);
       console.log(item)
       item.priceString = await this.priceToString(item.price);
@@ -220,14 +220,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.6,
     position: "absolute",
-    backgroundColor: "#414345",
+    backgroundColor: colors.splitBackground1,
     justifyContent: "flex-start",
     alignItems: "center"
   },
   viewcontainer: {
     flex: 1,
     position: "relative",
-    backgroundColor: "#414345"
+    backgroundColor: colors.splitBackground1,
   },
   background: {
     marginTop: "10%",
@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Courier'
   },
   button: {
-    paddingBottom: 30
+    paddingBottom: 30,
   },
   tip: {
     width: 60,

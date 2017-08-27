@@ -30,7 +30,7 @@ class SendText extends Component {
         </ScrollView>
 
           <Button
-            title="Request"
+            title="Send Texts"
             backgroundColor={colors.splitGold}
             borderRadius={10}
             color={colors.splitBackground1}
@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
   table: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: '3%',
   },
   button: {
     padding: 20,

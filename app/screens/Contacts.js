@@ -62,10 +62,11 @@ class contacts extends Component {
       <View style={styles.contacts}>
 
 
-        
+
         <SearchBar
           round
           containerStyle={styles.SearchBar}
+          selectionColor={colors.splitBlue}
           value={this.state.query}
           onChangeText={text => this.setState({ query: text })}
           placeholder="Who were you with?"
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
     color: colors.splitGray,
   },
   button: {
-  
+
   },
   buttonContainer: {
     top: height(85),
