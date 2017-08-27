@@ -28,6 +28,7 @@ class contacts extends Component {
     const { addFriend, deleteContact } = this.props;
     deleteContact(selectedContact);
     addFriend(selectedContact);
+    this.setState({query: ''})
   }
 
   completeHandle() {
@@ -58,18 +59,18 @@ class contacts extends Component {
     return (
       <View style={styles.contacts}>
 
-        
+
         <View style={styles.friendsContainer}>
         {this.props.friends.map((friend, ind) => {
           return (
-            <Badge 
+            <Badge
             key={ind}
             containerStyle={styles.badge}>
               <Text>
                 {friend.givenName}
               </Text>
-              <Icon size={20} name="close" 
-              type="evilicon" 
+              <Icon size={20} name="close"
+              type="evilicon"
               color="black"
               onPress={() => this.onRemoveFriend(friend)}
               underlayColor='transparent'
@@ -80,11 +81,11 @@ class contacts extends Component {
       </View>
 
         <SearchBar
-          noIcon
           round
           containerStyle={styles.SearchBar}
+          value={this.state.query}
           onChangeText={text => this.setState({ query: text })}
-          placeholder="Who are you with?"
+          placeholder="Who were you with?"
         />
         <List containerStyle={styles.searchContainer}>
           {contacts.map((contact, ind) => {
