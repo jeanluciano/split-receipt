@@ -7,14 +7,18 @@ const client = require('twilio')(TWILIO_SID, TWILIO_AUTH_TOKEN);
 
 // api/payPalMe/
 router.post('/', (req, res, next) => {
-  const { payPalMe, amount } = req.body;
+  const { payPalMe, amount, transaction } = req.body;
   let { destinationNumber } = req.body;
-  destinationNumber = '+1' + destinationNumber;
+  const fromName = `${transaction.from.givenName} ${transaction.from.familyName}`;
+  const toName = `${transaction.to.givenName} ${transaction.to.familyName}`;
+  destinationNumber = `+1${destinationNumber}`;
   client.messages
     .create({
       to: destinationNumber,
       from: TWILIO_PHONE_NUMBER,
-      body: `Please go here to pay your split www.PayPal.Me/${payPalMe}/${amount}`,
+      body:
+        `
+        Hi ${toName}! \n${fromName} has requested a payment ${transaction.purpose ? (` for ${transaction.purpose}`) : ''}. \nYou have ordered: \n${transaction.items.map(item => (`${item.item} --- ${item.price}\n`))} \nTOTAL --- ${transaction.total}\nPay here: www.PayPal.Me/${payPalMe}/${amount}`,
     })
     .then(message => console.log(destinationNumber, message.sid))
     .then(res.sendStatus(200))

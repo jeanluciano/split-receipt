@@ -63,8 +63,7 @@ class ReceiptPicture extends Component {
           size={60}
           color={colors.splitGray}
           underlayColor="transparent"
-          onPress={() => this.takePicture()}
-          />
+          onPress={() => this.takePicture()}/>
         </View>
         <Icon
           containerStyle={styles.linkIcon}
