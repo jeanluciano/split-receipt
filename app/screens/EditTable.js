@@ -18,7 +18,7 @@ class EditTable extends Component {
     this.state = {
       itemName: "",
       itemPrice: "",
-      tax: 0
+      tip: 0
     };
     this.onDeleteHandle = this.onDeleteHandle.bind(this);
     this.onAddHandle = this.onAddHandle.bind(this);
@@ -32,7 +32,7 @@ class EditTable extends Component {
 
   tipGenerator(item) {
     if (item.price) {
-      let price = item.price + item.price * (this.state.tax * 0.001);
+      let price = item.price + item.price * (this.state.tip * 0.001);
       return roundPrecision(price, 2);
     }
   }
@@ -69,7 +69,7 @@ class EditTable extends Component {
 
   onConfirm() {
     this.props.receiptData.forEach(item => {
-      let price = item.price + item.price * (this.state.tax * 0.001);
+      let price = item.price + item.price * (this.state.tip * 0.001);
       item.price = roundPrecision(price, 2);
       this.props.putReceipt(item);
     });
@@ -153,12 +153,12 @@ class EditTable extends Component {
             <View style={styles.tipContainer}>
               <TextInput
                 style={styles.tip}
-                placeholder="Tax"
+                placeholder="Tip"
                 keyboardType="numeric"
-                value={this.state.tax}
+                value={this.state.tip}
                 maxLength={5}
                 placeholderTextColor={"#5e5e5e"}
-                onChangeText={text => this.setState({ tax: text })}
+                onChangeText={text => this.setState({ tip: text })}
               />
               <Text style={styles.tipText}> %</Text>
             </View>
