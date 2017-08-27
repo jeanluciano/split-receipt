@@ -224,7 +224,8 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
     textAlign: "center",
     padding: 15,
-    color: '#232526'
+    color: '#232526',
+    fontFamily: 'AvenirNext-Regular'
   },
   listItem: {
     flexDirection: "row",
@@ -237,7 +238,7 @@ const styles = StyleSheet.create({
     fontSize: 19,
     width: width(35),
     backgroundColor: "transparent",
-    
+    fontFamily: 'AvenirNext-Regular'
   },
   itemNameEdit: {
     fontSize: 19,
@@ -245,12 +246,14 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderRadius: 4,
     borderColor: "grey",
-    borderWidth: 1
+    borderWidth: 1,
+    fontFamily: 'AvenirNext-Regular'
   },
   itemPrice: {
     fontSize: 19,
     width: 90,
-    paddingRight: 8
+    paddingRight: 8,
+    fontFamily: 'AvenirNext-Regular'
   },
   itemPriceEdit: {
     fontSize: 19,
@@ -258,7 +261,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: "grey",
     borderWidth: 1,
-    paddingRight: 8
+    paddingRight: 8,
+    fontFamily: 'AvenirNext-Regular'
   },
   button: {
     paddingBottom: 30
@@ -276,7 +280,8 @@ const styles = StyleSheet.create({
   },
   tipSign: {
     backgroundColor: "transparent",
-    fontSize: 19
+    fontSize: 19,
+    fontFamily: 'AvenirNext-Regular'
   },
   headerContainer: {
     flexDirection: "row",
