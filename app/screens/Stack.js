@@ -79,7 +79,8 @@ class Stack extends Component {
       if (tempFriend.recordID === friend.recordID) friendIdx = ind;
     });
     if (toggle === -1) {
-      this.tempFriends[friendIdx].items.filter(
+      console.log('this ran', this.tempFriends[friendIdx], item )
+      this.tempFriends[friendIdx].items = this.tempFriends[friendIdx].items.filter(
         cItem => cItem.id !== item.id
       );
     } else {

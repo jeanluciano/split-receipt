@@ -18,7 +18,7 @@ class EditTable extends Component {
     this.state = {
       itemName: "",
       itemPrice: "",
-      tax: 0
+      tip: 0
     };
     this.onDeleteHandle = this.onDeleteHandle.bind(this);
     this.onAddHandle = this.onAddHandle.bind(this);
@@ -32,7 +32,7 @@ class EditTable extends Component {
 
   tipGenerator(item) {
     if (item.price) {
-      let price = item.price + item.price * (this.state.tax * 0.001);
+      let price = item.price + item.price * (this.state.tip * 0.001);
       return roundPrecision(price, 2);
     }
   }
@@ -69,7 +69,7 @@ class EditTable extends Component {
 
   onConfirm() {
     this.props.receiptData.forEach(item => {
-      let price = item.price + item.price * (this.state.tax * 0.001);
+      let price = item.price + item.price * (this.state.tip * 0.001);
       item.price = roundPrecision(price, 2);
       this.props.putReceipt(item);
     });
@@ -83,43 +83,51 @@ class EditTable extends Component {
       <View style={styles.viewcontainer}>
         <ScrollView contentContainerStyle={styles.container}>
           <Image
-            source={require("../assets/receipt.png")}
+            source={require("../assets/striptable2.png")}
             style={styles.background}
             height={this.stretcher()}
           >
             <View style={styles.headerContainer}>
-              <Icon
-                style={styles.redo}
-                size={30}
-                name="redo"
-                type="evilicon"
-                color="black"
-                onPress={() => this.props.navigation.navigate("Camera")}
-              />
-              <Text style={styles.header}>Is this right?</Text>
+            <Icon
+            style={styles.redo}
+            size={30}
+            name="pencil"
+            type="evilicon"
+            color="black"
+            onPress={() => this.props.navigation.navigate("Camera")}
+          />
+            <Text style={styles.header}>Is this right?</Text>
+            <Icon
+              style={styles.redo}
+              size={30}
+              name="redo"
+              type="evilicon"
+              color="black"
+              onPress={() => this.props.navigation.navigate("Camera")}
+            />
             </View>
 
-            <List>
+            <List style={styles.list}>
               {receiptData.map(item =>
                 <View style={styles.listItem}>
                   <TextInput
                     style={styles.itemName}
                     placeholder={`${item.item}`}
-                    placeholderTextColor={"#5e5e5e"}
+                    placeholderTextColor='#dccabd'
                     onChangeText={text => this.onFixName(text, item)}
                   />
                   <TextInput
                     style={styles.itemTip}
                     placeholder={`${this.tipGenerator(item)}`}
                     keyboardType="numeric"
-                    placeholderTextColor={"#5e5e5e"}
+                    placeholderTextColor='#c6cacd'
                     onChangeText={text => this.onFixPrice(text, item)}
                   />
                   <Icon
                     size={30}
                     name="close-o"
                     type="evilicon"
-                    color="black"
+                    color="#dccabd"
                     onPress={() => this.onDeleteHandle(item)}
                   />
                 </View>
@@ -153,12 +161,12 @@ class EditTable extends Component {
 {/*            <View style={styles.tipContainer}>
               <TextInput
                 style={styles.tip}
-                placeholder="Tax"
+                placeholder="Tip"
                 keyboardType="numeric"
-                value={this.state.tax}
+                value={this.state.tip}
                 maxLength={5}
                 placeholderTextColor={"#5e5e5e"}
-                onChangeText={text => this.setState({ tax: text })}
+                onChangeText={text => this.setState({ tip: text })}
               />
             </View>*/}
           </Image>
@@ -195,22 +203,29 @@ const styles = StyleSheet.create({
 
     resizeMode: "stretch"
   },
+  list: {
+    backgroundColor: 'transparent'
+  },
   header: {
     backgroundColor: "transparent",
     fontSize: 40,
     fontStyle: "italic",
     textAlign: "center",
-    padding: 15
+    padding: 15,
+    color: '#c6cacd'
   },
   listItem: {
     flexDirection: "row",
     height: height(6),
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    backgroundColor: 'transparent'
   },
   itemName: {
     fontSize: 19,
-    width: 180
+    width: 180,
+    backgroundColor: 'transparent',
+    
   },
   itemTip: {
     fontSize: 19,
@@ -234,7 +249,8 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: "row"
-  }
+  },
+  
 });
 
 const mapToState = store => {
