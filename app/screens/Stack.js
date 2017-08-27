@@ -65,8 +65,8 @@ class Stack extends Component {
     this.completeCheck = this.completeCheck.bind(this);
   }
 
+
   completeHandler() {
-        
     this.tempFriends.forEach(friend => {
       this.props.addTransaction(friend, this.props.user);
       this.props.putFriend(friend);
@@ -143,7 +143,7 @@ class Stack extends Component {
                       {item.item}
                     </Text>
                     <Text style={styles.text}>
-                      $ {item.price}
+                      $ {item.priceString}
                     </Text>
                   </View>
                   <Avatars

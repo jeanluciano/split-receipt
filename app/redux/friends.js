@@ -7,6 +7,25 @@ const UPDATE_FRIEND = 'UPDATE_FRIEND';
 const DESTROY_FRIEND = 'DESTROY_FRIENDS';
 
 /**
+ * HELPER FUNCTIONS
+ */
+const priceToString = (priceNum) => {
+  if (!priceNum) console.error('ITEM HAS NO PRICE');
+  const price = priceNum.toString().split('.')
+  const dollar = price[0].padStart(1, '0');
+  let cent = '';
+  if (!price[1]) cent = '00';
+  else cent = price[1].padEnd(2, '0');
+  return `${dollar}.${cent}`;
+}
+
+const friendPriceToString = (friend) => {
+  friend.items.forEach((item) => { item.priceString = priceToString(item.price) })
+  if (friend.total) friend.totalString = priceToString(friend.total)
+  return friend
+}
+
+/**
  * ACTION CREATORS
  */
 const createFriends = friend => ({ type: CREATE_FRIENDS, friend });
@@ -50,6 +69,7 @@ export const addFriend = function (friend) {
 
 export const putFriend = function (friend) {
   return function thunk(dispatch) {
+    friendPriceToString(friend)
     dispatch(updateFriends(friend))
   };
 };
