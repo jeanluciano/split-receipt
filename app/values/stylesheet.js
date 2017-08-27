@@ -8,7 +8,7 @@ export const colors = {
   splitBackground1: '#232526',
   splitBackground2: '#414345',
   splitGradient: ['#232526', '#414345'],
-	primaryColor: '#ebeef0',
+  primaryColor: '#ebeef0',
   buttonBackground: "#03BD5B",
   buttonColor: "#841584",
 };

@@ -43,11 +43,7 @@ class Login extends Component {
             backgroundColor="transparent"
             borderRadius={10}
             style={styles.loginButton}
-            onPress={() => this.props.handleLogIn(
-              this.state.emailText,
-              this.state.passwordText,
-              this.props.navigation.navigate('Login')
-            )}
+            onPress={() => navigation.navigate('Login')}
           />
         </View>
       </LinearGradient>
@@ -63,8 +59,8 @@ const mapLogin = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleLogIn(email, password, navigate) {
-      dispatch(login(email, password, navigate));
+    handleLogIn() {
+      this.props.navigation.navigate('Login');
     },
     handleSignUp(email, password, navigate) {
       dispatch(signup(email, password, navigate));
