@@ -13,7 +13,7 @@ import { addTransaction } from '../redux/transactions';
 
 const styles = {
   wrapper: {
-    backgroundColor: '#3D4D65',
+    backgroundColor: '#232526',
     flex: 1,
   },
   swiperContainer: {
@@ -25,7 +25,7 @@ const styles = {
     width: width(90),
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#FFFEEA',
+    backgroundColor: '#c6cacd',
     borderRadius: 7,
     shadowColor: 'black',
   },
@@ -37,6 +37,7 @@ const styles = {
     fontSize: 30,
     fontWeight: 'bold',
     padding: '5%',
+    fontFamily: 'Courier'
   },
   textContainer: {
     paddingTop: '10%',
@@ -159,11 +160,11 @@ class Stack extends Component {
           ? <Button
               style={styles.button}
               title="Request"
-              backgroundColor="#03BD5B"
-              borderRadius={25}
+              backgroundColor="#dccabd"
+              borderRadius={10}
               onPress={this.completeHandler.bind(this)}
             />
-          : <Button style={styles.button} borderRadius={25} title="Request" />}
+          : <Button style={styles.button} borderRadius={10} title="Request" />}
       </View>
     );
   }

@@ -43,6 +43,9 @@ export default DrawerNavigator({
   Camera: {
     screen: Camera,
   },
+  Contacts: {
+    screen: Contacts
+  },
   Transactions: {
     screen: Transactions,
   },
