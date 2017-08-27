@@ -9,14 +9,20 @@ class Transactions extends Component {
     super();
     this.state = {
       active: 'all',
+      oldActive: '',
     };
+    this.allStyle = styles.activeTab;
+    this.inStyle = styles.inActiveTab;
+    this.outStyle = styles.inActiveTab;
+    this.toggleActive = this.toggleActive.bind(this);
   }
 
-  // toggleActive(){
-  //   const active = this.state.active;
-  //   this.refs.active.style = styles.
-  //   this.state.active.
-  // }
+  toggleActive(active) {
+    const oldActive = this.state.active;
+    this[active + 'Style'] = styles.activeTab;
+    this[oldActive + 'Style'] = styles.inActiveTab;
+    this.setState({ oldActive, active });
+  }
 
 
   render() {
@@ -38,9 +44,12 @@ class Transactions extends Component {
           />
         </View>
         <View style={styles.tabsView}>
-          <TouchableOpacity ref="all" onPress={(props) => console.log('hello', props)}><Text>Icon 1</Text></TouchableOpacity>
-          <TouchableOpacity ref="out" onPress={(props) => console.log('hello', props)}><Text>Icon 2</Text></TouchableOpacity>
-          <TouchableOpacity ref="in" onPress={(props) => console.log('gello', props)}><Text>Icon 3</Text></TouchableOpacity>
+          <TouchableOpacity style={this.allStyle} onPress={() => this.toggleActive('all')}><Text>Icon 1</Text></TouchableOpacity>
+          <TouchableOpacity style={this.inStyle} onPress={() => this.toggleActive('in')}><Text>Icon 2</Text></TouchableOpacity>
+          <TouchableOpacity style={this.outStyle} onPress={() => this.toggleActive('out')}><Text>Icon 3</Text></TouchableOpacity>
+        </View>
+        <View style={styles.transactionsView}>
+
         </View>
       </ScrollView>
 
@@ -76,5 +85,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'blue',
   },
+
+  inActiveTab: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'green',
+  }
 
 });
