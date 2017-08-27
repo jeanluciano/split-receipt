@@ -23,7 +23,24 @@ const totalGetter = items => {
   return Math.round(total * 100) / 100;
 }
 
+const priceToString = (priceNum) => {
+  if (!priceNum) console.error('ITEM HAS NO PRICE');
+  const price = priceNum.toString().split('.')
+  const dollar = price[0].padStart(1, '0');
+  let cent = '';
+  if (!price[1]) cent = '00';
+  else cent = price[1].padEnd(2, '0');
+  return `${dollar}.${cent}`;
+}
+
+const friendPriceToString = (friend) => {
+  friend.items.forEach((item) => { item.priceString = priceToString(item.price) })
+  if (friend.total) friend.totalString = priceToString(friend.total)
+  return friend
+}
+
 const friendToTransaction = (friend, user) => {
+  friendPriceToString(friend);
   return ({
     to: {
       givenName: friend.givenName,
@@ -40,7 +57,8 @@ const friendToTransaction = (friend, user) => {
     purpose: '',
     status: 'ASSIGNED',
     date: Date.now()+'',
-    total: totalGetter(friend.items)
+    total: totalGetter(friend.items),
+    totalString: priceToString(totalGetter(friend.items)),
   })
 }
 

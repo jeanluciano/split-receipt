@@ -4,6 +4,7 @@ import { Avatar } from 'react-native-elements';
 import { connect } from 'react-redux';
 import fakeContacts from './fakecontacts';
 import { putFriend } from '../../redux/friends';
+import { width, height,totalSize } from 'react-native-dimension';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,18 +16,18 @@ const styles = StyleSheet.create({
     paddingTop: '15%',
   },
   avatar: {
-    margin: 10,
+    margin: totalSize(1),
     backgroundColor: '#0081D5',
   },
   avatarToggled: {
-    margin: 10,
+    margin: totalSize(1),
     backgroundColor: '#A939B9',
   },
   avatarContainer: {
     alignItems: 'center',
-    paddingTop: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
+    paddingTop: height(2),
+    paddingRight: width(2),
+    paddingBottom: width(2),
   },
 });
 

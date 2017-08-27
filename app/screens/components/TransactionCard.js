@@ -20,14 +20,14 @@ const TransactionCard = (props) => {
             {item.item}
           </Text>
           <Text style={styles.itemPrice}>
-          ${`${Math.round(100 * Number(item.price)) / 100}`}
+          ${item.priceString}
           </Text>
         </View>))
       }
       <View style={styles.itemView}>
         <Text style={styles.total}>Total</Text>
         <Text style={styles.total}>
-        ${`${Math.round(100 * Number(transaction.total)) / 100}`}
+        ${transaction.totalString}
         </Text>
       </View>
       {/* <CheckBox
@@ -121,5 +121,5 @@ TransactionCard.propTypes = {
   transaction: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }),
-  handleSendText: PropTypes.func.isRequired,
+  // handleSendText: PropTypes.func.isRequired,
 };

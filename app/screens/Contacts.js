@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { addFriend, deleteFriend } from '../redux/friends';
 import { deleteContact, addContact } from '../redux/contacts';
 import { colors } from '../values/stylesheet';
+import { width, height,totalSize } from 'react-native-dimension';
 // import fakeContacts from './components/fakecontacts';
 
 class contacts extends Component {
@@ -61,6 +62,14 @@ class contacts extends Component {
       <View style={styles.contacts}>
 
 
+        
+        <SearchBar
+          round
+          containerStyle={styles.SearchBar}
+          value={this.state.query}
+          onChangeText={text => this.setState({ query: text })}
+          placeholder="Who were you with?"
+        />
         <View style={styles.friendsContainer}>
         {this.props.friends.map((friend, ind) => {
           return (
@@ -80,14 +89,6 @@ class contacts extends Component {
           )
         })}
       </View>
-
-        <SearchBar
-          round
-          containerStyle={styles.SearchBar}
-          value={this.state.query}
-          onChangeText={text => this.setState({ query: text })}
-          placeholder="Who were you with?"
-        />
         <List containerStyle={styles.searchContainer}>
           {contacts.map((contact, ind) => {
             return (
@@ -109,7 +110,7 @@ class contacts extends Component {
           backgroundColor={colors.splitGold}
           color={colors.splitBackground1}
           containerViewStyle={styles.button}
-          borderRadius={25}
+          borderRadius={10}
           onPress={this.completeHandle}
         />
         </View>
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     borderTopWidth: 0,
-    height: '75%',
+    height: '65%',
     backgroundColor: colors.splitBackground1,
   },
   SearchBar: {
@@ -141,10 +142,12 @@ const styles = StyleSheet.create({
     color: colors.splitGray,
   },
   button: {
-    marginBottom:40,
+  
   },
   buttonContainer: {
-    justifyContent: 'flex-end',
+    top: height(85),
+    position: 'absolute',
+    width: width(100)
   },
   friendsContainer: {
     display: 'flex',
@@ -154,10 +157,8 @@ const styles = StyleSheet.create({
   },
   badge: {
     flexDirection: 'row',
-    height: 30,
-    width: 100,
     backgroundColor: colors.splitGold,
-    marginLeft: 8
+    margin: 5
   }
 });
 
