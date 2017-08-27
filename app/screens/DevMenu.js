@@ -90,9 +90,9 @@ class DevMenu extends Component {
           onPress={() => {
             this.props.loadFakeData()
             navigate('EditTable');
-            this.props.login(
-              'ross@friends.com',
-              'Rossfriends')
+            // this.props.login(
+            //   'ross@friends.com',
+            //   'Rossfriends')
           }}
         />
       </View>

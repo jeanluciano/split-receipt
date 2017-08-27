@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // import CheckBox from 'react-native-checkbox';
-import { sendText, selectTransaction } from '../../redux/sendText';
+// import { sendText, selectTransaction } from '../../redux/sendText';
 
 const TransactionCard = (props) => {
   const { transaction, user } = props;
@@ -84,9 +84,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  handleSendText(transaction, payPalMe) {
-    dispatch(sendText(transaction, payPalMe))
-  },
+  // handleSendText(transaction, payPalMe) {
+  //   dispatch(sendText(transaction, payPalMe))
+  // },
   handleSelectTransaction(transaction, status) {
     dispatch(selectTransaction(transaction, status))
   },

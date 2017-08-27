@@ -11,6 +11,7 @@ import DevMenu from '../screens/DevMenu';
 import menuify from './menuify';
 import Stack from '../screens/Stack';
 import EditTable from '../screens/EditTable';
+import OldTransactions from '../screens/OldTransactions';
 import Transactions from '../screens/Transactions';
 import InnerLogin from '../screens/components/Entry/Login';
 import Splash from '../screens/components/Entry/Splash';
@@ -30,8 +31,20 @@ const WebViews = StackNavigator({
 Transactions.navigationOptions = { title: 'My chats' };
 
 export default DrawerNavigator({
+  SendText: {
+    screen: SendText,
+  },
   Camera: {
     screen: Camera,
+  },
+  Transactions: {
+    screen: Transactions,
+  },
+  Login: {
+    screen: Login,
+  },
+  EditTable: {
+    screen: EditTable,
   },
   FinLogin: {
     screen: FinLogin,
@@ -47,9 +60,6 @@ export default DrawerNavigator({
   },
   DevMenu: {
     screen: menuify(DevMenu),
-  },
-  Login: {
-    screen: Login,
   },
   Transactions: {
     screen: Transactions,
@@ -68,11 +78,5 @@ export default DrawerNavigator({
   },
   PayPalMe: {
     screen: menuify(PayPalMe),
-  },
-  SendText: {
-    screen: SendText,
-  },
-  EditTable: {
-    screen: EditTable,
   },
 });
