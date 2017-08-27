@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   View,
   ScrollView,
@@ -6,24 +6,26 @@ import {
   StyleSheet,
   Text,
   TextInput
-} from "react-native";
-import { List, ListItem, Button, Icon } from "react-native-elements";
-import { connect } from "react-redux";
-import { width, height } from "react-native-dimension";
-import { putReceipt, removeItem, addItem } from "../redux/receipt";
-import roundPrecision from "round-precision";
+} from 'react-native';
+import roundPrecision from 'round-precision';
+import { List, ListItem, Button, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { width, height } from 'react-native-dimension';
+import { putReceipt, removeItem, addItem } from '../redux/receipt';
+
 class EditTable extends Component {
   constructor() {
     super();
     this.state = {
-      itemName: "",
-      itemPrice: "",
+      itemName: '',
+      itemPrice: '',
       tip: 0
     };
     this.onDeleteHandle = this.onDeleteHandle.bind(this);
     this.onAddHandle = this.onAddHandle.bind(this);
     this.tipGenerator = this.tipGenerator.bind(this);
     this.onConfirm = this.onConfirm.bind(this);
+    this.onEdit = this.onEdit.bind(this)
   }
 
   stretcher() {
@@ -53,7 +55,8 @@ class EditTable extends Component {
       this.props.addItem(newItem);
       this.setState({
         itemName: "",
-        itemPrice: ""
+        itemPrice: "",
+        editable: false
       });
     }
   }
@@ -67,6 +70,10 @@ class EditTable extends Component {
     this.props.removeItem(item);
   }
 
+  onEdit() {
+    if (!this.state.editable) this.setState({ editable: true });
+    else this.setState({ editable: false });
+  }
   onConfirm() {
     this.props.receiptData.forEach(item => {
       let price = item.price + item.price * (this.state.tip * 0.001);
@@ -83,101 +90,107 @@ class EditTable extends Component {
       <View style={styles.viewcontainer}>
         <ScrollView contentContainerStyle={styles.container}>
           <Image
-            source={require("../assets/striptable2.png")}
+            source={require("../assets/striptable1.png")}
             style={styles.background}
             height={this.stretcher()}
           >
             <View style={styles.headerContainer}>
-            <Icon
-            style={styles.redo}
-            size={30}
-            name="pencil"
-            type="evilicon"
-            color="black"
-            onPress={() => this.props.navigation.navigate("Camera")}
-          />
-            <Text style={styles.header}>Is this right?</Text>
-            <Icon
-              style={styles.redo}
-              size={30}
-              name="redo"
-              type="evilicon"
-              color="black"
-              onPress={() => this.props.navigation.navigate("Camera")}
-            />
+              <Icon
+                style={styles.redo}
+                size={30}
+                name="pencil"
+                type="evilicon"
+                color='#232526'
+                underlayColor='transparent'
+                onPress={() => this.onEdit()}
+              />
+              <Text style={styles.header}>Is this right?</Text>
+              <Icon
+                style={styles.redo}
+                size={25}
+                name="linked-camera"
+                color='#232526'
+                onPress={() => this.props.navigation.navigate("Camera")}
+              />
             </View>
 
             <List style={styles.list}>
-              {receiptData.map(item =>
+              {receiptData.map(item => (
                 <View style={styles.listItem}>
                   <TextInput
-                    style={styles.itemName}
+                    style={this.state.editable ? styles.itemNameEdit : styles.itemName}
+                    editable={this.state.editable}
                     placeholder={`${item.item}`}
-                    placeholderTextColor='#dccabd'
+                    placeholderTextColor='#232526'
                     onChangeText={text => this.onFixName(text, item)}
                   />
                   <TextInput
-                    style={styles.itemTip}
+                    style={this.state.editable ? styles.itemPriceEdit : styles.itemPrice}
                     placeholder={`${this.tipGenerator(item)}`}
+                    editable={this.state.editable}
                     keyboardType="numeric"
-                    placeholderTextColor='#c6cacd'
+                    placeholderTextColor='#232526'
                     onChangeText={text => this.onFixPrice(text, item)}
                   />
                   <Icon
-                    size={30}
-                    name="close-o"
-                    type="evilicon"
-                    color="#dccabd"
+                    size={25}
+                    name="circle-with-minus"
+                    type="entypo"
+                    color='#DB323C'
                     onPress={() => this.onDeleteHandle(item)}
                   />
                 </View>
-              )}
-              <View style={styles.listItem}>
+              ))}
+              {this.state.editable && <View style={styles.listItem}>
                 <TextInput
-                  style={styles.itemName}
+                  style={styles.itemNameEdit}
                   placeholder="Item Name"
-                  placeholderTextColor={"#5e5e5e"}
+                  placeholderTextColor={'#232526'}
                   value={this.state.itemName}
                   onChangeText={text => this.setState({ itemName: text })}
                 />
                 <TextInput
-                  style={styles.itemTip}
+                  style={styles.itemPriceEdit}
                   placeholder="Item Price"
                   keyboardType="numeric"
                   value={this.state.itemPrice}
                   maxLength={5}
-                  placeholderTextColor={"#5e5e5e"}
+                  placeholderTextColor={'#232526'}
                   onChangeText={text => this.setState({ itemPrice: text })}
                 />
                 <Icon
-                  size={30}
-                  name="plus"
-                  type="evilicon"
-                  color="black"
+                  size={25}
+                  name="circle-with-plus"
+                  type="entypo"
+                  color="#239322"
                   onPress={() => this.onAddHandle()}
                 />
-              </View>
+              </View>}
             </List>
-{/*            <View style={styles.tipContainer}>
-              <TextInput
-                style={styles.tip}
-                placeholder="Tip"
-                keyboardType="numeric"
-                value={this.state.tip}
-                maxLength={5}
-                placeholderTextColor={"#5e5e5e"}
-                onChangeText={text => this.setState({ tip: text })}
-              />
-            </View>*/}
+              <View style={styles.tipContainer}>
+                <TextInput
+                  style={styles.tip}
+                  placeholder="Tip"
+                  keyboardType="numeric"
+                  value={this.state.tip}
+                  maxLength={5}
+                  placeholderTextColor={"#5e5e5e"}
+                  onChangeText={text => this.setState({ tip: text })}
+                />
+                <Text style={styles.tipSign}> %</Text>
+            </View>
+
           </Image>
         </ScrollView>
+        
         <Button
           style={styles.button}
           title="Looks Good!"
-          backgroundColor="#03BD5B"
-          borderRadius={25}
+          backgroundColor="#dccabd"
+          borderRadius={10}
           onPress={() => this.onConfirm()}
-        />
+        /> 
+        
       </View>
     );
   }
@@ -187,49 +200,65 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.6,
     position: "absolute",
-    backgroundColor: "#3D4D65",
+    backgroundColor: "#414345",
     justifyContent: "flex-start",
     alignItems: "center"
   },
   viewcontainer: {
     flex: 1,
     position: "relative",
-    backgroundColor: "#3D4D65"
+    backgroundColor: "#414345"
   },
   background: {
     marginTop: "10%",
     padding: "15%",
     width: width(100),
-
     resizeMode: "stretch"
   },
   list: {
-    backgroundColor: 'transparent'
+    backgroundColor: "transparent"
   },
   header: {
     backgroundColor: "transparent",
-    fontSize: 40,
+    fontSize: 35,
     fontStyle: "italic",
     textAlign: "center",
     padding: 15,
-    color: '#c6cacd'
+    color: '#232526'
   },
   listItem: {
     flexDirection: "row",
     height: height(6),
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: 'transparent'
+    backgroundColor: "transparent"
   },
   itemName: {
     fontSize: 19,
-    width: 180,
-    backgroundColor: 'transparent',
+    width: width(35),
+    backgroundColor: "transparent",
     
   },
-  itemTip: {
+  itemNameEdit: {
     fontSize: 19,
-    width: 90
+    width: width(35),
+    backgroundColor: "transparent",
+    borderRadius: 4,
+    borderColor: "grey",
+    borderWidth: 1
+  },
+  itemPrice: {
+    fontSize: 19,
+    width: 90,
+    paddingRight: 8
+  },
+  itemPriceEdit: {
+    fontSize: 19,
+    width: 90,
+    borderRadius: 4,
+    borderColor: "grey",
+    borderWidth: 1,
+    paddingRight: 8
   },
   button: {
     paddingBottom: 30
@@ -238,19 +267,22 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 4,
     borderColor: "grey",
-    borderWidth: 1
+    borderWidth: 1,
   },
   tipContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
+    alignItems: 'center',
+    paddingTop:10
   },
-  tipText: {
+  tipSign: {
     backgroundColor: "transparent",
     fontSize: 19
   },
   headerContainer: {
-    flexDirection: "row"
-  },
-  
+    flexDirection: "row",
+    justifyContent: 'center'
+
+  }
 });
 
 const mapToState = store => {
