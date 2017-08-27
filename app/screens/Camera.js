@@ -56,7 +56,7 @@ class ReceiptPicture extends Component {
           containerStyle={styles.linkIcon}
           name="account-settings"
           type="material-community"
-          color={colors.splitGray}
+          color={colors.splitWhite}
           size={25}
           onPress={() => this.props.navigation.navigate('DrawerOpen')}
         />
@@ -64,7 +64,7 @@ class ReceiptPicture extends Component {
           <Icon
             name="camera"
             size={60}
-            color={colors.splitGray}
+            color={colors.splitWhite}
             underlayColor="transparent"
             onPress={() => this.takePicture()} />
         </View>
@@ -72,7 +72,7 @@ class ReceiptPicture extends Component {
           containerStyle={styles.linkIcon}
           name="exchange"
           type="font-awesome"
-          color={colors.splitGray}
+          color={colors.splitWhite}
           size={25}
           onPress={() => this.refs.trans.open()}
         />
