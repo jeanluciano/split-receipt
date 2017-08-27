@@ -12,7 +12,6 @@ import menuify from './menuify';
 import Stack from '../screens/Stack';
 import EditTable from '../screens/EditTable';
 import Transactions from '../screens/Transactions';
-import Animate from '../screens/Animate';
 import InnerLogin from '../screens/components/Entry/Login';
 import Splash from '../screens/components/Entry/Splash';
 import PreLogin from '../screens/PreLogin';
