@@ -9,7 +9,6 @@ class Transactions extends Component {
     super();
     this.state = {
       active: 'all',
-      oldActive: '',
     };
     this.allStyle = styles.activeTab;
     this.inStyle = styles.inActiveTab;
@@ -18,10 +17,9 @@ class Transactions extends Component {
   }
 
   toggleActive(active) {
-    const oldActive = this.state.active;
     this[active + 'Style'] = styles.activeTab;
-    this[oldActive + 'Style'] = styles.inActiveTab;
-    this.setState({ oldActive, active });
+    this[this.state.active + 'Style'] = styles.inActiveTab;
+    this.setState({ active });
   }
 
 
