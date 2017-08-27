@@ -33,6 +33,9 @@ Transactions.navigationOptions = { title: 'My chats' };
 export default DrawerNavigator({
   FinLogin: {
     screen: FinLogin,
+},
+  DevMenu: {
+    screen: menuify(DevMenu),
   },
   SendText: {
     screen: SendText,
@@ -58,20 +61,11 @@ export default DrawerNavigator({
   Splash: {
     screen: Splash,
   },
-  DevMenu: {
-    screen: menuify(DevMenu),
-  },
-  Transactions: {
-    screen: Transactions,
-  },
   Landing: {
     screen: menuify(Landing, ['#fff', '#cad3df', '#fff']),
   },
   Stack: {
     screen: Stack,
-  },
-  Contacts: {
-    screen: Contacts,
   },
   WebViews: {
     screen: WebViews,

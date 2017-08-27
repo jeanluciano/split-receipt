@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { addFriend, deleteFriend } from '../redux/friends';
 import { deleteContact, addContact } from '../redux/contacts';
+import { colors } from '../values/stylesheet';
 // import fakeContacts from './components/fakecontacts';
 
 class contacts extends Component {
@@ -28,6 +29,7 @@ class contacts extends Component {
     const { addFriend, deleteContact } = this.props;
     deleteContact(selectedContact);
     addFriend(selectedContact);
+    this.setState({query: ''})
   }
 
   completeHandle() {
@@ -58,18 +60,18 @@ class contacts extends Component {
     return (
       <View style={styles.contacts}>
 
-        
+
         <View style={styles.friendsContainer}>
         {this.props.friends.map((friend, ind) => {
           return (
-            <Badge 
+            <Badge
             key={ind}
             containerStyle={styles.badge}>
               <Text>
                 {friend.givenName}
               </Text>
-              <Icon size={20} name="close" 
-              type="evilicon" 
+              <Icon size={20} name="close"
+              type="evilicon"
               color="black"
               onPress={() => this.onRemoveFriend(friend)}
               underlayColor='transparent'
@@ -80,11 +82,11 @@ class contacts extends Component {
       </View>
 
         <SearchBar
-          noIcon
           round
           containerStyle={styles.SearchBar}
+          value={this.state.query}
           onChangeText={text => this.setState({ query: text })}
-          placeholder="Who are you with?"
+          placeholder="Who were you with?"
         />
         <List containerStyle={styles.searchContainer}>
           {contacts.map((contact, ind) => {
@@ -104,7 +106,8 @@ class contacts extends Component {
         <View style={styles.buttonContainer}>
         <Button
           title="That's everybody!"
-          backgroundColor="#03BD5B"
+          backgroundColor={colors.splitGold}
+          color={colors.splitBackground1}
           containerViewStyle={styles.button}
           borderRadius={25}
           onPress={this.completeHandle}
@@ -118,24 +121,24 @@ class contacts extends Component {
 const styles = StyleSheet.create({
   contacts: {
     flex: 1,
-    backgroundColor: '#3D4D65',
+    backgroundColor: colors.splitBackground1,
     paddingTop: '10%',
   },
   searchContainer: {
     borderTopWidth: 0,
     height: '75%',
-    backgroundColor: '#3D4D65',
+    backgroundColor: colors.splitBackground1,
   },
   SearchBar: {
-    backgroundColor: '#3D4D65',
+    backgroundColor: colors.splitBackground1,
     borderTopWidth: 0,
     borderBottomWidth: 0,
   },
   listItem: {
-    backgroundColor: '#374355',
+    backgroundColor: colors.splitBackground1,
   },
   listText: {
-    color: '#8493A8',
+    color: colors.splitGray,
   },
   button: {
     marginBottom:40,
@@ -153,7 +156,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 30,
     width: 100,
-    backgroundColor: '#0081D5',
+    backgroundColor: colors.splitGold,
     marginLeft: 8
   }
 });
