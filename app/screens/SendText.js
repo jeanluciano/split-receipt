@@ -17,7 +17,6 @@ class SendText extends Component {
   render() {
     return (
       <View style={styles.screen}>
-        <Text>Review the your splits</Text>
 
         <ScrollView>
           <View style={styles.table}>
