@@ -61,9 +61,6 @@ export default DrawerNavigator({
   Splash: {
     screen: Splash,
   },
-  Transactions: {
-    screen: Transactions,
-  },
   Landing: {
     screen: menuify(Landing, ['#fff', '#cad3df', '#fff']),
   },
