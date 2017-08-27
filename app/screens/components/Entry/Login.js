@@ -160,8 +160,6 @@ const styles = StyleSheet.create({
 
   contentView: {
     flex: 1,
-    marginLeft: '5%',
-    marginRight: '5%',
   },
 
   labelStyle: {

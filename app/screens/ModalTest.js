@@ -54,10 +54,15 @@ export default class Example extends React.Component {
           style={[styles.modal, styles.modal1]}
           ref={"modal1"}
           swipeToClose={this.state.swipeToClose}
+          backdropColor={colors.splitBackground2}
+          backdrop={false}
+          coverScreen={true}
           onClosed={this.onClose}
           onOpened={this.onOpen}
           onClosingState={this.onClosingState}>
+          <LinearGradient colors={colors.splitGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1}}>
           <InnerLogin />
+          </LinearGradient>
         </Modal>
       </LinearGradient>
     );
