@@ -12,6 +12,8 @@ import { List, ListItem, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { width, height } from 'react-native-dimension';
 import { putReceipt, removeItem, addItem } from '../redux/receipt';
+import Dash from 'react-native-dash';
+import { colors } from '../values/stylesheet';
 
 class EditTable extends Component {
   constructor() {
@@ -113,7 +115,7 @@ class EditTable extends Component {
                 onPress={() => this.props.navigation.navigate("Camera")}
               />
             </View>
-
+            <Dash dashColor={colors.splitBackground1} />
             <List style={styles.list}>
               {receiptData.map(item => (
                 <View style={styles.listItem}>
@@ -133,7 +135,7 @@ class EditTable extends Component {
                     onChangeText={text => this.onFixPrice(text, item)}
                   />
                   <Icon
-                    size={25}
+                    size={20}
                     name="circle-with-minus"
                     type="entypo"
                     color='#DB323C'
@@ -159,7 +161,7 @@ class EditTable extends Component {
                   onChangeText={text => this.setState({ itemPrice: text })}
                 />
                 <Icon
-                  size={25}
+                  size={20}
                   name="circle-with-plus"
                   type="entypo"
                   color="#239322"
@@ -174,6 +176,7 @@ class EditTable extends Component {
                   keyboardType="numeric"
                   value={this.state.tip}
                   maxLength={5}
+                  fontFamily="Courier"
                   placeholderTextColor={"#5e5e5e"}
                   onChangeText={text => this.setState({ tip: text })}
                 />
@@ -182,15 +185,16 @@ class EditTable extends Component {
 
           </Image>
         </ScrollView>
-        
+
         <Button
           style={styles.button}
           title="Looks Good!"
-          backgroundColor="#dccabd"
+          backgroundColor={colors.splitGold}
+          color={colors.splitBackground1}
           borderRadius={10}
           onPress={() => this.onConfirm()}
-        /> 
-        
+        />
+
       </View>
     );
   }
@@ -220,7 +224,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: "transparent",
-    fontSize: 35,
+    fontSize: 30,
     fontStyle: "italic",
     textAlign: "center",
     padding: 15,
@@ -235,40 +239,40 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   },
   itemName: {
-    fontSize: 19,
+    fontSize: 16,
     width: width(35),
     backgroundColor: "transparent",
-    fontFamily: 'AvenirNext-Regular'
+    fontFamily: 'Courier'
   },
   itemNameEdit: {
-    fontSize: 19,
+    fontSize: 16,
     width: width(35),
     backgroundColor: "transparent",
     borderRadius: 4,
     borderColor: "grey",
     borderWidth: 1,
-    fontFamily: 'AvenirNext-Regular'
+    fontFamily: 'Courier'
   },
   itemPrice: {
-    fontSize: 19,
+    fontSize: 16,
     width: 90,
     paddingRight: 8,
-    fontFamily: 'AvenirNext-Regular'
+    fontFamily: 'Courier'
   },
   itemPriceEdit: {
-    fontSize: 19,
+    fontSize: 16,
     width: 90,
     borderRadius: 4,
     borderColor: "grey",
     borderWidth: 1,
     paddingRight: 8,
-    fontFamily: 'AvenirNext-Regular'
+    fontFamily: 'Courier'
   },
   button: {
     paddingBottom: 30
   },
   tip: {
-    width: 30,
+    width: 60,
     borderRadius: 4,
     borderColor: "grey",
     borderWidth: 1,
@@ -280,8 +284,8 @@ const styles = StyleSheet.create({
   },
   tipSign: {
     backgroundColor: "transparent",
-    fontSize: 19,
-    fontFamily: 'AvenirNext-Regular'
+    fontSize: 16,
+    fontFamily: 'Courier'
   },
   headerContainer: {
     flexDirection: "row",
