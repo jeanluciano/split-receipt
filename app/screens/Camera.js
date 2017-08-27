@@ -1,5 +1,5 @@
 import React, { Component, Dimensions } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { updateReceiptThunkCreator } from '../redux/receipt';
 import { getContacts } from '../redux/contacts';
@@ -12,9 +12,13 @@ import { colors } from '../values/stylesheet';
 import Modal from 'react-native-modalbox';
 import Transactions from './Transactions';
 
+// <ActivityIndicator style={{alignSelf: 'center',}} animating={true} />
 class ReceiptPicture extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      taken: false,
+    }
     this.takePicture = this.takePicture.bind(this);
   }
 
@@ -24,6 +28,7 @@ class ReceiptPicture extends Component {
 
   takePicture() {
     console.log('this works')
+    this.setState({taken: true});
     this.camera
       .capture({ rotation: 270 })
       .then(async image => {
@@ -61,13 +66,13 @@ class ReceiptPicture extends Component {
           onPress={() => this.props.navigation.navigate('DrawerOpen')}
         />
         <View style={styles.clickIcon}>
-          <Icon
-            name="camera"
-            size={60}
-            color={colors.splitWhite}
-            underlayColor="transparent"
-            onPress={() => this.takePicture()} />
-        </View>
+            <Icon
+              name="camera"
+              size={60}
+              color={colors.splitWhite}
+              underlayColor="transparent"
+              onPress={() => this.takePicture()} />
+          </View>
         <Icon
           containerStyle={styles.linkIcon}
           name="exchange"
