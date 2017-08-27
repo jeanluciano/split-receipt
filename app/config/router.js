@@ -67,9 +67,6 @@ export default DrawerNavigator({
   Stack: {
     screen: Stack,
   },
-  Contacts: {
-    screen: Contacts,
-  },
   WebViews: {
     screen: WebViews,
   },
