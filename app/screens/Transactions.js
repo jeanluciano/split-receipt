@@ -59,7 +59,8 @@ class Transactions extends Component {
 
 
   render() {
-    const userGivenName = this.props.user.givenName;
+    const transactions = this.props.transactions || [];
+
     return (
       <ScrollView contentContainerStyle={styles.outerView}>
         <View style={styles.slideUpView}>
@@ -113,7 +114,7 @@ class Transactions extends Component {
           containerStyle={styles.listStyle}
         >
           {
-            fakeTransactions.map((transaction, index) => {
+            transactions.map((transaction, index) => {
               const intrans = <Icon name="login" type="entypo" color={colors.splitGold} size={16} />;
               const outtrans = <Icon name="logout" type="entypo" color={colors.splitGold} size={16} />;
 
@@ -127,7 +128,7 @@ class Transactions extends Component {
                 key={index}
                 rightIcon={rightIcon}
                 title={`${transaction.to.givenName} ${transaction.to.familyName}`}
-                subtitle={transaction.purpose}
+                subtitle={transaction.items.map(item => item.item).join(' ')}
                 rightTitle={`$${transaction.total}`}
               />);
             })
@@ -143,7 +144,7 @@ class Transactions extends Component {
 
 const mapState = state => {
   return {
-    user: state.user
+    transactions: state.transactions,
   };
 };
 
