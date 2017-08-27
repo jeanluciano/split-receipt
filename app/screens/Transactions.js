@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { Icon, List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { colors } from '../values/stylesheet';
-import fakeTransactions from './fakeTransactions';
+import fakeTransactions from './components/Landing/transactions';
 
 
 let tabs = {
