@@ -26,6 +26,17 @@ class EditTable extends Component {
     this.tipGenerator = this.tipGenerator.bind(this);
     this.onConfirm = this.onConfirm.bind(this);
     this.onEdit = this.onEdit.bind(this)
+    this.priceToString = this.priceToString.bind(this)
+  }
+
+  priceToString(priceNum) {
+    if (isNaN(priceNum)) console.error('ITEM HAS NO PRICE');
+    const price = priceNum.toString().split('.')
+    const dollar = price[0].padStart(1, '0');
+    let cent = '';
+    if (!price[1]) cent = '00';
+    else cent = price[1].padEnd(2, '0');
+    return `${dollar}.${cent}`;
   }
 
   stretcher() {
@@ -42,6 +53,7 @@ class EditTable extends Component {
   onFixPrice(price, item) {
     if (!isNaN(price)) {
       item.price = price;
+      item.priceString = this.priceToString(price);
       this.props.putReceipt(item);
     }
   }
@@ -74,11 +86,14 @@ class EditTable extends Component {
     if (!this.state.editable) this.setState({ editable: true });
     else this.setState({ editable: false });
   }
+  
   onConfirm() {
-    this.props.receiptData.forEach(item => {
+    this.props.receiptData.forEach( async item => {
       let price = item.price + item.price * (this.state.tip * 0.001);
-      item.price = roundPrecision(price, 2);
-      this.props.putReceipt(item);
+      item.price = await roundPrecision(price, 2);
+      console.log(item)
+      item.priceString = await this.priceToString(item.price);
+      await this.props.putReceipt(item);
     });
     this.props.navigation.navigate("Contacts");
   }
