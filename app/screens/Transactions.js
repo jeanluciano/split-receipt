@@ -61,14 +61,14 @@ class Transactions extends Component {
           <Icon
             name="chevron-down"
             type="font-awesome"
-            color={colors.splitGray}
+            color={colors.splitGold}
             size={12}
           />
-          <Text> Slide down for camera view </Text>
+          <Text style={{fontFamily: 'AvenirNext-Regular', color: colors.splitGray }}> Slide down for camera view </Text>
           <Icon
             name="chevron-down"
             type="font-awesome"
-            color={colors.splitGray}
+            color={colors.splitGold}
             size={12}
           />
         </View>
