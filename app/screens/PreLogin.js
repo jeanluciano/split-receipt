@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements';
 import { height } from 'react-native-dimension';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modalbox';
+import PropTypes from 'prop-types';
 
 import { login, signup } from '../redux/auth';
 import { colors } from '../values/stylesheet';
@@ -94,17 +95,11 @@ const styles = StyleSheet.create({
   },
 });
 
-PreLogin.propTypes = {
+Entry.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
-  }),
-  transactions: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    })
-  ),
-  handleSendText: PropTypes.func.isRequired,
+  }).isRequired,
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
 };
