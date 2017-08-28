@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import Root from './config/router';
 import store from './redux';
 
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 
 class App extends Component {
   render() {

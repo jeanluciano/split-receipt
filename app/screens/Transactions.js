@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Icon, List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { colors } from '../values/stylesheet';
-import fakeTransactions from './components/Landing/transactions';
 
-
-
-let tabs = {
+const tabs = {
   allStyle: {
     flex: 1,
     borderBottomLeftRadius: 3,
@@ -136,18 +135,11 @@ class Transactions extends Component {
           }
         </List>
       </ScrollView>
-
-
     );
   }
-
 }
 
-const mapState = state => {
-  return {
-    transactions: state.transactions,
-  };
-};
+const mapState = state => ({ transactions: state.transactions })
 
 export default connect(mapState, null)(Transactions);
 
@@ -179,7 +171,7 @@ const styles = StyleSheet.create({
 
   subtitleStyle: {
     fontFamily: 'Courier',
-    color: colors.splitGray
+    color: colors.splitGray,
   },
 
   rightTitleStyle: {
@@ -200,6 +192,15 @@ const styles = StyleSheet.create({
     marginRight: '2%',
     padding: 0,
   },
-
-
 });
+
+Transactions.propTypes = {
+  transactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+};
