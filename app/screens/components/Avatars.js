@@ -63,37 +63,51 @@ class Avatars extends Component {
     return (
       <View style={styles.container}>
         {this.props.friends.map((friend, ind) =>
-          <View style={styles.avatarContainer} key={`${friend.givenName}+${friend.familyName}`}>
-            <Avatar
-              key={ind + 1}
-              containerStyle={
-                this.state[friend.recordID]
-                  ? styles.avatarToggled
-                  : styles.avatar
-              }
-              rounded
-              medium
-              onPress={() => this.selectHandle(friend)}
-              title={`${friend.givenName[0]}${friend.familyName[0]}`}
-            />
-            <Text>
-              {friend.givenName}
-            </Text>
-          </View>,
+          (
+            <View style={styles.avatarContainer} key={`${friend.givenName}+${friend.familyName}`}>
+              <Avatar
+                key={ind + 1}
+                containerStyle={
+                  this.state[friend.recordID]
+                    ? styles.avatarToggled
+                    : styles.avatar
+                }
+                rounded
+                medium
+                onPress={() => this.selectHandle(friend)}
+                title={`${friend.givenName[0]}${friend.familyName[0]}`}
+              />
+              <Text>
+                {friend.givenName}
+              </Text>
+            </View>
+          )
         )}
       </View>
     );
   }
 }
 
-const mapState = (store, ownProps) => {
-  return {
-    friends: ownProps.tempFriends,
-    item: ownProps.item,
-    completeCheck: ownProps.completeCheck,
-  };
-};
+const mapState = (store, ownProps) => ({
+  friends: ownProps.tempFriends,
+  item: ownProps.item,
+  completeCheck: ownProps.completeCheck,
+})
+
 const mapDispatch = { putFriend };
 
 export default connect(mapState, mapDispatch)(Avatars);
+
+Stack.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      recordID: PropTypes.string.isRequired,
+    })
+  ),
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }),
+  addTransaction: PropTypes.func.isRequired,
+  putFriend: PropTypes.func.isRequired,
+};
 

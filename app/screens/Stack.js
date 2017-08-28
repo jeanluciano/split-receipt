@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View } from 'react-native';
 import Swiper from 'react-native-swiper-animated';
 import { BoxShadow } from 'react-native-shadow';
-import { width, height, totalSize } from 'react-native-dimension';
+import { width, height } from 'react-native-dimension';
 import { Button } from 'react-native-elements';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Avatars from './components/Avatars';
-import { connect } from 'react-redux';
-import fakeReceipt from './components/fakeReceipt';
 import { putFriend } from '../redux/friends';
-import PropTypes from 'prop-types';
 import { addTransaction } from '../redux/transactions';
 import { colors } from '../values/stylesheet';
 
@@ -39,7 +38,7 @@ const styles = {
     fontSize: 30,
     fontWeight: 'bold',
     padding: '5%',
-    fontFamily: 'Courier'
+    fontFamily: 'Courier',
   },
   textContainer: {
     paddingTop: '10%',
@@ -69,7 +68,7 @@ class Stack extends Component {
 
 
   completeHandler() {
-    this.tempFriends.forEach(friend => {
+    this.tempFriends.forEach((friend) => {
       this.props.addTransaction(friend, this.props.user);
       this.props.putFriend(friend);
     });
@@ -154,47 +153,41 @@ class Stack extends Component {
                     completeCheck={this.completeCheck}
                   />
                 </View>
-              </BoxShadow>,
+              </BoxShadow>
           )}
         </Swiper>
 
         {this.state.complete
           ? <Button
-              style={styles.button}
-              title="Request"
-              backgroundColor={colors.splitGold}
-              color={colors.splitBackground1}
-              borderRadius={10}
-              onPress={this.completeHandler.bind(this)}
-            />
+            style={styles.button}
+            title="Request"
+            backgroundColor={colors.splitGold}
+            color={colors.splitBackground1}
+            borderRadius={10}
+            onPress={this.completeHandler.bind(this)}
+          />
           : <Button style={styles.button} backgroundColor={colors.splitBackground2} color={colors.splitBackground1} borderRadius={10} title="Request" />}
       </View>
     );
   }
 }
 
-const mapState = store => {
-  return {
-    user: store.user,
-    friends: store.friends,
-    receiptData: store.receipt.receiptData,
-    tempFriends: store.friends,
-    transaction: store.transaction,
-  };
-};
+const mapState = store => ({
+  user: store.user,
+  friends: store.friends,
+  receiptData: store.receipt.receiptData,
+  tempFriends: store.friends,
+  transaction: store.transaction,
+})
+
 const mapDispatch = { putFriend, addTransaction };
 
 export default connect(mapState, mapDispatch)(Stack);
 
 Stack.propTypes = {
-  friends: PropTypes.arrayOf(
-    PropTypes.shape({
-      recordID: PropTypes.string.isRequired,
-    }),
-  ),
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
-  }),
+  }).isRequired,
   addTransaction: PropTypes.func.isRequired,
   putFriend: PropTypes.func.isRequired,
 };
