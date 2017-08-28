@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, Animated } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { Button, FormLabel, FormInput, Icon } from 'react-native-elements';
-import { login, signup } from '../redux/auth';
-import { masterStyle, colors } from '../values/stylesheet';
-import Splash from './components/Entry/Splash';
+import { Button } from 'react-native-elements';
 import { height } from 'react-native-dimension';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modalbox';
+
+import { login, signup } from '../redux/auth';
+import { colors } from '../values/stylesheet';
+import Splash from './components/Entry/Splash';
 import InnerLogin from './components/Entry/Login';
 
 class Entry extends Component {
@@ -23,17 +24,16 @@ class Entry extends Component {
     };
   }
 
-
   render() {
     const { navigation, user } = this.props;
     if (user.payPalMe) navigation.navigate('Camera');
     else if (user.id) navigation.navigate('LinkAccounts');
-
     return (
-      <LinearGradient colors={colors.splitGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1}}>
+      <LinearGradient colors={colors.splitGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
         <Splash style={{ height: height(80) }} />
 
         <View style={{ height: height(20) }}>
+
           <Button
             title="Sign Up"
             color={colors.splitBackground2}
@@ -42,6 +42,7 @@ class Entry extends Component {
             borderRadius={10}
             onPress={() => navigation.navigate('Signup')}
           />
+
           <Button
             title="Log In"
             color={colors.splitWhite}
@@ -52,54 +53,58 @@ class Entry extends Component {
           />
 
           <Modal
-          zIndex= {3}
-          style={[styles.modal, styles.modal1]}
-          ref={"modal1"}
-          swipeToClose={this.state.swipeToClose}
-          onClosed={this.onClose}
-          onOpened={this.onOpen}
-          onClosingState={this.onClosingState}>
+            zIndex={3}
+            style={[styles.modal, styles.modal1]}
+            ref={"modal1"}
+            swipeToClose={this.state.swipeToClose}
+            onClosed={this.onClose}
+            onOpened={this.onOpen}
+            onClosingState={this.onClosingState} >
             <InnerLogin />
-        </Modal>
+          </Modal>
 
         </View>
 
-
-
       </LinearGradient>
     );
-  };
+  }
 }
 
-const mapState = (state) => {
-  return {
-    user: state.user,
-  };
-};
+const mapState = state => ({ user: state.user })
 
-const mapDispatch = (dispatch) => {
-  return {
-    handleLogIn(email, password, navigate) {
-      dispatch(login(email, password, navigate));
-    },
-    handleSignUp(email, password, navigate) {
-      dispatch(signup(email, password, navigate));
-    },
-  };
-};
+const mapDispatch = dispatch => ({
+  handleLogIn(email, password, navigate) {
+    dispatch(login(email, password, navigate));
+  },
+  handleSignUp(email, password, navigate) {
+    dispatch(signup(email, password, navigate));
+  },
+})
 
 export default connect(mapState, mapDispatch)(Entry);
 
-var styles = StyleSheet.create({
-
-
+const styles = StyleSheet.create({
   loginButton: {
     marginLeft: '10%',
     marginRight: '10%',
   },
-
   signupButton: {
     marginLeft: '10%',
     marginRight: '10%',
   },
 });
+
+PreLogin.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }),
+  transactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    })
+  ),
+  handleSendText: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }),
+};

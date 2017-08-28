@@ -4,6 +4,7 @@ import Swiper from 'react-native-swiper-animated';
 import { BoxShadow } from 'react-native-shadow';
 import { width, height, totalSize } from 'react-native-dimension';
 import { Button } from 'react-native-elements';
+
 import Avatars from './components/Avatars';
 import { connect } from 'react-redux';
 import fakeReceipt from './components/fakeReceipt';

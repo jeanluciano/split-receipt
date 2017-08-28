@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import { sendText } from '../redux/sendText';
 import { colors } from '../values/stylesheet';
 import TransactionCard from './components/TransactionCard';
@@ -21,29 +22,28 @@ class SendText extends Component {
         <ScrollView>
           <View style={styles.table}>
             {this.props.transactions.map(transaction =>
-              <TransactionCard
+              (<TransactionCard
                 key={transaction.id}
                 transaction={transaction}
-              />,
+              />)
             )}
           </View>
         </ScrollView>
 
-          <Button
-            title="Send Texts"
-            backgroundColor={colors.splitGold}
-            borderRadius={10}
-            color={colors.splitBackground1}
-            fontFamily="AvenirNext-Regular"
-            containerViewStyle={styles.button}
-            onPress={() => {
-              this.props.handleSendText(
-                this.props.transactions,
-                this.props.user,
-              );
-              this.props.navigation.navigate('Camera')
-            }}
-          />
+        <Button
+          title="Send Texts"
+          backgroundColor={colors.splitGold}
+          borderRadius={10}
+          color={colors.splitBackground1}
+          fontFamily="AvenirNext-Regular"
+          containerViewStyle={styles.button}
+          onPress={() => {
+            this.props.handleSendText(
+              this.props.transactions,
+              this.props.user);
+            this.props.navigation.navigate('Camera')
+          }}
+        />
       </View>
     );
   }
@@ -68,16 +68,15 @@ export default connect(mapState, mapDispatch)(SendText);
 SendText.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
-  }),
+  }).isRequired,
   transactions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-    }),
-  ),
+    })).isRequired,
   handleSendText: PropTypes.func.isRequired,
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
 };
 
 const styles = StyleSheet.create({
