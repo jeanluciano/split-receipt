@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { connect } from 'react-redux';
-import fakeContacts from './fakecontacts';
+import PropTypes from 'prop-types';
+import { width, height, totalSize } from 'react-native-dimension';
+
 import { putFriend } from '../../redux/friends';
-import { width, height,totalSize } from 'react-native-dimension';
 import { colors } from '../../values/stylesheet';
 
 const styles = StyleSheet.create({
@@ -42,8 +43,8 @@ class Avatars extends Component {
   }
 
   toggleObj() {
-    let toggleObj = {};
-    this.props.friends.forEach(friend => {
+    const toggleObj = {};
+    this.props.friends.forEach((friend) => {
       toggleObj[friend.recordID] = false;
     });
     return toggleObj;
@@ -63,37 +64,46 @@ class Avatars extends Component {
     return (
       <View style={styles.container}>
         {this.props.friends.map((friend, ind) =>
-          <View style={styles.avatarContainer} key={`${friend.givenName}+${friend.familyName}`}>
-            <Avatar
-              key={ind + 1}
-              containerStyle={
-                this.state[friend.recordID]
-                  ? styles.avatarToggled
-                  : styles.avatar
-              }
-              rounded
-              medium
-              onPress={() => this.selectHandle(friend)}
-              title={`${friend.givenName[0]}${friend.familyName[0]}`}
-            />
-            <Text>
-              {friend.givenName}
-            </Text>
-          </View>,
+          (
+            <View style={styles.avatarContainer} key={`${friend.givenName}+${friend.familyName}`}>
+              <Avatar
+                key={ind + 1}
+                containerStyle={
+                  this.state[friend.recordID]
+                    ? styles.avatarToggled
+                    : styles.avatar
+                }
+                rounded
+                medium
+                onPress={() => this.selectHandle(friend)}
+                title={`${friend.givenName[0]}${friend.familyName[0]}`}
+              />
+              <Text>
+                {friend.givenName}
+              </Text>
+            </View>
+          )
         )}
       </View>
     );
   }
 }
 
-const mapState = (store, ownProps) => {
-  return {
-    friends: ownProps.tempFriends,
-    item: ownProps.item,
-    completeCheck: ownProps.completeCheck,
-  };
-};
+const mapState = (store, ownProps) => ({
+  friends: ownProps.tempFriends,
+  item: ownProps.item,
+  completeCheck: ownProps.completeCheck,
+})
+
 const mapDispatch = { putFriend };
 
 export default connect(mapState, mapDispatch)(Avatars);
+
+Avatars.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      recordID: PropTypes.string.isRequired,
+    })).isRequired,
+  completeCheck: PropTypes.func.isRequired,
+};
 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { login } from '../redux/auth';
 import { getContacts } from '../redux/contacts';
 import { friends } from '../../tests/testData';
@@ -8,9 +10,7 @@ import { sendDummyText } from '../../tests/testMethods'
 import { loadFakeData } from '../redux/receipt'
 import { masterStyle } from '../values/stylesheet'
 
-
 class DevMenu extends Component {
-
   componentDidMount() {
     this.props.getContacts()
   }
@@ -100,11 +100,24 @@ class DevMenu extends Component {
   }
 }
 
-const mapState = (state) => {
-  return {
-    receiptData: state.receipt.receiptData,
-  };
-};
+const mapState = state => ({
+  receiptData: state.receipt.receiptData,
+})
 const mapDispatch = { loadFakeData, login, getContacts, sendDummyText };
 
 export default connect(mapState, mapDispatch)(DevMenu);
+
+DevMenu.propTypes = {
+  receiptData: PropTypes.arrayOf(
+    PropTypes.shape({
+      price: PropTypes.isNumber,
+    })
+  ),
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }),
+  loadFakeData: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  getContacts: PropTypes.func.isRequired,
+  sendDummyText: PropTypes.func.isRequired,
+};
