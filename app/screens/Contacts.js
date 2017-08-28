@@ -13,7 +13,6 @@ import { addFriend, deleteFriend } from '../redux/friends';
 import { deleteContact, addContact } from '../redux/contacts';
 import { colors } from '../values/stylesheet';
 import { width, height,totalSize } from 'react-native-dimension';
-// import fakeContacts from './components/fakecontacts';
 
 class contacts extends Component {
   constructor() {
