@@ -31,11 +31,15 @@ class Login extends Component {
       <View style={styles.gradientView}>
         <View>
           <Text style={styles.logoText}>Split.</Text>
-          <Text style={styles.builtWithText}>built with<View style={{ height: 12, width: 30 }}><Icon
-            name="receipt"
-            type="material-community"
-            color={colors.splitGold}
-          /></View>by JRJ</Text>
+          <View style={styles.descriptionView}>
+            <Text style={styles.builtWithText}>built with </Text>
+            <Icon
+              name="receipt"
+              type="material-community"
+              color={colors.splitGold}
+            />
+            <Text style={styles.builtWithText}> by JRJ</Text>
+          </View>
         </View>
 
         <View style={styles.contentView}>
@@ -124,6 +128,12 @@ const styles = StyleSheet.create({
     marginBottom: '2%',
     alignItems: 'center',
     fontFamily: 'AvenirNext-Bold',
+  },
+
+  descriptionView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   builtWithText: {
