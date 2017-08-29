@@ -79,7 +79,10 @@ export const updateReceiptThunkCreator = receiptData => (dispatch) => {
     console.error('receiptData is not what you want it to be bro');
   } else {
     receiptData.forEach((item, ind) => {
-      item.id = ind;
+      console.log(ind, receiptData.length - 1)
+      if (ind === receiptData.length - 1) {
+        item.id = 'total';
+      } else item.id = ind
       if (item.price) item.priceString = priceToString(item.price);
     });
     dispatch(updateReceipt(receiptData));

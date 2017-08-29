@@ -62,9 +62,12 @@ class EditTable extends Component {
 
   onAddHandle() {
     if (this.state.itemName && this.state.itemPrice) {
+
+      console.log(this.props.receiptData)
       let newItem = {
         item: this.state.itemName,
-        price: this.state.itemPrice
+        price: this.state.itemPrice,
+       
       };
       this.props.addItem(newItem);
       this.setState({
@@ -102,7 +105,7 @@ class EditTable extends Component {
 
   render() {
     const receiptData = this.props.receiptData;
-
+    console.log(receiptData)
     return (
       <View style={styles.viewcontainer}>
         <ScrollView contentContainerStyle={styles.container}>
@@ -133,7 +136,7 @@ class EditTable extends Component {
             <Dash dashColor={colors.splitBackground1} />
             <List style={styles.list}>
               {receiptData.map((item, ind) => (
-                ind !== receiptData.length - 1 &&
+                'total' !== item.id &&
                 <View style={styles.listItem}>
                   <TextInput
                     style={this.state.editable ? styles.itemNameEdit : styles.itemName}
