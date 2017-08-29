@@ -62,12 +62,11 @@ class EditTable extends Component {
 
   onAddHandle() {
     if (this.state.itemName && this.state.itemPrice) {
-
-      console.log(this.props.receiptData)
+      let id =  (this.props.receiptData[this.props.receiptData.length - 2].id) + 1
       let newItem = {
         item: this.state.itemName,
         price: this.state.itemPrice,
-       
+        id: id
       };
       this.props.addItem(newItem);
       this.setState({
@@ -105,7 +104,6 @@ class EditTable extends Component {
 
   render() {
     const receiptData = this.props.receiptData;
-    console.log(receiptData)
     return (
       <View style={styles.viewcontainer}>
         <ScrollView contentContainerStyle={styles.container}>
