@@ -8,13 +8,26 @@ const FIX_PRICE = 'FIX_PRICE';
 const DELETE_ITEM = 'DELETE_ITEM';
 const CREATE_ITEM = 'CREATE_ITEM';
 
+const pad = (location, str, length, padChar) => {
+  if (str.length >= length) return str
+  const padLength = length - str.length;
+  for (let i = 0; i < padLength; i++) {
+    if (location === 'start') {
+      str = `${str}${padChar}`;
+    } else if (location === 'end') {
+      str = `${str}${padChar}`;
+    }
+  }
+  return str
+}
+
 const priceToString = (priceNum) => {
   if (!priceNum) console.error('ITEM HAS NO PRICE');
   const price = priceNum.toString().split('.')
-  const dollar = price[0].padStart(1, '0');
+  const dollar = pad('start', price[0], 1, '0');
   let cent = '';
   if (!price[1]) cent = '00';
-  else cent = price[1].padEnd(2, '0');
+  else cent = pad('end', price[1], 2, '0');
   return `${dollar}.${cent}`;
 }
 
