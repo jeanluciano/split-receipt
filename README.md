@@ -31,8 +31,7 @@ If you discover a security vulnerability in Split., please post in the issues.
 
 ## People
 
-The creators of Split. are [Jean Luciano](https://github.com/jeanluciano)
-The creators of Split. are [Raj Kadiyala](https://github.com/rajkadiyala)
-The creators of Split. are [Jason Hu](https://github.com/jhu7235)
+The creators of Split. are [Jean Luciano](https://github.com/jeanluciano), [Raj Kadiyala](https://github.com/rajkadiyala), and [Jason Hu](https://github.com/jhu7235)
+
 [List of all contributors](https://github.com/jeanluciano/split-receipt/graphs/contributors)
 
