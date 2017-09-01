@@ -1,8 +1,6 @@
 # Split.
 
 [![Split Logo](http://c1.staticflickr.com/5/4345/36795136172_5fe7be8159_n.jpg)](http://c1.staticflickr.com/5/4345/36795136172_5fe7be8159_n.jpg)
-[![Split Screenshot1](http://c1.staticflickr.com/5/4333/36966304125_a958ce47ca_z.jpg)](http://c1.staticflickr.com/5/4333/36966304125_a958ce47ca_z.jpg)
-
 
   A mobile app that splits the bill for you. Just take a picture, grab your friends, and send the requests.
 
