@@ -1,4 +1,4 @@
-export const validateShape = function(obj, type) {
+export default validateShape = function(obj, type) {
   const {
     total,
     status,
