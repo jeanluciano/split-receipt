@@ -5,12 +5,16 @@
   "scripts": {
     "start": "NODE_ENV='development' node node_modules/react-native/local-cli/cli.js start",
     "start-server": "NODE_ENV='development' nodemon server",
+    "test-firebase-auth": "mocha tests/firebase/auth.test.js --watch --compilers js:babel-register",
     "test": "jest"
   },
   "dependencies": {
     "animejs": "^2.0.2",
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
+    "chai": "^4.1.2",
+    "chai-properties": "^1.2.1",
+    "chai-things": "^0.2.0",
     "express": "^4.15.4",
     "faker": "^4.1.0",
     "firebase": "^4.2.0",
@@ -44,6 +48,8 @@
     "redux-thunk": "^2.2.0",
     "request": "^2.81.0",
     "round-precision": "^1.0.0",
+    "sinon": "^3.2.1",
+    "supertest-as-promised": "^4.0.2",
     "twilio": "^3.6.2"
   },
   "devDependencies": {
