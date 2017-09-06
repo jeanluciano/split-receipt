@@ -5,11 +5,24 @@
   A mobile app that splits the bill for you. Just take a picture, grab your friends, and send the requests.
 
 
-## Testing and building
+## Testing 
 
 ```bash
 $ npm install
+$ npm run start-server
+$ npm run test
 ```
+
+## Building
+
+```bash
+$ npm install
+$ npm run start-server
+```
+
+if adding to firebase cloud functions
+	* node must be above version 8.0.0
+	* follow firebase deploy instructions
 
 ## Features
 
