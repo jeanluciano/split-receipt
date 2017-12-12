@@ -1,0 +1,140 @@
+[debug] [2017-09-06T16:48:30.495Z] ----------------------------------------------------------------------
+[debug] [2017-09-06T16:48:30.500Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-09-06T16:48:30.501Z] CLI Version:   3.10.0
+[debug] [2017-09-06T16:48:30.501Z] Platform:      darwin
+[debug] [2017-09-06T16:48:30.501Z] Node Version:  v8.4.0
+[debug] [2017-09-06T16:48:30.502Z] Time:          Wed Sep 06 2017 11:48:30 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:30.502Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-06T16:48:30.525Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-09-06T16:48:30.525Z] > authorizing via signed-in user
+[debug] [2017-09-06T16:48:30.527Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-09-06T16:48:30.527Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/yp9rxVb4eT7B651BShSXx2twB0Pl9z0STc2qeUwd2AE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Sep 06 2017 11:48:30 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:30.657Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-06T16:48:30.677Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/split-receipt-6572b  
+ Wed Sep 06 2017 11:48:30 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:30.923Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-06T16:48:30.924Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/split-receipt-6572b/tokens  
+ Wed Sep 06 2017 11:48:30 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:31.376Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'split-receipt-6572b'...
+[info] 
+[info] i  deploying database, functions
+[info] ✔  database: rules ready to deploy.
+[debug] [2017-09-06T16:48:31.603Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~5.2.1",
+    "firebase-functions": "^0.6.2",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-09-06T16:48:31.605Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/split-receipt-6572b?view=CONSUMER_VIEW  
+ Wed Sep 06 2017 11:48:31 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:31.606Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/split-receipt-6572b?view=CONSUMER_VIEW  
+ Wed Sep 06 2017 11:48:31 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:32.108Z] <<< HTTP RESPONSE 200
+[info] ✔  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-09-06T16:48:32.113Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2017-09-06T16:48:32.114Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/split-receipt-6572b  
+ Wed Sep 06 2017 11:48:32 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:32.115Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/split-receipt-6572b/apiKeys  
+ Wed Sep 06 2017 11:48:32 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:32.329Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-06T16:48:32.491Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-09-06T16:48:36.893Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/split-receipt-6572b/configs  
+ Wed Sep 06 2017 11:48:36 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:37.074Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (19.39 KB) for uploading
+[debug] [2017-09-06T16:48:39.107Z] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.split-receipt-6572b.appspot.com  
+ Wed Sep 06 2017 11:48:39 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:39.178Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-06T16:48:39.182Z] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.split-receipt-6572b.appspot.com/o?uploadType=media&name=firebase-functions-source ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 19858,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     destroyed: false,
+     defaultEncoding: 'utf8',
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/var/folders/xk/h8dfj8rd3_52zzs4rfd40vbh0000gn/T/firebase-functions-43001Mc6kTot5C2E4.zip',
+  fd: 19,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 19858 } 
+ Wed Sep 06 2017 11:48:39 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:39.941Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  starting release process (may take several minutes)...
+[debug] [2017-09-06T16:48:39.944Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/projects/split-receipt-6572b/locations/us-central1/functions  
+ Wed Sep 06 2017 11:48:39 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:40.138Z] <<< HTTP RESPONSE 200
+[info] i  functions: updating function helloWorld...
+[debug] [2017-09-06T16:48:40.142Z] Trigger is: 
+[info] i  functions: updating function receipt...
+[debug] [2017-09-06T16:48:40.143Z] Trigger is: 
+[debug] [2017-09-06T16:48:40.143Z] >>> HTTP REQUEST PUT https://cloudfunctions.googleapis.com/v1beta2/projects/split-receipt-6572b/locations/us-central1/functions/helloWorld { sourceArchiveUrl: 'gs://staging.split-receipt-6572b.appspot.com/firebase-functions-source',
+  name: 'projects/split-receipt-6572b/locations/us-central1/functions/helloWorld',
+  entryPoint: 'helloWorld',
+  timeout: '60s',
+  availableMemoryMb: 256,
+  httpsTrigger: {} } 
+ Wed Sep 06 2017 11:48:40 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:40.144Z] >>> HTTP REQUEST PUT https://cloudfunctions.googleapis.com/v1beta2/projects/split-receipt-6572b/locations/us-central1/functions/receipt { sourceArchiveUrl: 'gs://staging.split-receipt-6572b.appspot.com/firebase-functions-source',
+  name: 'projects/split-receipt-6572b/locations/us-central1/functions/receipt',
+  entryPoint: 'receipt',
+  timeout: '60s',
+  availableMemoryMb: 256,
+  httpsTrigger: {} } 
+ Wed Sep 06 2017 11:48:40 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:40.342Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-06T16:48:40.468Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-06T16:48:40.470Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/projects/split-receipt-6572b/locations/us-central1/functions  
+ Wed Sep 06 2017 11:48:40 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:40.470Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/c3BsaXQtcmVjZWlwdC02NTcyYi91cy1jZW50cmFsMS9oZWxsb1dvcmxkL1Qxa0tPQnFFUjdV  
+ Wed Sep 06 2017 11:48:40 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:40.470Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/c3BsaXQtcmVjZWlwdC02NTcyYi91cy1jZW50cmFsMS9yZWNlaXB0L1ZVV2VERkhyTVQ4  
+ Wed Sep 06 2017 11:48:40 GMT-0500 (CDT)
+[debug] [2017-09-06T16:48:40.550Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-06T16:48:40.554Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-06T16:48:40.555Z] [functions] operation poll: helloWorld: update operations/c3BsaXQtcmVjZWlwdC02NTcyYi91cy1jZW50cmFsMS9oZWxsb1dvcmxkL1Qxa0tPQnFFUjdV is not done.
+[debug] [2017-09-06T16:48:40.555Z] [functions] operation poll: receipt: update operations/c3BsaXQtcmVjZWlwdC02NTcyYi91cy1jZW50cmFsMS9yZWNlaXB0L1ZVV2VERkhyTVQ4 is not done.
+[debug] [2017-09-06T16:48:40.566Z] <<< HTTP RESPONSE 200
