@@ -572,7 +572,11 @@
 				00E356EF1AD99517003FC87E /* splitreceiptTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				C34D8E0C87E14326A17C5141 /* Resources */,
+<<<<<<< HEAD
 				9D108EC91FDF83000013BED7 /* Recovered References */,
+=======
+				9D0D4D8F1FFC6B85004B60F4 /* Recovered References */,
+>>>>>>> master
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -588,7 +592,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		9D108EC91FDF83000013BED7 /* Recovered References */ = {
+=======
+		9D0D4D8F1FFC6B85004B60F4 /* Recovered References */ = {
+>>>>>>> master
 			isa = PBXGroup;
 			children = (
 				1D93C379264F420A8CEE38F5 /* libRCTCamera.a */,
