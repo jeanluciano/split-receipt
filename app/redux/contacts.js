@@ -12,7 +12,7 @@ const CREATE_CONTACT = 'CREATE_CONTACT';
  */
 const readContacts = contacts => ({ type: READ_CONTACTS, contacts });
 const removeContact = contact => ({ type: REMOVE_CONTACT, contact });
-const createContact = contact => ({type: CREATE_CONTACT, contact });
+const createContact = contact => ({ type: CREATE_CONTACT, contact });
 /**
  * REDUCER
  */

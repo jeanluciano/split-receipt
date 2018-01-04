@@ -1,171 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login, signup } from '../../../redux/auth';
-
-import { colors } from '../../../values/stylesheet';
 import { StyleSheet, View, Text } from 'react-native';
 import { Button, Icon, FormLabel, FormInput, Divider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import Dash from 'react-native-dash';
 
-
-// <Dash style={styles.dashStyle} dashColor={colors.splitGray} />
-// <Divider style={styles.dividerStyle} />
-
-class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      emailText: '',
-      passwordText: '',
-      givenNameText: '',
-      familyNameText: '',
-    }
-  }
-
-  render() {
-
-    const user = this.props.user;
-    if (user.payPalMe) this.props.navigation.navigate('Camera');
-    else if (user.id) this.props.navigation.navigate('LinkAccounts');
-
-    return (
-      <View style={styles.gradientView}>
-        <View>
-          <Text style={styles.logoText}>Split.</Text>
-          <View style={styles.descriptionView}>
-            <Text style={styles.builtWithText}>built with </Text>
-            <Icon
-              name="receipt"
-              type="material-community"
-              color={colors.splitGold}
-            />
-            <Text style={styles.builtWithText}> by JRJ</Text>
-          </View>
-        </View>
-
-        <View style={styles.contentView}>
-
-          <View style={styles.emailView}>
-            <View style={{ flex: 1 }}>
-              <FormLabel
-                fontFamily="AvenirNext-Regular"
-                labelStyle={styles.labelStyle}
-              >
-                First Name
-        </FormLabel>
-            </View>
-
-            <View style={styles.inputView}>
-              <FormInput
-                fontFamily="Courier"
-                inputStyle={styles.inputStyle}
-                selectionColor={colors.splitBlue}
-                placeholder="jrj@split.com"
-                placeholderTextColor={colors.splitBackground2}
-                onChangeText={emailText => this.setState({ emailText })}
-                value={this.state.emailText}
-              />
-            </View>
-          </View>
-
-          <View style={styles.emailView}>
-            <View style={{ flex: 1 }}>
-              <FormLabel
-                fontFamily="AvenirNext-Regular"
-                labelStyle={styles.labelStyle}
-              >
-                Last Name
-        </FormLabel>
-            </View>
-
-            <View style={styles.inputView}>
-              <FormInput
-                fontFamily="Courier"
-                inputStyle={styles.inputStyle}
-                selectionColor={colors.splitBlue}
-                placeholder="jrj@split.com"
-                placeholderTextColor={colors.splitBackground2}
-                onChangeText={emailText => this.setState({ emailText })}
-                value={this.state.emailText}
-              />
-            </View>
-          </View>
-
-
-
-          <View style={styles.emailView}>
-            <View style={{ flex: 1 }}>
-              <FormLabel
-                fontFamily="AvenirNext-Regular"
-                labelStyle={styles.labelStyle}
-              >
-                E-mail
-            </FormLabel>
-            </View>
-
-            <View style={styles.inputView}>
-              <FormInput
-                fontFamily="Courier"
-                inputStyle={styles.inputStyle}
-                selectionColor={colors.splitBlue}
-                placeholder="jrj@split.com"
-                placeholderTextColor={colors.splitBackground2}
-                onChangeText={emailText => this.setState({ emailText })}
-                value={this.state.emailText}
-              />
-            </View>
-          </View>
-
-          <View style={styles.passwordView}>
-            <View style={{ flex: 1 }}>
-              <FormLabel
-                fontFamily="AvenirNext-Regular"
-                labelStyle={styles.labelStyle}
-              >
-                Password
-            </FormLabel>
-            </View>
-            <View style={styles.inputView}>
-              <FormInput
-                fontFamily="Courier"
-                inputStyle={styles.inputStyle}
-                secureTextEntry={true}
-                placeholder="splittttttt"
-                placeholderTextColor={colors.splitBackground2}
-                selectionColor={colors.splitBlue}
-                onChangeText={passwordText => this.setState({ passwordText })}
-                value={this.state.passwordText}
-              />
-            </View>
-          </View>
-
-
-          <View style={styles.buttonView}>
-            <Button
-              title="Log In"
-              fontFamily="AvenirNext-Regular"
-              iconRight
-              icon={{ name: 'keyboard-arrow-right', color: colors.splitBackground1 }}
-              color={colors.splitBackground1}
-              backgroundColor={colors.splitGold}
-              borderRadius={10}
-              onPress={() => this.props.handleLogin(this.state.emailText, this.state.passwordText)}
-
-            />
-          </View>
-
-        </View>
-
-
-      </View>
-    );
-  }
-}
+import { signup } from '../../../redux/auth';
+import { colors } from '../../../values/stylesheet';
 
 
 const styles = StyleSheet.create({
-
   gradientView: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -214,7 +58,6 @@ const styles = StyleSheet.create({
     flex: 2,
   },
 
-
   buttonView: {
     justifyContent: 'flex-start',
     flex: 3,
@@ -247,23 +90,169 @@ const styles = StyleSheet.create({
     marginRight: '5%',
     backgroundColor: colors.splitGray,
   },
-
-
 });
 
+class Signup extends Component {
+  constructor() {
+    super();
+    this.state = {
+      emailText: '',
+      passwordText: '',
+      givenNameText: '',
+      familyNameText: '',
+    }
+  }
 
-const mapState = (state) => {
-  return {
+  render() {
+    const user = this.props.user;
+    if (user.payPalMe) this.props.navigation.navigate('Camera');
+    else if (user.id) this.props.navigation.navigate('LinkAccounts');
+
+    return (
+      <View style={styles.gradientView}>
+        <View>
+          <Text style={styles.logoText}>Split.</Text>
+          <View style={styles.descriptionView}>
+            <Text style={styles.builtWithText}>built with </Text>
+            <Icon
+              name="receipt"
+              type="material-community"
+              color={colors.splitGold}
+            />
+            <Text style={styles.builtWithText}> by JRJ</Text>
+          </View>
+        </View>
+
+        <View style={styles.contentView}>
+
+          <View style={styles.emailView}>
+            <View style={{ flex: 1 }}>
+              <FormLabel
+                fontFamily="AvenirNext-Regular"
+                labelStyle={styles.labelStyle}
+              >First Name
+              </FormLabel>
+            </View>
+
+            <View style={styles.inputView}>
+              <FormInput
+                fontFamily="Courier"
+                inputStyle={styles.inputStyle}
+                selectionColor={colors.splitBlue}
+                placeholder="John"
+                placeholderTextColor={colors.splitBackground2}
+                onChangeText={givenNameText => this.setState({ givenNameText })}
+                value={this.state.givenNameText}
+              />
+            </View>
+          </View>
+
+          <View style={styles.emailView}>
+            <View style={{ flex: 1 }}>
+              <FormLabel
+                fontFamily="AvenirNext-Regular"
+                labelStyle={styles.labelStyle}
+              >
+                Last Name
+        </FormLabel>
+            </View>
+
+            <View style={styles.inputView}>
+              <FormInput
+                fontFamily="Courier"
+                inputStyle={styles.inputStyle}
+                selectionColor={colors.splitBlue}
+                placeholder="Doe"
+                placeholderTextColor={colors.splitBackground2}
+                onChangeText={familyName => this.setState({ familyName })}
+                value={this.state.familyName}
+              />
+            </View>
+          </View>
+
+          <View style={styles.emailView}>
+            <View style={{ flex: 1 }}>
+              <FormLabel
+                fontFamily="AvenirNext-Regular"
+                labelStyle={styles.labelStyle}
+              >
+                E-mail
+              </FormLabel>
+            </View>
+
+            <View style={styles.inputView}>
+              <FormInput
+                fontFamily="Courier"
+                inputStyle={styles.inputStyle}
+                selectionColor={colors.splitBlue}
+                placeholder="jrj@split.com"
+                placeholderTextColor={colors.splitBackground2}
+                onChangeText={emailText => this.setState({ emailText })}
+                value={this.state.emailText}
+              />
+            </View>
+          </View>
+
+          <View style={styles.passwordView}>
+            <View style={{ flex: 1 }}>
+              <FormLabel
+                fontFamily="AvenirNext-Regular"
+                labelStyle={styles.labelStyle}
+              >
+                Password
+              </FormLabel>
+            </View>
+            <View style={styles.inputView}>
+              <FormInput
+                fontFamily="Courier"
+                inputStyle={styles.inputStyle}
+                secureTextEntry={true}
+                placeholder="splittttttt"
+                placeholderTextColor={colors.splitBackground2}
+                selectionColor={colors.splitBlue}
+                onChangeText={passwordText => this.setState({ passwordText })}
+                value={this.state.passwordText}
+              />
+            </View>
+          </View>
+
+          <View style={styles.buttonView}>
+            <Button
+              title="Sign Up"
+              margin={3}
+              color={colors.buttonColor}
+              backgroundColor={colors.buttonBackground}
+              borderRadius={10}
+              onPress={() => {
+                (this.state.form === 'SIGNUP')
+                  ? this.props.handleSignUp(
+                    this.state.emailText,
+                    this.state.passwordText,
+                    this.state.givenNameText,
+                    this.state.familyNameText)
+                  : this.setState({ form: 'SIGNUP' })
+              }}
+            />
+          </View>
+
+        </View>
+
+
+      </View>
+    );
+  }
+}
+
+const mapState = state =>
+  ({
     user: state.user,
-  };
-};
+  })
 
-const mapDispatch = (dispatch, ownProps) => {
-  return {
-    handleLogin(email, password) {
-      dispatch(login(email, password));
+const mapDispatch = dispatch/* , ownProps */ => 
+  ({
+    handleSignUp(email, password) {
+      dispatch(signup(email, password));
     },
-  };
-};
+  });
 
-export default connect(mapState, mapDispatch)(Login);
+export default connect(mapState, mapDispatch)(Signup);

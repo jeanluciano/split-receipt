@@ -46,10 +46,12 @@ export const logout = () =>
       .then(() => dispatch(removeUser()))
 
 export const signup = (email, password, givenName, familyName) =>
-  (dispatch) =>
+  (dispatch) => {
+    // console.log('email, password, givenName, familyName', email, password, givenName, familyName);
     firebaseSignUp(email, password, givenName, familyName)
       .then(user => dispatch(updateUser(user)))
       .catch(console.error)
+  }
 
 export const userUpdate = (userId, property) =>
   dispatch =>
