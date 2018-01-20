@@ -7,7 +7,7 @@
 
 ## Testing 
 
-```bash
+```
 npm install
 npm run start-server
 npm run test
@@ -15,7 +15,7 @@ npm run test
 
 ## Building
 
-```bash
+```
 npm install
 npm run start-server
 ```
