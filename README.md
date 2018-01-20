@@ -8,16 +8,16 @@
 ## Testing 
 
 ```bash
-$ npm install
-$ npm run start-server
-$ npm run test
+npm install
+npm run start-server
+npm run test
 ```
 
 ## Building
 
 ```bash
-$ npm install
-$ npm run start-server
+npm install
+npm run start-server
 ```
 
 if adding to firebase cloud functions
