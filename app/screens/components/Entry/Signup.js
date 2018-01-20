@@ -164,8 +164,8 @@ class Signup extends Component {
                 selectionColor={colors.splitBlue}
                 placeholder="Doe"
                 placeholderTextColor={colors.splitBackground2}
-                onChangeText={familyName => this.setState({ familyName })}
-                value={this.state.familyName}
+                onChangeText={familyNameText => this.setState({ familyNameText })}
+                value={this.state.familyNameText}
               />
             </View>
           </View>
@@ -250,8 +250,8 @@ const mapState = state =>
 
 const mapDispatch = dispatch/* , ownProps */ => 
   ({
-    handleSignUp(email, password) {
-      dispatch(signup(email, password));
+    handleSignUp(email, password, givenName, familyName) {
+      dispatch(signup(email, password, givenName, familyName));
     },
   });
 
