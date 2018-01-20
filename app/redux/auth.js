@@ -47,7 +47,7 @@ export const logout = () =>
 
 export const signup = (email, password, givenName, familyName) =>
   (dispatch) => {
-    // console.log('email, password, givenName, familyName', email, password, givenName, familyName);
+    console.log('email, password, givenName, familyName', email, password, givenName, familyName);
     firebaseSignUp(email, password, givenName, familyName)
       .then(user => dispatch(updateUser(user)))
       .catch(console.error)
