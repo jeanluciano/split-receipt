@@ -130,7 +130,8 @@ class Signup extends Component {
               <FormLabel
                 fontFamily="AvenirNext-Regular"
                 labelStyle={styles.labelStyle}
-              >First Name
+              >
+              First Name
               </FormLabel>
             </View>
 
@@ -153,8 +154,8 @@ class Signup extends Component {
                 fontFamily="AvenirNext-Regular"
                 labelStyle={styles.labelStyle}
               >
-                Last Name
-        </FormLabel>
+              Last Name
+              </FormLabel>
             </View>
 
             <View style={styles.inputView}>
